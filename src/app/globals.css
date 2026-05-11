@@ -1,13 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Trebuchet MS", "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-display: "Arial Narrow", "Avenir Next Condensed", "Trebuchet MS", sans-serif;
 }
 
 :root {
-  --background: #020617;
-  --foreground: #f8fafc;
+  --background: #07111a;
+  --foreground: #e9eef2;
+  --panel: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.1);
+  --muted: rgba(233, 238, 242, 0.72);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -16,15 +23,81 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Custom Utilities */
-.glass {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+a,
+button {
+  transition: all 180ms ease;
 }
 
-.text-gradient {
-  background: linear-gradient(to bottom right, #fff 30%, #94a3b8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.font-display {
+  font-family: var(--font-display);
+}
+
+.page-section {
+  @apply mx-auto w-full max-w-7xl px-5 py-20 lg:px-8;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(245, 158, 11, 0.26);
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fcd34d;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #14b8a6;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 92%);
+}
+
+.floating {
+  animation: drift 6s ease-in-out infinite;
+}
+
+.counter-pop {
+  animation: counterPop 0.5s ease-out;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes counterPop {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

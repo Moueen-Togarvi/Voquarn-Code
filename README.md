@@ -1,61 +1,50 @@
-# Voquarn Code - Next.js + Neon + Drizzle
+# Voquarn Code
 
-This is a premium Next.js project setup with Neon PostgreSQL and Drizzle ORM.
+This is a multi-page agency website for Voquarn Code, built with Next.js App Router, TypeScript, and Tailwind CSS.
 
 ## Features
 
-- **Next.js 16 (App Router)**: The latest features of Next.js.
-- **Neon PostgreSQL**: Serverless Postgres for modern apps.
-- **Drizzle ORM**: Type-safe ORM for SQL.
-- **Tailwind CSS 4**: Modern styling.
-- **Premium UI**: Custom dark-themed landing page with glassmorphism.
+- **Homepage and route tree**: Home, About, Services, Portfolio, Pricing, Blog, Blog Post, and Contact.
+- **Reusable components**: Sticky navbar, hero, service cards, portfolio filter, pricing toggle, testimonials, footer, and floating WhatsApp CTA.
+- **API routes**: Contact form and newsletter subscription endpoints.
+- **Tailwind CSS 4**: Custom visual system with responsive layouts.
+- **Content-driven setup**: Centralized marketing content in `src/lib/site-data.ts`.
 
 ## Getting Started
 
-### 1. Database Setup
-
-1. Create a project on [Neon](https://neon.tech).
-2. Copy your connection string.
-3. Add it to your `.env` file:
-   ```env
-   DATABASE_URL=postgres://user:password@host/dbname?sslmode=require
-   ```
-
-### 2. Install Dependencies
+### 1. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Database Migration
+### 2. Configure Environment Variables
 
-Sync your schema with the database:
+Copy `.env.example` to `.env` and fill in the values you want to use.
 
-```bash
-npm run db:push
-```
+- `RESEND_API_KEY`: Enables contact form delivery.
+- `CONTACT_TO_EMAIL`: Where contact inquiries should go.
+- `MAILCHIMP_*`: Enables real newsletter subscriptions.
+- `DATABASE_URL`: Optional if you still plan to use the included Drizzle/Neon setup.
 
-### 4. Development
-
-Run the development server:
+### 3. Development
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the results.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-### 5. Drizzle Studio
-
-Visualize your data:
+### 4. Quality Checks
 
 ```bash
-npm run db:studio
+npm run lint
+npm run build
 ```
 
 ## Project Structure
 
-- `src/db/`: Database configuration and schema.
-- `src/app/`: Next.js pages and components.
-- `drizzle.config.ts`: Drizzle configuration.
-- `drizzle/`: Generated migrations (if using `generate`).
+- `src/app/`: App Router pages and API routes.
+- `src/components/`: Shared UI and layout components.
+- `src/lib/site-data.ts`: Marketing content and route data.
+- `src/db/`: Existing Drizzle/Neon configuration preserved for future product work.
