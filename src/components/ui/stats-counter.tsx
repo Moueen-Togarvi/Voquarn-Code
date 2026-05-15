@@ -36,12 +36,12 @@ export function StatsCounter({ items }: StatsCounterProps) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {items.map((item, index) => (
-        <div key={item.label} className="panel rounded-[1.5rem] p-6">
-          <p className="counter-pop font-display text-4xl font-semibold text-white">
+        <div key={item.label} className="panel rounded-[1.5rem] p-6 transition-transform hover:scale-[1.02]">
+          <p className="counter-pop font-display text-4xl font-semibold text-foreground">
             {values[index]}
             {item.suffix || ""}
           </p>
-          <p className="mt-2 text-sm text-[rgba(233,238,242,0.68)]">{item.label}</p>
+          <p className="mt-2 text-sm text-muted">{item.label}</p>
         </div>
       ))}
     </div>

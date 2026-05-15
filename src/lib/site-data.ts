@@ -82,36 +82,43 @@ export const services: Service[] = [
     id: "web-dev",
     title: "Web Development",
     description:
-      "Conversion-focused websites and portals built for fast load times, clean content structure, and lead capture.",
-    deliverables: ["Next.js websites", "Landing pages", "CMS-ready architecture", "Analytics and forms"],
+      "High-performance websites built with Next.js and React for maximum speed, security, and conversion.",
+    deliverables: ["Custom Websites", "Landing Pages", "Performance Optimization", "E-commerce"],
   },
   {
     id: "app-dev",
     title: "App Development",
     description:
-      "Productive, scalable apps for internal tools, customer dashboards, and mobile-first service experiences.",
-    deliverables: ["Product MVPs", "Dashboards", "Client portals", "Cross-platform planning"],
+      "Native and cross-platform mobile applications that provide seamless user experiences and robust functionality.",
+    deliverables: ["iOS & Android Apps", "React Native", "API Integration", "App Store Launch"],
   },
   {
     id: "seo",
-    title: "SEO",
+    title: "Search Engine Optimization",
     description:
-      "Technical and content SEO that improves discoverability, search relevance, and steady inbound acquisition.",
-    deliverables: ["Keyword maps", "On-page fixes", "Content briefs", "Performance audits"],
+      "Data-driven SEO strategies that dominate search rankings and drive sustainable organic growth.",
+    deliverables: ["Keyword Research", "On-Page SEO", "Technical Audits", "Link Building"],
   },
   {
-    id: "ai-solutions",
-    title: "AI Solutions",
+    id: "design",
+    title: "UI/UX Design",
     description:
-      "Practical automation, copilots, and workflow integrations that reduce repetitive manual effort.",
-    deliverables: ["Lead triage bots", "Internal assistants", "Prompt workflows", "Ops automation"],
+      "Modern, minimalist design systems that prioritize user experience and brand identity.",
+    deliverables: ["Product Design", "Brand Systems", "Prototyping", "Visual Identity"],
   },
   {
-    id: "graphic-design",
-    title: "Graphic Design",
+    id: "saas-apps",
+    title: "SaaS Applications",
     description:
-      "Brand visuals and marketing assets that make digital products feel polished and memorable.",
-    deliverables: ["Brand systems", "Social creatives", "Pitch decks", "Campaign visuals"],
+      "End-to-end development of scalable Software as a Service products with secure multi-tenant architectures.",
+    deliverables: ["SaaS Architecture", "Subscription Systems", "User Dashboards", "Cloud Scaling"],
+  },
+  {
+    id: "wordpress",
+    title: "WordPress Solutions",
+    description:
+      "Professional WordPress development for businesses that need flexible, easy-to-manage content systems.",
+    deliverables: ["Custom Themes", "Plugin Development", "WP Optimization", "Site Migration"],
   },
 ];
 

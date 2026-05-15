@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { ThemeToggle } from "../theme-toggle";
 import { navItems, site } from "@/lib/site-data";
 
 export function Navbar() {
@@ -10,17 +11,11 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[rgba(6,17,26,0.82)] backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+    <header className="sticky top-0 z-50 bg-white/50 backdrop-blur-sm">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-2 lg:px-8">
         <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[rgba(255,255,255,0.14)] bg-[rgba(255,255,255,0.06)] font-semibold text-white">
-            VC
-          </span>
-          <span>
-            <span className="block font-display text-lg font-semibold text-white">{site.name}</span>
-            <span className="block text-xs uppercase tracking-[0.24em] text-[rgba(233,238,242,0.58)]">
-              Build. Launch. Grow.
-            </span>
+          <span className="font-display text-xl font-bold tracking-tighter text-foreground uppercase">
+            Voquarn
           </span>
         </Link>
 
@@ -34,8 +29,8 @@ export function Navbar() {
                 href={item.href}
                 className={`rounded-full px-4 py-2 text-sm transition ${
                   active
-                    ? "bg-[rgba(255,255,255,0.1)] text-white"
-                    : "text-[rgba(233,238,242,0.7)] hover:bg-[rgba(255,255,255,0.06)] hover:text-white"
+                    ? "bg-foreground/10 text-foreground font-medium"
+                    : "text-muted hover:bg-foreground/5 hover:text-foreground"
                 }`}
               >
                 {item.label}
@@ -45,17 +40,19 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
+          
           <Link
             href="/contact"
-            className="hidden rounded-full bg-[#f59e0b] px-5 py-2.5 text-sm font-semibold text-[#07111a] transition hover:bg-[#fbbf24] md:inline-flex"
+            className="hidden rounded-full border border-foreground/20 px-6 py-2 text-[10px] font-bold uppercase tracking-widest text-foreground transition hover:bg-foreground hover:text-background md:inline-flex"
           >
-            Start a Project
+            Contact Us
           </Link>
 
           <button
             type="button"
             aria-label="Toggle navigation menu"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-foreground md:hidden"
             onClick={() => setIsOpen((open) => !open)}
           >
             <span className="space-y-1.5">
@@ -68,24 +65,24 @@ export function Navbar() {
       </div>
 
       {isOpen ? (
-        <div className="border-t border-white/10 px-5 py-4 md:hidden">
+        <div className="border-t border-border px-5 py-4 md:hidden">
+          <div className="mb-4 flex items-center justify-between">
+            <span className="text-sm font-medium text-muted">Appearance</span>
+            <ThemeToggle />
+          </div>
           <nav className="flex flex-col gap-2">
-            {navItems.map((item) => {
-              const active = pathname === item.href;
-
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`rounded-2xl px-4 py-3 text-sm ${
-                    active ? "bg-[rgba(255,255,255,0.1)] text-white" : "text-[rgba(233,238,242,0.74)]"
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`rounded-2xl px-4 py-3 text-sm ${
+                  pathname === item.href ? "bg-foreground/10 text-foreground font-medium" : "text-muted"
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
         </div>
       ) : null}

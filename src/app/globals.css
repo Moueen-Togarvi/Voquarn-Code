@@ -1,16 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Trebuchet MS", "Segoe UI", "Helvetica Neue", sans-serif;
-  --font-display: "Arial Narrow", "Avenir Next Condensed", "Trebuchet MS", sans-serif;
+  --font-sans: "Inter", "Trebuchet MS", "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-display: "Inter", "Arial Narrow", "Avenir Next Condensed", "Trebuchet MS", sans-serif;
 }
 
 :root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --primary: #ff5400;
+  --panel: #f2f2f2;
+  --border: #e5e5e5;
+  --muted: #666666;
+  --gradient-1: rgba(255, 84, 0, 0.05);
+  --gradient-2: rgba(0, 0, 0, 0.02);
+  --gradient-main: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%);
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --hero-text: #000000;
+}
+
+.dark {
   --background: #07111a;
   --foreground: #e9eef2;
   --panel: rgba(255, 255, 255, 0.06);
   --border: rgba(255, 255, 255, 0.1);
   --muted: rgba(233, 238, 242, 0.72);
+  --gradient-1: rgba(20, 184, 166, 0.16);
+  --gradient-2: rgba(245, 158, 11, 0.14);
+  --gradient-main: linear-gradient(180deg, #07111a 0%, #0b1822 42%, #07111a 100%);
+  --nav-bg: rgba(6, 17, 26, 0.82);
+  --hero-text: #ffffff;
 }
 
 * {
@@ -100,4 +120,9 @@ button {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }

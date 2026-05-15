@@ -50,18 +50,18 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
           name="email"
           type="email"
           placeholder="you@company.com"
-          className="w-full rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white outline-none transition placeholder:text-[rgba(233,238,242,0.45)] focus:border-[#f59e0b]"
+          className="w-full rounded-full border border-border bg-panel px-5 py-3 text-sm text-foreground outline-none transition placeholder:text-muted focus:border-[#f59e0b]"
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="rounded-full bg-[#14b8a6] px-5 py-3 text-sm font-semibold text-[#07111a] transition hover:bg-[#2dd4bf] disabled:cursor-not-allowed disabled:opacity-70"
+          className="rounded-full bg-[#14b8a6] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#2dd4bf] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "loading" ? "Joining..." : "Join"}
         </button>
       </div>
       {message ? (
-        <p className={`text-sm ${status === "error" ? "text-[#fca5a5]" : "text-[#99f6e4]"}`}>{message}</p>
+        <p className={`text-sm ${status === "error" ? "text-red-500" : "text-[#14b8a6]"}`}>{message}</p>
       ) : null}
     </form>
   );
