@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, Asterisk, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /* ─── tiny helpers ──────────────────────────────────────────────── */
 const OrangeDot = () => (
@@ -20,16 +20,121 @@ const OrangeDot = () => (
   />
 );
 
+const bgImages = [
+  "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=85",
+  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&q=85",
+  "https://images.unsplash.com/photo-1542744094-24638ea0b56c?w=1600&q=85",
+  "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1600&q=85",
+  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=85",
+];
+
+const BackgroundSlideshow = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % bgImages.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+      <AnimatePresence>
+        <motion.img
+          key={index}
+          src={bgImages[index]}
+          initial={{ opacity: 0, x: 60, scale: 1.05 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          exit={{ opacity: 0, x: -60, scale: 0.95 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            filter: "grayscale(0.15) brightness(0.65)",
+          }}
+        />
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const SERVICES = ["Websites", "Brands", "Apps", "Systems", "SaaS Apps"];
+
+const TIMELINE_DATA = [
+  [{ num: "01", label: "UI UX DESIGN", sub: "User Interfaces", active: false }, { num: "02", label: "GRAPHIC DESIGNS", sub: "Visual Assets", active: true }],
+  [{ num: "01", label: "CRM", sub: "Customer Relations", active: false }, { num: "02", label: "PMS", sub: "Property Management", active: true }],
+  [{ num: "01", label: "AI APPS", sub: "Smart Automation", active: false }, { num: "02", label: "MOBILE APPS", sub: "iOS & Android", active: true }],
+  [{ num: "01", label: "HOSPITAL MANAGEMENTS", sub: "Healthcare Systems", active: false }, { num: "02", label: "COMPANY MANAGEMENTS", sub: "Enterprise Systems", active: true }],
+  [{ num: "01", label: "CLOUD SOLUTIONS", sub: "Scalable Platforms", active: false }, { num: "02", label: "WEB PORTALS", sub: "Interactive Dashboards", active: true }],
+];
+
+const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }) => {
+  const [text, setText] = useState("Websites");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+
+  useEffect(() => {
+    const i = loopNum % SERVICES.length;
+    const fullText = SERVICES[i];
+    
+    onIndexChange?.(i);
+
+    let typingSpeed = isDeleting ? 50 : 120;
+    
+    if (!isDeleting && text === fullText) {
+      typingSpeed = 2000;
+    } else if (isDeleting && text === "") {
+      typingSpeed = 500;
+    }
+
+    const timer = setTimeout(() => {
+      if (!isDeleting && text === fullText) {
+        setIsDeleting(true);
+      } else if (isDeleting && text === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      } else {
+        setText(
+          isDeleting
+            ? fullText.substring(0, text.length - 1)
+            : fullText.substring(0, text.length + 1)
+        );
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, loopNum, onIndexChange]);
+
+  return (
+    <span style={{ color: "#ff5400", display: "inline-flex", alignItems: "center", width: "6.2em", justifyContent: "flex-start", whiteSpace: "nowrap" }}>
+      {text}
+      <motion.span
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+        style={{ fontWeight: 300, marginLeft: 2, transform: "translateY(-0.05em)" }}
+      >
+        |
+      </motion.span>
+    </span>
+  );
+};
+
 /* ─── component ─────────────────────────────────────────────────── */
 export function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section
       style={{
         width: "100%",
         background: "#e8e8e8",
-        minHeight: "100vh",
+        minHeight: "92vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -45,15 +150,15 @@ export function Hero() {
           gap: 16,
           width: "100%",
           maxWidth: 1480,
-          height: "calc(100vh - 40px)",
-          maxHeight: 860,
+          height: "calc(92vh - 40px)",
+          maxHeight: 800,
         }}
       >
         {/* ════════════════════════════════════════
             COL 1 — slim black sidebar pill
         ════════════════════════════════════════ */}
         <motion.div
-          initial={{ x: -30, opacity: 0 }}
+          initial={false}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
           style={{
@@ -65,6 +170,8 @@ export function Hero() {
             justifyContent: "space-between",
             padding: "22px 0",
             color: "#fff",
+            height: "93%",
+            alignSelf: "center",
           }}
         >
           {/* X button */}
@@ -122,7 +229,7 @@ export function Hero() {
             COL 2 — left content column
         ════════════════════════════════════════ */}
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
+          initial={false}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           style={{
@@ -130,38 +237,42 @@ export function Hero() {
             flexDirection: "column",
             justifyContent: "space-between",
             gap: 20,
+            height: "93%",
+            alignSelf: "center",
           }}
         >
-          {/* ── Info card (top) ── */}
+          {/* ── Info card ── */}
           <div
             style={{
+              order: 1,
               background: "#fff",
               borderRadius: 24,
-              padding: "18px 20px",
+              padding: "16px",
               display: "flex",
-              flexDirection: "column",
-              gap: 14,
+              alignItems: "stretch",
+              gap: 16,
               boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
             }}
           >
-            <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-              {/* thumbnail */}
-              <div
-                style={{
-                  width: 72,
-                  height: 72,
-                  borderRadius: 14,
-                  overflow: "hidden",
-                  flexShrink: 0,
-                  background: "#111",
-                }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&q=80"
-                  alt="work preview"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(0.4)" }}
-                />
-              </div>
+            {/* thumbnail */}
+            <div
+              style={{
+                width: 72,
+                height: 72,
+                borderRadius: 14,
+                overflow: "hidden",
+                flexShrink: 0,
+                background: "#111",
+              }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&q=80"
+                alt="work preview"
+                style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(0.4)" }}
+              />
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1, position: "relative" }}>
               {/* copy */}
               <p
                 style={{
@@ -176,41 +287,43 @@ export function Hero() {
               >
                 This is the latest technology that allows you to make websites using artificial intelligence.
               </p>
-            </div>
 
-            {/* CTA */}
-            <Link
-              href="/services"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                background: "#000",
-                color: "#fff",
-                borderRadius: 999,
-                padding: "9px 18px",
-                fontSize: 9,
-                fontWeight: 900,
-                textTransform: "uppercase",
-                letterSpacing: "0.15em",
-                textDecoration: "none",
-                alignSelf: "flex-start",
-              }}
-            >
-              EXPLORE MORE
-              <ChevronRight size={12} />
-              <ChevronRight size={12} style={{ marginLeft: -8 }} />
-            </Link>
+              {/* CTA */}
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <Link
+                  href="/services"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    background: "#000",
+                    color: "#fff",
+                    borderRadius: 999,
+                    padding: "7px 14px",
+                    fontSize: 8,
+                    fontWeight: 900,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.15em",
+                    textDecoration: "none",
+                    transform: "translateY(-4px)",
+                  }}
+                >
+                  EXPLORE MORE
+                  <ChevronRight size={10} />
+                  <ChevronRight size={10} style={{ marginLeft: -6 }} />
+                </Link>
+              </div>
+            </div>
           </div>
 
           {/* ── Numbered timeline ── */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 0, paddingLeft: 8 }}>
-            {[
-              { num: "06", label: "LAUNCH", sub: "Release the project", active: false },
-              { num: "05", label: "BETA TEST", sub: "Test and fix", active: true },
-            ].map((step, i) => (
-              <div
-                key={i}
+          <div style={{ display: "flex", flexDirection: "column", gap: 0, paddingLeft: 8, position: "relative", minHeight: "85px" }}>
+            {TIMELINE_DATA[activeIndex].map((step, i) => (
+              <motion.div
+                key={`${activeIndex}-${i}`}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
                 style={{
                   display: "flex",
                   alignItems: "flex-start",
@@ -238,7 +351,7 @@ export function Hero() {
                     width: 10,
                     height: 10,
                     borderRadius: "50%",
-                    background: step.active ? "#ff5400" : "rgba(0,0,0,0.2)",
+                    background: step.active ? "#ff5400" : "rgba(0,0,0,0.8)",
                     flexShrink: 0,
                     marginTop: 4,
                     boxShadow: step.active ? "0 0 14px rgba(255,84,0,0.55)" : "none",
@@ -251,7 +364,7 @@ export function Hero() {
                       fontWeight: 900,
                       textTransform: "uppercase",
                       letterSpacing: "0.2em",
-                      color: step.active ? "#000" : "rgba(0,0,0,0.3)",
+                      color: step.active ? "#000" : "rgba(0,0,0,0.8)",
                       margin: 0,
                     }}
                   >
@@ -261,7 +374,7 @@ export function Hero() {
                     style={{
                       fontSize: 9,
                       fontWeight: 600,
-                      color: step.active ? "rgba(0,0,0,0.45)" : "rgba(0,0,0,0.18)",
+                      color: step.active ? "rgba(0,0,0,0.7)" : "rgba(0,0,0,0.6)",
                       margin: "3px 0 0 0",
                       textTransform: "uppercase",
                       letterSpacing: "0.1em",
@@ -270,7 +383,7 @@ export function Hero() {
                     {step.sub}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -297,7 +410,7 @@ export function Hero() {
           </div>
 
           {/* ── Big headline + tagline ── */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16, order: -1 }}>
             {/* small tagline above */}
             <p
               style={{
@@ -336,7 +449,7 @@ export function Hero() {
                   color: "#000",
                 }}
               >
-                Websites
+                <Typewriter onIndexChange={setActiveIndex} />
                 {/* filled circle */}
                 <span
                   style={{
@@ -370,204 +483,234 @@ export function Hero() {
         {/* ════════════════════════════════════════
             COL 3 — right large image card
         ════════════════════════════════════════ */}
-        <motion.div
-          initial={{ scale: 0.96, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
+        <div
           style={{
-            borderRadius: "3rem",
-            overflow: "hidden",
             position: "relative",
-            background: "#111",
+            width: "95%",
+            height: "93%",
+            justifySelf: "center",
+            alignSelf: "center",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 18,
+            borderRadius: "3.5rem",
+            background: "linear-gradient(145deg, rgba(255,255,255,0.88), rgba(255,255,255,0.42))",
+            border: "1px solid rgba(255,255,255,0.55)",
+            boxShadow: "0 30px 70px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.7)",
+            overflow: "hidden",
           }}
         >
-          {/* background image */}
-          <img
-            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=85"
-            alt="hero visual"
+          <div
             style={{
               position: "absolute",
               inset: 0,
+              backgroundImage:
+                "linear-gradient(rgba(17,17,17,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(17,17,17,0.08) 1px, transparent 1px)",
+              backgroundSize: "32px 32px",
+              opacity: 0.55,
+              pointerEvents: "none",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 14,
+              borderRadius: "3rem",
+              border: "1px solid rgba(255,255,255,0.45)",
+              pointerEvents: "none",
+            }}
+          />
+          <motion.div
+            initial={false}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
+            style={{
+              borderRadius: "3rem",
+              overflow: "hidden",
+              position: "relative",
+              background: "#111",
               width: "100%",
               height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-              filter: "grayscale(0.25) brightness(0.55)",
-            }}
-          />
-
-          {/* dark gradient overlay — stronger at top & bottom */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.75) 100%)",
-            }}
-          />
-
-          {/* ── content layer ── */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 2,
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              padding: "32px 36px",
+              boxShadow: "0 24px 60px rgba(0,0,0,0.28)",
             }}
           >
-            {/* TOP ROW */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-              {/* large brand mark */}
-              <motion.p
-                animate={{ opacity: [0.55, 0.85, 0.55] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                style={{
-                  fontSize: "clamp(60px, 9vw, 140px)",
-                  fontWeight: 900,
-                  color: "#fff",
-                  margin: 0,
-                  lineHeight: 0.8,
-                  letterSpacing: "-0.06em",
-                  textTransform: "uppercase",
-                  userSelect: "none",
-                }}
-              >
-                VC
-              </motion.p>
+            {/* background image slideshow */}
+            <BackgroundSlideshow />
 
-              {/* MENU button */}
-              <motion.button
-                whileHover={{ scale: 1.08, background: "#ff5400" }}
-                onClick={() => setMenuOpen((v) => !v)}
-                style={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.12)",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  backdropFilter: "blur(8px)",
-                  color: "#fff",
-                  fontSize: 9,
-                  fontWeight: 900,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.12em",
-                  cursor: "pointer",
-                  transition: "background 0.2s ease",
-                  flexShrink: 0,
-                }}
-              >
-                MENU
-              </motion.button>
-            </div>
+            {/* dark gradient overlay — stronger at top & bottom */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.75) 100%)",
+              }}
+            />
 
-            {/* BOTTOM: big headline overlay + controls */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-
-              {/* Big bold headline like reference "Futuristic technologies" */}
-              <h2
-                style={{
-                  fontSize: "clamp(42px, 5.5vw, 88px)",
-                  fontWeight: 900,
-                  lineHeight: 0.88,
-                  letterSpacing: "-0.04em",
-                  textTransform: "uppercase",
-                  color: "#fff",
-                  margin: 0,
-                  textShadow: "0 4px 32px rgba(0,0,0,0.5)",
-                }}
-              >
-                We Build
-                <br />
-                <span style={{ display: "inline-flex", alignItems: "center", gap: "0.2em" }}>
-                  Websites
-                  <span
-                    style={{
-                      display: "inline-block",
-                      width: "0.35em",
-                      height: "0.35em",
-                      borderRadius: "50%",
-                      background: "#fff",
-                      flexShrink: 0,
-                      marginLeft: "0.15em",
-                    }}
-                  />
-                  <motion.span
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    style={{
-                      display: "inline-block",
-                      fontSize: "0.6em",
-                      fontWeight: 900,
-                      color: "#ff5400",
-                      lineHeight: 1,
-                      marginLeft: "0.1em",
-                    }}
-                  >
-                    ✳
-                  </motion.span>
-                </span>
-              </h2>
-
-              {/* Bottom control bar */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-                {/* animated bars + rights */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  <div style={{ display: "flex", alignItems: "flex-end", gap: 4 }}>
-                    {[22, 35, 18, 40, 28, 15, 32].map((h, i) => (
-                      <motion.div
-                        key={i}
-                        animate={{ scaleY: [1, 1.6, 1] }}
-                        transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.1, ease: "easeInOut" }}
-                        style={{
-                          width: 4,
-                          height: h * 0.6,
-                          background: i === 0 || i === 3 ? "#ff5400" : "rgba(255,255,255,0.35)",
-                          borderRadius: 2,
-                          transformOrigin: "bottom",
-                        }}
-                      />
-                    ))}
-                  </div>
-                  <p
-                    style={{
-                      fontSize: 8,
-                      fontWeight: 900,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.25em",
-                      color: "rgba(255,255,255,0.4)",
-                      margin: 0,
-                    }}
-                  >
-                    ALL RIGHTS RESERVED
-                  </p>
-                </div>
-
-                {/* expand arrow */}
-                <motion.div
-                  whileHover={{ scale: 1.1, background: "#ff5400" }}
+            {/* ── content layer ── */}
+            <div
+              style={{
+                position: "relative",
+                zIndex: 2,
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                padding: "32px 36px",
+              }}
+            >
+              {/* TOP ROW */}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                {/* large brand mark */}
+                <motion.p
+                  animate={{ opacity: [0.55, 0.85, 0.55] }}
+                  transition={{ duration: 4, repeat: Infinity }}
                   style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: "50%",
-                    background: "rgba(255,255,255,0.12)",
-                    border: "1px solid rgba(255,255,255,0.22)",
-                    backdropFilter: "blur(8px)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer",
-                    transition: "background 0.2s ease",
+                    fontSize: "clamp(60px, 9vw, 140px)",
+                    fontWeight: 900,
+                    color: "#fff",
+                    margin: 0,
+                    lineHeight: 0.8,
+                    letterSpacing: "-0.06em",
+                    textTransform: "uppercase",
+                    userSelect: "none",
                   }}
                 >
-                  <ArrowUpRight size={18} color="#fff" />
-                </motion.div>
+                  VC
+                </motion.p>
+
+                {/* MENU button */}
+                <motion.button
+                  whileHover={{ scale: 1.08, background: "#ff5400" }}
+                  onClick={() => setMenuOpen((v) => !v)}
+                  style={{
+                    width: 64,
+                    height: 64,
+                    borderRadius: "50%",
+                    background: "rgba(255,255,255,0.12)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    backdropFilter: "blur(8px)",
+                    color: "#fff",
+                    fontSize: 9,
+                    fontWeight: 900,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    cursor: "pointer",
+                    transition: "background 0.2s ease",
+                    flexShrink: 0,
+                  }}
+                >
+                  MENU
+                </motion.button>
+              </div>
+
+              {/* BOTTOM: big headline overlay + controls */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+
+                {/* Big bold headline like reference "Futuristic technologies" */}
+                <h2
+                  style={{
+                    fontSize: "clamp(21px, 2.75vw, 44px)",
+                    fontWeight: 900,
+                    lineHeight: 0.88,
+                    letterSpacing: "-0.04em",
+                    textTransform: "uppercase",
+                    color: "#fff",
+                    margin: 0,
+                    textShadow: "0 4px 32px rgba(0,0,0,0.5)",
+                  }}
+                >
+                  We Build
+                  <br />
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "0.2em" }}>
+                    <Typewriter />
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: "0.35em",
+                        height: "0.35em",
+                        borderRadius: "50%",
+                        background: "#fff",
+                        flexShrink: 0,
+                        marginLeft: "0.15em",
+                      }}
+                    />
+                    <motion.span
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      style={{
+                        display: "inline-block",
+                        fontSize: "0.6em",
+                        fontWeight: 900,
+                        color: "#ff5400",
+                        lineHeight: 1,
+                        marginLeft: "0.1em",
+                      }}
+                    >
+                      ✳
+                    </motion.span>
+                  </span>
+                </h2>
+
+                {/* Bottom control bar */}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+                  {/* animated bars + rights */}
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                    <div style={{ display: "flex", alignItems: "flex-end", gap: 4 }}>
+                      {[22, 35, 18, 40, 28, 15, 32].map((h, i) => (
+                        <motion.div
+                          key={i}
+                          animate={{ scaleY: [1, 1.6, 1] }}
+                          transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.1, ease: "easeInOut" }}
+                          style={{
+                            width: 4,
+                            height: h * 0.6,
+                            background: i === 0 || i === 3 ? "#ff5400" : "rgba(255,255,255,0.35)",
+                            borderRadius: 2,
+                            transformOrigin: "bottom",
+                          }}
+                        />
+                      ))}
+                    </div>
+                    <p
+                      style={{
+                        fontSize: 8,
+                        fontWeight: 900,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.25em",
+                        color: "rgba(255,255,255,0.4)",
+                        margin: 0,
+                      }}
+                    >
+                      ALL RIGHTS RESERVED
+                    </p>
+                  </div>
+
+                  {/* expand arrow */}
+                  <motion.div
+                    whileHover={{ scale: 1.1, background: "#ff5400" }}
+                    style={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: "50%",
+                      background: "rgba(255,255,255,0.12)",
+                      border: "1px solid rgba(255,255,255,0.22)",
+                      backdropFilter: "blur(8px)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      transition: "background 0.2s ease",
+                    }}
+                  >
+                    <ArrowUpRight size={18} color="#fff" />
+                  </motion.div>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

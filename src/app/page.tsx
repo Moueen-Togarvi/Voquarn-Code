@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { Hero } from "@/components/ui/hero";
 import { TypoSection } from "@/components/ui/typo-section";
+import { CryptoDashboard } from "@/components/ui/crypto-dashboard";
 import { PortfolioGrid } from "@/components/ui/portfolio-grid";
+import { SocialProofSection } from "@/components/ui/social-proof-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServiceCard } from "@/components/ui/service-card";
-import { StatsCounter } from "@/components/ui/stats-counter";
-import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { buildMetadata } from "@/lib/metadata";
-import { portfolioItems, services, stats, testimonials } from "@/lib/site-data";
+import { portfolioItems, services } from "@/lib/site-data";
 
 export const metadata = buildMetadata(
   "Voquarn Code | Home",
@@ -24,6 +24,8 @@ export default function HomePage() {
 
       <TypoSection />
 
+      <CryptoDashboard />
+
       <section className="page-section">
         <SectionHeading
           eyebrow="Our Services"
@@ -31,11 +33,13 @@ export default function HomePage() {
           description="From high-end websites to custom SaaS products, we provide end-to-end engineering and design."
         />
         <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+          {services.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </div>
       </section>
+
+      <SocialProofSection />
 
       <section className="page-section">
         <SectionHeading
@@ -45,30 +49,6 @@ export default function HomePage() {
         />
         <div className="mt-12">
           <PortfolioGrid items={portfolioItems.slice(0, 4)} />
-        </div>
-      </section>
-
-      <section className="page-section">
-        <SectionHeading
-          eyebrow="Testimonials"
-          title="Trusted by businesses worldwide"
-          description="The work matters, but so does the process around it: clarity, responsiveness, and useful momentum."
-        />
-        <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.name} testimonial={testimonial} />
-          ))}
-        </div>
-      </section>
-
-      <section className="page-section">
-        <SectionHeading
-          eyebrow="The Numbers"
-          title="A compact team built for sharp execution"
-          description="We keep delivery lean, collaborative, and close to outcomes."
-        />
-        <div className="mt-12">
-          <StatsCounter items={stats} />
         </div>
       </section>
 
