@@ -4,6 +4,8 @@ import { TypoSection } from "@/components/ui/typo-section";
 import { AgencyDashboard } from "@/components/ui/agency-dashboard";
 import { AiGrowthSection } from "@/components/ui/ai-growth-section";
 import { PortfolioGrid } from "@/components/ui/portfolio-grid";
+import { PortfolioCarousel } from "@/components/ui/portfolio-carousel";
+import { SpotlightShowcase } from "@/components/ui/spotlight-showcase";
 import { SocialProofSection } from "@/components/ui/social-proof-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServiceCard } from "@/components/ui/service-card";
@@ -44,16 +46,10 @@ export default function HomePage() {
 
       <SocialProofSection />
 
-      <section className="page-section">
-        <SectionHeading
-          eyebrow="Recent Work"
-          title="Selected builds and growth systems"
-          description="A mix of websites, apps, SEO sprints, and automation work shaped around real business bottlenecks."
-        />
-        <div className="mt-12">
-          <PortfolioGrid items={portfolioItems.slice(0, 4)} />
-        </div>
-      </section>
+      <PortfolioCarousel items={portfolioItems} />
+
+      {/* The New Cinematic Spotlight Showcase */}
+      <SpotlightShowcase />
 
       <section className="page-section pt-8">
         <div className="rounded-[4rem] border-4 border-black bg-white p-12 sm:p-16 relative overflow-hidden group">

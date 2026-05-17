@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, Asterisk, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { RocketCanvas } from "./rocket-canvas";
 
 /* ─── tiny helpers ──────────────────────────────────────────────── */
 const OrangeDot = () => (
@@ -63,7 +64,7 @@ const BackgroundSlideshow = () => {
   );
 };
 
-const SERVICES = ["Websites", "Brands", "Apps", "Systems", "SaaS Apps"];
+const SERVICES = ["Websites", "Brands", "Apps", "Systems", "SaaS Apps", "AI Agents", "AI Apps"];
 
 const TIMELINE_DATA = [
   [{ num: "01", label: "UI UX DESIGN", sub: "User Interfaces", active: false }, { num: "02", label: "GRAPHIC DESIGNS", sub: "Visual Assets", active: true }],
@@ -71,6 +72,8 @@ const TIMELINE_DATA = [
   [{ num: "01", label: "AI APPS", sub: "Smart Automation", active: false }, { num: "02", label: "MOBILE APPS", sub: "iOS & Android", active: true }],
   [{ num: "01", label: "HOSPITAL MANAGEMENTS", sub: "Healthcare Systems", active: false }, { num: "02", label: "COMPANY MANAGEMENTS", sub: "Enterprise Systems", active: true }],
   [{ num: "01", label: "CLOUD SOLUTIONS", sub: "Scalable Platforms", active: false }, { num: "02", label: "WEB PORTALS", sub: "Interactive Dashboards", active: true }],
+  [{ num: "01", label: "MACHINE LEARNING", sub: "Data Models", active: false }, { num: "02", label: "AI AGENTS", sub: "Autonomous Systems", active: true }],
+  [{ num: "01", label: "AI INTEGRATION", sub: "Smart Features", active: false }, { num: "02", label: "AI APPS", sub: "Intelligent Apps", active: true }],
 ];
 
 const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }) => {
@@ -81,11 +84,11 @@ const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }
   useEffect(() => {
     const i = loopNum % SERVICES.length;
     const fullText = SERVICES[i];
-    
+
     onIndexChange?.(i);
 
     let typingSpeed = isDeleting ? 50 : 120;
-    
+
     if (!isDeleting && text === fullText) {
       typingSpeed = 2000;
     } else if (isDeleting && text === "") {
@@ -124,6 +127,67 @@ const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }
   );
 };
 
+/* ─── Rocket Image ───────────────────────────────────────────────── */
+const RocketImg = () => (
+  // eslint-disable-next-line @next/next/no-img-element
+  <img
+    src="/rocket.png"
+    alt="Rocket"
+    style={{
+      width: "300px",
+      height: "auto",
+      objectFit: "contain",
+      filter: "drop-shadow(0 12px 40px rgba(255,100,0,0.45)) drop-shadow(0 4px 16px rgba(0,0,0,0.35))",
+    }}
+  />
+);
+
+/* ─── Rocket Launcher — entry from bottom, then hover in place ───── */
+const RocketLauncher = () => {
+  const [phase, setPhase] = useState<"entry" | "hover">("entry");
+
+  useEffect(() => {
+    // After entry animation completes (1.6s), switch to hover phase
+    const t = setTimeout(() => setPhase("hover"), 1650);
+    return () => clearTimeout(t);
+  }, []);
+
+  if (phase === "entry") {
+    return (
+      <div
+        className="rocket-entry"
+        style={{
+          position: "absolute",
+          top: "110%",
+          left: "calc(50% + 5px)",
+          transform: "translateX(-50%)",
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
+      >
+        <RocketImg />
+      </div>
+    );
+  }
+
+  // hover phase — rocket stays at top: 12px and gently floats + shakes
+  return (
+    <div
+      className="rocket-hover"
+      style={{
+        position: "absolute",
+        top: -40,
+        left: "calc(50% + 5px)",
+        transform: "translateX(-50%)",
+        zIndex: 1,
+        pointerEvents: "none",
+      }}
+    >
+      <RocketImg />
+    </div>
+  );
+};
+
 /* ─── component ─────────────────────────────────────────────────── */
 export function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -140,6 +204,8 @@ export function Hero() {
         justifyContent: "center",
         padding: "20px",
         boxSizing: "border-box",
+        position: "relative",
+        zIndex: 20,
       }}
     >
       {/* ── outer wrapper ── */}
@@ -174,7 +240,7 @@ export function Hero() {
             alignSelf: "center",
           }}
         >
-          {/* X button */}
+          {/* Logo icon (Replacing X button) */}
           <div
             style={{
               width: 40,
@@ -185,9 +251,15 @@ export function Hero() {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
+              overflow: "hidden", // Ensures the image respects the rounded border
             }}
           >
-            <X size={16} color="#fff" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src="/logo-icon.png" 
+              alt="Logo" 
+              style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+            />
           </div>
 
           {/* vertical label */}
@@ -239,6 +311,7 @@ export function Hero() {
             gap: 20,
             height: "93%",
             alignSelf: "center",
+            paddingLeft: 40,
           }}
         >
           {/* ── Info card ── */}
@@ -469,7 +542,7 @@ export function Hero() {
                     display: "inline-block",
                     fontSize: "0.7em",
                     fontWeight: 900,
-                    color: "#000",
+                    color: "#ff5400",
                     lineHeight: 1,
                   }}
                 >
@@ -481,235 +554,52 @@ export function Hero() {
         </motion.div>
 
         {/* ════════════════════════════════════════
-            COL 3 — right large image card
+            COL 3 — right large transparent column
         ════════════════════════════════════════ */}
         <div
           style={{
             position: "relative",
-            width: "95%",
-            height: "93%",
-            justifySelf: "center",
-            alignSelf: "center",
+            width: "100%",
+            height: "100%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: 18,
-            borderRadius: "3.5rem",
-            background: "linear-gradient(145deg, rgba(255,255,255,0.88), rgba(255,255,255,0.42))",
-            border: "1px solid rgba(255,255,255,0.55)",
-            boxShadow: "0 30px 70px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.7)",
-            overflow: "hidden",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage:
-                "linear-gradient(rgba(17,17,17,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(17,17,17,0.08) 1px, transparent 1px)",
-              backgroundSize: "32px 32px",
-              opacity: 0.55,
-              pointerEvents: "none",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 14,
-              borderRadius: "3rem",
-              border: "1px solid rgba(255,255,255,0.45)",
-              pointerEvents: "none",
-            }}
-          />
-          <motion.div
-            initial={false}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
-            style={{
-              borderRadius: "3rem",
-              overflow: "hidden",
-              position: "relative",
-              background: "#111",
-              width: "100%",
-              height: "100%",
-              boxShadow: "0 24px 60px rgba(0,0,0,0.28)",
-            }}
-          >
-            {/* background image slideshow */}
-            <BackgroundSlideshow />
+          {/* Inject dynamic shake CSS keyframes */}
+          <style dangerouslySetInnerHTML={{
+            __html: `
+            @keyframes rocket-shake {
+              0%   { transform: translate(calc(-50% + 0px), 0px) rotate(0deg); }
+              20%  { transform: translate(calc(-50% - 0.5px), 0.5px) rotate(-0.15deg); }
+              40%  { transform: translate(calc(-50% - 0.5px), -0.5px) rotate(0.15deg); }
+              60%  { transform: translate(calc(-50% + 0.5px), 0.5px) rotate(0deg); }
+              80%  { transform: translate(calc(-50% + 0.5px), -0.5px) rotate(0.15deg); }
+              100% { transform: translate(calc(-50% + 0px), 0px) rotate(0deg); }
+            }
+            @keyframes rocket-entry {
+              0%   { top: 110%; opacity: 0; }
+              15%  { opacity: 1; }
+              100% { top: -40px; opacity: 1; }
+            }
+            @keyframes rocket-float {
+              0%   { margin-top: 0px; }
+              50%  { margin-top: -10px; }
+              100% { margin-top: 0px; }
+            }
+            .rocket-entry {
+              animation: rocket-entry 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            }
+            .rocket-hover {
+              /* No animation in hover phase, rocket stays perfectly still */
+            }
+          `}} />
 
-            {/* dark gradient overlay — stronger at top & bottom */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.75) 100%)",
-              }}
-            />
+          {/* Realistic HTML5 Canvas Particle System in background */}
+          <RocketCanvas />
 
-            {/* ── content layer ── */}
-            <div
-              style={{
-                position: "relative",
-                zIndex: 2,
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                padding: "32px 36px",
-              }}
-            >
-              {/* TOP ROW */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                {/* large brand mark */}
-                <motion.p
-                  animate={{ opacity: [0.55, 0.85, 0.55] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  style={{
-                    fontSize: "clamp(60px, 9vw, 140px)",
-                    fontWeight: 900,
-                    color: "#fff",
-                    margin: 0,
-                    lineHeight: 0.8,
-                    letterSpacing: "-0.06em",
-                    textTransform: "uppercase",
-                    userSelect: "none",
-                  }}
-                >
-                  VC
-                </motion.p>
-
-                {/* MENU button */}
-                <motion.button
-                  whileHover={{ scale: 1.08, background: "#ff5400" }}
-                  onClick={() => setMenuOpen((v) => !v)}
-                  style={{
-                    width: 64,
-                    height: 64,
-                    borderRadius: "50%",
-                    background: "rgba(255,255,255,0.12)",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    backdropFilter: "blur(8px)",
-                    color: "#fff",
-                    fontSize: 9,
-                    fontWeight: 900,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    cursor: "pointer",
-                    transition: "background 0.2s ease",
-                    flexShrink: 0,
-                  }}
-                >
-                  MENU
-                </motion.button>
-              </div>
-
-              {/* BOTTOM: big headline overlay + controls */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-
-                {/* Big bold headline like reference "Futuristic technologies" */}
-                <h2
-                  style={{
-                    fontSize: "clamp(21px, 2.75vw, 44px)",
-                    fontWeight: 900,
-                    lineHeight: 0.88,
-                    letterSpacing: "-0.04em",
-                    textTransform: "uppercase",
-                    color: "#fff",
-                    margin: 0,
-                    textShadow: "0 4px 32px rgba(0,0,0,0.5)",
-                  }}
-                >
-                  We Build
-                  <br />
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: "0.2em" }}>
-                    <Typewriter />
-                    <span
-                      style={{
-                        display: "inline-block",
-                        width: "0.35em",
-                        height: "0.35em",
-                        borderRadius: "50%",
-                        background: "#fff",
-                        flexShrink: 0,
-                        marginLeft: "0.15em",
-                      }}
-                    />
-                    <motion.span
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      style={{
-                        display: "inline-block",
-                        fontSize: "0.6em",
-                        fontWeight: 900,
-                        color: "#ff5400",
-                        lineHeight: 1,
-                        marginLeft: "0.1em",
-                      }}
-                    >
-                      ✳
-                    </motion.span>
-                  </span>
-                </h2>
-
-                {/* Bottom control bar */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-                  {/* animated bars + rights */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <div style={{ display: "flex", alignItems: "flex-end", gap: 4 }}>
-                      {[22, 35, 18, 40, 28, 15, 32].map((h, i) => (
-                        <motion.div
-                          key={i}
-                          animate={{ scaleY: [1, 1.6, 1] }}
-                          transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.1, ease: "easeInOut" }}
-                          style={{
-                            width: 4,
-                            height: h * 0.6,
-                            background: i === 0 || i === 3 ? "#ff5400" : "rgba(255,255,255,0.35)",
-                            borderRadius: 2,
-                            transformOrigin: "bottom",
-                          }}
-                        />
-                      ))}
-                    </div>
-                    <p
-                      style={{
-                        fontSize: 8,
-                        fontWeight: 900,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.25em",
-                        color: "rgba(255,255,255,0.4)",
-                        margin: 0,
-                      }}
-                    >
-                      ALL RIGHTS RESERVED
-                    </p>
-                  </div>
-
-                  {/* expand arrow */}
-                  <motion.div
-                    whileHover={{ scale: 1.1, background: "#ff5400" }}
-                    style={{
-                      width: 48,
-                      height: 48,
-                      borderRadius: "50%",
-                      background: "rgba(255,255,255,0.12)",
-                      border: "1px solid rgba(255,255,255,0.22)",
-                      backdropFilter: "blur(8px)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      cursor: "pointer",
-                      transition: "background 0.2s ease",
-                    }}
-                  >
-                    <ArrowUpRight size={18} color="#fff" />
-                  </motion.div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          {/* Absolute Space Shuttle Rocket in center stage */}
+          <RocketLauncher />
         </div>
       </div>
     </section>
