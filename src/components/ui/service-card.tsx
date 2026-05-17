@@ -4,9 +4,10 @@ import { ArrowUpRight } from "lucide-react";
 
 type ServiceCardProps = {
   service: Service;
+  index?: number;
 };
 
-export function ServiceCard({ service }: ServiceCardProps) {
+export function ServiceCard({ service, index }: ServiceCardProps) {
   return (
     <article className="group relative flex flex-col justify-between rounded-[2.5rem] border-4 border-black bg-white p-8 transition-all hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(255,84,0,1)]">
       <div>

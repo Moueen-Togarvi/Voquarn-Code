@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Hero } from "@/components/ui/hero";
 import { TypoSection } from "@/components/ui/typo-section";
-import { CryptoDashboard } from "@/components/ui/crypto-dashboard";
+import { AgencyDashboard } from "@/components/ui/agency-dashboard";
+import { AiGrowthSection } from "@/components/ui/ai-growth-section";
 import { PortfolioGrid } from "@/components/ui/portfolio-grid";
 import { SocialProofSection } from "@/components/ui/social-proof-section";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -24,7 +25,9 @@ export default function HomePage() {
 
       <TypoSection />
 
-      <CryptoDashboard />
+      <AgencyDashboard />
+
+      <AiGrowthSection />
 
       <section className="page-section">
         <SectionHeading
