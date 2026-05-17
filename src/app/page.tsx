@@ -1,12 +1,9 @@
 import Link from "next/link";
 import { Hero } from "@/components/ui/hero";
 import { TypoSection } from "@/components/ui/typo-section";
-import { AgencyDashboard } from "@/components/ui/agency-dashboard";
 import { AiGrowthSection } from "@/components/ui/ai-growth-section";
-import { PortfolioGrid } from "@/components/ui/portfolio-grid";
 import { PortfolioCarousel } from "@/components/ui/portfolio-carousel";
 import { SpotlightShowcase } from "@/components/ui/spotlight-showcase";
-import { SocialProofSection } from "@/components/ui/social-proof-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServiceCard } from "@/components/ui/service-card";
 import { buildMetadata } from "@/lib/metadata";
@@ -27,8 +24,6 @@ export default function HomePage() {
 
       <TypoSection />
 
-      <AgencyDashboard />
-
       <AiGrowthSection />
 
       <section className="page-section">
@@ -43,8 +38,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
-      <SocialProofSection />
 
       <PortfolioCarousel items={portfolioItems} />
 

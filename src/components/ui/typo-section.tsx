@@ -1,93 +1,131 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const reveal = {
-  duration: 0.7,
-  ease: "easeOut" as const,
-};
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useState, useRef } from "react";
 
 export function TypoSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // High-fidelity cursor tracking coordinates for interactive spotlight
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  // Smooth spring parameters for cursor glow lag
+  const glowX = useSpring(mouseX, { stiffness: 80, damping: 25 });
+  const glowY = useSpring(mouseY, { stiffness: 80, damping: 25 });
+
+  const [activeWord, setActiveWord] = useState<string | null>(null);
+
+  // Mouse move handler
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
+
   return (
-    <section className="relative overflow-hidden bg-white py-16 text-black lg:py-20">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="relative">
-          <motion.div
-            initial={false}
-            animate={{ opacity: [0.35, 1], y: [18, 0] }}
-            transition={reveal}
-            className="relative z-10 flex items-start justify-between gap-8"
-          >
-            <h2 className="font-display text-[16vw] font-black uppercase leading-[0.82] tracking-[-0.06em] sm:text-[13vw] lg:text-[10rem]">
-              For Every
-            </h2>
-            <div className="hidden max-w-[220px] pt-3 lg:block">
-              <p className="text-[11px] font-black uppercase tracking-[0.28em] text-black/40">
-                Strategic insight.
-              </p>
-              <p className="mt-2 text-sm leading-6 text-black/55">
-                Every build starts with structure, clarity, and a direct business goal.
-              </p>
-            </div>
-          </motion.div>
+    <section 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      className="relative overflow-hidden bg-white py-10 lg:py-12 text-black border-t border-black/5"
+      style={{ cursor: "default" }}
+    >
+      {/* 1. HIGH-FIDELITY SPOTLIGHT: Interactive human-attraction cursor tracking glow */}
+      <motion.div 
+        className="pointer-events-none absolute h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,84,0,0.06)_0%,transparent_70%)] z-0"
+        style={{
+          left: glowX,
+          top: glowY,
+        }}
+      />
 
-          <motion.div
-            initial={false}
-            animate={{ opacity: [0.35, 1], y: [18, 0] }}
-            transition={{ ...reveal, delay: 0.08 }}
-            className="relative z-20 -mt-4 flex items-center justify-end sm:-mt-6 lg:-mt-8"
-          >
-            <span className="absolute left-0 hidden text-[11px] font-black uppercase tracking-[0.32em] text-black/35 lg:block">
-              Scalable Systems
+      <div className="mx-auto max-w-7xl px-6 relative z-10 lg:px-8">
+        
+        <div className="relative z-10">
+          
+          {/* Eyebrow Philosophy label */}
+          <div className="flex items-center gap-3 mb-6 select-none">
+            <motion.span 
+              animate={{ width: activeWord ? 36 : 24 }}
+              className="h-[2px] bg-[#ff5400]" 
+            />
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#ff5400] transition-all duration-300">
+              {activeWord ? `[ ACTIVE STAGE: ${activeWord} ]` : "Core Philosophy"}
             </span>
-            <h2 className="font-display text-[17vw] font-black uppercase leading-[0.82] tracking-[-0.06em] text-black/90 sm:text-[14vw] lg:text-[11rem]">
-              Project
-            </h2>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={false}
-            animate={{ opacity: [0.35, 1], y: [18, 0] }}
-            transition={{ ...reveal, delay: 0.16 }}
-            className="relative z-30 -mt-5 sm:-mt-7 lg:-mt-10"
-          >
-            <h2 className="font-display text-[16vw] font-black uppercase leading-[0.84] tracking-[-0.06em] sm:text-[13vw] lg:text-[10rem]">
-              <span className="text-[#ff5400]">Better</span>{" "}
-              <span className="text-black/85">Solution</span>
-            </h2>
+          {/* 3. HUMAN ATTRACTION: Premium Headline with letter-hover reactions and micro-indicators */}
+          <h2 className="font-display text-4xl font-black uppercase tracking-tight text-black sm:text-6xl lg:text-7xl leading-[1.08] mb-0 select-none">
+            
+            {/* Word Block 1 */}
+            <span className="inline-block mr-3 transition-transform duration-300 hover:scale-[1.02]">
+              For Every
+            </span>
 
-            <div className="mt-6 flex flex-col gap-6 border-t border-black/10 pt-6 sm:flex-row sm:items-end sm:justify-between">
-              <div className="max-w-xl">
-                <p className="text-[11px] font-black uppercase tracking-[0.28em] text-black/40">
-                  Built For Modern Teams
-                </p>
-                <p className="mt-3 text-sm leading-6 text-black/60 sm:text-base">
-                  We turn ideas into clean digital systems that look sharp, work fast, and stay easy to
-                  manage after launch.
-                </p>
-              </div>
+            {/* Word Block 2 (Interactive) */}
+            <motion.span
+              onMouseEnter={() => {
+                setActiveWord("PROJECT");
+              }}
+              onMouseLeave={() => {
+                setActiveWord(null);
+              }}
+              className="relative inline-block text-[#ff5400] cursor-pointer"
+              whileHover={{ scale: 1.05, y: -2 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
+              {/* Tech tag floating above */}
+              <span className="absolute bottom-[102%] left-0 text-[8px] font-mono font-bold tracking-widest text-[#ff5400]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 select-none pointer-events-none">
+                [ BUILD_INIT ]
+              </span>
+              PROJECT,
+            </motion.span>
 
-              <div className="flex gap-6 sm:gap-10">
-                <div>
-                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-black/35">Build Fast</p>
-                  <p className="mt-2 text-[11px] font-black uppercase tracking-[0.22em] text-black/35">
-                    Launch Clean
-                  </p>
-                </div>
-                <div className="text-right">
-                  <p className="font-display text-2xl font-black uppercase leading-none tracking-[-0.04em] sm:text-3xl">
-                    Voquarn
-                    <br />
-                    Code
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+            <br />
+
+            {/* Word Block 3 */}
+            <span className="inline-block mr-3 transition-transform duration-300 hover:scale-[1.02]">
+              A 
+            </span>
+
+            {/* Word Block 4 (Interactive Serif font) */}
+            <motion.span
+              onMouseEnter={() => {
+                setActiveWord("BETTER");
+              }}
+              onMouseLeave={() => {
+                setActiveWord(null);
+              }}
+              className="relative inline-block italic font-normal font-serif text-black/85 cursor-pointer mr-3"
+              whileHover={{ scale: 1.05, rotate: -1, y: -2 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
+              Better
+            </motion.span>
+
+            {/* Word Block 5 (Interactive Bold Outline/Solid Glow) */}
+            <motion.span
+              onMouseEnter={() => {
+                setActiveWord("SOLUTION");
+              }}
+              onMouseLeave={() => {
+                setActiveWord(null);
+              }}
+              className="relative inline-block text-black cursor-pointer"
+              whileHover={{ scale: 1.05, y: -2 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
+              SOLUTION.
+              
+              {/* Pulse glow background under SOLUTION */}
+              <span className="absolute inset-0 bg-[#ff5400]/5 filter blur-md rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10" />
+            </motion.span>
+          </h2>
+
         </div>
-      </div>
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,84,0,0.08),transparent_30%)]" />
+      </div>
     </section>
   );
 }
