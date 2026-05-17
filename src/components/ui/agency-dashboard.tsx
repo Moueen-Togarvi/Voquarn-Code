@@ -329,7 +329,14 @@ export function AgencyDashboard() {
 
                 <div className="flex gap-1.5 h-10 items-end">
                    {Array.from({ length: 18 }).map((_, i) => (
-                     <div key={i} className="flex-1 rounded-sm" style={{ background: i > 15 ? "rgba(0,0,0,0.1)" : "#ff5400", height: i > 15 ? `${20 + Math.random()*30}%` : `${60 + Math.random()*40}%` }} />
+                     <div 
+                       key={i} 
+                       className="flex-1 rounded-sm" 
+                       style={{ 
+                         background: i > 15 ? "rgba(0,0,0,0.1)" : "#ff5400", 
+                         height: i > 15 ? `${20 + ((i * 13) % 30)}%` : `${60 + ((i * 17) % 40)}%` 
+                       }} 
+                     />
                    ))}
                 </div>
               </div>
