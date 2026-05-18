@@ -73,7 +73,7 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
           </div>
 
           {/* Main Title */}
-          <h3 className="mt-1.5 text-[22px] font-bold text-neutral-900 tracking-tight leading-[1.2] line-clamp-2">
+          <h3 className="mt-1.5 text-[22px] font-normal text-neutral-900 tracking-tight leading-[1.2] line-clamp-2">
             {service.title}
           </h3>
 
@@ -95,10 +95,10 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
           {/* Price & Location Line */}
           <div className="flex items-baseline justify-between px-0.5">
             <div className="flex items-baseline">
-              <span className="text-[22px] font-bold text-neutral-900 tracking-tight">
+              <span className="text-[18px] font-normal text-neutral-900 tracking-tight">
                 {getPriceEstimate(service.id)}
               </span>
-              <span className="text-[12px] font-medium text-neutral-500 ml-1">
+              <span className="text-[11px] font-normal text-neutral-500 ml-1">
                 /project
               </span>
             </div>

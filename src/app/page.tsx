@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Hero } from "@/components/ui/hero";
+import { TrustedClients } from "@/components/ui/trusted-clients";
 import { TypoSection } from "@/components/ui/typo-section";
 import { PortfolioCarousel } from "@/components/ui/portfolio-carousel";
 import { SpotlightShowcase } from "@/components/ui/spotlight-showcase";
@@ -20,6 +21,8 @@ export default function HomePage() {
       {/* Pure white background for high-end minimal aesthetic */}
 
       <Hero />
+
+      <TrustedClients />
 
       <TypoSection />
 
