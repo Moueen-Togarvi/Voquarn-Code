@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { Service } from "@/lib/site-data";
 import { Code2, Smartphone, Sparkles, Globe, Bot } from "lucide-react";
 import { motion } from "framer-motion";
@@ -48,29 +49,18 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
-      className="group relative flex flex-col justify-between rounded-[32px] border border-neutral-200/80 bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
+      className="group relative flex flex-col justify-between rounded-[32px] border border-neutral-200/80 bg-white p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)] min-h-[360px]"
       style={{
-        aspectRatio: "1 / 1.15", // Perfectly proportioned layout matching the Apple job card reference
+        aspectRatio: "1 / 1.22", // Slightly taller proportion for a larger, more prominent feel
       }}
     >
       <div className="relative z-10 flex flex-col h-full justify-between">
         
-        {/* ── Top Row: App Icon & Calendar Badge ── */}
-        <div className="flex items-center justify-between">
+        {/* ── Top Row: App Icon ── */}
+        <div className="flex items-center">
           {/* Rounded Dark Square App Icon */}
           <div className="w-[46px] h-[46px] rounded-[14px] bg-[#1a1a1a] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-300">
             {getServiceIcon(service.id)}
-          </div>
-
-          {/* Elegant Calendar Date Badge */}
-          <div className="w-[42px] h-[46px] rounded-[12px] bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-neutral-100 flex flex-col overflow-hidden">
-            <div className="bg-[#1a1a1a] text-white text-[8px] font-bold py-0.5 text-center tracking-wider leading-none uppercase">
-              JAN
-            </div>
-            <div className="flex flex-col items-center justify-center flex-1 bg-white pt-0.5">
-              <span className="text-[13px] font-bold text-neutral-900 leading-none">14</span>
-              <span className="text-[8px] font-semibold text-neutral-400 mt-0.5 leading-none">Mon</span>
-            </div>
           </div>
         </div>
 
@@ -87,12 +77,12 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
             {service.title}
           </h3>
 
-          {/* Deliverable Tags (Soft Gray Pill Style) */}
+          {/* Deliverable Tags (Soft Gray Pill Style - Compact Size) */}
           <div className="mt-3 flex flex-wrap gap-1.5">
             {service.deliverables.slice(0, 2).map((item) => (
               <span
                 key={item}
-                className="rounded-full bg-neutral-100 px-3 py-1 text-[10px] font-medium text-neutral-600"
+                className="rounded-full bg-neutral-100 px-2.5 py-0.5 text-[9px] font-semibold tracking-wide text-neutral-600"
               >
                 {item}
               </span>
@@ -121,9 +111,9 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
           <div className="my-4 border-t border-neutral-200/80" />
 
           {/* Spectacular 3D Glossy Black Pill Button */}
-          <button className="w-full h-13 py-3.5 rounded-full bg-gradient-to-b from-[#2c2c2e] to-[#151516] text-white font-medium text-[13px] shadow-[0_8px_20px_rgba(0,0,0,0.2),inset_0_2px_1px_rgba(255,255,255,0.2)] flex items-center justify-center hover:from-[#3a3a3c] hover:to-[#1c1c1e] transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide">
-            Apply now
-          </button>
+          <Link href={`/services/${service.id}`} className="w-full h-13 py-3.5 rounded-full bg-gradient-to-b from-[#2c2c2e] to-[#151516] text-white font-medium text-[13px] shadow-[0_8px_20px_rgba(0,0,0,0.2),inset_0_2px_1px_rgba(255,255,255,0.2)] flex items-center justify-center hover:from-[#3a3a3c] hover:to-[#1c1c1e] transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide">
+            View details
+          </Link>
         </div>
 
       </div>

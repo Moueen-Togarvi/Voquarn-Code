@@ -287,3 +287,7 @@ export const blogPosts: BlogPost[] = [
 export function getBlogPost(slug: string) {
   return blogPosts.find((post) => post.slug === slug);
 }
+
+export function getService(id: string) {
+  return services.find((service) => service.id === id);
+}

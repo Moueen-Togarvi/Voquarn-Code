@@ -38,7 +38,7 @@ export default function HomePage() {
             title="We build digital systems that actually work"
             description="From high-end websites to custom SaaS products, we provide end-to-end engineering and design."
           />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
             {services.map((service, index) => (
               <ServiceCard key={service.id} service={service} index={index} />
             ))}

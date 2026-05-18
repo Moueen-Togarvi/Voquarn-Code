@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(true);
+  const isHoveredRef = useRef(false);
 
   useEffect(() => {
     // Check if device is desktop / supports fine pointer
@@ -22,24 +21,43 @@ export function CustomCursor() {
 
     mediaQuery.addEventListener("change", handleMediaChange);
 
-    // Track cursor coordinates
+    let animationFrameId: number;
+    let latestX = 0;
+    let latestY = 0;
+
+    const updateCursorPosition = () => {
+      if (cursorRef.current) {
+        const scale = isHoveredRef.current ? 1.25 : 1;
+        cursorRef.current.style.transform = `translate3d(${latestX - 20}px, ${latestY - 20}px, 0) scale(${scale})`;
+      }
+    };
+
+    // Track cursor coordinates directly via DOM to bypass React re-renders completely
     const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-      setIsVisible((prev) => {
-        if (!prev) return true;
-        return prev;
-      });
+      latestX = e.clientX;
+      latestY = e.clientY;
+      
+      if (cursorRef.current && cursorRef.current.style.opacity !== "1") {
+        cursorRef.current.style.opacity = "1";
+      }
+
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(updateCursorPosition);
     };
 
     const handleMouseLeave = () => {
-      setIsVisible(false);
+      if (cursorRef.current) {
+        cursorRef.current.style.opacity = "0";
+      }
     };
 
     const handleMouseEnter = () => {
-      setIsVisible(true);
+      if (cursorRef.current) {
+        cursorRef.current.style.opacity = "1";
+      }
     };
 
-    // Detect if hovering over interactive components to scale up the sparks
+    // Detect if hovering over interactive components
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target) return;
@@ -52,13 +70,19 @@ export function CustomCursor() {
         target.closest('[role="button"]') ||
         target.classList.contains("cursor-pointer");
 
-      setIsHovered(!!isInteractive);
+      if (isHoveredRef.current !== !!isInteractive) {
+        isHoveredRef.current = !!isInteractive;
+        if (cursorRef.current) {
+          const scale = isHoveredRef.current ? 1.25 : 1;
+          cursorRef.current.style.transform = `translate3d(${latestX - 20}px, ${latestY - 20}px, 0) scale(${scale})`;
+        }
+      }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseleave", handleMouseLeave);
-    document.addEventListener("mouseenter", handleMouseEnter);
-    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeave, { passive: true });
+    document.addEventListener("mouseenter", handleMouseEnter, { passive: true });
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
 
     return () => {
       mediaQuery.removeEventListener("change", handleMediaChange);
@@ -66,11 +90,12 @@ export function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
       window.removeEventListener("mouseover", handleMouseOver);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   // Disable cursor on mobile or touch-only environments
-  if (isMobile || !isVisible) return null;
+  if (isMobile) return null;
 
   return (
     <>
@@ -84,10 +109,11 @@ export function CustomCursor() {
       `}} />
 
       <div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] transition-transform duration-75 ease-out"
+        ref={cursorRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9999] opacity-0 transition-opacity duration-150 ease-out"
         style={{
-          transform: `translate3d(${position.x - 20}px, ${position.y - 20}px, 0) scale(${isHovered ? 1.25 : 1})`,
           mixBlendMode: "difference",
+          willChange: "transform, opacity",
         }}
       >
         <svg
@@ -96,10 +122,10 @@ export function CustomCursor() {
           viewBox="0 0 54 54"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
+          className="text-white"
         >
           {/* Custom radiating spark dashes around the arrow tip (20, 20) */}
-          <g className={`transition-transform duration-300 origin-[20px_20px] ${isHovered ? "rotate-[15deg] scale-110" : ""}`}>
+          <g className="transition-transform duration-300 origin-[20px_20px]">
             {/* Spark 1 (Left-most, approx 165deg) */}
             <line x1="14.2" y1="21.5" x2="8.4" y2="23.1" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
             {/* Spark 2 (approx 195deg) */}
