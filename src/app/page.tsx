@@ -4,6 +4,8 @@ import { TrustedClients } from "@/components/ui/trusted-clients";
 import { TypoSection } from "@/components/ui/typo-section";
 import { PortfolioCarousel } from "@/components/ui/portfolio-carousel";
 import { SpotlightShowcase } from "@/components/ui/spotlight-showcase";
+import { DiagonalMarquees } from "@/components/ui/diagonal-marquees";
+import { EnterpriseSuites } from "@/components/ui/enterprise-suites";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServiceCard } from "@/components/ui/service-card";
 import { buildMetadata } from "@/lib/metadata";
@@ -26,7 +28,7 @@ export default function HomePage() {
 
       <TypoSection />
 
-      <section className="page-section relative overflow-hidden">
+      <section className="page-section relative overflow-hidden border-b border-neutral-200 pb-20">
         {/* Ambient signature orange gradient glow in the background of the services section */}
         <div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full pointer-events-none opacity-[0.06] z-0 blur-[120px]" 
@@ -48,6 +50,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* The New Enterprise Domain Suites Showcase */}
+      <EnterpriseSuites />
+
+      {/* The New Criss-Crossing Diagonal Marquee Tape Section */}
+      <DiagonalMarquees />
 
       <PortfolioCarousel items={portfolioItems} />
 

@@ -72,7 +72,7 @@ const clientLogos = [
 
 export function TrustedClients() {
   return (
-    <section className="relative w-full bg-white py-16 border-b border-neutral-100 overflow-hidden">
+    <section className="relative w-full bg-white py-16 border-b border-neutral-200 overflow-hidden">
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes marquee-ltr {
           0% {

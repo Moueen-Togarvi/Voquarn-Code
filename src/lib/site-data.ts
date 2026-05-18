@@ -71,10 +71,10 @@ export const navItems: NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
+  { href: "/team", label: "Our Team" },
+  { href: "/ceo", label: "Our CEO" },
+  { href: "/careers", label: "Careers" },
 ];
 
 export const services: Service[] = [

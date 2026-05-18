@@ -88,17 +88,17 @@ const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }
   );
 };
 
-/* ─── Rocket Image ───────────────────────────────────────────────── */
+/* ─── Agency Logo Image (Replacing Rocket) ──────────────────────── */
 const RocketImg = () => (
   // eslint-disable-next-line @next/next/no-img-element
   <img
-    src="/rocket.png"
-    alt="Rocket"
+    src="/final-logo.png"
+    alt="Voquarn Agency Logo"
     style={{
-      width: "300px",
+      width: "380px",
       height: "auto",
       objectFit: "contain",
-      filter: "drop-shadow(0 12px 40px rgba(255,100,0,0.45)) drop-shadow(0 4px 16px rgba(0,0,0,0.35))",
+      filter: "drop-shadow(0 20px 40px rgba(255,84,0,0.35)) drop-shadow(0 4px 20px rgba(0,0,0,0.15))",
     }}
   />
 );
@@ -131,13 +131,13 @@ const RocketLauncher = () => {
     );
   }
 
-  // hover phase — rocket stays at top: 12px and gently floats + shakes
+  // hover phase — rocket stays at top: 0px and gently floats + shakes
   return (
     <div
       className="rocket-hover"
       style={{
         position: "absolute",
-        top: -40,
+        top: 0,
         left: "calc(50% + 5px)",
         transform: "translateX(-50%)",
         zIndex: 1,
@@ -158,15 +158,16 @@ export function Hero() {
     <section
       style={{
         width: "100%",
-        background: "#e8e8e8",
-        minHeight: "92vh",
+        background: "#ffffff",
+        minHeight: "105vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "20px",
+        padding: "140px 20px 40px 20px",
         boxSizing: "border-box",
         position: "relative",
         zIndex: 20,
+        borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
       }}
     >
       {/* ── outer wrapper ── */}
@@ -177,8 +178,8 @@ export function Hero() {
           gap: 16,
           width: "100%",
           maxWidth: 1480,
-          height: "calc(92vh - 40px)",
-          maxHeight: 800,
+          minHeight: "calc(105vh - 180px)",
+          maxHeight: 1100,
         }}
       >
         {/* ════════════════════════════════════════
@@ -204,22 +205,23 @@ export function Hero() {
           {/* Logo icon (Replacing X button) */}
           <div
             style={{
-              width: 40,
-              height: 40,
+              width: 56,
+              height: 56,
               borderRadius: "50%",
-              background: "rgba(255,255,255,0.1)",
+              background: "#ffffff",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              overflow: "hidden", // Ensures the image respects the rounded border
+              overflow: "hidden",
+              boxShadow: "0 4px 14px rgba(0,0,0,0.25)",
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="/logo-icon.png" 
-              alt="Logo" 
-              style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+            <img
+              src="/final-logo.png"
+              alt="Logo"
+              style={{ width: "100%", height: "100%", objectFit: "contain", padding: "6px" }}
             />
           </div>
 
@@ -541,7 +543,7 @@ export function Hero() {
             @keyframes rocket-entry {
               0%   { top: 110%; opacity: 0; }
               15%  { opacity: 1; }
-              100% { top: -40px; opacity: 1; }
+              100% { top: 0px; opacity: 1; }
             }
             @keyframes rocket-float {
               0%   { margin-top: 0px; }
@@ -556,10 +558,7 @@ export function Hero() {
             }
           `}} />
 
-          {/* Realistic HTML5 Canvas Particle System in background */}
-          <RocketCanvas />
-
-          {/* Absolute Space Shuttle Rocket in center stage */}
+          {/* Absolute Agency Logo in center stage */}
           <RocketLauncher />
         </div>
       </div>

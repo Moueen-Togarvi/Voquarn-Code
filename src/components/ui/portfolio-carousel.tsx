@@ -42,7 +42,7 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
   };
 
   return (
-    <div className="relative w-full bg-white text-black pt-24 pb-32 px-4 overflow-hidden flex flex-col items-center">
+    <div className="relative w-full bg-white text-black pt-24 pb-32 px-4 overflow-hidden flex flex-col items-center border-b border-neutral-200">
       {/* Exact style matches for 3D layout with custom, hyper-smooth easing */}
       <style dangerouslySetInnerHTML={{ __html: `
         .perspective-wrapper {
@@ -69,20 +69,20 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
         .pixel-text::after {
           content: '';
           position: absolute;
-          top: 30%; right: -2px; width: 4px; height: 4px; background: black;
+          top: 30%; right: -2px; width: 4px; height: 4px; background: #ff5400;
         }
         .pixel-text::before {
           content: '';
           position: absolute;
-          bottom: 20%; left: -2px; width: 4px; height: 4px; background: black;
+          bottom: 20%; left: -2px; width: 4px; height: 4px; background: #ff5400;
         }
       `}} />
 
       {/* 1. Header Section - Light theme adaptation */}
       <div className="text-center max-w-4xl mb-12 relative z-20 flex flex-col items-center">
         <h2 className="text-[clamp(32px,4vw,52px)] leading-[1.1] font-medium text-black tracking-tight">
-          Create <span className="pixel-text text-[1.1em]">Stunning</span> Products <br />
-          with Just a <span className="pixel-text text-[1.1em]">Vision</span>
+          Create <span className="pixel-text text-[1.1em] text-[#ff5400]">Stunning</span> Products <br />
+          with Just a <span className="pixel-text text-[1.1em] text-[#ff5400]">Vision</span>
         </h2>
       </div>
 

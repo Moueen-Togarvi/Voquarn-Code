@@ -10,12 +10,12 @@
   --background: #ffffff;
   --foreground: #000000;
   --primary: #ff5400;
-  --panel: #f2f2f2;
-  --border: #e5e5e5;
+  --panel: #ffffff;
+  --border: #eaeaea;
   --muted: #666666;
   --gradient-1: rgba(255, 84, 0, 0.05);
   --gradient-2: rgba(0, 0, 0, 0.02);
-  --gradient-main: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%);
+  --gradient-main: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
   --nav-bg: rgba(255, 255, 255, 0.9);
   --hero-text: #000000;
 }

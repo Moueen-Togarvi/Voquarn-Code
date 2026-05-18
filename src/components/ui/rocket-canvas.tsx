@@ -54,22 +54,21 @@ export function RocketCanvas() {
     const getNozzles = () => {
       const w = canvas.width / window.devicePixelRatio;
       const centerX = (w / 2) + 5; // Match the rocket's left: "calc(50% + 5px)" position
-      // Rocket shifted up by 52px (top: -40). Previous perfect alignment was 315.
-      // 315 - 52 = 263. Adjusting to 265 for exact engine bottom.
-      const centerY = 265;
+      // Space Shuttle gk.png (width 250px, top 0) aligns perfectly at centerY = 380
+      const centerY = 380;
 
       return [
-        { x: centerX - 30, y: centerY },      // Left SSME
-        { x: centerX,      y: centerY + 12 }, // Center SSME (main)
-        { x: centerX + 30, y: centerY },      // Right SSME
+        { x: centerX - 25, y: centerY },      // Left SSME
+        { x: centerX,      y: centerY + 10 }, // Center SSME (main)
+        { x: centerX + 25, y: centerY },      // Right SSME
       ];
     };
 
     const smokeColors = [
-      "rgba(15, 15, 15, 0.96)",
-      "rgba(25, 25, 25, 0.94)",
-      "rgba(40, 40, 40, 0.88)",
-      "rgba(55, 55, 55, 0.8)",
+      "rgba(160, 164, 168, 0.85)", // Light ash grey
+      "rgba(180, 185, 190, 0.8)",  // Soft neutral grey
+      "rgba(200, 205, 210, 0.75)", // Pale grey
+      "rgba(140, 145, 150, 0.85)", // Medium slate grey
     ];
 
     const fireColors = [
