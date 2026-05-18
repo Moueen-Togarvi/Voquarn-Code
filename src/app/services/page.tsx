@@ -20,16 +20,26 @@ export const metadata = buildMetadata(
 export default function ServicesPage() {
   return (
     <>
-      <section className="page-section">
-        <SectionHeading
-          eyebrow="Services"
-          title="Execution across the work that shapes digital credibility"
-          description="We combine product thinking, strong visuals, and technical delivery so the final result looks sharp and performs like it was planned properly."
+      <section className="page-section relative overflow-hidden">
+        {/* Ambient signature orange gradient glow in the background of the services section */}
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full pointer-events-none opacity-[0.06] z-0 blur-[120px]" 
+          style={{
+            background: "radial-gradient(circle, #ff5400 0%, transparent 70%)"
+          }}
         />
-        <div className="mt-10 grid gap-6 xl:grid-cols-2">
-          {services.map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} />
-          ))}
+
+        <div className="relative z-10">
+          <SectionHeading
+            eyebrow="Services"
+            title="Execution across the work that shapes digital credibility"
+            description="We combine product thinking, strong visuals, and technical delivery so the final result looks sharp and performs like it was planned properly."
+          />
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {services.map((service, index) => (
+              <ServiceCard key={service.id} service={service} index={index} />
+            ))}
+          </div>
         </div>
       </section>
 

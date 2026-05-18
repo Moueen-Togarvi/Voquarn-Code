@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Hero } from "@/components/ui/hero";
 import { TypoSection } from "@/components/ui/typo-section";
-import { AiGrowthSection } from "@/components/ui/ai-growth-section";
 import { PortfolioCarousel } from "@/components/ui/portfolio-carousel";
 import { SpotlightShowcase } from "@/components/ui/spotlight-showcase";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -24,18 +23,26 @@ export default function HomePage() {
 
       <TypoSection />
 
-      <AiGrowthSection />
-
-      <section className="page-section">
-        <SectionHeading
-          eyebrow="Our Services"
-          title="We build digital systems that actually work"
-          description="From high-end websites to custom SaaS products, we provide end-to-end engineering and design."
+      <section className="page-section relative overflow-hidden">
+        {/* Ambient signature orange gradient glow in the background of the services section */}
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full pointer-events-none opacity-[0.06] z-0 blur-[120px]" 
+          style={{
+            background: "radial-gradient(circle, #ff5400 0%, transparent 70%)"
+          }}
         />
-        <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} />
-          ))}
+
+        <div className="relative z-10">
+          <SectionHeading
+            eyebrow="Our Services"
+            title="We build digital systems that actually work"
+            description="From high-end websites to custom SaaS products, we provide end-to-end engineering and design."
+          />
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {services.map((service, index) => (
+              <ServiceCard key={service.id} service={service} index={index} />
+            ))}
+          </div>
         </div>
       </section>
 

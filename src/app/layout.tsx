@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 import { buildMetadata } from "@/lib/metadata";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 import "./globals.css";
 
 export const metadata: Metadata = buildMetadata(
@@ -26,6 +27,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <WhatsAppFloat />
+            <CustomCursor />
           </div>
         </ThemeProvider>
       </body>

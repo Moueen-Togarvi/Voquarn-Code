@@ -1,17 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import type { Service } from "@/lib/site-data";
-import { 
-  Monitor, 
-  Smartphone, 
-  Search, 
-  Palette, 
-  Layers, 
-  Globe, 
-  Code2, 
-  ArrowUpRight 
-} from "lucide-react";
+import { Code2, Smartphone, Sparkles, Globe, Bot } from "lucide-react";
 import { motion } from "framer-motion";
 
 type ServiceCardProps = {
@@ -19,84 +9,124 @@ type ServiceCardProps = {
   index?: number;
 };
 
-// Map service IDs to modern high-fidelity Lucide React icons
+// Map service IDs to estimated starts-from pricing matching pricing plans
+const getPriceEstimate = (id: string) => {
+  switch (id) {
+    case "web-dev":
+      return "$650";
+    case "app-dev":
+      return "$1,500";
+    case "saas-apps":
+      return "$3,000";
+    case "ai-workflows":
+      return "$2,000";
+    default:
+      return "$1,000";
+  }
+};
+
+// Map service IDs to elegant Lucide icons
 const getServiceIcon = (id: string) => {
   switch (id) {
     case "web-dev":
-      return <Monitor className="h-5 w-5 stroke-[1.8] text-[#ff5400] transition-colors duration-300" />;
+      return <Globe className="w-5 h-5 text-white" />;
     case "app-dev":
-      return <Smartphone className="h-5 w-5 stroke-[1.8] text-[#ff5400] transition-colors duration-300" />;
-    case "seo":
-      return <Search className="h-5 w-5 stroke-[1.8] text-[#ff5400] transition-colors duration-300" />;
-    case "design":
-      return <Palette className="h-5 w-5 stroke-[1.8] text-[#ff5400] transition-colors duration-300" />;
+      return <Smartphone className="w-5 h-5 text-white" />;
     case "saas-apps":
-      return <Layers className="h-5 w-5 stroke-[1.8] text-[#ff5400] transition-colors duration-300" />;
-    case "wordpress":
-      return <Globe className="h-5 w-5 stroke-[1.8] text-[#ff5400] transition-colors duration-300" />;
+      return <Code2 className="w-5 h-5 text-white" />;
+    case "ai-workflows":
+      return <Bot className="w-5 h-5 text-white" />;
     default:
-      return <Code2 className="h-5 w-5 stroke-[1.8] text-[#ff5400] transition-colors duration-300" />;
+      return <Sparkles className="w-5 h-5 text-white" />;
   }
 };
 
 export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
   return (
-    <motion.article 
+    <motion.article
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
-      className="group relative flex flex-col justify-between rounded-3xl border border-black/10 bg-neutral-50/50 p-6 sm:p-7 transition-all duration-300 hover:bg-white hover:border-[#ff5400]/25 hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(255,84,0,0.06)]"
+      className="group relative flex flex-col justify-between rounded-[32px] border border-neutral-200/80 bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
+      style={{
+        aspectRatio: "1 / 1.15", // Perfectly proportioned layout matching the Apple job card reference
+      }}
     >
-      {/* Sleek dynamic orange bottom accent line */}
-      <div className="absolute bottom-0 left-0 h-[2.5px] w-0 bg-[#ff5400] transition-all duration-300 group-hover:w-full rounded-b-3xl" />
-
-      {/* Decorative clean radar dots in top-right */}
-      <div className="absolute top-4 right-4 flex gap-1 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity">
-        <span className="w-1 h-1 rounded-full bg-black" />
-        <span className="w-1 h-1 rounded-full bg-black" />
-        <span className="w-1 h-1 rounded-full bg-black" />
-      </div>
-
-      <div>
-        {/* Dynamic Glowing Icon Badge */}
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-black transition-all duration-300 group-hover:scale-105 group-hover:bg-[#ff5400]">
-          <div className="group-hover:text-white transition-colors duration-300 flex items-center justify-center">
+      <div className="relative z-10 flex flex-col h-full justify-between">
+        
+        {/* ── Top Row: App Icon & Calendar Badge ── */}
+        <div className="flex items-center justify-between">
+          {/* Rounded Dark Square App Icon */}
+          <div className="w-[46px] h-[46px] rounded-[14px] bg-[#1a1a1a] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-300">
             {getServiceIcon(service.id)}
+          </div>
+
+          {/* Elegant Calendar Date Badge */}
+          <div className="w-[42px] h-[46px] rounded-[12px] bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-neutral-100 flex flex-col overflow-hidden">
+            <div className="bg-[#1a1a1a] text-white text-[8px] font-bold py-0.5 text-center tracking-wider leading-none uppercase">
+              JAN
+            </div>
+            <div className="flex flex-col items-center justify-center flex-1 bg-white pt-0.5">
+              <span className="text-[13px] font-bold text-neutral-900 leading-none">14</span>
+              <span className="text-[8px] font-semibold text-neutral-400 mt-0.5 leading-none">Mon</span>
+            </div>
           </div>
         </div>
 
-        {/* Premium Styled Title */}
-        <h3 className="mt-6 font-display text-lg font-black uppercase tracking-tight text-black transition-colors duration-300 group-hover:text-[#ff5400]">
-          {service.title}
-        </h3>
+        {/* ── Middle Section: Company, Title & Tags ── */}
+        <div className="mt-6 flex-1 flex flex-col justify-center">
+          {/* Company & Posting Time */}
+          <div className="flex items-center gap-1.5">
+            <span className="text-[13px] font-medium text-neutral-800">Voquarn</span>
+            <span className="text-[11px] text-neutral-400">7 days ago</span>
+          </div>
 
-        {/* Compact, clean description */}
-        <p className="mt-3 text-xs sm:text-[13px] font-medium leading-relaxed text-black/60">
-          {service.description}
-        </p>
-        
-        {/* Deliverables tags */}
-        <div className="mt-6 flex flex-wrap gap-1.5">
-          {service.deliverables.map((item) => (
-            <span 
-              key={item} 
-              className="rounded-lg border border-black/5 bg-black/[0.02] px-2.5 py-1 text-[9px] font-black uppercase tracking-wider text-black/40 transition-all duration-300 group-hover:bg-[#ff5400]/5 group-hover:text-[#ff5400]/70 group-hover:border-[#ff5400]/10"
-            >
-              {item}
-            </span>
-          ))}
+          {/* Main Title */}
+          <h3 className="mt-1.5 text-[22px] font-bold text-neutral-900 tracking-tight leading-[1.2] line-clamp-2">
+            {service.title}
+          </h3>
+
+          {/* Deliverable Tags (Soft Gray Pill Style) */}
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {service.deliverables.slice(0, 2).map((item) => (
+              <span
+                key={item}
+                className="rounded-full bg-neutral-100 px-3 py-1 text-[10px] font-medium text-neutral-600"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Link to learn more */}
-      <Link 
-        href="/services" 
-        className="mt-8 inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#ff5400] transition-transform duration-300"
-      >
-        <span>Learn More</span>
-        <ArrowUpRight className="h-3 w-3 stroke-[2.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </Link>
+        {/* ── Bottom Section: Price, Location & 3D Button ── */}
+        <div className="mt-6 pt-2">
+          {/* Price & Location Line */}
+          <div className="flex items-baseline justify-between px-0.5">
+            <div className="flex items-baseline">
+              <span className="text-[22px] font-bold text-neutral-900 tracking-tight">
+                {getPriceEstimate(service.id)}
+              </span>
+              <span className="text-[12px] font-medium text-neutral-500 ml-1">
+                /project
+              </span>
+            </div>
+            <span className="text-[12px] font-medium text-neutral-600">
+              Remote, Global
+            </span>
+          </div>
+
+          {/* Horizontal Divider */}
+          <div className="my-4 border-t border-neutral-200/80" />
+
+          {/* Spectacular 3D Glossy Black Pill Button */}
+          <button className="w-full h-13 py-3.5 rounded-full bg-gradient-to-b from-[#2c2c2e] to-[#151516] text-white font-medium text-[13px] shadow-[0_8px_20px_rgba(0,0,0,0.2),inset_0_2px_1px_rgba(255,255,255,0.2)] flex items-center justify-center hover:from-[#3a3a3c] hover:to-[#1c1c1e] transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide">
+            Apply now
+          </button>
+        </div>
+
+      </div>
     </motion.article>
   );
 }

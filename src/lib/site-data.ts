@@ -93,20 +93,6 @@ export const services: Service[] = [
     deliverables: ["iOS & Android Apps", "React Native", "API Integration", "App Store Launch"],
   },
   {
-    id: "seo",
-    title: "Search Engine Optimization",
-    description:
-      "Data-driven SEO strategies that dominate search rankings and drive sustainable organic growth.",
-    deliverables: ["Keyword Research", "On-Page SEO", "Technical Audits", "Link Building"],
-  },
-  {
-    id: "design",
-    title: "UI/UX Design",
-    description:
-      "Modern, minimalist design systems that prioritize user experience and brand identity.",
-    deliverables: ["Product Design", "Brand Systems", "Prototyping", "Visual Identity"],
-  },
-  {
     id: "saas-apps",
     title: "SaaS Applications",
     description:
@@ -114,11 +100,11 @@ export const services: Service[] = [
     deliverables: ["SaaS Architecture", "Subscription Systems", "User Dashboards", "Cloud Scaling"],
   },
   {
-    id: "wordpress",
-    title: "WordPress Solutions",
+    id: "ai-workflows",
+    title: "AI Workflows",
     description:
-      "Professional WordPress development for businesses that need flexible, easy-to-manage content systems.",
-    deliverables: ["Custom Themes", "Plugin Development", "WP Optimization", "Site Migration"],
+      "Automated business processes, intelligent AI assistant integrations, and smart agent applications.",
+    deliverables: ["AI Integration", "Process Automation", "Custom Agents", "Smart Workflows"],
   },
 ];
 

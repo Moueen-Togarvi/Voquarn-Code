@@ -21,48 +21,9 @@ const OrangeDot = () => (
   />
 );
 
-const bgImages = [
-  "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=85",
-  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&q=85",
-  "https://images.unsplash.com/photo-1542744094-24638ea0b56c?w=1600&q=85",
-  "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1600&q=85",
-  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=85",
-];
 
-const BackgroundSlideshow = () => {
-  const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % bgImages.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, []);
 
-  return (
-    <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-      <AnimatePresence>
-        <motion.img
-          key={index}
-          src={bgImages[index]}
-          initial={{ opacity: 0, x: 60, scale: 1.05 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: -60, scale: 0.95 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
-            filter: "grayscale(0.15) brightness(0.65)",
-          }}
-        />
-      </AnimatePresence>
-    </div>
-  );
-};
 
 const SERVICES = ["Websites", "Brands", "Apps", "Systems", "SaaS Apps", "AI Agents", "AI Apps"];
 
@@ -466,7 +427,7 @@ export function Hero() {
               <span
                 key={tag}
                 style={{
-                  border: "2px solid rgba(0,0,0,0.75)",
+                  border: "2px solid #ff5400",
                   borderRadius: 999,
                   padding: "6px 14px",
                   fontSize: 8,
