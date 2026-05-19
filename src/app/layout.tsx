@@ -5,6 +5,7 @@ import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 import { buildMetadata } from "@/lib/metadata";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/ui/custom-cursor";
+import { HangingAstronaut } from "@/components/ui/hanging-astronaut";
 import "./globals.css";
 
 export const metadata: Metadata = buildMetadata(
@@ -27,6 +28,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <WhatsAppFloat />
+            <HangingAstronaut />
             <CustomCursor />
           </div>
         </ThemeProvider>

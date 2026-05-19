@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Sparkles, ArrowRight, Briefcase, MapPin, DollarSign, Clock, Send, Search, X, Paperclip, Upload, Loader2, Sparkle, Link as LinkIcon, Github } from "lucide-react";
-
-const TARGET_WHATSAPP = "923241940988";
+import { Sparkles, ArrowRight, Briefcase, MapPin, DollarSign, Clock, Send, Search, X, Paperclip, Upload, Loader2, Sparkle, Link as LinkIcon } from "lucide-react";
 
 const openRoles = [
   {
@@ -43,13 +41,6 @@ const openRoles = [
     description: "Design secure multi-tenant database schemas, row-level security policies, and real-time backend integrations for our custom SaaS platforms.",
     tags: ["Supabase", "PostgreSQL", "Node.js", "Edge Functions"]
   }
-];
-
-const perks = [
-  { title: "Work Anywhere", description: "Complete remote freedom or join us in our modern Lahore hub." },
-  { title: "Competitive Compensation", description: "Top-tier salary packages pegged to USD value with performance bonuses." },
-  { title: "Latest Hardware", description: "M3 Max MacBooks and premium 4K displays provided to all core leads." },
-  { title: "Zero Bureaucracy", description: "No micromanagement or useless daily standups. We judge purely on output." }
 ];
 
 export default function CareersPage() {
@@ -135,17 +126,12 @@ export default function CareersPage() {
 
       if (response.ok) {
         setSubmitStatus("success");
-        setSubmitMsg(data.message || "Application successfully submitted!");
-
-        // Format WhatsApp message to go directly to 03241940988
-        const waMessage = `Hi Voquarn Code,\n\nI am applying for the *${selectedRole}* role.\n\n*Name:* ${applicantName}\n*Email:* ${applicantEmail}\n*WhatsApp/Phone:* ${applicantPhone}\n${githubUrl ? `*GitHub:* ${githubUrl}\n` : ""}${portfolioUrl ? `*Website:* ${portfolioUrl}\n` : ""}\nI have uploaded my CV file (${selectedFile.name}) which was emailed to you directly. Looking forward to discussing this!`;
-        const waUrl = `https://wa.me/${TARGET_WHATSAPP}?text=${encodeURIComponent(waMessage)}`;
+        setSubmitMsg("Application and CV successfully submitted via email!");
         
         setTimeout(() => {
-          window.open(waUrl, "_blank");
           setSelectedRole(null);
           resetForm();
-        }, 1500);
+        }, 2200);
       } else {
         setSubmitStatus("error");
         setSubmitMsg(data.message || "Failed to submit application.");
@@ -167,58 +153,45 @@ export default function CareersPage() {
           description="We are looking for elite practitioners who take immense pride in their craft. No endless meetings, no office politics—just disciplined execution and high-impact shipping."
         />
 
-        {/* Search Bar + Filter Tags */}
-        <div className="mt-14 flex flex-col gap-5">
+        {/* Search Bar + Filter Tags (Centered Perfectly) */}
+        <div className="mt-14 flex flex-col items-center justify-center gap-5 text-center w-full">
           {/* Search Input */}
-          <div className="relative max-w-xl">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
+          <div className="relative w-full max-w-xl">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500 pointer-events-none stroke-[2]" />
             <input
               type="text"
               placeholder="Search roles, skills, departments..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-11 pr-10 py-3.5 rounded-full border border-neutral-200 bg-white text-sm text-neutral-800 placeholder-neutral-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff5400]/30 focus:border-[#ff5400]/60 transition-all"
+              className="w-full pl-11 pr-10 py-3.5 rounded-full border border-neutral-300 bg-white text-sm font-semibold text-neutral-900 placeholder-neutral-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ff5400]/30 transition-all"
             />
             {search && (
               <button
                 onClick={() => setSearch("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700 transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-[#ff5400] transition-colors"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4 stroke-[2]" />
               </button>
             )}
           </div>
 
           {/* Department Filter Tags */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 justify-center">
             {departments.map((dept) => (
               <button
                 key={dept}
                 type="button"
                 onClick={() => setActiveTag(dept)}
-                className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 border ${
+                className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 border ${
                   activeTag === dept
                     ? "bg-black text-white border-black shadow-md"
-                    : "bg-white text-neutral-600 border-neutral-200 hover:border-neutral-400 hover:text-black"
+                    : "bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-50 hover:text-black"
                 }`}
               >
                 {dept}
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Perks Grid */}
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {perks.map((perk, index) => (
-            <div key={perk.title} className="bg-white border border-neutral-200 rounded-[2rem] p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-10 h-10 rounded-xl bg-[#ff5400]/10 flex items-center justify-center text-[#ff5400] mb-6 font-display font-black text-lg">
-                0{index + 1}
-              </div>
-              <h4 className="font-display text-xl font-bold text-neutral-900 tracking-tight mb-2">{perk.title}</h4>
-              <p className="text-xs text-neutral-600 leading-relaxed font-medium">{perk.description}</p>
-            </div>
-          ))}
         </div>
 
         {/* Open Roles Section */}
@@ -250,17 +223,17 @@ export default function CareersPage() {
                 <div className="space-y-4 max-w-2xl">
                   <div className="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider">
                     <span className="text-[#ff5400] bg-[#ff5400]/10 px-3 py-1 rounded-full border border-[#ff5400]/20">{role.department}</span>
-                    <span className="text-neutral-600 flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-neutral-400" /> {role.location}</span>
-                    <span className="text-neutral-600 flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-neutral-400" /> {role.type}</span>
-                    <span className="text-neutral-900 font-extrabold flex items-center gap-0.5 bg-neutral-100 px-3 py-1 rounded-full"><DollarSign className="w-3.5 h-3.5 text-[#ff5400]" /> {role.salary}</span>
+                    <span className="text-neutral-600 flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-neutral-400 stroke-[2]" /> {role.location}</span>
+                    <span className="text-neutral-600 flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-neutral-400 stroke-[2]" /> {role.type}</span>
+                    <span className="text-neutral-900 font-bold flex items-center gap-0.5 bg-neutral-100 px-3 py-1 rounded-full border border-neutral-200"><DollarSign className="w-3.5 h-3.5 text-[#ff5400] stroke-[2]" /> {role.salary}</span>
                   </div>
 
                   <h4 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">{role.title}</h4>
-                  <p className="text-sm text-neutral-600 leading-relaxed font-medium">{role.description}</p>
+                  <p className="text-sm text-neutral-600 leading-relaxed font-semibold">{role.description}</p>
 
                   <div className="flex flex-wrap gap-1.5 pt-2">
                     {role.tags.map((t) => (
-                      <span key={t} className="bg-neutral-100 text-neutral-700 text-[10px] font-bold px-3 py-1 rounded-full border border-neutral-200/80">
+                      <span key={t} className="bg-white text-neutral-700 text-[10px] font-bold px-3 py-1 rounded-full border border-neutral-200">
                         {t}
                       </span>
                     ))}
@@ -273,7 +246,7 @@ export default function CareersPage() {
                       setSelectedRole(role.title);
                       resetForm();
                     }}
-                    className="w-full lg:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-neutral-900 px-8 py-5 text-xs font-black uppercase tracking-widest text-white hover:bg-[#ff5400] shadow-md hover:shadow-xl transition-all hover:scale-105"
+                    className="w-full lg:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-neutral-950 px-8 py-5 text-xs font-black uppercase tracking-widest text-white hover:bg-[#ff5400] shadow-md hover:shadow-xl transition-all hover:scale-105"
                   >
                     <Send className="w-4 h-4" /> <span>Apply for Role</span>
                   </button>
@@ -295,7 +268,7 @@ export default function CareersPage() {
             <h2 className="font-display text-3xl sm:text-4xl font-black tracking-tight text-white leading-tight">
               Don&apos;t see your exact role listed above?
             </h2>
-            <p className="mt-4 text-neutral-300 text-sm sm:text-base leading-relaxed">
+            <p className="mt-4 text-neutral-300 text-sm sm:text-base leading-relaxed font-semibold">
               We always make room for world-class talent. Send us your GitHub, Figma portfolio, or past project links directly. If your work is exceptional, we will create a role for you.
             </p>
           </div>
@@ -314,129 +287,109 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* --- PREMIUM APPLY MODAL --- */}
+      {/* --- PREMIUM COMPACT APPLY MODAL --- */}
       {selectedRole && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
           <div 
-            className="w-full max-w-[480px] bg-white border border-neutral-100 rounded-[2.5rem] overflow-hidden shadow-2xl relative flex flex-col p-6 sm:p-8 animate-slide-up"
-            style={{ maxHeight: "calc(100vh - 32px)", overflowY: "auto" }}
+            className="w-full max-w-[480px] bg-white border border-neutral-200 rounded-[2.5rem] overflow-hidden shadow-2xl relative flex flex-col p-6 sm:p-8 animate-slide-up"
+            style={{ maxHeight: "90vh", overflowY: "auto" }}
           >
             {/* Close Button */}
             <button 
               onClick={() => setSelectedRole(null)}
-              className="absolute right-6 top-6 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center hover:bg-neutral-200 transition-colors animate-pulse"
+              className="absolute right-6 top-6 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center hover:bg-neutral-200 transition-colors border border-neutral-300"
             >
-              <X className="w-4 h-4 text-neutral-600" />
+              <X className="w-4 h-4 text-neutral-900 stroke-[2]" />
             </button>
 
-            {/* Document / Sticky Note Visual Illustration (Highly-Polished) */}
-            <div className="w-full flex justify-center py-4 mb-4 select-none">
-              <div className="w-36 h-36 bg-neutral-50 rounded-2xl border border-neutral-200 relative flex items-center justify-center shadow-inner overflow-hidden">
-                {/* Paper Lines */}
-                <div className="absolute top-8 left-6 w-24 h-1 bg-neutral-200 rounded" />
-                <div className="absolute top-12 left-6 w-16 h-1 bg-neutral-200 rounded" />
-                <div className="absolute top-16 left-6 w-20 h-1 bg-neutral-200 rounded" />
-                <div className="absolute top-20 left-6 w-24 h-1 bg-neutral-200 rounded" />
-                
-                {/* Yellow Sticky Note with Scribble */}
-                <div className="absolute -top-1 -right-1 w-20 h-20 bg-[#fef08a] border border-[#fef08a] rotate-6 rounded-lg shadow-md p-2 flex flex-col gap-1 justify-center">
-                  <div className="w-12 h-0.5 bg-[#ca8a04]/50 rounded" />
-                  <div className="w-14 h-0.5 bg-[#ca8a04]/50 rounded" />
-                  <div className="w-10 h-0.5 bg-[#ca8a04]/50 rounded" />
-                </div>
-                
-                {/* Paperclip */}
-                <div className="absolute top-1 right-12 text-neutral-400 rotate-12">
-                  <Paperclip className="w-6 h-6 text-neutral-500 stroke-[2]" />
-                </div>
-              </div>
-            </div>
-
-            {/* Header Content */}
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-bold tracking-tight text-neutral-900 leading-tight px-4">
+            {/* Header Content (Super-Compact) */}
+            <div className="text-center mt-2 mb-4">
+              <h3 className="text-2xl font-black tracking-tight text-neutral-900 leading-tight">
                 Submit Your CV / Resume
               </h3>
-              <p className="mt-2 text-xs text-neutral-500 leading-relaxed px-2">
-                Ready to join our elite team? Upload your resume and links to apply instantly via Email and WhatsApp.
+              <p className="mt-1.5 text-xs text-neutral-600 font-semibold px-2">
+                Join our elite team. Enter your details and upload your resume to apply.
               </p>
-              <div className="mt-3 inline-block px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-[10px] font-bold text-neutral-700">
-                Applying for: {selectedRole}
+              <div className="mt-2.5 inline-block px-3.5 py-1 rounded-full bg-[#ff5400]/10 border border-[#ff5400]/20 text-[10px] font-bold text-[#ff5400] uppercase tracking-wider">
+                Role: {selectedRole}
               </div>
             </div>
 
             {/* Form */}
-            <form onSubmit={handleApplySubmit} className="space-y-4">
+            <form onSubmit={handleApplySubmit} className="space-y-3.5">
               {/* Core Details */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-1 pl-1">Full Name *</label>
+                  <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">Full Name *</label>
                   <input
                     type="text"
                     required
                     placeholder="John Doe"
                     value={applicantName}
                     onChange={(e) => setApplicantName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50 text-xs font-semibold placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-1 pl-1">Email Address *</label>
+                  <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">Email Address *</label>
                   <input
                     type="email"
                     required
                     placeholder="john@example.com"
                     value={applicantEmail}
                     onChange={(e) => setApplicantEmail(e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50 text-xs font-semibold placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-1 pl-1">WhatsApp Number *</label>
+                <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">WhatsApp Number *</label>
                 <input
                   type="tel"
                   required
                   placeholder="e.g. +92 324 1940988"
                   value={applicantPhone}
                   onChange={(e) => setApplicantPhone(e.target.value)}
-                  className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50 text-xs font-semibold placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
                 />
               </div>
 
               {/* Links - Optional */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-1 pl-1 flex items-center gap-1">
-                    <Github className="w-3 h-3 text-neutral-400" /> GitHub URL <span className="text-[8px] text-neutral-400 font-normal lowercase">(optional)</span>
+                  <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1 flex items-center gap-1">
+                    <svg className="w-3 h-3 text-neutral-500 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                    </svg>
+                    GitHub URL <span className="text-[8px] text-neutral-500 font-normal lowercase">(optional)</span>
                   </label>
                   <input
                     type="url"
                     placeholder="https://github.com/..."
                     value={githubUrl}
                     onChange={(e) => setGithubUrl(e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50 text-xs font-semibold placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-1 pl-1 flex items-center gap-1">
-                    <LinkIcon className="w-3 h-3 text-neutral-400" /> Website <span className="text-[8px] text-neutral-400 font-normal lowercase">(optional)</span>
+                  <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1 flex items-center gap-1">
+                    <LinkIcon className="w-3 h-3 text-neutral-500 stroke-[2.5]" /> Website <span className="text-[8px] text-neutral-500 font-normal lowercase">(optional)</span>
                   </label>
                   <input
                     type="url"
                     placeholder="https://myportfolio.com"
                     value={portfolioUrl}
                     onChange={(e) => setPortfolioUrl(e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50 text-xs font-semibold placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
                   />
                 </div>
               </div>
 
               {/* CV Uploader */}
               <div>
-                <label className="block text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-1 pl-1">Upload CV / Resume *</label>
-                <div className="border border-dashed border-neutral-200 rounded-2xl p-5 flex flex-col items-center justify-center bg-neutral-50 hover:bg-neutral-100/50 transition-colors cursor-pointer relative">
+                <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">Upload CV / Resume *</label>
+                <div className="border border-dashed border-neutral-300 rounded-xl p-4 flex flex-col items-center justify-center bg-white hover:bg-neutral-50 transition-colors cursor-pointer relative">
                   <input
                     type="file"
                     required
@@ -444,46 +397,46 @@ export default function CareersPage() {
                     onChange={handleFileChange}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
-                  <Upload className="w-6 h-6 text-neutral-400 mb-2" />
-                  <span className="text-xs font-bold text-neutral-800">
+                  <Upload className="w-5 h-5 text-neutral-700 mb-1.5 stroke-[2]" />
+                  <span className="text-xs font-bold text-neutral-900">
                     {selectedFile ? selectedFile.name : "Choose PDF / Word File"}
                   </span>
-                  <span className="text-[9px] text-neutral-400 mt-1">Max file size: 5MB</span>
+                  <span className="text-[9px] text-neutral-500 font-bold mt-0.5">Max size: 5MB</span>
                 </div>
               </div>
 
               {/* Response Messages */}
               {submitStatus !== "idle" && (
-                <div className={`p-3 rounded-xl text-center text-xs font-semibold ${
-                  submitStatus === "success" ? "bg-emerald-50 text-emerald-600" : "bg-red-50 text-red-600"
+                <div className={`p-2.5 rounded-xl text-center text-xs font-bold ${
+                  submitStatus === "success" ? "bg-emerald-50 text-emerald-800 border border-emerald-200" : "bg-red-50 text-red-800 border border-red-200"
                 }`}>
                   {submitMsg}
                 </div>
               )}
 
               {/* Modal Buttons */}
-              <div className="flex items-center justify-between pt-4 border-t border-neutral-100 gap-3">
+              <div className="flex items-center justify-between pt-3 border-t border-neutral-200 gap-3">
                 <button
                   type="button"
                   onClick={() => setSelectedRole(null)}
-                  className="w-1/2 py-3.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-bold tracking-wider transition-colors"
+                  className="w-1/2 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-900 border border-neutral-300 text-xs font-bold tracking-wider transition-colors"
                 >
                   Maybe later
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting || !selectedFile}
-                  className="w-1/2 py-3.5 rounded-xl bg-black hover:bg-neutral-900 text-white text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-1/2 py-3 rounded-xl bg-[#ff5400] hover:bg-[#e04800] text-white text-xs font-black tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
                       <span>Applying...</span>
                     </>
                   ) : (
                     <>
                       <span>Apply Now</span>
-                      <Sparkle className="w-3 h-3 fill-current text-yellow-400 animate-pulse" />
+                      <Sparkle className="w-3 h-3 fill-current text-white animate-pulse" />
                     </>
                   )}
                 </button>

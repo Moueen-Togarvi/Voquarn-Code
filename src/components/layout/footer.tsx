@@ -10,33 +10,79 @@ export function Footer() {
         {/* Main Content Area */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
 
-          {/* Left Column - Brand & Contact */}
+          {/* Left Column - Logo, Paragraph & Map (lg:col-span-5) */}
           <div className="lg:col-span-5 flex flex-col space-y-7">
-
-            {/* Logo - same as navbar */}
+            {/* Logo */}
             <Link href="/" className="flex items-center gap-3 w-fit group">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/final-logo.png"
                 alt="Voquarn Logo"
-                className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
 
-            <p className="text-[13px] text-neutral-500 max-w-sm leading-relaxed">
+            <p className="text-[13px] text-neutral-500 max-w-sm leading-relaxed font-semibold">
               We design and build fast, growth-ready digital products — websites, apps, AI workflows, and brand systems for businesses that want sharp execution.
             </p>
 
-            {/* Contact Info with Icons */}
-            <div className="space-y-3">
+            {/* Map Frame */}
+            <div className="w-full max-w-sm h-32 rounded-2xl overflow-hidden border border-neutral-200 relative shadow-sm">
+              <iframe
+                title="Bahawalnagar Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110196.26252996614!2d73.1818296!3d29.9954705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393d2568f56191a3%3A0x62953deeb75024b3!2sBahawalnagar%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+              />
+            </div>
+          </div>
+
+          {/* Center Column - Navigation Links (lg:col-span-4) */}
+          <div className="lg:col-span-4 grid grid-cols-2 sm:grid-cols-3 gap-10 pt-2 lg:pl-4">
+            <div className="flex flex-col space-y-4">
+              <h4 className="text-[13px] font-bold text-black uppercase tracking-widest">Product</h4>
+              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Features</Link>
+              <Link href="/pricing" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Pricing</Link>
+              <Link href="/portfolio" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Portfolio</Link>
+              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Updates</Link>
+            </div>
+
+            <div className="flex flex-col space-y-4">
+              <h4 className="text-[13px] font-bold text-black uppercase tracking-widest">Resources</h4>
+              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Documentation</Link>
+              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Guides</Link>
+              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Blog</Link>
+              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Support</Link>
+            </div>
+
+            <div className="flex flex-col space-y-4 col-span-2 sm:col-span-1">
+              <h4 className="text-[13px] font-bold text-black uppercase tracking-widest">Company</h4>
+              <Link href="/about" className="text-[13px] text-neutral-500 hover:text-black transition-colors">About</Link>
+              <Link href="/careers" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Careers</Link>
+              <Link href="/team" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Team</Link>
+              <Link href="/contact" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Contact</Link>
+            </div>
+          </div>
+
+          {/* Right Column - Email, Phone, Address & Socials (lg:col-span-3) */}
+          <div className="lg:col-span-3 flex flex-col space-y-7 pt-2">
+            <h4 className="text-[13px] font-bold text-black uppercase tracking-widest">Direct Contact</h4>
+            
+            {/* Contact Info Card */}
+            <div className="space-y-4">
               <a
                 href="mailto:hello@voquarn.com"
                 className="flex items-center gap-3 group w-fit"
               >
-                <div className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center group-hover:bg-black transition-colors duration-300">
-                  <Mail className="w-3.5 h-3.5 text-neutral-600 group-hover:text-white transition-colors duration-300" />
+                <div className="w-9 h-9 rounded-xl bg-neutral-100 border border-neutral-200/60 flex items-center justify-center group-hover:bg-black transition-colors duration-300">
+                  <Mail className="w-4 h-4 text-neutral-600 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <span className="text-[13px] font-medium text-neutral-700 group-hover:text-black transition-colors duration-300">
+                <span className="text-[13px] font-bold text-neutral-700 group-hover:text-black transition-colors duration-300">
                   hello@voquarn.com
                 </span>
               </a>
@@ -45,26 +91,26 @@ export function Footer() {
                 href="tel:+923241940988"
                 className="flex items-center gap-3 group w-fit"
               >
-                <div className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center group-hover:bg-black transition-colors duration-300">
-                  <Phone className="w-3.5 h-3.5 text-neutral-600 group-hover:text-white transition-colors duration-300" />
+                <div className="w-9 h-9 rounded-xl bg-neutral-100 border border-neutral-200/60 flex items-center justify-center group-hover:bg-black transition-colors duration-300">
+                  <Phone className="w-4 h-4 text-neutral-600 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <span className="text-[13px] font-medium text-neutral-700 group-hover:text-black transition-colors duration-300">
+                <span className="text-[13px] font-bold text-neutral-700 group-hover:text-black transition-colors duration-300">
                   +92 324 1940988
                 </span>
               </a>
 
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center">
-                  <MapPin className="w-3.5 h-3.5 text-neutral-600" />
+              <div className="flex items-center gap-3 w-fit">
+                <div className="w-9 h-9 rounded-xl bg-neutral-100 border border-neutral-200/60 flex items-center justify-center">
+                  <MapPin className="w-4 h-4 text-neutral-600" />
                 </div>
-                <span className="text-[13px] text-neutral-500">
+                <span className="text-[13px] font-bold text-neutral-600 max-w-[200px] leading-snug">
                   Bahawalnagar, Punjab, Pakistan
                 </span>
               </div>
             </div>
 
             {/* Social Media Links */}
-            <div className="flex items-center gap-3 pt-1">
+            <div className="flex items-center gap-3 pt-2">
               {/* LinkedIn */}
               <a
                 href={site.socials.linkedin}
@@ -117,49 +163,8 @@ export function Footer() {
                 </svg>
               </a>
             </div>
-
-            {/* Map Frame */}
-            <div className="w-full max-w-sm h-32 rounded-2xl overflow-hidden border border-neutral-200 relative shadow-sm">
-              <iframe
-                title="Bahawalnagar Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110196.26252996614!2d73.1818296!3d29.9954705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393d2568f56191a3%3A0x62953deeb75024b3!2sBahawalnagar%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-              />
-            </div>
           </div>
 
-          {/* Right Column - Navigation Links */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-10 lg:pl-12 pt-2">
-            <div className="flex flex-col space-y-4">
-              <h4 className="text-[13px] font-bold text-black uppercase tracking-widest">Product</h4>
-              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Features</Link>
-              <Link href="/pricing" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Pricing</Link>
-              <Link href="/portfolio" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Portfolio</Link>
-              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Updates</Link>
-            </div>
-
-            <div className="flex flex-col space-y-4">
-              <h4 className="text-[13px] font-bold text-black uppercase tracking-widest">Resources</h4>
-              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Documentation</Link>
-              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Guides</Link>
-              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Blog</Link>
-              <Link href="/services" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Support</Link>
-            </div>
-
-            <div className="flex flex-col space-y-4 col-span-2 sm:col-span-1">
-              <h4 className="text-[13px] font-bold text-black uppercase tracking-widest">Company</h4>
-              <Link href="/about" className="text-[13px] text-neutral-500 hover:text-black transition-colors">About</Link>
-              <Link href="/careers" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Careers</Link>
-              <Link href="/team" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Team</Link>
-              <Link href="/contact" className="text-[13px] text-neutral-500 hover:text-black transition-colors">Contact</Link>
-            </div>
-          </div>
         </div>
 
         {/* Bottom Section - Full Width Divider then Legal */}

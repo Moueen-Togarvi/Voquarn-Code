@@ -11,7 +11,7 @@ export function Navbar() {
 
   return (
     <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl">
-      <div className="bg-white/85 backdrop-blur-md border border-neutral-200/80 rounded-full px-6 py-1.5 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.12)]">
+      <div className="bg-white/85 backdrop-blur-md border border-neutral-200/80 rounded-full px-6 py-1.5 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.12)] relative">
 
         {/* Logo Section */}
         <Link href="/" className="flex items-center group" onClick={() => setIsOpen(false)}>
