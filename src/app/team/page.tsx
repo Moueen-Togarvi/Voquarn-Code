@@ -30,7 +30,7 @@ export default function TeamPage() {
             {/* Left Column - High-Contrast Black & White Portrait */}
             <div className="w-full md:w-1/2 relative min-h-[380px] sm:min-h-[460px] bg-neutral-950 flex overflow-hidden">
               <Image 
-                src="/ceo-portrait.png" 
+                src="/profile-bw.png" 
                 alt="Moueen Togarvi" 
                 fill
                 priority

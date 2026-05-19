@@ -74,6 +74,16 @@ export async function POST(request: Request) {
     if (!response.ok) {
       const errText = await response.text();
       console.error("Resend send error:", errText);
+      
+      try {
+        const errObj = JSON.parse(errText);
+        if (errObj.statusCode === 403 || errObj.message?.includes("testing emails")) {
+          return NextResponse.json({ 
+            message: "Resend is in Sandbox mode. Please verify voquarn.com on Resend, or temporarily change CONTACT_TO_EMAIL in your .env file to your Resend account email (voquarn@gmail.com) to test submissions."
+          }, { status: 403 });
+        }
+      } catch {}
+      
       return NextResponse.json({ message: "Failed to send the application email." }, { status: 502 });
     }
 

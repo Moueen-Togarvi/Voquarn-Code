@@ -127,11 +127,6 @@ export default function CareersPage() {
       if (response.ok) {
         setSubmitStatus("success");
         setSubmitMsg("Application and CV successfully submitted via email!");
-        
-        setTimeout(() => {
-          setSelectedRole(null);
-          resetForm();
-        }, 2200);
       } else {
         setSubmitStatus("error");
         setSubmitMsg(data.message || "Failed to submit application.");
@@ -302,146 +297,227 @@ export default function CareersPage() {
               <X className="w-4 h-4 text-neutral-900 stroke-[2]" />
             </button>
 
-            {/* Header Content (Super-Compact) */}
-            <div className="text-center mt-2 mb-4">
-              <h3 className="text-2xl font-black tracking-tight text-neutral-900 leading-tight">
-                Submit Your CV / Resume
-              </h3>
-              <p className="mt-1.5 text-xs text-neutral-600 font-semibold px-2">
-                Join our elite team. Enter your details and upload your resume to apply.
-              </p>
-              <div className="mt-2.5 inline-block px-3.5 py-1 rounded-full bg-[#ff5400]/10 border border-[#ff5400]/20 text-[10px] font-bold text-[#ff5400] uppercase tracking-wider">
-                Role: {selectedRole}
-              </div>
-            </div>
-
-            {/* Form */}
-            <form onSubmit={handleApplySubmit} className="space-y-3.5">
-              {/* Core Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">Full Name *</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="John Doe"
-                    value={applicantName}
-                    onChange={(e) => setApplicantName(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">Email Address *</label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="john@example.com"
-                    value={applicantEmail}
-                    onChange={(e) => setApplicantEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">WhatsApp Number *</label>
-                <input
-                  type="tel"
-                  required
-                  placeholder="e.g. +92 324 1940988"
-                  value={applicantPhone}
-                  onChange={(e) => setApplicantPhone(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
-                />
-              </div>
-
-              {/* Links - Optional */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1 flex items-center gap-1">
-                    <svg className="w-3 h-3 text-neutral-500 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            {submitStatus === "success" ? (
+              <div className="flex flex-col items-center justify-center text-center py-6 sm:py-8 animate-in fade-in zoom-in-95 duration-500">
+                {/* Dynamic Illustration (blob, envelope, sliding document, sparkles) */}
+                <div className="relative w-48 h-48 flex items-center justify-center mb-6">
+                  
+                  {/* Light blue soft background blob */}
+                  <div className="absolute inset-4 bg-[#eff6ff] rounded-full blur-xl opacity-70 animate-pulse duration-[3000ms]" />
+                  
+                  {/* Floating blue stars */}
+                  <div className="absolute top-2 left-6 animate-bounce" style={{ animationDuration: '4s' }}>
+                    <svg className="w-5 h-5 text-blue-500 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/>
                     </svg>
-                    GitHub URL <span className="text-[8px] text-neutral-500 font-normal lowercase">(optional)</span>
-                  </label>
-                  <input
-                    type="url"
-                    placeholder="https://github.com/..."
-                    value={githubUrl}
-                    onChange={(e) => setGithubUrl(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1 flex items-center gap-1">
-                    <LinkIcon className="w-3 h-3 text-neutral-500 stroke-[2.5]" /> Website <span className="text-[8px] text-neutral-500 font-normal lowercase">(optional)</span>
-                  </label>
-                  <input
-                    type="url"
-                    placeholder="https://myportfolio.com"
-                    value={portfolioUrl}
-                    onChange={(e) => setPortfolioUrl(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
-                  />
-                </div>
-              </div>
+                  </div>
+                  <div className="absolute bottom-4 right-6 animate-bounce" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
+                    <svg className="w-4 h-4 text-blue-500 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/>
+                    </svg>
+                  </div>
+                  <div className="absolute top-1/2 -right-2 animate-ping" style={{ animationDuration: '2.5s' }}>
+                    <svg className="w-2.5 h-2.5 text-blue-400 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/>
+                    </svg>
+                  </div>
+                  <div className="absolute bottom-6 left-8 animate-pulse">
+                    <svg className="w-3 h-3 text-blue-400 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/>
+                    </svg>
+                  </div>
+                  <div className="absolute top-6 right-8 animate-pulse" style={{ animationDelay: '1s' }}>
+                    <svg className="w-2 h-2 text-blue-300 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/>
+                    </svg>
+                  </div>
 
-              {/* CV Uploader */}
-              <div>
-                <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">Upload CV / Resume *</label>
-                <div className="border border-dashed border-neutral-300 rounded-xl p-4 flex flex-col items-center justify-center bg-white hover:bg-neutral-50 transition-colors cursor-pointer relative">
-                  <input
-                    type="file"
-                    required
-                    accept=".pdf,.docx,.doc"
-                    onChange={handleFileChange}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                  />
-                  <Upload className="w-5 h-5 text-neutral-700 mb-1.5 stroke-[2]" />
-                  <span className="text-xs font-bold text-neutral-900">
-                    {selectedFile ? selectedFile.name : "Choose PDF / Word File"}
-                  </span>
-                  <span className="text-[9px] text-neutral-500 font-bold mt-0.5">Max size: 5MB</span>
-                </div>
-              </div>
+                  {/* Envelope Container */}
+                  <div className="relative z-10 w-28 h-28 flex items-center justify-center">
+                    {/* Back Flap */}
+                    <div className="absolute bottom-2 w-24 h-16 bg-blue-100 rounded-lg border-2 border-blue-200 flex items-end justify-center shadow-inner overflow-hidden">
+                      <div className="w-full h-full bg-gradient-to-t from-blue-50 to-transparent absolute inset-0" />
+                      <div className="w-24 h-24 bg-blue-200/50 rotate-45 transform translate-y-8 absolute" />
+                    </div>
 
-              {/* Response Messages */}
-              {submitStatus !== "idle" && (
-                <div className={`p-2.5 rounded-xl text-center text-xs font-bold ${
-                  submitStatus === "success" ? "bg-emerald-50 text-emerald-800 border border-emerald-200" : "bg-red-50 text-red-800 border border-red-200"
-                }`}>
-                  {submitMsg}
-                </div>
-              )}
+                    {/* Checked Document sliding out */}
+                    <div className="absolute bottom-5 w-16 h-20 bg-white rounded-md border border-blue-300 shadow-md flex items-center justify-center p-2.5 animate-[bounce_3s_infinite]">
+                      <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center shadow-md shadow-blue-500/30">
+                        <svg className="w-5 h-5 text-white stroke-[3.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                    </div>
 
-              {/* Modal Buttons */}
-              <div className="flex items-center justify-between pt-3 border-t border-neutral-200 gap-3">
+                    {/* Front Flap */}
+                    <div className="absolute bottom-2 w-24 h-10 bg-gradient-to-t from-blue-200 to-blue-100/90 rounded-b-lg border-x-2 border-b-2 border-blue-200 shadow-sm flex items-center justify-center overflow-hidden">
+                      <div className="w-24 h-24 bg-blue-100 rotate-45 transform translate-y-6 absolute border border-blue-200" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Text Messages */}
+                <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 leading-tight mb-3">
+                  Thank you for your submission!
+                </h3>
+                <p className="text-xs text-neutral-500 font-semibold leading-relaxed px-4 mb-8 max-w-sm">
+                  We have received your resume for the <strong>{selectedRole}</strong> position. 
+                  Our team makes interview selection decisions in 48 hours.
+                </p>
+
+                {/* Close Button */}
                 <button
-                  type="button"
-                  onClick={() => setSelectedRole(null)}
-                  className="w-1/2 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-900 border border-neutral-300 text-xs font-bold tracking-wider transition-colors"
+                  onClick={() => {
+                    setSelectedRole(null);
+                    resetForm();
+                  }}
+                  className="w-full py-4 rounded-xl bg-neutral-950 hover:bg-[#ff5400] text-white text-xs font-black uppercase tracking-widest transition-all duration-300 shadow-lg hover:scale-[1.02]"
                 >
-                  Maybe later
+                  Close Window
                 </button>
-                <button
-                  type="submit"
-                  disabled={isSubmitting || !selectedFile}
-                  className="w-1/2 py-3 rounded-xl bg-[#ff5400] hover:bg-[#e04800] text-white text-xs font-black tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
-                      <span>Applying...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Apply Now</span>
-                      <Sparkle className="w-3 h-3 fill-current text-white animate-pulse" />
-                    </>
+              </div>
+            ) : (
+              <>
+                {/* Header Content (Super-Compact) */}
+                <div className="text-center mt-2 mb-4">
+                  <h3 className="text-2xl font-black tracking-tight text-neutral-900 leading-tight">
+                    Submit Your CV / Resume
+                  </h3>
+                  <p className="mt-1.5 text-xs text-neutral-600 font-semibold px-2">
+                    Join our elite team. Enter your details and upload your resume to apply.
+                  </p>
+                  <div className="mt-2.5 inline-block px-3.5 py-1 rounded-full bg-[#ff5400]/10 border border-[#ff5400]/20 text-[10px] font-bold text-[#ff5400] uppercase tracking-wider">
+                    Role: {selectedRole}
+                  </div>
+                </div>
+
+                {/* Form */}
+                <form onSubmit={handleApplySubmit} className="space-y-3.5">
+                  {/* Core Details */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">Full Name *</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="John Doe"
+                        value={applicantName}
+                        onChange={(e) => setApplicantName(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">Email Address *</label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="john@example.com"
+                        value={applicantEmail}
+                        onChange={(e) => setApplicantEmail(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">WhatsApp Number *</label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="e.g. +92 324 1940988"
+                      value={applicantPhone}
+                      onChange={(e) => setApplicantPhone(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
+                    />
+                  </div>
+
+                  {/* Links - Optional */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1 flex items-center gap-1">
+                        <svg className="w-3 h-3 text-neutral-500 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                        </svg>
+                        GitHub URL <span className="text-[8px] text-neutral-500 font-normal lowercase">(optional)</span>
+                      </label>
+                      <input
+                        type="url"
+                        placeholder="https://github.com/..."
+                        value={githubUrl}
+                        onChange={(e) => setGithubUrl(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1 flex items-center gap-1">
+                        <LinkIcon className="w-3 h-3 text-neutral-500 stroke-[2.5]" /> Website <span className="text-[8px] text-neutral-500 font-normal lowercase">(optional)</span>
+                      </label>
+                      <input
+                        type="url"
+                        placeholder="https://myportfolio.com"
+                        value={portfolioUrl}
+                        onChange={(e) => setPortfolioUrl(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  {/* CV Uploader */}
+                  <div>
+                    <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">Upload CV / Resume *</label>
+                    <div className="border border-dashed border-neutral-300 rounded-xl p-4 flex flex-col items-center justify-center bg-white hover:bg-neutral-50 transition-colors cursor-pointer relative">
+                      <input
+                        type="file"
+                        required
+                        accept=".pdf,.docx,.doc"
+                        onChange={handleFileChange}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                      />
+                      <Upload className="w-5 h-5 text-neutral-700 mb-1.5 stroke-[2]" />
+                      <span className="text-xs font-bold text-neutral-900">
+                        {selectedFile ? selectedFile.name : "Choose PDF / Word File"}
+                      </span>
+                      <span className="text-[9px] text-neutral-500 font-bold mt-0.5">Max size: 5MB</span>
+                    </div>
+                  </div>
+
+                  {/* Response Messages */}
+                  {submitStatus === "error" && (
+                    <div className="p-2.5 rounded-xl text-center text-xs font-bold bg-red-50 text-red-800 border border-red-200">
+                      {submitMsg}
+                    </div>
                   )}
-                </button>
-              </div>
-            </form>
+
+                  {/* Modal Buttons */}
+                  <div className="flex items-center justify-between pt-3 border-t border-neutral-200 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedRole(null)}
+                      className="w-1/2 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-900 border border-neutral-300 text-xs font-bold tracking-wider transition-colors"
+                    >
+                      Maybe later
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting || !selectedFile}
+                      className="w-1/2 py-3 rounded-xl bg-[#ff5400] hover:bg-[#e04800] text-white text-xs font-black tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
+                          <span>Applying...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Apply Now</span>
+                          <Sparkle className="w-3 h-3 fill-current text-white animate-pulse" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              </>
+            )}
           </div>
         </div>
       )}
