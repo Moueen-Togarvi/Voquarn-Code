@@ -15,7 +15,7 @@ export default function BlogPage() {
 
   return (
     <>
-      <section className="page-section">
+      <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <SectionHeading
           eyebrow="Blog"
           title="SEO articles and practical tech notes"

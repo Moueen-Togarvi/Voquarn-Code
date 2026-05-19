@@ -21,7 +21,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="page-section pt-36 lg:pt-40 pb-4">
+      <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56 pb-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="flex flex-col justify-center">
             <SectionHeading

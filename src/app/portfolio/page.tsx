@@ -12,7 +12,7 @@ export const metadata = buildMetadata(
 export default function PortfolioPage() {
   return (
     <>
-      <section className="page-section">
+      <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <SectionHeading
           eyebrow="Portfolio"
           title="A cross-section of delivery work"

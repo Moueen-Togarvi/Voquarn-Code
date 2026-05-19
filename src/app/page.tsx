@@ -7,7 +7,7 @@ import { SpotlightShowcase } from "@/components/ui/spotlight-showcase";
 import { DiagonalMarquees } from "@/components/ui/diagonal-marquees";
 import { EnterpriseSuites } from "@/components/ui/enterprise-suites";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ServiceCard } from "@/components/ui/service-card";
+import { ServicesToggle } from "@/components/ui/services-toggle";
 import { buildMetadata } from "@/lib/metadata";
 import { portfolioItems, services } from "@/lib/site-data";
 
@@ -43,13 +43,22 @@ export default function HomePage() {
             title="We build digital systems that actually work"
             description="From high-end websites to custom SaaS products, we provide end-to-end engineering and design."
           />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
-            {services.map((service, index) => (
-              <ServiceCard key={service.id} service={service} index={index} />
-            ))}
+          <div className="mt-10">
+            <ServicesToggle limit={4} />
+          </div>
+          
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-8 py-3.5 text-[11px] font-black uppercase tracking-[0.2em] text-neutral-900 shadow-sm transition-all hover:bg-neutral-50 hover:shadow-md hover:-translate-y-0.5"
+            >
+              View all services
+            </Link>
           </div>
         </div>
       </section>
+
+
 
       {/* The New Enterprise Domain Suites Showcase */}
       <EnterpriseSuites />

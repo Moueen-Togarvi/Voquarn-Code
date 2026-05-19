@@ -3,11 +3,21 @@ export type NavItem = {
   label: string;
 };
 
+export type SubService = {
+  id: string;
+  name: string;
+  description: string;
+  pricePkr: number;
+  priceUsd: number;
+  features: string[];
+};
+
 export type Service = {
   id: string;
   title: string;
   description: string;
   deliverables: string[];
+  subServices?: SubService[];
 };
 
 export type PortfolioItem = {
@@ -73,7 +83,6 @@ export const navItems: NavItem[] = [
   { href: "/services", label: "Services" },
   { href: "/pricing", label: "Pricing" },
   { href: "/team", label: "Our Team" },
-  { href: "/ceo", label: "Our CEO" },
   { href: "/careers", label: "Careers" },
 ];
 
@@ -82,29 +91,133 @@ export const services: Service[] = [
     id: "web-dev",
     title: "Web Development",
     description:
-      "High-performance websites built with Next.js and React for maximum speed, security, and conversion.",
-    deliverables: ["Custom Websites", "Landing Pages", "Performance Optimization", "E-commerce"],
+      "Beautiful, fast websites that help your business get more clients, phone calls, and sales.",
+    deliverables: ["Custom Websites", "Simple landing pages", "Fast page loading", "Online store systems"],
+    subServices: [
+      {
+        id: "basic-web",
+        name: "Basic Website",
+        description: "A clean, modern page to display your work, location, and phone number. Perfect for shops, doctors, or individuals.",
+        pricePkr: 110000,
+        priceUsd: 400,
+        features: ["Up to 5 Pages", "Simple animations", "Works perfectly on mobile phones", "Direct WhatsApp contact link", "Free website setup help"],
+      },
+      {
+        id: "tools-web",
+        name: "Tools Website",
+        description: "A website designed to show listings (like properties, cars, or jobs) or calculate prices automatically.",
+        pricePkr: 220000,
+        priceUsd: 800,
+        features: ["Automatic price calculation", "Easy search & filter tools", "Simple input fields", "Extremely fast and reliable", "Easy to find on Google"],
+      },
+      {
+        id: "ecommerce-web",
+        name: "E-commerce Website",
+        description: "A complete online shop where customers can view products, add them to a cart, and pay directly online.",
+        pricePkr: 330000,
+        priceUsd: 1200,
+        features: ["Accept cards & bank transfers", "Add unlimited products easily", "Shopping cart & checkout pages", "Order alerts on email/SMS", "Simple shop owner dashboard"],
+      },
+      {
+        id: "saas-web",
+        name: "SaaS Website",
+        description: "A high-end marketing website designed specifically to showcase and sell software or mobile applications.",
+        pricePkr: 420000,
+        priceUsd: 1500,
+        features: ["Modern layout grid style", "Clear monthly pricing tables", "Customer sign-up forms", "Direct payments setup", "Visitor traffic reports"],
+      },
+      {
+        id: "ai-web",
+        name: "AI Website",
+        description: "A website with a built-in smart assistant or chatbot that answers customer questions automatically.",
+        pricePkr: 550000,
+        priceUsd: 2000,
+        features: ["Smart chatbot included", "Answers questions 24/7", "Search products by description", "Super fast response time", "Saves staff time on support"],
+      },
+    ],
   },
   {
     id: "app-dev",
     title: "App Development",
     description:
-      "Native and cross-platform mobile applications that provide seamless user experiences and robust functionality.",
-    deliverables: ["iOS & Android Apps", "React Native", "API Integration", "App Store Launch"],
+      "Mobile phone apps built for iPhone and Android devices that your customers can download from app stores.",
+    deliverables: ["Android & iPhone Apps", "App Store Publishing", "Push notifications", "Phone feature integration"],
+    subServices: [
+      {
+        id: "custom-mobile",
+        name: "Custom Mobile App",
+        description: "An app built to run smoothly on both Android and iPhone devices, utilizing mobile phone features.",
+        pricePkr: 420000,
+        priceUsd: 1500,
+        features: ["Works on Android & iPhone", "Publishes to Play Store & App Store", "Sends pop-up notifications", "Uses phone camera or GPS", "Works even without internet"],
+      },
+      {
+        id: "saas-app",
+        name: "SaaS App",
+        description: "A web-based software platform where users can log in, manage data, and pay monthly subscriptions.",
+        pricePkr: 850000,
+        priceUsd: 3000,
+        features: ["Secure login for users", "Monthly subscription payments", "Main control board for admins", "Share access with team members", "Strong database backup system"],
+      },
+      {
+        id: "ai-app",
+        name: "AI Apps",
+        description: "A mobile application with smart features like voice assistance, automatic tasks, and smart filters.",
+        pricePkr: 980000,
+        priceUsd: 3500,
+        features: ["Built-in voice helper", "Automates boring daily tasks", "Creates text or pictures", "Highly secure data lock", "Scales as you get more users"],
+      },
+    ],
   },
   {
     id: "saas-apps",
     title: "SaaS Applications",
     description:
-      "End-to-end development of scalable Software as a Service products with secure multi-tenant architectures.",
-    deliverables: ["SaaS Architecture", "Subscription Systems", "User Dashboards", "Cloud Scaling"],
+      "Custom web applications where your users can sign up, create profiles, and pay for services monthly.",
+    deliverables: ["Software architecture", "Monthly subscription billing", "Client portals", "Secure user databases"],
+    subServices: [
+      {
+        id: "mvp-saas",
+        name: "MVP SaaS Build",
+        description: "A basic, working version of your software to test your business idea with real users quickly.",
+        pricePkr: 850000,
+        priceUsd: 3000,
+        features: ["Core features only", "User login & sign up", "Simple bank/card payments", "Basic control dashboard", "Ready in 4 weeks"],
+      },
+      {
+        id: "full-saas",
+        name: "Scale-Ready SaaS",
+        description: "A complete, heavy-duty software system built for thousands of customers without slowing down.",
+        pricePkr: 1700000,
+        priceUsd: 6000,
+        features: ["Advanced billing options", "Team member account invites", "Connects to other software tools", "Detailed sales & usage charts", "Highest level security shields"],
+      },
+    ],
   },
   {
     id: "ai-workflows",
     title: "AI Workflows",
     description:
-      "Automated business processes, intelligent AI assistant integrations, and smart agent applications.",
-    deliverables: ["AI Integration", "Process Automation", "Custom Agents", "Smart Workflows"],
+      "Automate your daily manual work with smart AI bots that can read documents, chat, and fill forms.",
+    deliverables: ["AI integration", "Automatic data entry", "Custom support chatbots", "Smart workflow agents"],
+    subServices: [
+      {
+        id: "ai-chatbot",
+        name: "AI Chatbots & Assistants",
+        description: "A chatbot that talks to your customers like a real human and answers questions based on your files.",
+        pricePkr: 330000,
+        priceUsd: 1200,
+        features: ["Learns from your business files", "Works on website or WhatsApp", "Saves all chat histories", "Works 24 hours non-stop", "Quick 2-week setup"],
+      },
+      {
+        id: "ai-agents",
+        name: "Intelligent Agents & RAG",
+        description: "Advanced AI bots that do real work for you, like sending emails, reading reports, and updates.",
+        pricePkr: 700000,
+        priceUsd: 2500,
+        features: ["Searches your database files", "Sends emails automatically", "Takes logical steps on its own", "Saves history of what it did", "Easy to monitor and adjust"],
+      },
+    ],
   },
 ];
 
