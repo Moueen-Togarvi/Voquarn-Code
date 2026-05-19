@@ -13,19 +13,14 @@ export function Footer() {
           {/* Left Column - Brand & Contact */}
           <div className="lg:col-span-5 flex flex-col space-y-7">
 
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 w-fit">
-              <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center shadow-lg">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white" fillOpacity="0.9"/>
-                  <path d="M2 17L12 22L22 17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M2 12L12 17L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[18px] font-bold text-black tracking-tight leading-none">Voquarn</span>
-                <span className="text-[10px] font-medium text-neutral-400 tracking-widest uppercase mt-0.5">Code Agency</span>
-              </div>
+            {/* Logo - same as navbar */}
+            <Link href="/" className="flex items-center gap-3 w-fit group">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/final-logo.png"
+                alt="Voquarn Logo"
+                className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
             </Link>
 
             <p className="text-[13px] text-neutral-500 max-w-sm leading-relaxed">
