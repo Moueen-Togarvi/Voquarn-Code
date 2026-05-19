@@ -146,17 +146,13 @@ export function ServicesToggle({ limit }: { limit?: number }) {
                   {item.name}
                 </h3>
 
-                {/* Short Description */}
-                <p className="mt-1 text-[11px] text-neutral-500 line-clamp-2 leading-relaxed min-h-[32px]">
-                  {item.description}
-                </p>
 
                 {/* Feature Tags */}
-                <div className="mt-3 flex flex-wrap gap-1.5">
+                <div className="mt-3 flex flex-wrap gap-1">
                   {item.features.slice(0, 3).map((feature) => (
                     <span
                       key={feature}
-                      className="rounded-full bg-neutral-100 px-2.5 py-0.5 text-[9px] font-semibold tracking-wide text-neutral-600"
+                      className="rounded-full bg-neutral-100 px-2 py-0.5 text-[8px] font-semibold tracking-wide text-neutral-500"
                     >
                       {feature}
                     </span>

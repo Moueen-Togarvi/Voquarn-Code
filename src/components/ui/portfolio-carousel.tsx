@@ -12,7 +12,7 @@ type PortfolioCarouselProps = {
 // High-quality tech/SaaS Unsplash images to map to the items
 const cardImages = [
   "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800", // Dashboard/Data
-  "https://images.unsplash.com/photo-1460925895:afdab827c52f?auto=format&fit=crop&q=80&w=800", // Analytics
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800", // Analytics
   "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=800", // Code
   "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=800", // Finance/Graph
   "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=800", // Abstract Tech
@@ -52,12 +52,7 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
         .coverflow-card {
           transform-style: preserve-3d;
           backface-visibility: hidden;
-          transition: transform 3.8s linear, opacity 3.8s linear, box-shadow 0.5s ease, border-color 0.5s ease;
-          border-radius: 32px;
-        }
-        .coverflow-card:hover {
-          box-shadow: 0 30px 70px rgba(255, 84, 0, 0.15) !important;
-          border-color: rgba(255, 84, 0, 0.4) !important;
+          transition: transform 3.8s linear, opacity 3.8s linear;
         }
         .pixel-text {
           font-family: 'Courier New', monospace;
@@ -195,7 +190,7 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
               <div
                 key={virtualIndex}
                 onClick={() => handleCardClick(virtualIndex, item.liveUrl)}
-                className="coverflow-card absolute w-[250px] h-[350px] bg-white p-4 cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-neutral-200/80 flex flex-col justify-between group"
+                className="coverflow-card absolute w-[250px] h-[350px] cursor-pointer group"
                 style={{
                   transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
                   zIndex: zIndex,
@@ -203,8 +198,10 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
                   pointerEvents: opacity === 0 ? "none" : "auto",
                 }}
               >
-                {/* Image Container on Top - Cinematic layout inside padding */}
-                <div className="relative w-full h-[160px] overflow-hidden rounded-[24px] bg-neutral-900 shadow-[0_8px_20px_rgba(0,0,0,0.12)]">
+                {/* Inner wrapper for hover transform without breaking 3D math */}
+                <div className="w-full h-full bg-white p-4 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-neutral-200/80 flex flex-col justify-between transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-6 group-hover:shadow-[0_40px_80px_rgba(255,84,0,0.2)] group-hover:border-[#ff5400]/40 relative z-10">
+                  {/* Image Container on Top - Cinematic layout inside padding */}
+                  <div className="relative w-full h-[160px] overflow-hidden rounded-[24px] bg-neutral-900 shadow-[0_8px_20px_rgba(0,0,0,0.12)]">
                   <Image 
                     src={cardImages[itemIndex % cardImages.length]}
                     alt={item.title}
@@ -215,15 +212,17 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
                   
                   {/* Subtle inner shadow overlay for depth */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                  
-                  {/* Glassmorphic Category tag overlaid at Top Left */}
-                  <span className="absolute top-3 left-3 px-3.5 py-1 text-[9px] font-black uppercase tracking-widest text-white bg-black/60 backdrop-blur-md rounded-full border border-white/20 shadow-lg">
+                </div>
+
+                {/* Category Tag moved below the image */}
+                <div className="mt-3 px-1">
+                  <span className="inline-block px-3.5 py-1 text-[9px] font-black uppercase tracking-widest text-neutral-600 bg-neutral-100 rounded-full border border-neutral-200 group-hover:text-[#ff5400] group-hover:bg-[#ff5400]/10 group-hover:border-[#ff5400]/20 transition-colors duration-300">
                     {item.category}
                   </span>
                 </div>
 
                 {/* Bottom Details Section */}
-                <div className="mt-4 pt-3 border-t border-neutral-100 flex justify-between items-end px-1 pb-1">
+                <div className="mt-auto pt-3 border-t border-neutral-100 flex justify-between items-end px-1 pb-1">
                   
                   {/* Left Column: Title, Metadata, and View Project Button */}
                   <div className="flex flex-col items-start justify-center flex-1 pr-2">
@@ -239,56 +238,20 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
                     </span>
                   </div>
 
-                  {/* Right Column: Premium Neumorphic QR Code Scanner Badge */}
-                  <div className="flex flex-col items-center flex-shrink-0 mb-0.5">
-                    <div className="p-2 bg-neutral-900/5 rounded-[16px] border border-neutral-900/10 group-hover:bg-[#ff5400]/10 group-hover:border-[#ff5400]/20 transition-all duration-300 shadow-sm">
-                      <svg width="28" height="28" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#ff5400] transition-colors duration-300">
-                        <rect x="0" y="0" width="7" height="7" fill="currentColor" />
-                        <rect x="1" y="1" width="5" height="5" fill="white" />
-                        <rect x="2" y="2" width="3" height="3" fill="currentColor" />
-                        
-                        <rect x="22" y="0" width="7" height="7" fill="currentColor" />
-                        <rect x="23" y="1" width="5" height="5" fill="white" />
-                        <rect x="24" y="2" width="3" height="3" fill="currentColor" />
-                        
-                        <rect x="0" y="22" width="7" height="7" fill="currentColor" />
-                        <rect x="1" y="23" width="5" height="5" fill="white" />
-                        <rect x="2" y="24" width="3" height="3" fill="currentColor" />
-                        
-                        <rect x="20" y="20" width="5" height="5" fill="currentColor" />
-                        <rect x="21" y="21" width="3" height="3" fill="white" />
-                        <rect x="22" y="22" width="1" height="1" fill="currentColor" />
-                        
-                        <rect x="8" y="2" width="2" height="1" fill="currentColor" />
-                        <rect x="12" y="0" width="1" height="3" fill="currentColor" />
-                        <rect x="15" y="1" width="3" height="1" fill="currentColor" />
-                        <rect x="19" y="3" width="2" height="2" fill="currentColor" />
-                        <rect x="9" y="5" width="3" height="2" fill="currentColor" />
-                        <rect x="14" y="4" width="2" height="3" fill="currentColor" />
-                        <rect x="0" y="9" width="3" height="2" fill="currentColor" />
-                        <rect x="4" y="8" width="2" height="4" fill="currentColor" />
-                        <rect x="8" y="9" width="5" height="2" fill="currentColor" />
-                        <rect x="15" y="8" width="4" height="2" fill="currentColor" />
-                        <rect x="21" y="9" width="3" height="1" fill="currentColor" />
-                        <rect x="25" y="8" width="2" height="3" fill="currentColor" />
-                        <rect x="1" y="13" width="4" height="2" fill="currentColor" />
-                        <rect x="7" y="12" width="3" height="3" fill="currentColor" />
-                        <rect x="12" y="15" width="2" height="2" fill="currentColor" />
-                        <rect x="16" y="13" width="5" height="2" fill="currentColor" />
-                        <rect x="23" y="12" width="2" height="4" fill="currentColor" />
-                        <rect x="27" y="14" width="1" height="3" fill="currentColor" />
-                        <rect x="4" y="17" width="2" height="2" fill="currentColor" />
-                        <rect x="9" y="18" width="2" height="3" fill="currentColor" />
-                        <rect x="13" y="19" width="4" height="1" fill="currentColor" />
-                        <rect x="18" y="17" width="3" height="4" fill="currentColor" />
-                        <rect x="25" y="19" width="3" height="2" fill="currentColor" />
+                  {/* Right Column: Star Reviews */}
+                  <div className="flex flex-col items-center justify-center flex-shrink-0 mb-0.5">
+                    <div className="flex space-x-1 items-center bg-amber-500/10 px-3 py-1.5 rounded-full border border-amber-500/20 group-hover:bg-[#ff5400]/10 group-hover:border-[#ff5400]/20 transition-all duration-300 shadow-sm">
+                      <svg className="w-3.5 h-3.5 text-amber-500 group-hover:text-[#ff5400] transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
+                      <span className="text-[11px] font-black text-amber-600 group-hover:text-[#ff5400] transition-colors duration-300">5.0</span>
                     </div>
-                    <span className="text-[8px] font-black text-neutral-400 group-hover:text-[#ff5400] tracking-widest text-center mt-1.5 uppercase leading-none transition-colors duration-300">Scan live</span>
+                    <span className="text-[8px] font-black text-neutral-400 group-hover:text-[#ff5400] tracking-widest text-center mt-2 uppercase leading-none transition-colors duration-300">Reviews</span>
                   </div>
 
                 </div>
               </div>
+            </div>
             );
           })}
         </div>
