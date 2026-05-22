@@ -4,7 +4,7 @@ import React from "react";
 
 export function DiagonalMarquees() {
   return (
-    <section className="relative w-full py-36 overflow-hidden bg-white select-none border-b border-neutral-200 blur-[1px] md:blur-[1.5px]">
+    <section className="relative w-full py-36 overflow-hidden bg-white select-none border-b border-neutral-200">
 
       {/* Inject custom CSS keyframes for smooth infinite marquee looping */}
       <style dangerouslySetInnerHTML={{

@@ -1,0 +1,18 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: clamp(240px, 30vw, 360px);
+  overflow: visible;
+}
+
+.wrapper :global(canvas) {
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    height: 260px;
+  }
+}

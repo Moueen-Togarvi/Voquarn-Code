@@ -1,41 +1,12 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowUpRight, Asterisk, ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-import { RocketCanvas } from "./rocket-canvas";
-
-/* ─── tiny helpers ──────────────────────────────────────────────── */
-const OrangeDot = () => (
-  <span
-    style={{
-      display: "inline-block",
-      width: 10,
-      height: 10,
-      borderRadius: "50%",
-      background: "#ff5400",
-      marginRight: 6,
-      flexShrink: 0,
-    }}
-  />
-);
-
-
-
-
-
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 const SERVICES = ["Websites", "Brands", "Apps", "Systems", "SaaS Apps", "AI Agents", "AI Apps"];
 
-const TIMELINE_DATA = [
-  [{ num: "01", label: "UI UX DESIGN", sub: "User Interfaces", active: false }, { num: "02", label: "GRAPHIC DESIGNS", sub: "Visual Assets", active: true }],
-  [{ num: "01", label: "CRM", sub: "Customer Relations", active: false }, { num: "02", label: "PMS", sub: "Property Management", active: true }],
-  [{ num: "01", label: "AI APPS", sub: "Smart Automation", active: false }, { num: "02", label: "MOBILE APPS", sub: "iOS & Android", active: true }],
-  [{ num: "01", label: "HOSPITAL MANAGEMENTS", sub: "Healthcare Systems", active: false }, { num: "02", label: "COMPANY MANAGEMENTS", sub: "Enterprise Systems", active: true }],
-  [{ num: "01", label: "CLOUD SOLUTIONS", sub: "Scalable Platforms", active: false }, { num: "02", label: "WEB PORTALS", sub: "Interactive Dashboards", active: true }],
-  [{ num: "01", label: "MACHINE LEARNING", sub: "Data Models", active: false }, { num: "02", label: "AI AGENTS", sub: "Autonomous Systems", active: true }],
-  [{ num: "01", label: "AI INTEGRATION", sub: "Smart Features", active: false }, { num: "02", label: "AI APPS", sub: "Intelligent Apps", active: true }],
-];
 
 const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }) => {
   const [text, setText] = useState("Websites");
@@ -94,11 +65,10 @@ const RocketImg = () => (
   <img
     src="/final-logo.png"
     alt="Voquarn Agency Logo"
+    className="hero-rocket-img"
     style={{
-      width: "380px",
       height: "auto",
       objectFit: "contain",
-      filter: "drop-shadow(0 20px 40px rgba(255,84,0,0.35)) drop-shadow(0 4px 20px rgba(0,0,0,0.15))",
     }}
   />
 );
@@ -151,37 +121,10 @@ const RocketLauncher = () => {
 
 /* ─── component ─────────────────────────────────────────────────── */
 export function Hero() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-
   return (
-    <section
-      style={{
-        width: "100%",
-        background: "#ffffff",
-        minHeight: "105vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "140px 20px 40px 20px",
-        boxSizing: "border-box",
-        position: "relative",
-        zIndex: 20,
-        borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
-      }}
-    >
+    <section className="hero-section">
       {/* ── outer wrapper ── */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "64px 1fr 1.75fr",
-          gap: 16,
-          width: "100%",
-          maxWidth: 1480,
-          minHeight: "calc(105vh - 180px)",
-          maxHeight: 1100,
-        }}
-      >
+      <div className="hero-container">
         {/* ════════════════════════════════════════
             COL 1 — slim black sidebar pill
         ════════════════════════════════════════ */}
@@ -189,21 +132,18 @@ export function Hero() {
           initial={false}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
-          style={{
-            background: "#111",
-            borderRadius: 999,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "22px 0",
-            color: "#fff",
-            height: "93%",
-            alignSelf: "center",
-          }}
+          className="hero-col1"
         >
-          {/* Logo icon (Replacing X button) */}
-          <div
+          {/* Logo icon (Replacing X button) with floating & light radiating animation */}
+          <motion.div
+            animate={{
+              y: [0, -8, 0],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
             style={{
               width: 56,
               height: 56,
@@ -213,32 +153,88 @@ export function Hero() {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              overflow: "hidden",
-              boxShadow: "0 4px 14px rgba(0,0,0,0.25)",
+              position: "relative",
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/final-logo.png"
-              alt="Logo"
-              style={{ width: "100%", height: "100%", objectFit: "contain", padding: "6px" }}
+            {/* Glowing background light radiating/emitting outward */}
+            <motion.div
+              animate={{
+                scale: [1, 1.35, 1],
+                opacity: [0.4, 0.85, 0.4],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              style={{
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                borderRadius: "50%",
+                background: "radial-gradient(circle, rgba(255, 84, 0, 0.9) 0%, rgba(255, 84, 0, 0) 70%)",
+                filter: "blur(6px)",
+                zIndex: 0,
+                pointerEvents: "none",
+              }}
             />
-          </div>
+
+            {/* Pulsing glow outline */}
+            <motion.div
+              animate={{
+                boxShadow: [
+                  "0 0 10px rgba(255, 84, 0, 0.25)",
+                  "0 0 20px rgba(255, 84, 0, 0.65)",
+                  "0 0 10px rgba(255, 84, 0, 0.25)",
+                ],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              style={{
+                position: "absolute",
+                inset: -2,
+                borderRadius: "50%",
+                border: "2px solid #ff5400",
+                pointerEvents: "none",
+                zIndex: 1,
+              }}
+            />
+
+            {/* Inner container to clip the image within the rounded circle */}
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "50%",
+                overflow: "hidden",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "#ffffff",
+                position: "relative",
+                zIndex: 2,
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/image-removebg-preview-2.png"
+                alt="Logo"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  padding: "6px",
+                  filter: "drop-shadow(0 2px 8px rgba(255,84,0,0.4))",
+                }}
+              />
+            </div>
+          </motion.div>
 
           {/* vertical label */}
-          <p
-            style={{
-              writingMode: "vertical-rl",
-              transform: "rotate(180deg)",
-              fontSize: 8,
-              fontWeight: 900,
-              letterSpacing: "0.55em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.35)",
-              margin: 0,
-              whiteSpace: "nowrap",
-            }}
-          >
+          <p className="hero-label">
             VOQUARN CODE
           </p>
 
@@ -267,184 +263,8 @@ export function Hero() {
           initial={false}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            gap: 20,
-            height: "93%",
-            alignSelf: "center",
-            paddingLeft: 40,
-          }}
+          className="hero-col2"
         >
-          {/* ── Info card ── */}
-          <div
-            style={{
-              order: 1,
-              background: "#fff",
-              borderRadius: 24,
-              padding: "16px",
-              display: "flex",
-              alignItems: "stretch",
-              gap: 16,
-              boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-            }}
-          >
-            {/* thumbnail */}
-            <div
-              style={{
-                width: 72,
-                height: 72,
-                borderRadius: 14,
-                overflow: "hidden",
-                flexShrink: 0,
-                background: "#111",
-              }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&q=80"
-                alt="work preview"
-                style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(0.4)" }}
-              />
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1, position: "relative" }}>
-              {/* copy */}
-              <p
-                style={{
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: "rgba(0,0,0,0.55)",
-                  lineHeight: 1.55,
-                  margin: 0,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                This is the latest technology that allows you to make websites using artificial intelligence.
-              </p>
-
-              {/* CTA */}
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <Link
-                  href="/services"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 6,
-                    background: "#000",
-                    color: "#fff",
-                    borderRadius: 999,
-                    padding: "7px 14px",
-                    fontSize: 8,
-                    fontWeight: 900,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.15em",
-                    textDecoration: "none",
-                    transform: "translateY(-4px)",
-                  }}
-                >
-                  EXPLORE MORE
-                  <ChevronRight size={10} />
-                  <ChevronRight size={10} style={{ marginLeft: -6 }} />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* ── Numbered timeline ── */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 0, paddingLeft: 8, position: "relative", minHeight: "85px" }}>
-            {TIMELINE_DATA[activeIndex].map((step, i) => (
-              <motion.div
-                key={`${activeIndex}-${i}`}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: 16,
-                  position: "relative",
-                  paddingBottom: i === 0 ? 28 : 0,
-                }}
-              >
-                {/* connecting line */}
-                {i === 0 && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      left: 5,
-                      top: 20,
-                      bottom: 0,
-                      width: 1,
-                      background: "rgba(0,0,0,0.15)",
-                    }}
-                  />
-                )}
-                {/* dot */}
-                <div
-                  style={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: "50%",
-                    background: step.active ? "#ff5400" : "rgba(0,0,0,0.8)",
-                    flexShrink: 0,
-                    marginTop: 4,
-                    boxShadow: step.active ? "0 0 14px rgba(255,84,0,0.55)" : "none",
-                  }}
-                />
-                <div>
-                  <p
-                    style={{
-                      fontSize: 10,
-                      fontWeight: 900,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.2em",
-                      color: step.active ? "#000" : "rgba(0,0,0,0.8)",
-                      margin: 0,
-                    }}
-                  >
-                    {step.num} — {step.label}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: 9,
-                      fontWeight: 600,
-                      color: step.active ? "rgba(0,0,0,0.7)" : "rgba(0,0,0,0.6)",
-                      margin: "3px 0 0 0",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.1em",
-                    }}
-                  >
-                    {step.sub}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* ── Tags ── */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {["ARTIFICIAL INTELLIGENCE", "UI/UX", "SEO", "WEB DESIGN", "MOBILE APPS"].map((tag) => (
-              <span
-                key={tag}
-                style={{
-                  border: "2px solid #ff5400",
-                  borderRadius: 999,
-                  padding: "6px 14px",
-                  fontSize: 8,
-                  fontWeight: 900,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: "#000",
-                  background: "transparent",
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
           {/* ── Big headline + tagline ── */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16, order: -1 }}>
             {/* small tagline above */}
@@ -485,7 +305,7 @@ export function Hero() {
                   color: "#000",
                 }}
               >
-                <Typewriter onIndexChange={setActiveIndex} />
+                <Typewriter />
                 {/* filled circle */}
                 <span
                   style={{
@@ -513,23 +333,91 @@ export function Hero() {
                 </motion.span>
               </span>
             </h1>
+
+            {/* ── Stats Section ── */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              style={{ display: 'flex', gap: '32px', marginTop: '56px', flexWrap: 'wrap', alignItems: 'center' }}
+            >
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ fontSize: '24px', fontWeight: 900, color: '#000', lineHeight: 1 }}>2</span>
+                <span style={{ fontSize: '11px', fontWeight: 800, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '6px' }}>Clients</span>
+              </div>
+              <div style={{ width: '1px', height: '32px', background: 'rgba(0,0,0,0.1)' }} />
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ fontSize: '24px', fontWeight: 900, color: '#000', lineHeight: 1 }}>90%</span>
+                <span style={{ fontSize: '11px', fontWeight: 800, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '6px' }}>Satisfaction</span>
+              </div>
+              <div style={{ width: '1px', height: '32px', background: 'rgba(0,0,0,0.1)' }} />
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ fontSize: '24px', fontWeight: 900, color: '#000', lineHeight: 1 }}>$200</span>
+                <span style={{ fontSize: '11px', fontWeight: 800, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '6px' }}>Revenue</span>
+              </div>
+            </motion.div>
+
+            {/* ── CTA Buttons ── */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              style={{ display: 'flex', gap: '16px', marginTop: '48px', flexWrap: 'wrap' }}
+            >
+              <Link
+                href="/contact"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: '#ff5400',
+                  color: '#fff',
+                  padding: '14px 28px',
+                  borderRadius: '999px',
+                  fontWeight: 900,
+                  fontSize: '13px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.15em',
+                  textDecoration: 'none',
+                  boxShadow: '0 8px 24px rgba(255, 84, 0, 0.3)',
+                  transition: 'all 0.3s ease',
+                }}
+                className="hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(255,84,0,0.4)]"
+              >
+                Start a Project <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/services"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: '#fff',
+                  color: '#000',
+                  padding: '14px 28px',
+                  borderRadius: '999px',
+                  fontWeight: 900,
+                  fontSize: '13px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.15em',
+                  textDecoration: 'none',
+                  border: '2px solid #e5e5e5',
+                  transition: 'all 0.3s ease',
+                }}
+                className="hover:border-black hover:bg-neutral-50"
+              >
+                Our Services
+              </Link>
+            </motion.div>
+
           </div>
         </motion.div>
 
         {/* ════════════════════════════════════════
-            COL 3 — right large transparent column
+            COL 3 — right large responsive column
         ════════════════════════════════════════ */}
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {/* Inject dynamic shake CSS keyframes */}
+        <div className="hero-col3">
+          {/* Inject dynamic shake CSS keyframes & responsive styling */}
           <style dangerouslySetInnerHTML={{
             __html: `
             @keyframes rocket-shake {
@@ -555,6 +443,173 @@ export function Hero() {
             }
             .rocket-hover {
               /* No animation in hover phase, rocket stays perfectly still */
+            }
+
+            /* Responsive Hero Layout */
+            .hero-section {
+              width: 100%;
+              background: #ffffff;
+              min-height: 100vh;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 100px 16px 40px 16px;
+              box-sizing: border-box;
+              position: relative;
+              z-index: 20;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            @media (min-width: 1024px) {
+              .hero-section {
+                min-height: 105vh;
+                padding: 140px 20px 40px 20px;
+              }
+            }
+
+            .hero-container {
+              display: grid;
+              grid-template-columns: 1fr;
+              gap: 40px;
+              width: 100%;
+              max-width: 1480px;
+              box-sizing: border-box;
+            }
+            @media (min-width: 1024px) {
+              .hero-container {
+                grid-template-columns: 64px 1fr 1.2fr;
+                gap: 16px;
+                min-height: calc(105vh - 180px);
+                max-height: 1100px;
+              }
+            }
+            @media (min-width: 1280px) {
+              .hero-container {
+                grid-template-columns: 64px 1fr 1.75fr;
+              }
+            }
+
+            /* Col 1 Responsive Styling */
+            .hero-col1 {
+              background: #111;
+              border-radius: 24px;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+              padding: 12px 24px;
+              color: #fff;
+              width: 100%;
+              align-self: center;
+              box-sizing: border-box;
+              order: 3;
+            }
+            @media (min-width: 1024px) {
+              .hero-col1 {
+                border-radius: 999px;
+                flex-direction: column;
+                padding: 22px 0;
+                height: 93%;
+                width: 100%;
+                order: 0;
+              }
+            }
+
+            /* Label styling inside Col 1 */
+            .hero-label {
+              writing-mode: horizontal-tb;
+              transform: none;
+              font-size: 10px;
+              font-weight: 900;
+              letter-spacing: 0.3em;
+              text-transform: uppercase;
+              color: rgba(255,255,255,0.7);
+              margin: 0;
+              white-space: nowrap;
+            }
+            @media (min-width: 1024px) {
+              .hero-label {
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+                font-size: 8px;
+                color: rgba(255,255,255,0.35);
+                letter-spacing: 0.55em;
+              }
+            }
+
+            /* Col 2 Responsive Styling */
+            .hero-col2 {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              gap: 32px;
+              width: 100%;
+              align-self: center;
+              padding-left: 0;
+              box-sizing: border-box;
+              order: 1;
+            }
+            @media (min-width: 1024px) {
+              .hero-col2 {
+                height: 93%;
+                padding-left: 40px;
+                gap: 20px;
+                order: 0;
+              }
+            }
+
+
+
+            /* Info Card Responsive Styling */
+            .hero-infocard {
+              order: 1;
+              background: #fff;
+              border-radius: 24px;
+              padding: 16px;
+              display: flex;
+              flex-direction: column;
+              gap: 16px;
+              box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            }
+            @media (min-width: 480px) {
+              .hero-infocard {
+                flex-direction: row;
+                align-items: stretch;
+              }
+            }
+
+            /* Col 3 Responsive Styling */
+            .hero-col3 {
+              position: relative;
+              width: 100%;
+              min-height: 280px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-sizing: border-box;
+              order: 2;
+            }
+            @media (min-width: 1024px) {
+              .hero-col3 {
+                height: 100%;
+                min-height: auto;
+                order: 0;
+              }
+            }
+
+            .hero-rocket-img {
+              width: 100%;
+              max-width: 260px;
+              filter: drop-shadow(0 20px 40px rgba(255,84,0,0.35)) drop-shadow(0 4px 20px rgba(0,0,0,0.15));
+            }
+            @media (min-width: 480px) {
+              .hero-rocket-img {
+                max-width: 320px;
+              }
+            }
+            @media (min-width: 1024px) {
+              .hero-rocket-img {
+                max-width: 380px;
+              }
             }
           `}} />
 

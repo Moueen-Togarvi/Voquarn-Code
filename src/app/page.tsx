@@ -1,15 +1,12 @@
 import Link from "next/link";
 import { Hero } from "@/components/ui/hero";
+import { HomeLazySections } from "@/components/ui/home-lazy-sections";
 import { TrustedClients } from "@/components/ui/trusted-clients";
 import { TypoSection } from "@/components/ui/typo-section";
-import { PortfolioCarousel } from "@/components/ui/portfolio-carousel";
-import { SpotlightShowcase } from "@/components/ui/spotlight-showcase";
-import { DiagonalMarquees } from "@/components/ui/diagonal-marquees";
-import { EnterpriseSuites } from "@/components/ui/enterprise-suites";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServicesToggle } from "@/components/ui/services-toggle";
 import { buildMetadata } from "@/lib/metadata";
-import { portfolioItems, services } from "@/lib/site-data";
+import { portfolioItems } from "@/lib/site-data";
 
 export const metadata = buildMetadata(
   "Voquarn Code | Home",
@@ -57,19 +54,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-
-
-      {/* The New Enterprise Domain Suites Showcase */}
-      <EnterpriseSuites />
-
-      {/* The New Criss-Crossing Diagonal Marquee Tape Section */}
-      <DiagonalMarquees />
-
-      <PortfolioCarousel items={portfolioItems} />
-
-      {/* The New Cinematic Spotlight Showcase */}
-      <SpotlightShowcase />
+      <HomeLazySections items={portfolioItems} />
 
       <section className="page-section pt-8">
         <div className="rounded-[4rem] border-4 border-black bg-white p-12 sm:p-16 relative overflow-hidden group">

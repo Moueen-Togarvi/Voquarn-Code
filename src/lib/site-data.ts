@@ -66,8 +66,8 @@ export const site = {
   name: "Voquarn Code",
   location: "Lahore, Pakistan",
   email: "hello@voquarn.com",
-  phone: "+92 300 1234567",
-  whatsapp: "923001234567",
+  phone: "+92 324 1940988",
+  whatsapp: "923241940988",
   socials: {
     linkedin: "https://www.linkedin.com/company/voquarn-code",
     instagram: "https://www.instagram.com/voquarncode",
