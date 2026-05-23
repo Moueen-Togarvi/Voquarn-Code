@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Sparkles, ArrowRight, Briefcase, MapPin, DollarSign, Clock, Send, Search, X, Paperclip, Upload, Loader2, Sparkle, Link as LinkIcon } from "lucide-react";
+import { GSAPReveal, GSAPStagger } from "@/components/ui/gsap-reveal";
 
 const openRoles = [
   {
@@ -142,13 +143,16 @@ export default function CareersPage() {
   return (
     <>
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
-        <SectionHeading
-          eyebrow="Careers"
-          title="Build elite digital systems without corporate bureaucracy"
-          description="We are looking for elite practitioners who take immense pride in their craft. No endless meetings, no office politics—just disciplined execution and high-impact shipping."
-        />
+        <GSAPReveal direction="up">
+          <SectionHeading
+            eyebrow="Careers"
+            title="Build elite digital systems without corporate bureaucracy"
+            description="We are looking for elite practitioners who take immense pride in their craft. No endless meetings, no office politics—just disciplined execution and high-impact shipping."
+          />
+        </GSAPReveal>
 
         {/* Search Bar + Filter Tags (Centered Perfectly) */}
+        <GSAPReveal direction="up" delay={0.15}>
         <div className="mt-14 flex flex-col items-center justify-center gap-5 text-center w-full">
           {/* Search Input */}
           <div className="relative w-full max-w-xl">
@@ -188,8 +192,10 @@ export default function CareersPage() {
             ))}
           </div>
         </div>
+        </GSAPReveal>
 
         {/* Open Roles Section */}
+        <GSAPReveal direction="up" delay={0.1}>
         <div className="mt-24">
           <div className="flex items-center justify-between border-b border-neutral-200 pb-6 mb-12">
             <div>
@@ -250,10 +256,12 @@ export default function CareersPage() {
             ))}
           </div>
         </div>
+        </GSAPReveal>
       </section>
 
       {/* Spontaneous Application CTA */}
       <section className="page-section pt-16">
+        <GSAPReveal direction="up" delay={0.1}>
         <div className="rounded-[2.5rem] border border-neutral-900 bg-neutral-900 p-10 sm:p-14 shadow-2xl relative overflow-hidden text-white flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="absolute top-0 left-0 w-96 h-96 bg-[#ff5400]/15 rounded-full blur-3xl pointer-events-none" />
           <div className="max-w-xl relative z-10">
@@ -280,6 +288,7 @@ export default function CareersPage() {
             </button>
           </div>
         </div>
+        </GSAPReveal>
       </section>
 
       {/* --- PREMIUM COMPACT APPLY MODAL --- */}

@@ -199,7 +199,7 @@ export function ContactForm() {
         >
           {status === "loading" ? "Sending..." : "Send Inquiry"}
         </button>
-        {feedback && status !== "success" ? (
+        {feedback ? (
           <p className={`text-sm font-semibold px-4 py-2 rounded-full ${status === "error" ? "bg-red-50 text-red-600" : "bg-emerald-50 text-emerald-600"}`}>{feedback}</p>
         ) : null}
       </div>

@@ -1,6 +1,7 @@
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site-data";
+import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { Globe, Share2, ExternalLink, Sparkles, ArrowRight, ShieldCheck, Mail, Cpu, Terminal, Compass, Briefcase } from "lucide-react";
 import Link from "next/link";
 
@@ -14,13 +15,16 @@ export default function TeamPage() {
   return (
     <>
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
-        <SectionHeading
-          eyebrow="Leadership & Vision"
-          title="Designed for high-impact execution"
-          description="We do not hide behind layers of managers. Our founder actively designs, architects, and deploys every single system we ship."
-        />
+        <ScrollReveal>
+          <SectionHeading
+            eyebrow="Leadership & Vision"
+            title="Designed for high-impact execution"
+            description="We do not hide behind layers of managers. Our founder actively designs, architects, and deploys every single system we ship."
+          />
+        </ScrollReveal>
 
         {/* --- PINTEREST/MUSEUM STYLE CEO PORTRAIT CARD --- */}
+        <ScrollReveal delay={0.2}>
         <div className="mt-20 max-w-4xl mx-auto">
           <article className="group bg-[#111111] text-white rounded-[2.5rem] border border-neutral-800 flex flex-col overflow-hidden shadow-2xl relative">
             {/* Soft background ambient gradient glow inside card */}
@@ -156,11 +160,12 @@ export default function TeamPage() {
                 </a>
               </div>
             </div>
-
           </div>
         </div>
+        </ScrollReveal>
 
         {/* --- HIGH-FIDELITY PINTEREST DIAGONAL RIBBON "COMING SOON" TEASER --- */}
+        <ScrollReveal delay={0.2}>
         <div className="mt-32 max-w-4xl mx-auto">
           <div className="relative rounded-[3rem] border border-neutral-200 bg-[#0f172a] p-12 sm:p-20 shadow-2xl overflow-hidden text-center min-h-[380px] sm:min-h-[460px] flex flex-col justify-center items-center">
             {/* Deep rich blue gradient radial background mirroring the user image */}
@@ -223,10 +228,12 @@ export default function TeamPage() {
             </div>
           </div>
         </div>
+        </ScrollReveal>
       </section>
 
       {/* Spontaneous Careers Application CTA */}
       <section className="page-section pt-12 pb-24">
+        <ScrollReveal>
         <div className="rounded-[2.5rem] border border-neutral-900 bg-neutral-900 p-10 sm:p-14 shadow-2xl relative overflow-hidden text-white flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="absolute top-0 left-0 w-96 h-96 bg-[#ff5400]/15 rounded-full blur-3xl pointer-events-none" />
           <div className="max-w-xl relative z-10">
@@ -250,6 +257,7 @@ export default function TeamPage() {
             </Link>
           </div>
         </div>
+        </ScrollReveal>
       </section>
     </>
   );
