@@ -1,7 +1,7 @@
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site-data";
-import { GSAPReveal } from "@/components/ui/gsap-reveal";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Globe, Share2, ExternalLink, Sparkles, ArrowRight, ShieldCheck, Mail, Cpu, Terminal, Compass, Briefcase } from "lucide-react";
 import Link from "next/link";
 
