@@ -8,6 +8,7 @@ import { getSiteUrl } from "@/lib/site-url";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { HangingAstronaut } from "@/components/ui/hanging-astronaut";
+import { IntroLoader } from "@/components/ui/intro-loader";
 import "./globals.css";
 
 export const metadata: Metadata = buildMetadata(
@@ -40,6 +41,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full bg-background text-foreground transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <IntroLoader />
           <div className="relative flex min-h-screen flex-col overflow-x-clip">
             <div className="pointer-events-none absolute inset-0 -z-50 bg-[radial-gradient(circle_at_top_left,var(--gradient-1),transparent_28%),radial-gradient(circle_at_top_right,var(--gradient-2),transparent_25%),var(--gradient-main)]" />
             <Navbar />
