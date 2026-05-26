@@ -118,7 +118,7 @@ export default function TeamPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-neutral-900 rounded-full blur-2xl group-hover:bg-[#ff5400]/10 transition-colors duration-500" />
               <div className="relative z-10">
                 <h3 className="font-display font-medium text-lg text-white uppercase tracking-[0.1em] mb-1">Abdul Rehman</h3>
-                <p className="text-[9px] font-extrabold text-neutral-500 uppercase tracking-[0.2em]">Admin & HR Operations</p>
+                <p className="text-[9px] font-extrabold text-neutral-500 uppercase tracking-[0.2em]">Graphic Designer</p>
               </div>
               <div className="relative z-10 flex items-center gap-4 mt-8">
                 <a href="#" className="text-neutral-500 hover:text-white transition-colors" aria-label="LinkedIn">
@@ -134,72 +134,6 @@ export default function TeamPage() {
                 <a href="#" className="text-neutral-500 hover:text-white transition-colors" aria-label="Email">
                   <Mail className="w-5 h-5 stroke-[1.5]" />
                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        </ScrollReveal>
-
-        {/* --- HIGH-FIDELITY PINTEREST DIAGONAL RIBBON "COMING SOON" TEASER --- */}
-        <ScrollReveal delay={0.2}>
-        <div className="mt-32 max-w-4xl mx-auto">
-          <div className="relative rounded-[3rem] border border-neutral-200 bg-[#0f172a] p-12 sm:p-20 shadow-2xl overflow-hidden text-center min-h-[380px] sm:min-h-[460px] flex flex-col justify-center items-center">
-            {/* Deep rich blue gradient radial background mirroring the user image */}
-            <div className="absolute inset-0 bg-radial-gradient bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/60 via-slate-950 to-slate-950 pointer-events-none" />
-            <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:30px_30px]" />
-            
-            {/* Soft top-left light leak */}
-            <div className="absolute top-0 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            {/* Giant Poster Headline behind the ribbons */}
-            <div className="relative z-10 select-none space-y-1 mb-6">
-              <h4 className="font-display font-black text-6xl sm:text-8xl tracking-tighter text-white opacity-20 uppercase leading-none">
-                BUILDING
-              </h4>
-              <h4 className="font-display font-black text-6xl sm:text-8xl tracking-tighter text-[#ff5400] opacity-25 uppercase leading-none">
-                THE TEAM
-              </h4>
-            </div>
-
-            {/* --- DIAGONAL CROSSING RIBBONS (INNOVA INDIA STYLE POSTER) --- */}
-            {/* Ribbon 1: Left to Right (Downward) */}
-            <div className="absolute w-[140%] h-10 sm:h-12 bg-[#eab308] border-y border-yellow-300 text-black font-black uppercase text-[10px] sm:text-xs tracking-widest flex items-center justify-center rotate-[7deg] shadow-2xl select-none z-20 overflow-hidden whitespace-nowrap">
-              <div className="animate-[marquee_20s_linear_infinite] flex gap-8">
-                <span>✦ TEAM COMING SOON </span>
-                <span>✦ SHAPING THE FUTURE </span>
-                <span>✦ TEAM COMING SOON </span>
-                <span>✦ SHAPING THE FUTURE </span>
-                <span>✦ TEAM COMING SOON </span>
-                <span>✦ SHAPING THE FUTURE </span>
-              </div>
-            </div>
-
-            {/* Ribbon 2: Left to Right (Upward) */}
-            <div className="absolute w-[140%] h-10 sm:h-12 bg-neutral-950 border-y border-neutral-800 text-white font-black uppercase text-[10px] sm:text-xs tracking-widest flex items-center justify-center rotate-[-7deg] shadow-2xl select-none z-20 overflow-hidden whitespace-nowrap">
-              <div className="animate-[marquee_20s_linear_infinite_reverse] flex gap-8">
-                <span>✦ NOW WE ARE BUILDING </span>
-                <span>✦ CHANGING DIGITAL BUSINESSES </span>
-                <span>✦ NOW WE ARE BUILDING </span>
-                <span>✦ CHANGING DIGITAL BUSINESSES </span>
-                <span>✦ NOW WE ARE BUILDING </span>
-                <span>✦ CHANGING DIGITAL BUSINESSES </span>
-              </div>
-            </div>
-
-            {/* Poster Info Context & CTA Button */}
-            <div className="relative z-30 max-w-xl mt-8 space-y-6">
-              <p className="text-xs sm:text-sm text-neutral-300 font-semibold leading-relaxed max-w-md mx-auto">
-                Now we are building a team to change digital businesses. We are handpicking specialized practitioners who value discipline and real growth over meeting rooms.
-              </p>
-              
-              <div className="flex justify-center">
-                <Link
-                  href="/careers"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#ff5400] hover:bg-[#e04800] text-white px-8 py-4 text-xs font-black uppercase tracking-widest shadow-xl transition-all hover:scale-105"
-                >
-                  <span>Join Our Journey</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
               </div>
             </div>
           </div>

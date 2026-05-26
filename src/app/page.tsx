@@ -5,7 +5,7 @@ import { TrustedClients } from "@/components/ui/trusted-clients";
 import { TypoSection } from "@/components/ui/typo-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServicesToggle } from "@/components/ui/services-toggle";
-import { GSAPReveal, GSAPStagger } from "@/components/ui/gsap-reveal";
+import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { buildMetadata } from "@/lib/metadata";
 import { portfolioItems } from "@/lib/site-data";
 
@@ -47,7 +47,7 @@ export default function HomePage() {
             description="From high-end websites to custom SaaS products, we provide end-to-end engineering and design."
           />
           <div className="mt-10">
-            <ServicesToggle limit={4} />
+            <ServicesToggle limit={4} buttonVariant="orange" />
           </div>
           
           <div className="mt-12 flex justify-center">

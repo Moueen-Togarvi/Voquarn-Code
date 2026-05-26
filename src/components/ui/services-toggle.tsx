@@ -17,21 +17,26 @@ type DisplayItem = {
 // Helper to determine badge for sub-services
 const getPricingIcon = (categoryName: string, id: string) => {
   if (categoryName.toLowerCase().includes("web")) {
-    return <Globe className="w-5 h-5 text-white" />;
+    return <Globe className="w-6 h-6 text-white" />;
   }
   if (categoryName.toLowerCase().includes("ai")) {
-    return <Bot className="w-5 h-5 text-white" />;
+    return <Bot className="w-6 h-6 text-white" />;
   }
   if (id.toLowerCase().includes("saas")) {
-    return <Code2 className="w-5 h-5 text-white" />;
+    return <Code2 className="w-6 h-6 text-white" />;
   }
   if (categoryName.toLowerCase().includes("app")) {
-    return <Smartphone className="w-5 h-5 text-white" />;
+    return <Smartphone className="w-6 h-6 text-white" />;
   }
-  return <Layers className="w-5 h-5 text-white" />;
+  return <Layers className="w-6 h-6 text-white" />;
 };
 
-export function ServicesToggle({ limit }: { limit?: number }) {
+type ServicesToggleProps = {
+  limit?: number;
+  buttonVariant?: "dark" | "orange";
+};
+
+export function ServicesToggle({ limit, buttonVariant = "dark" }: ServicesToggleProps) {
   const [activeTab, setActiveTab] = useState<"websites" | "apps" | "ai">("websites");
 
   // Compile items based on the active tab
@@ -128,7 +133,7 @@ export function ServicesToggle({ limit }: { limit?: number }) {
               {/* ── Top Row: App Icon ── */}
               <div className="flex items-center justify-between w-full">
                 {/* Rounded Dark Square App Icon */}
-                <div className="w-[46px] h-[46px] rounded-[14px] bg-[#1a1a1a] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-transform duration-300 group-hover:scale-105">
+                <div className="w-[54px] h-[54px] rounded-[16px] bg-[#1a1a1a] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-transform duration-300 group-hover:scale-105">
                   {getPricingIcon(item.categoryName, item.id)}
                 </div>
               </div>
@@ -170,7 +175,11 @@ export function ServicesToggle({ limit }: { limit?: number }) {
                   href={`https://wa.me/${site.whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(item.categoryName + " - " + item.name)}%20package.`}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-full h-12 py-3 rounded-full text-white font-medium text-[13px] flex items-center justify-center transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide bg-gradient-to-b from-[#2c2c2e] to-[#151516] hover:from-[#3a3a3c] hover:to-[#1c1c1e] shadow-[0_8px_20px_rgba(0,0,0,0.2),inset_0_2px_1px_rgba(255,255,255,0.2)]"
+                  className={`w-full h-12 py-3 rounded-full text-white font-medium text-[13px] flex items-center justify-center transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide ${
+                    buttonVariant === "orange"
+                      ? "bg-gradient-to-b from-[#ff6b21] to-[#e04800] hover:from-[#ff7c3b] hover:to-[#f05000] shadow-[0_8px_20px_rgba(255,84,0,0.2),inset_0_2px_1px_rgba(255,255,255,0.2)]"
+                      : "bg-gradient-to-b from-[#2c2c2e] to-[#151516] hover:from-[#3a3a3c] hover:to-[#1c1c1e] shadow-[0_8px_20px_rgba(0,0,0,0.2),inset_0_2px_1px_rgba(255,255,255,0.2)]"
+                  }`}
                 >
                   <MessageCircle className="w-4 h-4 mr-2" /> Discuss on WhatsApp
                 </a>

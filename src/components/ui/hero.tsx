@@ -249,9 +249,9 @@ export function Hero() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Voquarn"
-              alt="avatar"
-              style={{ width: "100%", height: "100%", filter: "grayscale(1)" }}
+              src="/hero-avatar.jpeg"
+              alt="Profile avatar"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 38%" }}
             />
           </div>
         </motion.div>

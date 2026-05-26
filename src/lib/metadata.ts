@@ -18,11 +18,11 @@ export function buildMetadata(
     },
     icons: {
       icon: [
-        { url: "/favicon.ico?v=2", sizes: "any" },
-        { url: "/icon.png?v=2", type: "image/png", sizes: "500x500" },
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/icon.png", type: "image/png", sizes: "512x512" },
       ],
-      shortcut: "/favicon.ico?v=2",
-      apple: [{ url: "/apple-icon.png?v=2", sizes: "500x500", type: "image/png" }],
+      shortcut: "/favicon.ico",
+      apple: [{ url: "/apple-icon.png", sizes: "512x512", type: "image/png" }],
     },
     robots: {
       index: true,
