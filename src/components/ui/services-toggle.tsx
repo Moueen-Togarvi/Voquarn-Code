@@ -17,18 +17,18 @@ type DisplayItem = {
 // Helper to determine badge for sub-services
 const getPricingIcon = (categoryName: string, id: string) => {
   if (categoryName.toLowerCase().includes("web")) {
-    return <Globe className="w-5 h-5 text-[#ff5400]" />;
+    return <Globe className="w-5 h-5 text-white" />;
   }
   if (categoryName.toLowerCase().includes("ai")) {
-    return <Bot className="w-5 h-5 text-[#ff5400]" />;
+    return <Bot className="w-5 h-5 text-white" />;
   }
   if (id.toLowerCase().includes("saas")) {
-    return <Code2 className="w-5 h-5 text-[#ff5400]" />;
+    return <Code2 className="w-5 h-5 text-white" />;
   }
   if (categoryName.toLowerCase().includes("app")) {
-    return <Smartphone className="w-5 h-5 text-[#ff5400]" />;
+    return <Smartphone className="w-5 h-5 text-white" />;
   }
-  return <Layers className="w-5 h-5 text-[#ff5400]" />;
+  return <Layers className="w-5 h-5 text-white" />;
 };
 
 export function ServicesToggle({ limit }: { limit?: number }) {
@@ -128,7 +128,7 @@ export function ServicesToggle({ limit }: { limit?: number }) {
               {/* ── Top Row: App Icon ── */}
               <div className="flex items-center justify-between w-full">
                 {/* Rounded Dark Square App Icon */}
-                <div className="w-[46px] h-[46px] rounded-[14px] bg-[#1a1a1a] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)] ring-4 ring-[#ff5400]/10 transition-transform duration-300 group-hover:scale-105">
+                <div className="w-[46px] h-[46px] rounded-[14px] bg-[#1a1a1a] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-transform duration-300 group-hover:scale-105">
                   {getPricingIcon(item.categoryName, item.id)}
                 </div>
               </div>
