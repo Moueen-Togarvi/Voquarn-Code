@@ -51,8 +51,8 @@ const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }
         animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
         style={{
-          width: "0.045em",
-          height: "0.72em",
+          width: "0.06em",
+          height: "1.05em",
           marginLeft: "0.08em",
           borderRadius: 999,
           background: "#ff9a66",
