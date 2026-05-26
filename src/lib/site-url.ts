@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://voquarn.com";
+const DEFAULT_SITE_URL = "https://www.voquarn.com";
 
 export function getSiteUrl(): URL {
   const siteUrl = process.env.SITE_URL?.trim() || DEFAULT_SITE_URL;

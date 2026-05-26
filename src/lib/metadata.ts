@@ -16,6 +16,14 @@ export function buildMetadata(
     alternates: {
       canonical: path,
     },
+    icons: {
+      icon: [
+        { url: "/favicon.ico?v=2", sizes: "any" },
+        { url: "/icon.png?v=2", type: "image/png", sizes: "500x500" },
+      ],
+      shortcut: "/favicon.ico?v=2",
+      apple: [{ url: "/apple-icon.png?v=2", sizes: "500x500", type: "image/png" }],
+    },
     robots: {
       index: true,
       follow: true,
