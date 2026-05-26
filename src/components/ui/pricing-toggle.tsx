@@ -1,9 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { PricingPlan } from "@/lib/site-data";
 import { site, services } from "@/lib/site-data";
-import { CheckCircle2, MessageCircle, Sparkles, Globe, Bot, Code2, Smartphone, Layers } from "lucide-react";
+import { MessageCircle, Globe, Bot, Code2, Smartphone, Layers } from "lucide-react";
 import { motion } from "framer-motion";
 
 type DisplayItem = {
@@ -141,13 +140,13 @@ export function PricingToggle({ limit }: { limit?: number }) {
       {/* Category selector + Currency toggle row */}
       <div className="flex flex-col gap-6 items-center justify-between lg:flex-row max-w-5xl mx-auto px-4">
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center rounded-full border border-neutral-200 bg-neutral-50 p-1.5 shadow-sm max-w-full relative">
+        <div className="flex flex-nowrap justify-center rounded-full border border-neutral-200 bg-neutral-50 p-1.5 shadow-sm max-w-full relative">
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setActiveTab(cat.id)}
-              className={`relative rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-wider transition-colors duration-300 z-10 ${
+              className={`relative rounded-full px-3 py-2 text-[9px] font-medium uppercase tracking-wide transition-colors duration-300 z-10 whitespace-nowrap sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-wider ${
                 activeTab === cat.id ? "text-white" : "text-neutral-600 hover:text-black"
               }`}
             >

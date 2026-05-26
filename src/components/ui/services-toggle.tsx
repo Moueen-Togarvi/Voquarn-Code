@@ -98,13 +98,13 @@ export function ServicesToggle({ limit, buttonVariant = "dark" }: ServicesToggle
       {/* Category selector row */}
       <div className="flex flex-col gap-6 items-center justify-center max-w-5xl mx-auto px-4">
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center rounded-full border border-[#ff5400]/15 bg-[#fff7f2] p-1.5 shadow-[0_10px_30px_rgba(255,84,0,0.08)] max-w-full relative">
+        <div className="flex flex-nowrap justify-center rounded-full border border-[#ff5400]/15 bg-[#fff7f2] p-1.5 shadow-[0_10px_30px_rgba(255,84,0,0.08)] max-w-full relative">
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setActiveTab(cat.id)}
-              className={`relative rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-wider transition-colors duration-300 z-10 ${
+              className={`relative rounded-full px-3 py-2 text-[9px] font-medium uppercase tracking-wide transition-colors duration-300 z-10 whitespace-nowrap sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-wider ${
                 activeTab === cat.id ? "text-white" : "text-neutral-600 hover:text-black"
               }`}
             >

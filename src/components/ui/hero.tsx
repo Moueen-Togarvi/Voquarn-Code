@@ -45,15 +45,21 @@ const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }
   }, [text, isDeleting, loopNum, onIndexChange]);
 
   return (
-    <span style={{ color: "#ff5400", display: "inline-flex", alignItems: "center", width: "6.2em", justifyContent: "flex-start", whiteSpace: "nowrap" }}>
+    <span className="hero-typewriter" style={{ color: "#ff5400", display: "inline-flex", alignItems: "center", width: "6.2em", justifyContent: "flex-start", whiteSpace: "nowrap" }}>
       {text}
       <motion.span
         animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-        style={{ fontWeight: 300, marginLeft: 2, transform: "translateY(-0.05em)" }}
-      >
-        |
-      </motion.span>
+        style={{
+          width: "0.045em",
+          height: "0.72em",
+          marginLeft: "0.08em",
+          borderRadius: 999,
+          background: "#ff9a66",
+          transform: "translateY(0.02em)",
+          flexShrink: 0,
+        }}
+      />
     </span>
   );
 };
@@ -269,6 +275,7 @@ export function Hero() {
           <div style={{ display: "flex", flexDirection: "column", gap: 16, order: -1 }}>
             {/* small tagline above */}
             <p
+              className="hero-eyebrow"
               style={{
                 fontSize: 9,
                 fontWeight: 700,
@@ -285,6 +292,7 @@ export function Hero() {
 
             {/* headline */}
             <h1
+              className="hero-headline"
               style={{
                 fontSize: "clamp(36px, 4.5vw, 72px)",
                 fontWeight: 900,
@@ -298,6 +306,7 @@ export function Hero() {
               We Build
               <br />
               <span
+                className="hero-headline-row"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -308,6 +317,7 @@ export function Hero() {
                 <Typewriter />
                 {/* filled circle */}
                 <span
+                  className="hero-headline-dot"
                   style={{
                     display: "inline-block",
                     width: "0.55em",
@@ -319,6 +329,7 @@ export function Hero() {
                 />
                 {/* asterisk */}
                 <motion.span
+                  className="hero-headline-star"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                   style={{
@@ -352,6 +363,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
+              className="hero-actions"
               style={{ display: 'flex', gap: '16px', marginTop: '34px', flexWrap: 'wrap' }}
             >
               <Link
@@ -372,7 +384,7 @@ export function Hero() {
                   boxShadow: '0 8px 24px rgba(255, 84, 0, 0.3)',
                   transition: 'all 0.3s ease',
                 }}
-                className="hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(255,84,0,0.4)]"
+                className="hero-action-link hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(255,84,0,0.4)]"
               >
                 Start a Project <ArrowRight size={16} />
               </Link>
@@ -394,7 +406,7 @@ export function Hero() {
                   border: '2px solid #e5e5e5',
                   transition: 'all 0.3s ease',
                 }}
-                className="hover:border-black hover:bg-neutral-50"
+                className="hero-action-link hover:border-black hover:bg-neutral-50"
               >
                 Our Services
               </Link>
@@ -452,6 +464,11 @@ export function Hero() {
               position: relative;
               z-index: 20;
               border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            @media (max-width: 640px) {
+              .hero-section {
+                padding-top: 128px;
+              }
             }
             @media (min-width: 1024px) {
               .hero-section {
@@ -565,11 +582,59 @@ export function Hero() {
               text-shadow: 0 10px 26px rgba(255, 84, 0, 0.22);
             }
             @media (max-width: 640px) {
+              .hero-headline {
+                font-size: 32px !important;
+                text-align: center;
+                margin-inline: auto !important;
+              }
+              .hero-headline-row {
+                justify-content: center;
+                align-items: center !important;
+                gap: 8px !important;
+                line-height: 1;
+              }
+              .hero-eyebrow {
+                margin: 12px auto 0 !important;
+                max-width: 230px !important;
+                text-align: center;
+              }
+              .hero-typewriter {
+                width: 5.25em !important;
+                align-items: center !important;
+                justify-content: center !important;
+              }
+              .hero-headline-dot {
+                width: 0.42em !important;
+                height: 0.42em !important;
+                transform: translateY(0.02em);
+              }
+              .hero-headline-star {
+                font-size: 0.52em !important;
+                line-height: 1 !important;
+                transform-origin: center center;
+              }
               .hero-promise {
                 margin-top: 36px;
+                align-items: center;
+                max-width: 100%;
               }
               .hero-promise-text {
                 font-size: 24px;
+                text-align: center;
+              }
+              .hero-actions {
+                width: 100%;
+                justify-content: center;
+                align-items: stretch;
+                gap: 12px !important;
+              }
+              .hero-action-link {
+                width: min(100%, 236px);
+                justify-content: center;
+                white-space: nowrap;
+                font-size: 11px !important;
+                letter-spacing: 0.1em !important;
+                padding-inline: 20px !important;
               }
             }
 
