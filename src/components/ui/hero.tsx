@@ -343,7 +343,7 @@ export function Hero() {
             >
               <span className="hero-promise-mark" />
               <p className="hero-promise-text">
-                From idea to launch, without the messy middle.
+                From <span>idea</span> to <span>launch</span>, without the messy middle.
               </p>
             </motion.div>
 
@@ -427,6 +427,10 @@ export function Hero() {
               0%   { margin-top: 0px; }
               50%  { margin-top: -10px; }
               100% { margin-top: 0px; }
+            }
+            @keyframes promise-pulse {
+              0%, 100% { transform: scaleX(0.72); opacity: 0.75; }
+              50% { transform: scaleX(1); opacity: 1; }
             }
             .rocket-entry {
               animation: rocket-entry 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -532,22 +536,33 @@ export function Hero() {
               gap: 16px;
               margin-top: 48px;
               max-width: 510px;
+              position: relative;
+              padding: 22px 0 0;
+              overflow: hidden;
             }
             .hero-promise-mark {
               width: 64px;
               height: 4px;
               border-radius: 999px;
-              background: #ff5400;
-              box-shadow: 0 12px 28px rgba(255, 84, 0, 0.3);
+              background: linear-gradient(90deg, #ff5400, #111111, #ff5400);
+              box-shadow: 0 12px 28px rgba(255, 84, 0, 0.34);
+              transform-origin: left center;
+              animation: promise-pulse 2.8s ease-in-out infinite;
             }
             .hero-promise-text {
               margin: 0;
               color: #050505;
-              font-size: 30px;
+              font-size: 32px;
               font-weight: 900;
               line-height: 1.08;
               letter-spacing: 0;
               max-width: 500px;
+              position: relative;
+              text-wrap: balance;
+            }
+            .hero-promise-text span {
+              color: #ff5400;
+              text-shadow: 0 10px 26px rgba(255, 84, 0, 0.22);
             }
             @media (max-width: 640px) {
               .hero-promise {
