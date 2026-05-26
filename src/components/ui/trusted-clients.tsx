@@ -3,13 +3,12 @@
 import React from "react";
 
 export function TrustedClients() {
-  // Array alternating between the two logos
   const logos = [
     "/client-logo.png",
     "/client-logo-2.jpeg",
+    "/client-logo-3.png",
   ];
   
-  // Repeat the array 12 times to make 24 items for continuous scrolling
   const repeatedImages = Array(12).fill(logos).flat();
 
   return (
@@ -52,6 +51,7 @@ export function TrustedClients() {
               key={`logo-${index}`} 
               className="flex items-center justify-center cursor-pointer min-w-[120px] group"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src={src} 
                 alt="Client Logo" 

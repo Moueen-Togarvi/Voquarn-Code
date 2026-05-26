@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -248,6 +247,7 @@ export function Hero() {
               overflow: "hidden",
             }}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Voquarn"
               alt="avatar"
@@ -334,27 +334,17 @@ export function Hero() {
               </span>
             </h1>
 
-            {/* ── Stats Section ── */}
+            {/* ── Bold Promise ── */}
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              style={{ display: 'flex', gap: '32px', marginTop: '56px', flexWrap: 'wrap', alignItems: 'center' }}
+              className="hero-promise"
             >
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{ fontSize: '24px', fontWeight: 900, color: '#000', lineHeight: 1 }}>2</span>
-                <span style={{ fontSize: '11px', fontWeight: 800, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '6px' }}>Clients</span>
-              </div>
-              <div style={{ width: '1px', height: '32px', background: 'rgba(0,0,0,0.1)' }} />
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{ fontSize: '24px', fontWeight: 900, color: '#000', lineHeight: 1 }}>90%</span>
-                <span style={{ fontSize: '11px', fontWeight: 800, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '6px' }}>Satisfaction</span>
-              </div>
-              <div style={{ width: '1px', height: '32px', background: 'rgba(0,0,0,0.1)' }} />
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{ fontSize: '24px', fontWeight: 900, color: '#000', lineHeight: 1 }}>$200</span>
-                <span style={{ fontSize: '11px', fontWeight: 800, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '6px' }}>Revenue</span>
-              </div>
+              <span className="hero-promise-mark" />
+              <p className="hero-promise-text">
+                From idea to launch, without the messy middle.
+              </p>
             </motion.div>
 
             {/* ── CTA Buttons ── */}
@@ -362,7 +352,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              style={{ display: 'flex', gap: '16px', marginTop: '48px', flexWrap: 'wrap' }}
+              style={{ display: 'flex', gap: '16px', marginTop: '34px', flexWrap: 'wrap' }}
             >
               <Link
                 href="/contact"
@@ -533,6 +523,38 @@ export function Hero() {
                 font-size: 8px;
                 color: rgba(255,255,255,0.35);
                 letter-spacing: 0.55em;
+              }
+            }
+
+            .hero-promise {
+              display: flex;
+              flex-direction: column;
+              gap: 16px;
+              margin-top: 48px;
+              max-width: 510px;
+            }
+            .hero-promise-mark {
+              width: 64px;
+              height: 4px;
+              border-radius: 999px;
+              background: #ff5400;
+              box-shadow: 0 12px 28px rgba(255, 84, 0, 0.3);
+            }
+            .hero-promise-text {
+              margin: 0;
+              color: #050505;
+              font-size: 30px;
+              font-weight: 900;
+              line-height: 1.08;
+              letter-spacing: 0;
+              max-width: 500px;
+            }
+            @media (max-width: 640px) {
+              .hero-promise {
+                margin-top: 36px;
+              }
+              .hero-promise-text {
+                font-size: 24px;
               }
             }
 
