@@ -17,18 +17,18 @@ type DisplayItem = {
 // Helper to determine badge for sub-services
 const getPricingIcon = (categoryName: string, id: string) => {
   if (categoryName.toLowerCase().includes("web")) {
-    return <Globe className="w-5 h-5 text-white" />;
+    return <Globe className="w-5 h-5 text-[#ff5400]" />;
   }
   if (categoryName.toLowerCase().includes("ai")) {
-    return <Bot className="w-5 h-5 text-white" />;
+    return <Bot className="w-5 h-5 text-[#ff5400]" />;
   }
   if (id.toLowerCase().includes("saas")) {
-    return <Code2 className="w-5 h-5 text-white" />;
+    return <Code2 className="w-5 h-5 text-[#ff5400]" />;
   }
   if (categoryName.toLowerCase().includes("app")) {
-    return <Smartphone className="w-5 h-5 text-white" />;
+    return <Smartphone className="w-5 h-5 text-[#ff5400]" />;
   }
-  return <Layers className="w-5 h-5 text-white" />;
+  return <Layers className="w-5 h-5 text-[#ff5400]" />;
 };
 
 export function ServicesToggle({ limit }: { limit?: number }) {
@@ -93,7 +93,7 @@ export function ServicesToggle({ limit }: { limit?: number }) {
       {/* Category selector row */}
       <div className="flex flex-col gap-6 items-center justify-center max-w-5xl mx-auto px-4">
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center rounded-full border border-neutral-200 bg-neutral-50 p-1.5 shadow-sm max-w-full relative">
+        <div className="flex flex-wrap justify-center rounded-full border border-[#ff5400]/15 bg-[#fff7f2] p-1.5 shadow-[0_10px_30px_rgba(255,84,0,0.08)] max-w-full relative">
           {categories.map((cat) => (
             <button
               key={cat.id}
@@ -106,7 +106,7 @@ export function ServicesToggle({ limit }: { limit?: number }) {
               {activeTab === cat.id && (
                 <motion.div
                   layoutId="activeServicesTab"
-                  className="absolute inset-0 bg-neutral-900 rounded-full -z-10"
+                  className="absolute inset-0 bg-[#ff5400] rounded-full -z-10 shadow-[0_8px_18px_rgba(255,84,0,0.28)]"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -128,7 +128,7 @@ export function ServicesToggle({ limit }: { limit?: number }) {
               {/* ── Top Row: App Icon ── */}
               <div className="flex items-center justify-between w-full">
                 {/* Rounded Dark Square App Icon */}
-                <div className="w-[46px] h-[46px] rounded-[14px] bg-[#1a1a1a] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-300">
+                <div className="w-[46px] h-[46px] rounded-[14px] bg-[#1a1a1a] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)] ring-4 ring-[#ff5400]/10 transition-transform duration-300 group-hover:scale-105">
                   {getPricingIcon(item.categoryName, item.id)}
                 </div>
               </div>
