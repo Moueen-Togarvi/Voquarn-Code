@@ -42,8 +42,8 @@ export default function HomePage() {
 
         <div className="relative z-10">
           <SectionHeading
-            eyebrow="Our Services"
-            title="We build digital systems that actually work"
+            eyebrow="What we do"
+            title="Our Services"
             description="From high-end websites to custom SaaS products, we provide end-to-end engineering and design."
           />
           <div className="mt-10">

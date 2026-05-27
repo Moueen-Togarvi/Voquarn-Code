@@ -28,6 +28,7 @@ export type PortfolioItem = {
   outcome: string;
   stack: string[];
   liveUrl: string;
+  imageUrl: string;
 };
 
 export type TeamMember = {
@@ -231,6 +232,7 @@ export const portfolioItems: PortfolioItem[] = [
     outcome: "32% increase in completed bookings within eight weeks of launch.",
     stack: ["Next.js", "Tailwind CSS", "Forms", "SEO"],
     liveUrl: "https://example.com/atlas-health",
+    imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=85&w=1200",
   },
   {
     slug: "routewise-field-app",
@@ -240,6 +242,7 @@ export const portfolioItems: PortfolioItem[] = [
     outcome: "Cut missed service windows by 41% for a regional operations team.",
     stack: ["TypeScript", "App flows", "Dashboards"],
     liveUrl: "https://example.com/routewise",
+    imageUrl: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=85&w=1200",
   },
   {
     slug: "nexa-search-growth",
@@ -249,6 +252,7 @@ export const portfolioItems: PortfolioItem[] = [
     outcome: "Doubled top-10 keyword coverage across priority service pages.",
     stack: ["SEO audit", "Content strategy", "Schema"],
     liveUrl: "https://example.com/nexa-growth",
+    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=85&w=1200",
   },
   {
     slug: "signaldesk-ai",
@@ -258,6 +262,7 @@ export const portfolioItems: PortfolioItem[] = [
     outcome: "Saved support managers roughly 11 hours per week in triage time.",
     stack: ["Automation", "Prompt design", "Internal tooling"],
     liveUrl: "https://example.com/signaldesk-ai",
+    imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=85&w=1200",
   },
   {
     slug: "saffron-brand-kit",
@@ -267,6 +272,7 @@ export const portfolioItems: PortfolioItem[] = [
     outcome: "Improved proposal close rate with a more cohesive pitch and digital presentation.",
     stack: ["Identity", "Marketing assets", "Web visuals"],
     liveUrl: "https://example.com/saffron-brand",
+    imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=85&w=1200",
   },
 ];
 

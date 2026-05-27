@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
-import { team, values } from "@/lib/site-data";
-import { ArrowUpRight, Sparkles, Target, Zap, Rocket } from "lucide-react";
+import { values } from "@/lib/site-data";
+import { Sparkles, Target, Zap, Rocket } from "lucide-react";
 import { GSAPReveal, GSAPStagger } from "@/components/ui/gsap-reveal";
 
 export const metadata = buildMetadata(
   "About Voquarn Code",
-  "Learn the Voquarn Code story, meet the team, and see the mission, vision, and values behind our work.",
+  "Learn the Voquarn Code story and see the mission, vision, and values behind our work.",
   "/about",
 );
 
@@ -118,46 +118,6 @@ export default function AboutPage() {
               <p className="text-black/60 text-sm font-medium leading-relaxed">Become a go-to execution partner for growth-minded brands across Pakistan and beyond.</p>
             </div>
           </div>
-        </GSAPStagger>
-      </section>
-
-      {/* Team Section */}
-      <section className="page-section py-10">
-        <GSAPReveal direction="up">
-          <SectionHeading
-            eyebrow="Our People"
-            title="A compact team with complementary strengths"
-            description="We keep communication direct and the working team close to the project. No bloated management layers."
-          />
-        </GSAPReveal>
-        <GSAPStagger className="mt-10 columns-1 sm:columns-2 lg:columns-4 gap-4 space-y-4">
-          {team.map((member, i) => {
-            const images = [
-              "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2070&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2076&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=2000&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2061&auto=format&fit=crop",
-            ];
-            const heightClass = i % 2 === 0 ? "h-[380px]" : "h-[320px]";
-            return (
-              <article key={member.name} className="break-inside-avoid relative rounded-[2.5rem] overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-500 border border-black/5">
-                <div className={`w-full ${heightClass} relative`}>
-                  <Image src={images[i % images.length]} alt={member.name} fill className="object-cover transition-all duration-1000 group-hover:scale-110 group-hover:blur-[2px]" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-                </div>
-                <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 border border-white/30">
-                  <ArrowUpRight className="w-5 h-5 text-white" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <div className="inline-block px-3 py-1 rounded-full bg-[#ff5400]/20 border border-[#ff5400]/30 backdrop-blur-md mb-3">
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ffbd99]">{member.role}</p>
-                  </div>
-                  <h3 className="font-display text-2xl font-extrabold uppercase tracking-tight text-white mb-2">{member.name}</h3>
-                  <p className="text-xs sm:text-sm text-white/80 font-medium leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-500">{member.bio}</p>
-                </div>
-              </article>
-            );
-          })}
         </GSAPStagger>
       </section>
 
