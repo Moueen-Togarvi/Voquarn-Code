@@ -14,7 +14,7 @@ type ReviewLayout = {
 
 const layouts: ReviewLayout[] = [
   {
-    className: "lg:col-start-1 lg:row-start-1 lg:mt-12 lg:w-[230px] lg:-rotate-2 lg:justify-self-start",
+    className: "lg:col-start-1 lg:row-start-1 lg:mt-12 lg:w-[230px] lg:-rotate-2 lg:justify-self-center",
     cardClassName: "min-h-[170px] px-6 py-6",
     shape: "1.4rem 4rem 1.4rem 1.4rem",
   },
@@ -24,7 +24,7 @@ const layouts: ReviewLayout[] = [
     shape: "1rem 1rem 3.8rem 1rem",
   },
   {
-    className: "lg:col-start-3 lg:row-start-1 lg:mt-16 lg:w-[230px] lg:-rotate-1 lg:justify-self-end",
+    className: "lg:col-start-3 lg:row-start-1 lg:mt-16 lg:w-[230px] lg:-rotate-1 lg:justify-self-center",
     cardClassName: "min-h-[170px] px-6 py-6",
     shape: "1.3rem 2.8rem 2.8rem 1.3rem",
   },
@@ -117,7 +117,7 @@ export function ReviewsCollage({ reviews }: ReviewsCollageProps) {
           </div>
         </div>
 
-        <div className="relative mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:items-start lg:gap-x-24 lg:gap-y-14">
+        <div className="relative mx-auto mt-12 grid max-w-[860px] gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:items-start lg:gap-x-6 lg:gap-y-14">
           <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[78%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/65 lg:block" />
           {visibleReviews.map((review, index) => {
             const layout = layouts[index];
