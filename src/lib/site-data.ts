@@ -285,59 +285,24 @@ export const stats = [
 
 export const testimonials: Testimonial[] = [
   {
-    name: "Areeba Malik",
-    company: "Nexa Advisory",
+    name: "ABAYIZA",
+    company: "",
     review:
-      "Voquarn gave us structure, speed, and clarity. The site finally feels aligned with the quality of our actual service.",
+      "Voquarn Code delivered a clean, modern website with clear communication and fast turnaround.",
     stars: 5,
   },
   {
-    name: "Hassan Javed",
-    company: "Atlas Health",
+    name: "BABA FARID PUBLIC SCHOOL",
+    company: "",
     review:
-      "They balanced design and delivery really well. Our team had a clear view of progress and the launch landed smoothly.",
+      "The school website became easier to understand, update, and share with parents and students.",
     stars: 5,
   },
   {
-    name: "Sana Riaz",
-    company: "SignalDesk",
+    name: "AL FAROOQ",
+    company: "",
     review:
-      "The AI workflow they mapped for us was practical from day one instead of being a flashy demo with no operational value.",
-    stars: 5,
-  },
-  {
-    name: "Fahad Khan",
-    company: "RouteWise",
-    review:
-      "The app felt simple for our field team immediately. That made rollout much easier than we expected.",
-    stars: 5,
-  },
-  {
-    name: "Maryam Noor",
-    company: "Saffron Studio",
-    review:
-      "They turned scattered brand ideas into a polished system we could use across our proposals, website, and socials.",
-    stars: 5,
-  },
-  {
-    name: "Usman Tariq",
-    company: "Northline Ops",
-    review:
-      "Communication stayed clear from the first scope call to launch. We always knew what was moving and what needed input.",
-    stars: 5,
-  },
-  {
-    name: "Nimra Shah",
-    company: "Bloom Clinic",
-    review:
-      "Our new booking flow is faster, cleaner, and easier for patients to understand. The difference showed up quickly.",
-    stars: 5,
-  },
-  {
-    name: "Bilal Ahmed",
-    company: "LedgerPro",
-    review:
-      "They built the dashboard with the right amount of detail. It is useful every day without feeling overloaded.",
+      "They handled the project professionally and gave us a simple digital presence that feels trustworthy.",
     stars: 5,
   },
 ];
