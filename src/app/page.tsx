@@ -6,8 +6,9 @@ import { TypoSection } from "@/components/ui/typo-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServicesToggle } from "@/components/ui/services-toggle";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
+import { ReviewsCollage } from "@/components/ui/reviews-collage";
 import { buildMetadata } from "@/lib/metadata";
-import { portfolioItems } from "@/lib/site-data";
+import { portfolioItems, testimonials } from "@/lib/site-data";
 
 export const metadata = buildMetadata(
   "Voquarn Code | Home",
@@ -64,6 +65,10 @@ export default function HomePage() {
 
       <GSAPReveal direction="up" delay={0.05}>
         <HomeLazySections items={portfolioItems} />
+      </GSAPReveal>
+
+      <GSAPReveal direction="up" delay={0.05}>
+        <ReviewsCollage reviews={testimonials} />
       </GSAPReveal>
 
       <section className="page-section pt-8">

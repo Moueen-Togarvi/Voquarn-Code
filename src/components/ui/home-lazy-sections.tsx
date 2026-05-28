@@ -27,14 +27,6 @@ const PortfolioCarousel = dynamic(
   { ssr: false },
 );
 
-const SpotlightShowcase = dynamic(
-  () =>
-    import("@/components/ui/spotlight-showcase").then(
-      (mod) => mod.SpotlightShowcase,
-    ),
-  { ssr: false },
-);
-
 type HomeLazySectionsProps = {
   items: PortfolioItem[];
 };
@@ -45,7 +37,6 @@ export function HomeLazySections({ items }: HomeLazySectionsProps) {
       <EnterpriseSuites />
       <DiagonalMarquees />
       <PortfolioCarousel items={items} />
-      <SpotlightShowcase />
     </>
   );
 }
