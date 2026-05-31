@@ -1,24 +1,31 @@
 import { PortfolioGrid } from "@/components/ui/portfolio-grid";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { portfolioItems } from "@/lib/site-data";
 import Image from "next/image";
 import { ArrowRight, ExternalLink } from "lucide-react";
 
+const pageTitle = "Portfolio & Case Studies | Voquarn Code";
+const pageDescription =
+  "Browse Voquarn Code case studies across websites, apps, SEO growth, AI systems, and brand design with outcomes and live project references.";
+
 export const metadata = buildMetadata(
-  "Voquarn Code Portfolio",
-  "Browse case studies and live project snapshots across web development, apps, SEO, AI, and design.",
+  pageTitle,
+  pageDescription,
   "/portfolio",
 );
 
 export default function PortfolioPage() {
   return (
     <>
+      <PageStructuredData path="/portfolio" name={pageTitle} description={pageDescription} type="CollectionPage" />
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <SectionHeading
           eyebrow="Portfolio"
           title="A cross-section of delivery work"
           description="Filter the work by category, scan the outcomes, and jump into live project references."
+          headingLevel="h1"
         />
         <div className="mt-10">
           <PortfolioGrid items={portfolioItems} />

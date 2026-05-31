@@ -18,6 +18,8 @@ const staticRoutes = [
   "/terms",
 ];
 
+const SITE_LAST_MODIFIED = new Date("2026-05-31T00:00:00.000Z");
+
 function escapeXml(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -38,14 +40,13 @@ function entry(url: string, lastModified: Date) {
 
 export function GET() {
   const siteUrl = getSiteUrl();
-  const now = new Date();
 
   const staticEntries = staticRoutes.map((path) =>
-    entry(new URL(path || "/", siteUrl).toString(), now),
+    entry(new URL(path || "/", siteUrl).toString(), SITE_LAST_MODIFIED),
   );
 
   const serviceEntries = services.map((service) =>
-    entry(new URL(`/services/${service.id}`, siteUrl).toString(), now),
+    entry(new URL(`/services/${service.id}`, siteUrl).toString(), SITE_LAST_MODIFIED),
   );
 
   const blogEntries = blogPosts.map((post) =>

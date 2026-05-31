@@ -7,6 +7,10 @@ export function GET() {
   const body = [
     "User-agent: *",
     "Allow: /",
+    "Disallow: /api/",
+    "Disallow: /sample",
+    "Disallow: /sample-rocket",
+    "Disallow: /sample-suites",
     "",
     `Host: ${siteUrl.host}`,
     `Sitemap: ${new URL("/sitemap.xml", siteUrl).toString()}`,

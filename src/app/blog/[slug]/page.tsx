@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/seo/json-ld";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { buildMetadata } from "@/lib/metadata";
+import { blogPostJsonLd } from "@/lib/schema";
 import { blogPosts, getBlogPost } from "@/lib/site-data";
 
 type BlogPostPageProps = {
@@ -18,7 +21,11 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     return buildMetadata("Article not found", "The requested article could not be found.", "/blog");
   }
 
-  return buildMetadata(post.title, post.excerpt, `/blog/${post.slug}`);
+  return buildMetadata(`${post.title} | Voquarn Code`, post.excerpt, `/blog/${post.slug}`, {
+    type: "article",
+    publishedTime: post.publishedAt,
+    keywords: [post.category, "technical SEO", "digital growth", "AI workflows"],
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -31,6 +38,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <section className="page-section">
+      <PageStructuredData
+        path={`/blog/${post.slug}`}
+        name={post.title}
+        description={post.excerpt}
+        type="WebPage"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
+      />
+      <JsonLd data={blogPostJsonLd(post)} />
       <article className="mx-auto max-w-4xl rounded-[2rem] border border-white/10 bg-[rgba(255,255,255,0.04)] p-8 sm:p-10">
         <p className="text-sm uppercase tracking-[0.18em] text-[#99f6e4]">{post.category}</p>
         <h1 className="mt-4 font-display text-4xl font-semibold text-white sm:text-5xl">{post.title}</h1>

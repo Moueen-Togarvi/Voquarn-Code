@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Sparkles, ArrowRight, Briefcase, MapPin, DollarSign, Clock, Send, Search, X, Paperclip, Upload, Loader2, Sparkle, Link as LinkIcon } from "lucide-react";
-import { GSAPReveal, GSAPStagger } from "@/components/ui/gsap-reveal";
+import { Sparkles, ArrowRight, Briefcase, MapPin, DollarSign, Clock, Send, Search, X, Upload, Loader2, Sparkle, Link as LinkIcon } from "lucide-react";
+import { GSAPReveal } from "@/components/ui/gsap-reveal";
 
 const openRoles = [
   {
@@ -132,7 +132,7 @@ export default function CareersPage() {
         setSubmitStatus("error");
         setSubmitMsg(data.message || "Failed to submit application.");
       }
-    } catch (err: any) {
+    } catch {
       setSubmitStatus("error");
       setSubmitMsg("Something went wrong. Please try again.");
     } finally {
@@ -148,6 +148,7 @@ export default function CareersPage() {
             eyebrow="Careers"
             title="Build elite digital systems without corporate bureaucracy"
             description="We are looking for elite practitioners who take immense pride in their craft. No endless meetings, no office politics—just disciplined execution and high-impact shipping."
+            headingLevel="h1"
           />
         </GSAPReveal>
 

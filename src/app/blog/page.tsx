@@ -1,12 +1,19 @@
 import Link from "next/link";
 import { NewsletterForm } from "@/components/ui/newsletter-form";
+import { JsonLd } from "@/components/seo/json-ld";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
+import { blogJsonLd } from "@/lib/schema";
 import { blogPosts } from "@/lib/site-data";
 
+const pageTitle = "Voquarn Code Blog | SEO, Web Development & AI Automation";
+const pageDescription =
+  "Read practical articles from Voquarn Code on technical SEO, website strategy, client portals, AI workflows, and digital growth systems.";
+
 export const metadata = buildMetadata(
-  "Voquarn Code Blog",
-  "Read SEO articles and tech tips from Voquarn Code on digital growth, systems, and practical AI.",
+  pageTitle,
+  pageDescription,
   "/blog",
 );
 
@@ -15,11 +22,14 @@ export default function BlogPage() {
 
   return (
     <>
+      <PageStructuredData path="/blog" name={pageTitle} description={pageDescription} type="CollectionPage" />
+      <JsonLd data={blogJsonLd(blogPosts)} />
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <SectionHeading
           eyebrow="Blog"
           title="SEO articles and practical tech notes"
           description="Short reads on digital growth, product thinking, and how to use modern tooling without losing operational clarity."
+          headingLevel="h1"
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <article className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(20,184,166,0.14),rgba(245,158,11,0.12))] p-8">

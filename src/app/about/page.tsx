@@ -1,13 +1,18 @@
 import Image from "next/image";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { values } from "@/lib/site-data";
 import { Sparkles, Target, Zap, Rocket } from "lucide-react";
 import { GSAPReveal, GSAPStagger } from "@/components/ui/gsap-reveal";
 
+const pageTitle = "About Voquarn Code | Web Development, SEO & AI Studio";
+const pageDescription =
+  "Learn how Voquarn Code combines web development, SEO, AI automation, product thinking, and design to build stronger digital systems for businesses.";
+
 export const metadata = buildMetadata(
-  "About Voquarn Code",
-  "Learn the Voquarn Code story and see the mission, vision, and values behind our work.",
+  pageTitle,
+  pageDescription,
   "/about",
 );
 
@@ -21,6 +26,7 @@ const avatarUrls = [
 export default function AboutPage() {
   return (
     <>
+      <PageStructuredData path="/about" name={pageTitle} description={pageDescription} type="AboutPage" />
       {/* Hero Section */}
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56 pb-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -30,6 +36,7 @@ export default function AboutPage() {
                 eyebrow="About Us"
                 title="A studio built for businesses that need clearer digital momentum"
                 description="Voquarn Code exists to close the gap between good ideas and disciplined execution. We partner with teams that want their digital presence to feel as credible as the service behind it."
+                headingLevel="h1"
               />
               <div className="mt-6 flex items-center gap-4">
                 <div className="flex -space-x-4">

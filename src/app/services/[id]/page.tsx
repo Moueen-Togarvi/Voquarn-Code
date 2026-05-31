@@ -1,8 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2, ArrowRight, Globe, Smartphone, Bot, Code2, Layers, MessageCircle } from "lucide-react";
+import { JsonLd } from "@/components/seo/json-ld";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
+import { serviceJsonLd } from "@/lib/schema";
 import { services, getService, portfolioItems, site } from "@/lib/site-data";
 
 type ServiceDetailPageProps = {
@@ -38,7 +41,18 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
     return buildMetadata("Service not found", "The requested service could not be found.", "/services");
   }
 
-  return buildMetadata(`${service.title} | Voquarn Code`, service.description, `/services/${service.id}`);
+  return buildMetadata(
+    `${service.title} Services | Voquarn Code`,
+    `${service.description} See deliverables, sub-services, and related work from Voquarn Code.`,
+    `/services/${service.id}`,
+    {
+      keywords: [
+        `${service.title} services`,
+        `${service.title} agency`,
+        `Voquarn Code ${service.title}`,
+      ],
+    },
+  );
 }
 
 export default async function ServiceDetailPage({ params }: ServiceDetailPageProps) {
@@ -69,6 +83,18 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
   return (
     <div className="relative bg-white text-black min-h-screen pt-40 lg:pt-48">
+      <PageStructuredData
+        path={`/services/${service.id}`}
+        name={`${service.title} Services | Voquarn Code`}
+        description={service.description}
+        type="WebPage"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+          { name: service.title, path: `/services/${service.id}` },
+        ]}
+      />
+      <JsonLd data={serviceJsonLd(service)} />
       <section className="page-section relative overflow-hidden mt-24 lg:mt-32 pt-40 lg:pt-56">
         {/* Ambient signature orange gradient glow in background */}
         <div 

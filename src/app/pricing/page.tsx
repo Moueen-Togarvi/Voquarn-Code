@@ -1,23 +1,38 @@
 import { PricingToggle } from "@/components/ui/pricing-toggle";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 
+const pageTitle = "Website, App, SEO & AI Automation Pricing | Voquarn Code";
+const pageDescription =
+  "Compare starting package prices for Voquarn Code websites, apps, SaaS builds, SEO systems, and AI automation projects in PKR and USD.";
+
 export const metadata = buildMetadata(
-  "Voquarn Code Pricing",
-  "Compare Voquarn Code package tiers with PKR and USD pricing, then continue the conversation on WhatsApp.",
+  pageTitle,
+  pageDescription,
   "/pricing",
+  {
+    keywords: [
+      "website development pricing",
+      "app development pricing",
+      "SEO package pricing",
+      "AI automation pricing",
+    ],
+  },
 );
 
 export default function PricingPage() {
   return (
     <>
+      <PageStructuredData path="/pricing" name={pageTitle} description={pageDescription} type="CollectionPage" />
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <GSAPReveal direction="up">
           <SectionHeading
             eyebrow="Pricing"
             title="Simple tiers to make early scoping faster"
             description="The packages below are starting points. Final scope depends on content, workflow complexity, integrations, and timelines."
+            headingLevel="h1"
           />
         </GSAPReveal>
         <GSAPReveal direction="up" delay={0.15}>

@@ -1,23 +1,40 @@
+import { PageStructuredData } from "@/components/seo/page-structured-data";
+import { JsonLd } from "@/components/seo/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
+import { personJsonLd } from "@/lib/schema";
 import { site } from "@/lib/site-data";
-import { Globe, Share2, ExternalLink, Sparkles, MessageCircle, ArrowRight, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
+import { Globe, Sparkles, MessageCircle, ArrowRight, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
 import Link from "next/link";
 
+const pageTitle = "Moueen Togarvi, Founder & CEO | Voquarn Code";
+const pageDescription =
+  "Meet Moueen Togarvi, Founder and CEO of Voquarn Code, leading web development, SEO, AI automation, and product engineering delivery.";
+
 export const metadata = buildMetadata(
-  "Our CEO | Voquarn Code",
-  "Meet Moueen Togarvi, Founder and CEO of Voquarn Code.",
+  pageTitle,
+  pageDescription,
   "/ceo",
 );
 
 export default function CeoPage() {
   return (
     <>
+      <PageStructuredData path="/ceo" name={pageTitle} description={pageDescription} type="ProfilePage" />
+      <JsonLd
+        data={personJsonLd({
+          name: "Moueen Togarvi",
+          jobTitle: "Founder and Chief Executive Officer",
+          description: pageDescription,
+          path: "/ceo",
+        })}
+      />
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <SectionHeading
           eyebrow="Our CEO"
           title="Engineering Leadership & Strategic Vision"
           description="Moueen Togarvi leads Voquarn Code with a singular focus: building high-performance, AI-integrated digital systems that drive measurable business outcomes without corporate bloat."
+          headingLevel="h1"
         />
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -54,9 +71,6 @@ export default function CeoPage() {
                 <a href={site.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-black transition-colors flex items-center gap-1.5 text-xs font-bold">
                   <Globe className="w-4 h-4" /> LinkedIn Profile
                 </a>
-                <a href="#" className="hover:text-black transition-colors flex items-center gap-1.5 text-xs font-bold">
-                  <ExternalLink className="w-4 h-4" /> GitHub
-                </a>
               </div>
             </div>
           </div>
@@ -71,7 +85,7 @@ export default function CeoPage() {
                 <h4 className="font-display text-xl font-bold text-neutral-900 tracking-tight">Velocity Over Bureaucracy</h4>
               </div>
               <p className="text-sm text-neutral-600 leading-relaxed font-medium">
-                "We believe that lengthy meetings and corporate ceremony destroy product momentum. We keep our feedback loops instant, our documentation crisp, and our focus entirely on shipping high-converting software."
+                &ldquo;We believe that lengthy meetings and corporate ceremony destroy product momentum. We keep our feedback loops instant, our documentation crisp, and our focus entirely on shipping high-converting software.&rdquo;
               </p>
             </div>
 
@@ -83,7 +97,7 @@ export default function CeoPage() {
                 <h4 className="font-display text-xl font-bold text-neutral-900 tracking-tight">AI-First Engineering Standards</h4>
               </div>
               <p className="text-sm text-neutral-600 leading-relaxed font-medium">
-                "Artificial Intelligence is not a gimmick to be tacked onto a website. We build autonomous lead scoring, automated triage, and smart workflows directly into the foundational Next.js and Supabase architecture."
+                &ldquo;Artificial Intelligence is not a gimmick to be tacked onto a website. We build autonomous lead scoring, automated triage, and smart workflows directly into the foundational Next.js and Supabase architecture.&rdquo;
               </p>
             </div>
 
@@ -95,7 +109,7 @@ export default function CeoPage() {
                 <h4 className="font-display text-xl font-bold text-neutral-900 tracking-tight">Uncompromising Digital Credibility</h4>
               </div>
               <p className="text-sm text-neutral-600 leading-relaxed font-medium">
-                "Your website is your ultimate digital storefront. If it looks generic or loads slowly, you lose high-intent buyers instantly. We ensure every pixel we deploy reflects absolute industry leadership."
+                &ldquo;Your website is your ultimate digital storefront. If it looks generic or loads slowly, you lose high-intent buyers instantly. We ensure every pixel we deploy reflects absolute industry leadership.&rdquo;
               </p>
             </div>
           </div>

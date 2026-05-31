@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServicesToggle } from "@/components/ui/services-toggle";
 import { buildMetadata } from "@/lib/metadata";
@@ -11,15 +12,29 @@ const process = [
   "Launch support and iteration",
 ];
 
+const pageTitle = "Web Development, SEO, Apps & AI Automation Services | Voquarn Code";
+const pageDescription =
+  "Explore Voquarn Code services for conversion-focused websites, mobile apps, SaaS products, SEO systems, and AI workflow automation.";
+
 export const metadata = buildMetadata(
-  "Voquarn Code Services",
-  "Web development, app development, SEO, AI solutions, and graphic design services from Voquarn Code.",
+  pageTitle,
+  pageDescription,
   "/services",
+  {
+    keywords: [
+      "web development services",
+      "SEO services",
+      "mobile app development",
+      "AI workflow automation",
+      "SaaS development agency",
+    ],
+  },
 );
 
 export default function ServicesPage() {
   return (
     <>
+      <PageStructuredData path="/services" name={pageTitle} description={pageDescription} type="CollectionPage" />
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full pointer-events-none opacity-[0.06] z-0 blur-[120px]"
           style={{ background: "radial-gradient(circle, #ff5400 0%, transparent 70%)" }}
@@ -30,6 +45,7 @@ export default function ServicesPage() {
               eyebrow="Services"
               title="Execution across the work that shapes digital credibility"
               description="We combine product thinking, strong visuals, and technical delivery so the final result looks sharp and performs like it was planned properly."
+              headingLevel="h1"
             />
           </GSAPReveal>
           <GSAPReveal direction="up" delay={0.15}>

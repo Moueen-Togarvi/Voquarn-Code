@@ -65,7 +65,7 @@ export type BlogPost = {
 
 export const site = {
   name: "Voquarn Code",
-  location: "Lahore, Pakistan",
+  location: "Bahawalnagar, Punjab, Pakistan",
   email: "hello@voquarn.com",
   phone: "+92 324 1940988",
   whatsapp: "923241940988",

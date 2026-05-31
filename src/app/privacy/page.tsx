@@ -1,19 +1,26 @@
 import { SectionHeading } from "@/components/ui/section-heading";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { buildMetadata } from "@/lib/metadata";
 
+const pageTitle = "Privacy Policy | Voquarn Code";
+const pageDescription =
+  "Read how Voquarn Code handles project inquiries, contact details, website analytics, and personal information.";
+
 export const metadata = buildMetadata(
-  "Privacy Policy - Voquarn Code",
-  "How we handle your data and privacy.",
+  pageTitle,
+  pageDescription,
   "/privacy",
 );
 
 export default function PrivacyPage() {
   return (
     <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56 max-w-4xl mx-auto">
+      <PageStructuredData path="/privacy" name={pageTitle} description={pageDescription} />
       <SectionHeading
         eyebrow="Legal"
         title="Privacy Policy"
         description="We respect your privacy and are committed to protecting it."
+        headingLevel="h1"
       />
       
       <div className="mt-16 prose prose-neutral dark:prose-invert max-w-none pb-32 space-y-8 text-neutral-600 dark:text-neutral-300">

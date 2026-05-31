@@ -1,9 +1,14 @@
 import type { ReactNode } from "react";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { buildMetadata } from "@/lib/metadata";
 
+const pageTitle = "Careers at Voquarn Code | Engineering, Design & SEO Roles";
+const pageDescription =
+  "Explore open roles at Voquarn Code across engineering, UI/UX design, technical SEO, growth, and client delivery.";
+
 export const metadata = buildMetadata(
-  "Careers | Voquarn Code",
-  "Explore open roles at Voquarn Code across engineering, design, and client delivery.",
+  pageTitle,
+  pageDescription,
   "/careers",
 );
 
@@ -12,5 +17,10 @@ type CareersLayoutProps = {
 };
 
 export default function CareersLayout({ children }: CareersLayoutProps) {
-  return children;
+  return (
+    <>
+      <PageStructuredData path="/careers" name={pageTitle} description={pageDescription} type="CollectionPage" />
+      {children}
+    </>
+  );
 }

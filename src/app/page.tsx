@@ -7,18 +7,37 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { ServicesToggle } from "@/components/ui/services-toggle";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { ReviewsCollage } from "@/components/ui/reviews-collage";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { buildMetadata } from "@/lib/metadata";
 import { portfolioItems, testimonials } from "@/lib/site-data";
 
+const pageTitle = "Voquarn Code | Web Development, SEO & AI Automation Agency";
+const pageDescription =
+  "Voquarn Code builds conversion-focused websites, mobile apps, SEO systems, and AI automation workflows for businesses in Pakistan and worldwide.";
+
 export const metadata = buildMetadata(
-  "Voquarn Code | Home",
-  "Explore Voquarn Code services, selected work, testimonials, and growth-focused digital delivery.",
+  pageTitle,
+  pageDescription,
   "/",
+  {
+    keywords: [
+      "web development agency Pakistan",
+      "SEO agency Pakistan",
+      "AI automation agency",
+      "business website development",
+    ],
+  },
 );
 
 export default function HomePage() {
   return (
     <div className="relative bg-white text-black">
+      <PageStructuredData
+        path="/"
+        name={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: "Home", path: "/" }]}
+      />
       {/* Pure white background for high-end minimal aesthetic */}
 
       <Hero />

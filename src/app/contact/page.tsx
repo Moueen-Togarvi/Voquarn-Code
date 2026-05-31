@@ -1,24 +1,31 @@
 import { ContactForm } from "@/components/ui/contact-form";
+import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site-data";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 
+const pageTitle = "Contact Voquarn Code | Web Development & SEO Agency";
+const pageDescription =
+  "Contact Voquarn Code for website development, SEO, app development, SaaS builds, and AI automation projects in Pakistan or internationally.";
+
 export const metadata = buildMetadata(
-  "Contact Voquarn Code",
-  "Send a project inquiry, message Voquarn Code on WhatsApp, or find the Bahawalnagar office details.",
+  pageTitle,
+  pageDescription,
   "/contact",
 );
 
 export default function ContactPage() {
   return (
     <>
+      <PageStructuredData path="/contact" name={pageTitle} description={pageDescription} type="ContactPage" />
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <GSAPReveal direction="up">
           <SectionHeading
             eyebrow="Contact"
             title="Let's talk about the next version of your digital presence"
             description="Use the form for a proper brief, reach out on WhatsApp for a faster conversation, or find us in Bahawalnagar, Punjab, Pakistan."
+            headingLevel="h1"
           />
         </GSAPReveal>
 
@@ -70,8 +77,8 @@ export default function ContactPage() {
 
               <div className="bg-neutral-50 border border-neutral-200/80 shadow-sm rounded-[2.5rem] p-2">
                 <iframe
-                  title="Voquarn Code Lahore map"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=74.292%2C31.452%2C74.39%2C31.58&layer=mapnik"
+                  title="Voquarn Code Bahawalnagar map"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=73.14%2C29.9%2C73.36%2C30.08&layer=mapnik"
                   className="h-[300px] w-full rounded-[2rem] border-0 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                   loading="lazy"
                 />

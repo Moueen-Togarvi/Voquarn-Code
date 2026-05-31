@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navItems } from "@/lib/site-data";
 
+const navbarNavItems = navItems.filter((item) => item.href !== "/contact");
+
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +27,7 @@ export function Navbar() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden items-center gap-1 md:flex">
-          {navItems.map((item) => {
+          {navbarNavItems.map((item) => {
             const active = pathname === item.href;
 
             return (
@@ -47,7 +49,8 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="/contact"
-            className="hidden rounded-full bg-[#ff5400] px-6 py-2.5 text-[10px] font-black uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-md md:inline-flex"
+            className="hidden items-center justify-center rounded-full bg-[#ff5400] px-6 py-2.5 text-[10px] font-black uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-md md:inline-flex"
+            onClick={() => setIsOpen(false)}
           >
             Contact Us
           </Link>
@@ -71,7 +74,7 @@ export function Navbar() {
       {isOpen ? (
         <div className="mt-3 bg-white/95 backdrop-blur-md border border-neutral-200 rounded-3xl p-6 md:hidden shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300">
           <nav className="flex flex-col gap-2">
-            {navItems.map((item) => {
+            {navbarNavItems.map((item) => {
               const active = pathname === item.href;
               return (
                 <Link
@@ -85,6 +88,13 @@ export function Navbar() {
                 </Link>
               );
             })}
+            <Link
+              href="/contact"
+              className="mt-2 inline-flex items-center justify-center rounded-2xl bg-[#ff5400] px-4 py-3 text-sm font-black uppercase tracking-wider text-white shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact Us
+            </Link>
           </nav>
         </div>
       ) : null}
