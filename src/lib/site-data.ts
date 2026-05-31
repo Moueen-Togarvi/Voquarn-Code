@@ -69,6 +69,8 @@ export const site = {
   email: "hello@voquarn.com",
   phone: "+92 324 1940988",
   whatsapp: "923241940988",
+  logoPath: "/logo.png",
+  iconPath: "/site-icon.png",
   socials: {
     linkedin: "https://www.linkedin.com/company/voquarn-code",
     instagram: "https://www.instagram.com/voquarncode",

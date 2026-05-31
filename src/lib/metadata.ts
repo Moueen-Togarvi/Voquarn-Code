@@ -78,10 +78,11 @@ export function buildMetadata(
     icons: {
       icon: [
         { url: "/favicon.ico", sizes: "any" },
-        { url: "/site-icon.png", type: "image/png", sizes: "512x512" },
+        { url: site.logoPath, type: "image/png", sizes: "500x500" },
+        { url: site.iconPath, type: "image/png", sizes: "512x512" },
       ],
       shortcut: "/favicon.ico",
-      apple: [{ url: "/site-icon.png", sizes: "512x512", type: "image/png" }],
+      apple: [{ url: site.iconPath, sizes: "512x512", type: "image/png" }],
     },
     robots: {
       index: !options.noIndex,
