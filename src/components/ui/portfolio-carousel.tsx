@@ -20,8 +20,13 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [revealedIndex, setRevealedIndex] = useState<number | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const hasInteracted = useRef(false);
 
   useEffect(() => {
+    if (!hasInteracted.current) {
+      return;
+    }
+
     const activeCard = trackRef.current?.children[activeIndex];
 
     activeCard?.scrollIntoView({
@@ -32,6 +37,7 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
   }, [activeIndex]);
 
   const move = (direction: "previous" | "next") => {
+    hasInteracted.current = true;
     setActiveIndex((current) => {
       if (direction === "previous") {
         return current === 0 ? items.length - 1 : current - 1;
@@ -178,7 +184,10 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
             <button
               key={item.slug}
               type="button"
-              onClick={() => setActiveIndex(index)}
+              onClick={() => {
+                hasInteracted.current = true;
+                setActiveIndex(index);
+              }}
               className={`h-2.5 rounded-full transition-all ${
                 activeIndex === index ? "w-9 bg-[#ff5400]" : "w-2.5 bg-neutral-300 hover:bg-neutral-500"
               }`}
