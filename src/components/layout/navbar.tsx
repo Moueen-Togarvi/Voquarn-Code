@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { navItems } from "@/lib/site-data";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 const navbarNavItems = navItems.filter((item) => item.href !== "/contact");
 
@@ -61,9 +60,6 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className="hidden md:block">
-            <ThemeToggle />
-          </div>
           <Link
             href="/contact"
             className="hidden items-center justify-center rounded-full bg-[#ff5400] px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-md md:inline-flex"
@@ -106,7 +102,6 @@ export function Navbar() {
               );
             })}
             <div className="flex items-center gap-3 pt-2">
-              <ThemeToggle />
               <Link
                 href="/contact"
                 className="flex-1 inline-flex items-center justify-center rounded-2xl bg-[#ff5400] px-4 py-3 text-sm font-black uppercase tracking-wider text-white shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
