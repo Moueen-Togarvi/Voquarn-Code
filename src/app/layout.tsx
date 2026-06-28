@@ -30,7 +30,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
         />
       </head>
-      <body className="min-h-full bg-background text-foreground transition-colors duration-300">
+      <body className="min-h-full bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <IntroLoader />
           <div className="relative flex min-h-screen flex-col overflow-x-clip">

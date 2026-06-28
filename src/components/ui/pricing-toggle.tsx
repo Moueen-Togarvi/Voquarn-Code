@@ -13,27 +13,15 @@ type DisplayItem = {
   priceUsd: number;
   features: string[];
   featured?: boolean;
-  badge?: {
-    text: string;
-    color: string;
-  } | null;
+  badge?: { text: string; color: string } | null;
   categoryName: string;
 };
 
-// Helper to map categories and item IDs to elegant Lucide icons matching services
 const getPricingIcon = (categoryName: string, id: string) => {
-  if (categoryName.toLowerCase().includes("web")) {
-    return <Globe className="w-5 h-5 text-white" />;
-  }
-  if (categoryName.toLowerCase().includes("ai")) {
-    return <Bot className="w-5 h-5 text-white" />;
-  }
-  if (id.toLowerCase().includes("saas")) {
-    return <Code2 className="w-5 h-5 text-white" />;
-  }
-  if (categoryName.toLowerCase().includes("app")) {
-    return <Smartphone className="w-5 h-5 text-white" />;
-  }
+  if (categoryName.toLowerCase().includes("web")) return <Globe className="w-5 h-5 text-white" />;
+  if (categoryName.toLowerCase().includes("ai")) return <Bot className="w-5 h-5 text-white" />;
+  if (id.toLowerCase().includes("saas")) return <Code2 className="w-5 h-5 text-white" />;
+  if (categoryName.toLowerCase().includes("app")) return <Smartphone className="w-5 h-5 text-white" />;
   return <Layers className="w-5 h-5 text-white" />;
 };
 
@@ -51,28 +39,19 @@ export function PricingToggle({ limit }: { limit?: number }) {
     [currency],
   );
 
-  // Helper to determine badge for sub-services
   const getSubServiceBadge = (id: string) => {
     switch (id) {
-      case "ecommerce-web":
-        return { text: "High ROI", color: "bg-[#ff5400] text-white" };
-      case "saas-web":
-        return { text: "Best for SaaS", color: "bg-neutral-900 text-white" };
+      case "ecommerce-web": return { text: "High ROI", color: "bg-[#ff5400] text-white" };
+      case "saas-web": return { text: "Best for SaaS", color: "bg-neutral-900 text-white" };
       case "ai-web":
-      case "ai-app":
-        return { text: "AI-Powered", color: "bg-teal-600 text-white" };
-      case "saas-app":
-        return { text: "Most Popular", color: "bg-[#ff5400] text-white" };
-      case "full-saas":
-        return { text: "Scale Ready", color: "bg-indigo-600 text-white" };
-      case "ai-agents":
-        return { text: "Advanced", color: "bg-purple-600 text-white" };
-      default:
-        return null;
+      case "ai-app": return { text: "AI-Powered", color: "bg-teal-600 text-white" };
+      case "saas-app": return { text: "Most Popular", color: "bg-[#ff5400] text-white" };
+      case "full-saas": return { text: "Scale Ready", color: "bg-indigo-600 text-white" };
+      case "ai-agents": return { text: "Advanced", color: "bg-purple-600 text-white" };
+      default: return null;
     }
   };
 
-  // Compile items based on the active tab
   const displayItems = useMemo((): DisplayItem[] => {
     if (activeTab === "websites") {
       const webDev = services.find((s) => s.id === "web-dev");
@@ -92,10 +71,8 @@ export function PricingToggle({ limit }: { limit?: number }) {
     if (activeTab === "apps") {
       const appDev = services.find((s) => s.id === "app-dev");
       const saasApps = services.find((s) => s.id === "saas-apps");
-      
       const appSubs = appDev?.subServices || [];
       const saasSubs = saasApps?.subServices || [];
-
       return [...appSubs, ...saasSubs].map((sub) => ({
         id: sub.id,
         name: sub.name,
@@ -128,32 +105,30 @@ export function PricingToggle({ limit }: { limit?: number }) {
   }, [activeTab]);
 
   const categories = [
-    { id: "websites", label: "Websites" },
-    { id: "apps", label: "Apps" },
-    { id: "ai", label: "AI & Automation" },
-  ] as const;
+    { id: "websites" as const, label: "Websites" },
+    { id: "apps" as const, label: "Apps" },
+    { id: "ai" as const, label: "AI & Automation" },
+  ];
 
   const itemsToDisplay = limit ? displayItems.slice(0, limit) : displayItems;
 
   return (
     <div className="space-y-12">
-      {/* Category selector + Currency toggle row */}
       <div className="flex flex-col gap-6 items-center justify-between lg:flex-row max-w-5xl mx-auto px-4">
-        {/* Category Tabs */}
-        <div className="flex flex-nowrap justify-center rounded-full border border-neutral-200 bg-neutral-50 p-1.5 shadow-sm max-w-full relative">
+        <div className="flex flex-nowrap justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] p-1.5 shadow-sm max-w-full relative">
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setActiveTab(cat.id)}
-              className={`relative rounded-full px-3 py-2 text-[9px] font-medium uppercase tracking-wide transition-colors duration-300 z-10 whitespace-nowrap sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-wider ${
-                activeTab === cat.id ? "text-white" : "text-neutral-600 hover:text-black"
+              className={`relative rounded-full px-3 py-2 text-[11px] font-medium uppercase tracking-wide transition-colors duration-300 z-10 whitespace-nowrap sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-wider ${
+                activeTab === cat.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
               {activeTab === cat.id && (
                 <motion.div
                   layoutId="activeCategoryTab"
-                  className="absolute inset-0 bg-neutral-900 rounded-full -z-10"
+                  className="absolute inset-0 bg-[var(--foreground)] rounded-full -z-10"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -162,15 +137,14 @@ export function PricingToggle({ limit }: { limit?: number }) {
           ))}
         </div>
 
-        {/* Currency Switcher */}
-        <div className="inline-flex rounded-full border border-neutral-200 bg-neutral-50 p-1.5 shadow-sm relative">
+        <div className="inline-flex rounded-full border border-[var(--border)] bg-[var(--surface)] p-1.5 shadow-sm relative">
           {(["PKR", "USD"] as const).map((option) => (
             <button
               key={option}
               type="button"
               onClick={() => setCurrency(option)}
               className={`relative rounded-full px-5 py-2 text-xs font-medium uppercase tracking-wider transition-colors duration-300 z-10 ${
-                currency === option ? "text-white" : "text-neutral-600 hover:text-black"
+                currency === option ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
               {currency === option && (
@@ -186,7 +160,6 @@ export function PricingToggle({ limit }: { limit?: number }) {
         </div>
       </div>
 
-      {/* Pricing Cards Grid (Identical to Services Card Grid) */}
       <div className={`grid gap-6 items-stretch max-w-7xl mx-auto px-4 md:grid-cols-2 lg:grid-cols-3 ${
         displayItems.length === 2 ? "max-w-4xl" : "xl:grid-cols-4"
       }`}>
@@ -196,18 +169,14 @@ export function PricingToggle({ limit }: { limit?: number }) {
           return (
             <article
               key={item.id}
-              className="group relative flex flex-col justify-between rounded-[32px] border border-neutral-200/80 bg-white p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)] h-full min-h-[380px]"
+              className="group relative flex flex-col justify-between rounded-[32px] border border-[var(--border)] bg-[var(--panel)] p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)] h-full min-h-[380px]"
             >
               <div className="relative z-10 flex flex-col h-full justify-between">
-                
-                {/* ── Top Row: App Icon & Badge ── */}
                 <div className="flex items-center justify-between w-full">
-                  {/* Rounded Dark Square App Icon */}
                   <div className="w-[46px] h-[46px] rounded-[14px] bg-[#1a1a1a] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-300">
                     {getPricingIcon(item.categoryName, item.id)}
                   </div>
-                  
-                  {/* Badge display */}
+
                   {item.badge && (
                     <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-black uppercase tracking-wide ${item.badge.color}`}>
                       {item.badge.text}
@@ -220,30 +189,25 @@ export function PricingToggle({ limit }: { limit?: number }) {
                   )}
                 </div>
 
-                {/* ── Middle Section: Category, Title, Short Desc & Tags ── */}
                 <div className="mt-6 flex-1 flex flex-col justify-center">
-                  {/* Category & Tagline */}
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[13px] font-medium text-neutral-800">Voquarn</span>
-                    <span className="text-[11px] text-neutral-400">• {item.categoryName}</span>
+                    <span className="text-[13px] font-medium text-[var(--foreground)]">Voquarn</span>
+                    <span className="text-[11px] text-[var(--muted)]">• {item.categoryName}</span>
                   </div>
 
-                  {/* Main Title */}
-                  <h3 className="mt-1.5 text-base sm:text-[18px] font-bold text-neutral-900 tracking-tight leading-tight truncate">
+                  <h3 className="mt-1.5 text-base sm:text-[18px] font-bold text-[var(--foreground)] tracking-tight leading-tight truncate">
                     {item.name}
                   </h3>
 
-                  {/* Short Description */}
-                  <p className="mt-1 text-[11px] text-neutral-500 line-clamp-2 leading-relaxed min-h-[32px]">
+                  <p className="mt-1 text-[11px] text-[var(--muted)] line-clamp-2 leading-relaxed min-h-[32px]">
                     {item.description}
                   </p>
 
-                  {/* Feature Tags (Soft Gray Pill Style - Compact Size) */}
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {item.features.slice(0, 3).map((feature) => (
                       <span
                         key={feature}
-                        className="rounded-full bg-neutral-100 px-2.5 py-0.5 text-[9px] font-semibold tracking-wide text-neutral-600"
+                        className="rounded-full bg-[var(--surface)] px-2.5 py-0.5 text-[10px] font-semibold tracking-wide text-[var(--muted)]"
                       >
                         {feature}
                       </span>
@@ -251,30 +215,24 @@ export function PricingToggle({ limit }: { limit?: number }) {
                   </div>
                 </div>
 
-                {/* ── Bottom Section: Price, Scope Button ── */}
                 <div className="mt-6 pt-2">
-                  {/* Price & Type line */}
                   <div className="flex items-baseline justify-between px-0.5">
                     <div className="flex items-baseline">
-                      <span className="text-[18px] font-normal text-neutral-900 tracking-tight">
+                      <span className="text-[18px] font-bold text-[var(--foreground)] tracking-tight">
                         {formatter.format(price)}
                       </span>
-                      <span className="text-[11px] font-normal text-neutral-500 ml-1">
-                        /starting
-                      </span>
+                      <span className="text-[11px] text-[var(--muted)] ml-1">/starting</span>
                     </div>
                   </div>
 
-                  {/* Horizontal Divider */}
-                  <div className="my-4 border-t border-neutral-200/80" />
+                  <div className="my-4 border-t border-[var(--border)]" />
 
-                  {/* Spectacular 3D Glossy Black or Orange Button */}
                   <a
                     href={`https://wa.me/${site.whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(item.categoryName + " - " + item.name)}%20package.`}
                     target="_blank"
                     rel="noreferrer"
                     className={`w-full h-12 py-3 rounded-full text-white font-medium text-[13px] flex items-center justify-center transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide ${
-                      item.featured 
+                      item.featured
                         ? "bg-gradient-to-b from-[#ff6b21] to-[#e04800] hover:from-[#ff7c3b] hover:to-[#f05000] shadow-[0_8px_20px_rgba(255,84,0,0.2),inset_0_2px_1px_rgba(255,255,255,0.2)]"
                         : "bg-gradient-to-b from-[#2c2c2e] to-[#151516] hover:from-[#3a3a3c] hover:to-[#1c1c1e] shadow-[0_8px_20px_rgba(0,0,0,0.2),inset_0_2px_1px_rgba(255,255,255,0.2)]"
                     }`}
@@ -282,7 +240,6 @@ export function PricingToggle({ limit }: { limit?: number }) {
                     <MessageCircle className="w-4 h-4 mr-2" /> Discuss on WhatsApp
                   </a>
                 </div>
-
               </div>
             </article>
           );

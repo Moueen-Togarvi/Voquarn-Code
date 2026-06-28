@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown, Play } from "lucide-react";
+
 const SERVICES = ["Websites", "Brands", "Apps", "Systems", "SaaS Apps", "AI Agents", "AI Apps"];
+
 
 
 const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }) => {
@@ -45,7 +47,7 @@ const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }
   }, [text, isDeleting, loopNum, onIndexChange]);
 
   return (
-    <span className="hero-typewriter" style={{ color: "#ff5400", display: "inline-flex", alignItems: "center", width: "6.2em", justifyContent: "flex-start", whiteSpace: "nowrap" }}>
+    <span className="hero-typewriter" style={{ color: "var(--primary)", display: "inline-flex", alignItems: "center", width: "6.2em", justifyContent: "flex-start", whiteSpace: "nowrap" }}>
       {text}
       <motion.span
         animate={{ opacity: [0, 1, 0] }}
@@ -64,9 +66,7 @@ const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }
   );
 };
 
-/* ─── Agency Logo Image (Replacing Rocket) ──────────────────────── */
 const RocketImg = () => (
-  // eslint-disable-next-line @next/next/no-img-element
   <img
     src="/final-logo.png"
     alt="Voquarn Agency Logo"
@@ -78,12 +78,10 @@ const RocketImg = () => (
   />
 );
 
-/* ─── Rocket Launcher — entry from bottom, then hover in place ───── */
 const RocketLauncher = () => {
   const [phase, setPhase] = useState<"entry" | "hover">("entry");
 
   useEffect(() => {
-    // After entry animation completes (1.6s), switch to hover phase
     const t = setTimeout(() => setPhase("hover"), 1650);
     return () => clearTimeout(t);
   }, []);
@@ -106,7 +104,6 @@ const RocketLauncher = () => {
     );
   }
 
-  // hover phase — rocket stays at top: 0px and gently floats + shakes
   return (
     <div
       className="rocket-hover"
@@ -124,36 +121,25 @@ const RocketLauncher = () => {
   );
 };
 
-/* ─── component ─────────────────────────────────────────────────── */
 export function Hero() {
   return (
-    <section className="hero-section">
-      {/* ── outer wrapper ── */}
+    <section className="hero-section" style={{ background: "var(--background)", color: "var(--hero-text)" }}>
       <div className="hero-container">
-        {/* ════════════════════════════════════════
-            COL 1 — slim black sidebar pill
-        ════════════════════════════════════════ */}
         <motion.div
           initial={false}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
           className="hero-col1"
+          style={{ background: "var(--foreground)" }}
         >
-          {/* Logo icon (Replacing X button) with floating & light radiating animation */}
           <motion.div
-            animate={{
-              y: [0, -8, 0],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             style={{
               width: 56,
               height: 56,
               borderRadius: "50%",
-              background: "#ffffff",
+              background: "var(--background)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -161,17 +147,9 @@ export function Hero() {
               position: "relative",
             }}
           >
-            {/* Glowing background light radiating/emitting outward */}
             <motion.div
-              animate={{
-                scale: [1, 1.35, 1],
-                opacity: [0.4, 0.85, 0.4],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              animate={{ scale: [1, 1.35, 1], opacity: [0.4, 0.85, 0.4] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 position: "absolute",
                 width: "100%",
@@ -183,8 +161,6 @@ export function Hero() {
                 pointerEvents: "none",
               }}
             />
-
-            {/* Pulsing glow outline */}
             <motion.div
               animate={{
                 boxShadow: [
@@ -193,11 +169,7 @@ export function Hero() {
                   "0 0 10px rgba(255, 84, 0, 0.25)",
                 ],
               }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 position: "absolute",
                 inset: -2,
@@ -207,8 +179,6 @@ export function Hero() {
                 zIndex: 1,
               }}
             />
-
-            {/* Inner container to clip the image within the rounded circle */}
             <div
               style={{
                 width: "100%",
@@ -218,12 +188,11 @@ export function Hero() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "#ffffff",
+                background: "var(--background)",
                 position: "relative",
                 zIndex: 2,
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/image-removebg-preview-2.png"
                 alt="Logo"
@@ -238,59 +207,53 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* vertical label */}
-          <p className="hero-label">
+          <p className="hero-label" style={{ color: "var(--muted)" }}>
             VOQUARN CODE
           </p>
 
-          {/* avatar */}
-          <div
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: "50%",
-              border: "2px solid #ff5400",
-              overflow: "hidden",
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/hero-avatar.jpeg"
-              alt="Profile avatar"
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 38%" }}
-            />
+          <div className="hero-avatar-group">
+            <div
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                border: "2px solid #ff5400",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src="/hero-avatar.jpeg"
+                alt="Gul Khan — CEO"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 38%" }}
+              />
+            </div>
+            <span className="hero-avatar-label">Gul Khan — CEO</span>
           </div>
         </motion.div>
 
-        {/* ════════════════════════════════════════
-            COL 2 — left content column
-        ════════════════════════════════════════ */}
         <motion.div
           initial={false}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           className="hero-col2"
         >
-          {/* ── Big headline + tagline ── */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16, order: -1 }}>
-            {/* small tagline above */}
             <p
               className="hero-eyebrow"
               style={{
-                fontSize: 9,
+                fontSize: 11,
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.14em",
-                color: "rgba(0,0,0,0.4)",
+                color: "var(--muted)",
                 lineHeight: 1.6,
                 margin: 0,
-                maxWidth: 220,
+                maxWidth: 280,
               }}
             >
               TECHNOLOGIES THAT WILL ALLOW US TO BUILD THE IMPOSSIBLE FOR YOUR BUSINESS.
             </p>
 
-            {/* headline */}
             <h1
               className="hero-headline"
               style={{
@@ -299,7 +262,7 @@ export function Hero() {
                 lineHeight: 0.9,
                 letterSpacing: "-0.04em",
                 textTransform: "uppercase",
-                color: "#000",
+                color: "var(--hero-text)",
                 margin: 0,
               }}
             >
@@ -311,11 +274,10 @@ export function Hero() {
                   display: "flex",
                   alignItems: "center",
                   gap: 10,
-                  color: "#000",
+                  color: "var(--hero-text)",
                 }}
               >
                 <Typewriter />
-                {/* filled circle */}
                 <span
                   className="hero-headline-dot"
                   style={{
@@ -323,11 +285,10 @@ export function Hero() {
                     width: "0.55em",
                     height: "0.55em",
                     borderRadius: "50%",
-                    background: "#000",
+                    background: "var(--hero-text)",
                     flexShrink: 0,
                   }}
                 />
-                {/* asterisk */}
                 <motion.span
                   className="hero-headline-star"
                   animate={{ rotate: 360 }}
@@ -345,21 +306,19 @@ export function Hero() {
               </span>
             </h1>
 
-            {/* ── Bold Promise ── */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="hero-promise"
             >
               <span className="hero-promise-mark" />
-              <p className="hero-promise-text">
+              <p className="hero-promise-text" style={{ color: "var(--foreground)" }}>
                 From <span>idea</span> to <span>launch</span>, without the messy middle.
               </p>
             </motion.div>
 
-            {/* ── CTA Buttons ── */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -394,8 +353,8 @@ export function Hero() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  background: '#fff',
-                  color: '#000',
+                  background: 'var(--background)',
+                  color: 'var(--foreground)',
                   padding: '14px 28px',
                   borderRadius: '999px',
                   fontWeight: 900,
@@ -403,58 +362,23 @@ export function Hero() {
                   textTransform: 'uppercase',
                   letterSpacing: '0.15em',
                   textDecoration: 'none',
-                  border: '2px solid #e5e5e5',
+                  border: '2px solid var(--border)',
                   transition: 'all 0.3s ease',
                 }}
-                className="hero-action-link hover:border-black hover:bg-neutral-50"
+                className="hero-action-link hover:border-[var(--foreground)] hover:bg-[var(--surface)]"
               >
-                Our Services
+                <Play size={14} /> Watch Showreel
               </Link>
             </motion.div>
 
           </div>
         </motion.div>
 
-        {/* ════════════════════════════════════════
-            COL 3 — right large responsive column
-        ════════════════════════════════════════ */}
         <div className="hero-col3">
-          {/* Inject dynamic shake CSS keyframes & responsive styling */}
           <style dangerouslySetInnerHTML={{
             __html: `
-            @keyframes rocket-shake {
-              0%   { transform: translate(calc(-50% + 0px), 0px) rotate(0deg); }
-              20%  { transform: translate(calc(-50% - 0.5px), 0.5px) rotate(-0.15deg); }
-              40%  { transform: translate(calc(-50% - 0.5px), -0.5px) rotate(0.15deg); }
-              60%  { transform: translate(calc(-50% + 0.5px), 0.5px) rotate(0deg); }
-              80%  { transform: translate(calc(-50% + 0.5px), -0.5px) rotate(0.15deg); }
-              100% { transform: translate(calc(-50% + 0px), 0px) rotate(0deg); }
-            }
-            @keyframes rocket-entry {
-              0%   { top: 110%; opacity: 0; }
-              15%  { opacity: 1; }
-              100% { top: 0px; opacity: 1; }
-            }
-            @keyframes rocket-float {
-              0%   { margin-top: 0px; }
-              50%  { margin-top: -10px; }
-              100% { margin-top: 0px; }
-            }
-            @keyframes promise-pulse {
-              0%, 100% { transform: scaleX(0.72); opacity: 0.75; }
-              50% { transform: scaleX(1); opacity: 1; }
-            }
-            .rocket-entry {
-              animation: rocket-entry 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-            }
-            .rocket-hover {
-              /* No animation in hover phase, rocket stays perfectly still */
-            }
-
-            /* Responsive Hero Layout */
             .hero-section {
               width: 100%;
-              background: #ffffff;
               min-height: 100vh;
               display: flex;
               align-items: center;
@@ -463,11 +387,14 @@ export function Hero() {
               box-sizing: border-box;
               position: relative;
               z-index: 20;
-              border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+              border-bottom: 1px solid var(--section-border);
+              background-image: radial-gradient(circle at 1px 1px, var(--section-border) 1px, transparent 0);
+              background-size: 48px 48px;
             }
             @media (max-width: 640px) {
               .hero-section {
                 padding-top: 128px;
+                background-size: 32px 32px;
               }
             }
             @media (min-width: 1024px) {
@@ -499,16 +426,14 @@ export function Hero() {
               }
             }
 
-            /* Col 1 Responsive Styling */
             .hero-col1 {
-              background: #111;
               border-radius: 24px;
               display: flex;
               flex-direction: row;
               align-items: center;
               justify-content: space-between;
               padding: 12px 24px;
-              color: #fff;
+              color: var(--background);
               width: 100%;
               align-self: center;
               box-sizing: border-box;
@@ -525,7 +450,6 @@ export function Hero() {
               }
             }
 
-            /* Label styling inside Col 1 */
             .hero-label {
               writing-mode: horizontal-tb;
               transform: none;
@@ -533,7 +457,6 @@ export function Hero() {
               font-weight: 900;
               letter-spacing: 0.3em;
               text-transform: uppercase;
-              color: rgba(255,255,255,0.7);
               margin: 0;
               white-space: nowrap;
             }
@@ -542,8 +465,38 @@ export function Hero() {
                 writing-mode: vertical-rl;
                 transform: rotate(180deg);
                 font-size: 8px;
-                color: rgba(255,255,255,0.35);
                 letter-spacing: 0.55em;
+              }
+            }
+
+            .hero-avatar-group {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            }
+            @media (max-width: 1023px) {
+              .hero-avatar-group {
+                flex-direction: row;
+              }
+            }
+            @media (min-width: 1024px) {
+              .hero-avatar-group {
+                flex-direction: column;
+                align-items: center;
+              }
+            }
+            .hero-avatar-label {
+              font-size: 8px;
+              font-weight: 700;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              color: var(--muted);
+              white-space: nowrap;
+            }
+            @media (min-width: 1024px) {
+              .hero-avatar-label {
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
               }
             }
 
@@ -561,14 +514,13 @@ export function Hero() {
               width: 64px;
               height: 4px;
               border-radius: 999px;
-              background: linear-gradient(90deg, #ff5400, #111111, #ff5400);
+              background: linear-gradient(90deg, #ff5400, var(--foreground), #ff5400);
               box-shadow: 0 12px 28px rgba(255, 84, 0, 0.34);
               transform-origin: left center;
               animation: promise-pulse 2.8s ease-in-out infinite;
             }
             .hero-promise-text {
               margin: 0;
-              color: #050505;
               font-size: 32px;
               font-weight: 900;
               line-height: 1.08;
@@ -595,7 +547,7 @@ export function Hero() {
               }
               .hero-eyebrow {
                 margin: 12px auto 0 !important;
-                max-width: 230px !important;
+                max-width: 280px !important;
                 text-align: center;
               }
               .hero-typewriter {
@@ -629,7 +581,7 @@ export function Hero() {
                 gap: 12px !important;
               }
               .hero-action-link {
-                width: min(100%, 236px);
+                width: min(100%, 260px);
                 justify-content: center;
                 white-space: nowrap;
                 font-size: 11px !important;
@@ -638,7 +590,56 @@ export function Hero() {
               }
             }
 
-            /* Col 2 Responsive Styling */
+            .hero-stats-row {
+              display: flex;
+              align-items: center;
+              gap: 24px;
+              margin-top: 32px;
+              flex-wrap: wrap;
+            }
+            @media (max-width: 640px) {
+              .hero-stats-row {
+                justify-content: center;
+                gap: 16px;
+                margin-top: 24px;
+              }
+            }
+            .hero-stat-item {
+              display: flex;
+              align-items: center;
+              gap: 6px;
+            }
+            .hero-stat-value {
+              font-size: 18px;
+              font-weight: 900;
+              letter-spacing: -0.02em;
+            }
+            .hero-stat-label {
+              font-size: 11px;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 0.06em;
+            }
+            .hero-stat-divider {
+              width: 1px;
+              height: 24px;
+              margin: 0 8px;
+            }
+            @media (max-width: 640px) {
+              .hero-stat-divider {
+                display: none;
+              }
+              .hero-stats-row {
+                gap: 8px 16px;
+              }
+              .hero-stat-value {
+                font-size: 15px;
+              }
+              .hero-stat-label {
+                font-size: 9px;
+              }
+            }
+
             .hero-col2 {
               display: flex;
               flex-direction: column;
@@ -659,27 +660,6 @@ export function Hero() {
               }
             }
 
-
-
-            /* Info Card Responsive Styling */
-            .hero-infocard {
-              order: 1;
-              background: #fff;
-              border-radius: 24px;
-              padding: 16px;
-              display: flex;
-              flex-direction: column;
-              gap: 16px;
-              box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            }
-            @media (min-width: 480px) {
-              .hero-infocard {
-                flex-direction: row;
-                align-items: stretch;
-              }
-            }
-
-            /* Col 3 Responsive Styling */
             .hero-col3 {
               position: relative;
               width: 100%;
@@ -713,10 +693,64 @@ export function Hero() {
                 max-width: 380px;
               }
             }
+
+            .hero-tech-badge {
+              position: absolute;
+              padding: 6px 14px;
+              border-radius: 999px;
+              font-size: 11px;
+              font-weight: 700;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              background: var(--surface);
+              border: 1px solid var(--border);
+              color: var(--muted);
+              backdrop-filter: blur(8px);
+              pointer-events: none;
+              animation: tech-float 5s ease-in-out infinite;
+              z-index: 5;
+            }
+            .hero-tech-badge:nth-child(2) { animation-delay: -1s; }
+            .hero-tech-badge:nth-child(3) { animation-delay: -2s; }
+            .hero-tech-badge:nth-child(4) { animation-delay: -3s; }
+            .hero-tech-badge:nth-child(5) { animation-delay: -4s; }
+
+            .hero-scroll-indicator {
+              position: absolute;
+              bottom: 28px;
+              left: 50%;
+              transform: translateX(-50%);
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 6px;
+              opacity: 0.4;
+              transition: opacity 0.3s;
+            }
+            .hero-scroll-indicator:hover {
+              opacity: 0.8;
+            }
+            .hero-scroll-indicator span {
+              font-size: 10px;
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 0.2em;
+              color: var(--muted);
+            }
+            @media (max-width: 640px) {
+              .hero-scroll-indicator {
+                bottom: 16px;
+              }
+            }
           `}} />
 
-          {/* Absolute Agency Logo in center stage */}
+
           <RocketLauncher />
+
+          <a href="#trusted" className="hero-scroll-indicator">
+            <span>Scroll</span>
+            <ChevronDown size={18} className="animate-scroll-bounce" style={{ color: "var(--muted)" }} />
+          </a>
         </div>
       </div>
     </section>

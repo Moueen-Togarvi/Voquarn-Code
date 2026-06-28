@@ -21,9 +21,7 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
     try {
       const response = await fetch("/api/newsletter", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
 
@@ -50,12 +48,12 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
           name="email"
           type="email"
           placeholder="you@company.com"
-          className="w-full rounded-full border border-border bg-panel px-5 py-3 text-sm text-foreground outline-none transition placeholder:text-muted focus:border-[#f59e0b]"
+          className="w-full rounded-full border border-[var(--border)] bg-[var(--panel)] px-5 py-3 text-sm text-[var(--foreground)] outline-none transition placeholder:text-[var(--muted)] focus:border-[#ff5400]"
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="rounded-full bg-[#14b8a6] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#2dd4bf] disabled:cursor-not-allowed disabled:opacity-70"
+          className="rounded-full bg-[#ff5400] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#ff6b21] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "loading" ? "Joining..." : "Join"}
         </button>

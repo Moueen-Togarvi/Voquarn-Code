@@ -5,12 +5,18 @@ import { motion, useReducedMotion } from "framer-motion";
 
 const INTRO_DURATION = 2300;
 const REDUCED_MOTION_DURATION = 1400;
+const SESSION_KEY = "voquarn_intro_shown";
 
 export function IntroLoader() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    const alreadyShown = sessionStorage.getItem(SESSION_KEY);
+    if (alreadyShown) return;
+
+    setVisible(true);
+
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -18,6 +24,7 @@ export function IntroLoader() {
       () => {
         setVisible(false);
         document.body.style.overflow = previousOverflow;
+        sessionStorage.setItem(SESSION_KEY, "true");
       },
       reduceMotion ? REDUCED_MOTION_DURATION : INTRO_DURATION,
     );
@@ -28,9 +35,7 @@ export function IntroLoader() {
     };
   }, [reduceMotion]);
 
-  if (!visible) {
-    return null;
-  }
+  if (!visible) return null;
 
   const doorTransition = reduceMotion
     ? { duration: 0 }
@@ -39,7 +44,7 @@ export function IntroLoader() {
   return (
     <motion.div
       aria-hidden="true"
-      className="fixed inset-0 z-[9999] overflow-hidden bg-white"
+      className="fixed inset-0 z-[9999] overflow-hidden bg-[var(--background)]"
       initial={{ opacity: 1 }}
       animate={{ opacity: reduceMotion ? [1, 1, 0] : [1, 1, 1, 0] }}
       transition={{
@@ -50,12 +55,12 @@ export function IntroLoader() {
       exit={{ opacity: 0 }}
     >
       <motion.div
-        className="absolute inset-y-0 left-0 w-1/2 border-r border-neutral-100 bg-white"
+        className="absolute inset-y-0 left-0 w-1/2 border-r border-[var(--border)] bg-[var(--background)]"
         animate={{ x: reduceMotion ? "-100%" : "-101%" }}
         transition={doorTransition}
       />
       <motion.div
-        className="absolute inset-y-0 right-0 w-1/2 border-l border-neutral-100 bg-white"
+        className="absolute inset-y-0 right-0 w-1/2 border-l border-[var(--border)] bg-[var(--background)]"
         animate={{ x: reduceMotion ? "100%" : "101%" }}
         transition={doorTransition}
       />
@@ -84,7 +89,6 @@ export function IntroLoader() {
           ease: "easeOut",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/intro-logo.png"
           alt=""

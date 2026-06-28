@@ -37,6 +37,12 @@ export type TeamMember = {
   bio: string;
 };
 
+export type Stat = {
+  label: string;
+  value: number;
+  suffix?: string;
+};
+
 export type Testimonial = {
   name: string;
   company: string;
