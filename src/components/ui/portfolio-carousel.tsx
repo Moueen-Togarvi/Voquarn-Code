@@ -162,11 +162,7 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
                 <span className="absolute left-4 top-4 rounded-full border border-white/35 bg-white/90 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-black shadow-sm">
                   {item.category}
                 </span>
-                {item.outcome && (
-                  <span className="absolute left-4 bottom-12 rounded-full border border-[#ff5400]/40 bg-[#ff5400]/90 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-white">
-                    {item.outcome}
-                  </span>
-                )}
+
                 <div
                   className={`absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100 ${
                     revealedIndex === index ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"

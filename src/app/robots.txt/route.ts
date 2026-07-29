@@ -8,6 +8,7 @@ export function GET() {
     "User-agent: *",
     "Allow: /",
     "Disallow: /api/",
+    "Disallow: /admin",
     "Disallow: /sample",
     "Disallow: /sample-rocket",
     "Disallow: /sample-suites",

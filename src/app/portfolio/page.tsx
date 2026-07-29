@@ -14,6 +14,15 @@ export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/portfolio",
+  {
+    keywords: [
+      "web development portfolio Pakistan",
+      "app development case studies",
+      "SEO results portfolio",
+      "AI solutions projects",
+      "agency portfolio",
+    ],
+  },
 );
 
 export default function PortfolioPage() {

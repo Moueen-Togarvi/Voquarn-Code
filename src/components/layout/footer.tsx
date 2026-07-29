@@ -46,17 +46,17 @@ export function Footer() {
 
           <div className="lg:col-span-4 grid grid-cols-2 sm:grid-cols-3 gap-10 pt-2 lg:pl-4">
             <div className="flex flex-col space-y-4">
-              <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Product</h4>
-              <Link href="/services" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Features</Link>
+              <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Services</h4>
+              <Link href="/services" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Web Development</Link>
               <Link href="/pricing" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Pricing</Link>
               <Link href="/portfolio" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Portfolio</Link>
-              <Link href="/services" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Updates</Link>
+              <Link href="/services" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">All Services</Link>
             </div>
 
             <div className="flex flex-col space-y-4">
               <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Resources</h4>
-              <Link href="/about" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About</Link>
-              <Link href="/services" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Guides</Link>
+              <Link href="/about" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About Us</Link>
+              <Link href="/team" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Our Team</Link>
               <Link href="/blog" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Blog</Link>
               <Link href="/contact" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Support</Link>
             </div>

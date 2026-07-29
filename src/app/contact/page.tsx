@@ -13,6 +13,15 @@ export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/contact",
+  {
+    keywords: [
+      "hire web developer Pakistan",
+      "contact web development agency",
+      "SEO agency contact",
+      "AI automation agency Pakistan",
+      "get a website quote",
+    ],
+  },
 );
 
 export default function ContactPage() {

@@ -1,11 +1,13 @@
 import Link from "next/link";
+import Image from "next/image";
 import { NewsletterForm } from "@/components/ui/newsletter-form";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { blogJsonLd } from "@/lib/schema";
-import { blogPosts } from "@/lib/site-data";
+import { getBlogPosts } from "@/lib/data";
+import { ArrowRight, Clock, Rss } from "lucide-react";
 
 const pageTitle = "Voquarn Code Blog | SEO, Web Development & AI Automation";
 const pageDescription =
@@ -15,15 +17,27 @@ export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/blog",
+  {
+    keywords: [
+      "SEO blog Pakistan",
+      "web development articles",
+      "AI automation guides",
+      "digital growth blog",
+      "technical SEO tips",
+    ],
+  },
 );
 
-export default function BlogPage() {
-  const [featured, ...rest] = blogPosts;
+export default async function BlogPage() {
+  const posts = await getBlogPosts();
+  const [featured, ...rest] = posts;
 
   return (
     <>
       <PageStructuredData path="/blog" name={pageTitle} description={pageDescription} type="CollectionPage" />
-      <JsonLd data={blogJsonLd(blogPosts)} />
+      <JsonLd data={blogJsonLd(posts.map((p) => ({ ...p, publishedAt: p.publishedAt })))} />
+
+      {/* Header */}
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <SectionHeading
           eyebrow="Blog"
@@ -31,51 +45,128 @@ export default function BlogPage() {
           description="Short reads on digital growth, product thinking, and how to use modern tooling without losing operational clarity."
           headingLevel="h1"
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <article className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(20,184,166,0.14),rgba(245,158,11,0.12))] p-8">
-            <p className="text-sm uppercase tracking-[0.18em] text-[#99f6e4]">{featured.category}</p>
-            <h2 className="mt-4 font-display text-3xl font-semibold text-white">{featured.title}</h2>
-            <p className="mt-4 text-[rgba(233,238,242,0.76)]">{featured.excerpt}</p>
-            <Link
-              href={`/blog/${featured.slug}`}
-              className="mt-6 inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#07111a] hover:bg-[#f8fafc]"
-            >
-              Read article
-            </Link>
-          </article>
-          <div className="panel rounded-[2rem] p-8">
-            <h3 className="font-display text-2xl text-white">Join the newsletter</h3>
-            <p className="mt-4 text-[rgba(233,238,242,0.72)]">
-              Get new articles, SEO notes, and workflow ideas without inbox spam.
-            </p>
-            <div className="mt-6">
+
+        {/* Featured + Newsletter row */}
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
+          {/* Featured Article — Redesigned */}
+          {featured && (
+            <article className="group relative overflow-hidden rounded-[2rem] bg-[var(--foreground)] flex flex-col min-h-[320px]">
+              {/* Cover image with gradient overlay */}
+              <div className="absolute inset-0">
+                {featured.coverImage ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={featured.coverImage}
+                    alt={featured.title}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="h-full w-full bg-gradient-to-br from-[#ff5400]/20 to-[#ff5400]/5" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+              </div>
+
+              <div className="relative z-10 flex flex-1 flex-col justify-end p-8 sm:p-10">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff5400]/10 rounded-full blur-3xl pointer-events-none" />
+                <span className="relative z-10 inline-block w-fit text-[10px] font-black uppercase tracking-[0.22em] text-[#ff5400] bg-[#ff5400]/10 border border-[#ff5400]/20 rounded-full px-3 py-1 mb-4">
+                  {featured.category}
+                </span>
+                <h2 className="relative z-10 font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-white">
+                  {featured.title}
+                </h2>
+                <p className="relative z-10 mt-3 text-sm leading-relaxed text-white/70 max-w-lg">
+                  {featured.excerpt}
+                </p>
+                <div className="relative z-10 flex items-center justify-between mt-6 pt-6 border-t border-white/10">
+                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/50">
+                    <Clock className="w-3.5 h-3.5" />
+                    {featured.readTime}
+                  </div>
+                  <Link
+                    href={`/blog/${featured.slug}`}
+                    className="inline-flex items-center gap-2 rounded-full bg-[#ff5400] px-5 py-2.5 text-[11px] font-black uppercase tracking-widest text-white hover:bg-[#e04800] transition-all hover:gap-3"
+                  >
+                    Read article <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </article>
+          )}
+
+          {/* Newsletter */}
+          <div className="rounded-[2rem] border border-[var(--border)] bg-[var(--panel)] p-8 flex flex-col justify-between">
+            <div>
+              <div className="w-10 h-10 rounded-xl bg-[#ff5400]/10 flex items-center justify-center text-[#ff5400] mb-5">
+                <Rss className="w-5 h-5" />
+              </div>
+              <h3 className="font-display text-xl font-extrabold text-[var(--foreground)] tracking-tight">
+                Join the newsletter
+              </h3>
+              <p className="mt-3 text-sm text-[var(--muted)] leading-relaxed">
+                Get new articles, SEO notes, and workflow ideas without inbox spam.
+              </p>
+            </div>
+            <div className="mt-8">
               <NewsletterForm />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="page-section">
-        <div className="grid gap-6 xl:grid-cols-3">
-          {rest.map((post) => (
-            <article key={post.slug} className="panel rounded-[1.75rem] p-6">
-              <p className="text-sm uppercase tracking-[0.18em] text-[#99f6e4]">{post.category}</p>
-              <h2 className="mt-4 font-display text-2xl text-white">{post.title}</h2>
-              <p className="mt-4 text-[rgba(233,238,242,0.72)]">{post.excerpt}</p>
-              <p className="mt-5 text-sm text-[rgba(233,238,242,0.52)]">
-                {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}{" "}
-                • {post.readTime}
-              </p>
-              <Link href={`/blog/${post.slug}`} className="mt-6 inline-flex text-sm font-semibold text-[#fcd34d] hover:text-[#fde68a]">
-                Open post
-              </Link>
-            </article>
-          ))}
-        </div>
+      {/* Rest of posts — Redesigned Grid Cards */}
+      <section className="page-section pt-4 pb-24">
+        {rest.length > 0 && (
+          <>
+            <p className="text-[11px] font-black uppercase tracking-[0.25em] text-[var(--muted)] mb-8">
+              More Articles
+            </p>
+            <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              {rest.map((post) => (
+                <article
+                  key={post.slug}
+                  className="group rounded-[2rem] border border-[var(--border)] bg-[var(--panel)] overflow-hidden flex flex-col hover:border-[#ff5400]/40 hover:shadow-[0_12px_40px_rgba(255,84,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+                >
+                  {/* Image area */}
+                  {post.coverImage && (
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={post.coverImage}
+                        alt={post.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    </div>
+                  )}
+
+                  <div className="flex flex-1 flex-col p-6">
+                    <span className="inline-block w-fit text-[10px] font-black uppercase tracking-[0.2em] text-[#ff5400] bg-[#ff5400]/5 rounded-full px-2.5 py-1">
+                      {post.category}
+                    </span>
+                    <h2 className="mt-3 font-display text-lg font-extrabold text-[var(--foreground)] leading-snug tracking-tight group-hover:text-[#ff5400] transition-colors">
+                      {post.title}
+                    </h2>
+                    <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed flex-1 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    <div className="mt-4 flex items-center justify-between pt-4 border-t border-[var(--border)]">
+                      <span className="text-[10px] font-bold text-[var(--muted)] flex items-center gap-1.5">
+                        <Clock className="w-3 h-3" />
+                        {post.readTime}
+                      </span>
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-[#ff5400] hover:gap-2.5 transition-all duration-200"
+                      >
+                        Read <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </>
+        )}
       </section>
     </>
   );

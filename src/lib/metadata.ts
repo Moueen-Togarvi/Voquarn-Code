@@ -63,6 +63,14 @@ export function buildMetadata(
           images,
         };
 
+  const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+  const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
+  const verification: Metadata["verification"] = {};
+  if (googleVerification) verification.google = googleVerification;
+  if (bingVerification) {
+    verification.other = { "msvalidate.01": bingVerification };
+  }
+
   return {
     title,
     description,
@@ -75,6 +83,8 @@ export function buildMetadata(
     alternates: {
       canonical: path,
     },
+    ...(Object.keys(verification).length > 0 ? { verification } : {}),
+    category: "Technology",
     icons: {
       icon: [
         { url: site.logoPath, type: "image/png", sizes: "500x500" },

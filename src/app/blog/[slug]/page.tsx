@@ -3,19 +3,21 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { buildMetadata } from "@/lib/metadata";
 import { blogPostJsonLd } from "@/lib/schema";
-import { blogPosts, getBlogPost } from "@/lib/site-data";
+import { getBlogPost, getBlogPosts } from "@/lib/data";
+import { RichContent } from "@/components/admin/rich-content";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  const posts = await getBlogPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = await getBlogPost(slug);
 
   if (!post) {
     return buildMetadata("Article not found", "The requested article could not be found.", "/blog");
@@ -30,11 +32,14 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = await getBlogPost(slug);
 
   if (!post) {
     notFound();
   }
+
+  const hasRichContent =
+    post.content && Array.isArray(post.content) && post.content.length > 0;
 
   return (
     <section className="page-section">
@@ -50,10 +55,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ]}
       />
       <JsonLd data={blogPostJsonLd(post)} />
-      <article className="mx-auto max-w-4xl rounded-[2rem] border border-white/10 bg-[rgba(255,255,255,0.04)] p-8 sm:p-10">
-        <p className="text-sm uppercase tracking-[0.18em] text-[#99f6e4]">{post.category}</p>
-        <h1 className="mt-4 font-display text-4xl font-semibold text-white sm:text-5xl">{post.title}</h1>
-        <p className="mt-4 text-[rgba(233,238,242,0.54)]">
+
+      <article className="mx-auto max-w-4xl rounded-[2rem] border border-[var(--border)] bg-[var(--panel)] p-8 sm:p-10">
+        {/* Cover image */}
+        {post.coverImage && (
+          <div className="-mx-8 -mt-8 sm:-mx-10 sm:-mt-10 mb-8 overflow-hidden rounded-t-[2rem]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={post.coverImage}
+              alt={post.title}
+              className="w-full aspect-[16/8] object-cover"
+            />
+          </div>
+        )}
+
+        <p className="text-sm uppercase tracking-[0.18em] text-[#ff5400]">{post.category}</p>
+        <h1 className="mt-4 font-display text-4xl font-extrabold text-[var(--foreground)] sm:text-5xl leading-tight">
+          {post.title}
+        </h1>
+        <p className="mt-4 text-[var(--muted)]">
           {new Date(post.publishedAt).toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
@@ -62,10 +82,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           • {post.readTime}
         </p>
 
-        <div className="mt-10 space-y-6 text-lg leading-8 text-[rgba(233,238,242,0.8)]">
-          {post.sections.map((section) => (
-            <p key={section}>{section}</p>
-          ))}
+        <div className="mt-8">
+          {hasRichContent ? (
+            <RichContent content={post.content!} />
+          ) : post.sections && post.sections.length > 0 ? (
+            <div className="space-y-6 text-lg leading-8 text-[var(--foreground)]">
+              {post.sections.map((section, i) => (
+                <p key={i}>{section}</p>
+              ))}
+            </div>
+          ) : (
+            <p className="text-lg text-[var(--muted)]">{post.excerpt}</p>
+          )}
         </div>
       </article>
     </section>

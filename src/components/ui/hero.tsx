@@ -195,7 +195,7 @@ export function Hero() {
             >
               <img
                 src="/image-removebg-preview-2.png"
-                alt="Logo"
+                alt="Voquarn Code brand emblem"
                 style={{
                   width: "100%",
                   height: "100%",
@@ -211,24 +211,6 @@ export function Hero() {
             VOQUARN CODE
           </p>
 
-          <div className="hero-avatar-group">
-            <div
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                border: "2px solid #ff5400",
-                overflow: "hidden",
-              }}
-            >
-              <img
-                src="/hero-avatar.jpeg"
-                alt="Gul Khan — CEO"
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 38%" }}
-              />
-            </div>
-            <span className="hero-avatar-label">Gul Khan — CEO</span>
-          </div>
         </motion.div>
 
         <motion.div
@@ -469,36 +451,6 @@ export function Hero() {
               }
             }
 
-            .hero-avatar-group {
-              display: flex;
-              align-items: center;
-              gap: 8px;
-            }
-            @media (max-width: 1023px) {
-              .hero-avatar-group {
-                flex-direction: row;
-              }
-            }
-            @media (min-width: 1024px) {
-              .hero-avatar-group {
-                flex-direction: column;
-                align-items: center;
-              }
-            }
-            .hero-avatar-label {
-              font-size: 8px;
-              font-weight: 700;
-              letter-spacing: 0.08em;
-              text-transform: uppercase;
-              color: var(--muted);
-              white-space: nowrap;
-            }
-            @media (min-width: 1024px) {
-              .hero-avatar-label {
-                writing-mode: vertical-rl;
-                transform: rotate(180deg);
-              }
-            }
 
             .hero-promise {
               display: flex;

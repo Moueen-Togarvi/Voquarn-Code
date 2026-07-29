@@ -1,5 +1,5 @@
-import type { BlogPost, Service } from "@/lib/site-data";
-import { site } from "@/lib/site-data";
+import type { BlogPost, FaqItem, Service } from "@/lib/site-data";
+import { site, testimonials } from "@/lib/site-data";
 import { getSiteUrl } from "@/lib/site-url";
 
 export type JsonLdData =
@@ -24,11 +24,21 @@ function websiteId() {
 }
 
 export function siteIdentityJsonLd(): JsonLdData {
+  const ratingCount = testimonials.length;
+  const ratingValue =
+    ratingCount > 0
+      ? Number(
+          (
+            testimonials.reduce((sum, t) => sum + t.stars, 0) / ratingCount
+          ).toFixed(1),
+        )
+      : 5;
+
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": ["Organization", "ProfessionalService"],
         "@id": organizationId(),
         name: site.name,
         url: absoluteUrl("/"),
@@ -37,13 +47,46 @@ export function siteIdentityJsonLd(): JsonLdData {
         description: site.description,
         email: site.email,
         telephone: site.phone,
+        priceRange: "$$",
+        currenciesAccepted: "PKR, USD",
+        paymentAccepted: "Cash, Credit Card, Bank Transfer",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Bahawalnagar",
           addressRegion: "Punjab",
           addressCountry: "PK",
         },
-        areaServed: ["Pakistan", "United States", "United Kingdom", "United Arab Emirates"],
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 29.9955,
+          longitude: 73.2713,
+        },
+        areaServed: [
+          "Pakistan",
+          "United States",
+          "United Kingdom",
+          "United Arab Emirates",
+        ],
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+            ],
+            opens: "09:00",
+            closes: "18:00",
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: "Saturday",
+            opens: "10:00",
+            closes: "14:00",
+          },
+        ],
         contactPoint: [
           {
             "@type": "ContactPoint",
@@ -53,6 +96,24 @@ export function siteIdentityJsonLd(): JsonLdData {
             availableLanguage: ["English", "Urdu"],
           },
         ],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue,
+          reviewCount: ratingCount,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        review: testimonials.map((t) => ({
+          "@type": "Review",
+          author: { "@type": "Person", name: t.name },
+          reviewBody: t.review,
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: t.stars,
+            bestRating: 5,
+            worstRating: 1,
+          },
+        })),
         sameAs: Object.values(site.socials),
         knowsAbout: [
           "Web development",
@@ -71,6 +132,11 @@ export function siteIdentityJsonLd(): JsonLdData {
         description: site.description,
         publisher: { "@id": organizationId() },
         inLanguage: "en",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${absoluteUrl("/blog")}?q={search_term_string}`,
+          "query-input": "required name=search_term_string",
+        },
       },
     ],
   };
@@ -205,5 +271,20 @@ export function personJsonLd({
     description,
     url: absoluteUrl(path),
     worksFor: { "@id": organizationId() },
+  };
+}
+
+export function faqJsonLd(items: FaqItem[]): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
   };
 }

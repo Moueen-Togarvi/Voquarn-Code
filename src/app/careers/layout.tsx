@@ -10,6 +10,15 @@ export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/careers",
+  {
+    keywords: [
+      "web development jobs Pakistan",
+      "software engineer jobs Pakistan",
+      "design jobs",
+      "SEO jobs Pakistan",
+      "digital agency careers",
+    ],
+  },
 );
 
 type CareersLayoutProps = {

@@ -4,7 +4,6 @@ import React from "react";
 
 const CLIENT_LOGOS = [
   { src: "/client-logo.png", name: "Abayiza" },
-  { src: "/client-logo-2.jpeg", name: "Baba Farid Public School" },
   { src: "/client-logo-3.png", name: "Al Farooq" },
   { src: "/client-logo-4.png", name: "Partner" },
 ];
@@ -45,7 +44,7 @@ export function TrustedClients() {
               <img
                 src={logo.src}
                 alt={logo.name}
-                className="object-contain max-h-12 md:max-h-16 w-auto rounded-lg grayscale opacity-40 mix-blend-multiply transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                className="object-contain max-h-12 md:max-h-16 w-auto rounded-lg transition-all duration-500 group-hover:scale-105"
               />
               <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-wider text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                 {logo.name}

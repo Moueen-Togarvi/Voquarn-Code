@@ -12,8 +12,10 @@ import { HowWeWork } from "@/components/ui/how-we-work";
 import { FaqSection } from "@/components/ui/faq-section";
 import { BlogPreview } from "@/components/ui/blog-preview";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqJsonLd } from "@/lib/schema";
 import { buildMetadata } from "@/lib/metadata";
-import { portfolioItems, testimonials, stats } from "@/lib/site-data";
+import { faqItems, portfolioItems, testimonials, stats } from "@/lib/site-data";
 
 const pageTitle = "Voquarn Code | Web Development, SEO & AI Automation Agency";
 const pageDescription =
@@ -42,6 +44,7 @@ export default function HomePage() {
         description={pageDescription}
         breadcrumbs={[{ name: "Home", path: "/" }]}
       />
+      <JsonLd data={faqJsonLd(faqItems)} />
 
       <Hero />
 
@@ -105,7 +108,7 @@ export default function HomePage() {
       </GSAPReveal>
 
       <GSAPReveal direction="up" delay={0.05}>
-        <FaqSection />
+        <FaqSection items={faqItems} />
       </GSAPReveal>
 
       <section className="page-section pt-8">

@@ -15,6 +15,15 @@ export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/ceo",
+  {
+    keywords: [
+      "Moueen Togarvi",
+      "Voquarn Code founder",
+      "software engineer CEO Pakistan",
+      "AI automation expert",
+      "web development leader",
+    ],
+  },
 );
 
 export default function CeoPage() {

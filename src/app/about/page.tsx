@@ -14,6 +14,15 @@ export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/about",
+  {
+    keywords: [
+      "about Voquarn Code",
+      "web development studio Pakistan",
+      "digital agency team",
+      "AI automation studio",
+      "website design company Pakistan",
+    ],
+  },
 );
 
 const avatarUrls = [

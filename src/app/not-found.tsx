@@ -1,5 +1,11 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowRight, Home } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Page Not Found | Voquarn Code",
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

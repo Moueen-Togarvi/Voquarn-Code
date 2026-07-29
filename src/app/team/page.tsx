@@ -14,6 +14,15 @@ export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/team",
+  {
+    keywords: [
+      "Voquarn Code team",
+      "web development team Pakistan",
+      "design and engineering team",
+      "SEO specialists Pakistan",
+      "digital agency experts",
+    ],
+  },
 );
 
 export default function TeamPage() {
