@@ -1,7 +1,9 @@
 import { PortfolioGrid } from "@/components/ui/portfolio-grid";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
+import { JsonLd } from "@/components/seo/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
+import { itemListJsonLd } from "@/lib/schema";
 import { getPortfolioItems } from "@/lib/data";
 import Image from "next/image";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -31,6 +33,16 @@ export default async function PortfolioPage() {
   return (
     <>
       <PageStructuredData path="/portfolio" name={pageTitle} description={pageDescription} type="CollectionPage" />
+      <JsonLd
+        data={itemListJsonLd(
+          portfolioItems.map((item) => ({
+            name: item.title,
+            path: `/portfolio#${item.slug}`,
+            description: item.summary,
+          })),
+          "Voquarn Code case studies",
+        )}
+      />
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <SectionHeading
           eyebrow="Portfolio"

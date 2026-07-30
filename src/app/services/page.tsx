@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
+import { JsonLd } from "@/components/seo/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServicesToggle } from "@/components/ui/services-toggle";
 import { buildMetadata } from "@/lib/metadata";
+import { itemListJsonLd, serviceJsonLd } from "@/lib/schema";
 import { getServices, getSiteSettings } from "@/lib/data";
 import { GSAPReveal, GSAPStagger } from "@/components/ui/gsap-reveal";
 
@@ -38,6 +40,21 @@ export default async function ServicesPage() {
   return (
     <>
       <PageStructuredData path="/services" name={pageTitle} description={pageDescription} type="CollectionPage" />
+      <JsonLd
+        data={[
+          itemListJsonLd(
+            services.map((service) => ({
+              name: service.title,
+              path: `/services/${service.id}`,
+              description: service.description,
+            })),
+            "Voquarn Code services",
+          ),
+          // Each service carries its own price range, so answer engines can
+          // quote real numbers straight from this page.
+          ...services.map(serviceJsonLd),
+        ]}
+      />
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full pointer-events-none opacity-[0.06] z-0 blur-[120px]"
           style={{ background: "radial-gradient(circle, #ff5400 0%, transparent 70%)" }}

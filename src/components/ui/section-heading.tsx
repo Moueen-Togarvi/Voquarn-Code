@@ -25,7 +25,12 @@ export function SectionHeading({
         {title}
       </Heading>
 
-      <p className="mt-3 text-sm sm:text-base font-medium text-[var(--muted)] leading-relaxed max-w-2xl">
+      {/* data-speakable marks this as the page's canonical summary for voice
+          assistants and answer engines — see speakable in webPageJsonLd. */}
+      <p
+        {...(headingLevel === "h1" ? { "data-speakable": "" } : {})}
+        className="mt-3 text-sm sm:text-base font-medium text-[var(--muted)] leading-relaxed max-w-2xl"
+      >
         {description}
       </p>
     </div>

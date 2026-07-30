@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { site } from "@/lib/site-data";
 import { getSiteUrl } from "@/lib/site-url";
 
+// Brand + head terms that belong on every page. Page-specific long-tail and
+// question-style keywords are passed per page via `options.keywords`, so no
+// single page ends up diluted across every term the agency targets.
 const defaultKeywords = [
   "Voquarn Code",
   "web development agency",
@@ -11,6 +14,14 @@ const defaultKeywords = [
   "Next.js development",
   "digital agency Pakistan",
   "website design Pakistan",
+  "software house Pakistan",
+  "web development Bahawalnagar",
+  "web design company Punjab",
+  "hire Next.js developers",
+  "custom software development agency",
+  "AI chatbot development",
+  "SaaS development company",
+  "ecommerce website development Pakistan",
 ];
 
 type BuildMetadataOptions = {

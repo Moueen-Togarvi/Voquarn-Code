@@ -1,7 +1,9 @@
 import { getBlogPosts, getServices } from "@/lib/data";
 import { getSiteUrl } from "@/lib/site-url";
 
-export const dynamic = "force-static";
+// Regenerated hourly so newly published services and posts get indexed
+// without waiting for a redeploy.
+export const revalidate = 3600;
 
 const staticRoutes = [
   "",
