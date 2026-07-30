@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 import { buildMetadata } from "@/lib/metadata";
 import { siteIdentityJsonLd } from "@/lib/schema";
+import { getSiteSettings, getTestimonials } from "@/lib/data";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { HangingAstronaut } from "@/components/ui/hanging-astronaut";
@@ -15,12 +16,16 @@ export const metadata: Metadata = buildMetadata(
   "Voquarn Code builds conversion-focused websites, apps, SEO systems, and AI automation workflows for businesses in Pakistan and worldwide.",
 );
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const structuredData = siteIdentityJsonLd();
+  const [settings, testimonials] = await Promise.all([
+    getSiteSettings(),
+    getTestimonials(),
+  ]);
+  const structuredData = siteIdentityJsonLd(settings, testimonials);
 
   return (
     <html lang="en" className="h-full scroll-smooth" suppressHydrationWarning>
@@ -37,8 +42,8 @@ export default function RootLayout({
             <div className="pointer-events-none absolute inset-0 -z-50 bg-[radial-gradient(circle_at_top_left,var(--gradient-1),transparent_28%),radial-gradient(circle_at_top_right,var(--gradient-2),transparent_25%),var(--gradient-main)]" />
             <Navbar />
             <main className="flex-1">{children}</main>
-            <Footer />
-            <WhatsAppFloat />
+            <Footer settings={settings} />
+            <WhatsAppFloat whatsapp={settings.whatsapp} />
             <HangingAstronaut />
             <CustomCursor />
           </div>

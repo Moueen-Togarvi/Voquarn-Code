@@ -3,6 +3,7 @@ import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServicesToggle } from "@/components/ui/services-toggle";
 import { buildMetadata } from "@/lib/metadata";
+import { getServices, getSiteSettings } from "@/lib/data";
 import { GSAPReveal, GSAPStagger } from "@/components/ui/gsap-reveal";
 
 const process = [
@@ -31,7 +32,9 @@ export const metadata = buildMetadata(
   },
 );
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const [services, settings] = await Promise.all([getServices(), getSiteSettings()]);
+
   return (
     <>
       <PageStructuredData path="/services" name={pageTitle} description={pageDescription} type="CollectionPage" />
@@ -50,7 +53,7 @@ export default function ServicesPage() {
           </GSAPReveal>
           <GSAPReveal direction="up" delay={0.15}>
             <div className="mt-10">
-              <ServicesToggle />
+              <ServicesToggle services={services} whatsapp={settings.whatsapp} />
             </div>
           </GSAPReveal>
         </div>

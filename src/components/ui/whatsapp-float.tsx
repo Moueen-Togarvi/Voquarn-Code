@@ -1,9 +1,7 @@
-import { site } from "@/lib/site-data";
-
-export function WhatsAppFloat() {
+export function WhatsAppFloat({ whatsapp }: { whatsapp: string }) {
   return (
     <a
-      href={`https://wa.me/${site.whatsapp}`}
+      href={`https://wa.me/${whatsapp}`}
       target="_blank"
       rel="noreferrer"
       aria-label="Contact us on WhatsApp"

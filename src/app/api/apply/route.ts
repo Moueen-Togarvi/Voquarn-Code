@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { site } from "@/lib/site-data";
+import { getSiteSettings } from "@/lib/data";
 
 type ApplyPayload = {
   name: string;
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    const toEmail = process.env.CONTACT_TO_EMAIL || site.email;
+    const toEmail = process.env.CONTACT_TO_EMAIL || (await getSiteSettings()).email;
 
     if (!resendApiKey) {
       return NextResponse.json(

@@ -2,7 +2,7 @@ import { ContactForm } from "@/components/ui/contact-form";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
-import { site } from "@/lib/site-data";
+import { getSiteSettings } from "@/lib/data";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 
 const pageTitle = "Contact Voquarn Code | Web Development & SEO Agency";
@@ -24,7 +24,9 @@ export const metadata = buildMetadata(
   },
 );
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const site = await getSiteSettings();
+
   return (
     <>
       <PageStructuredData path="/contact" name={pageTitle} description={pageDescription} type="ContactPage" />
@@ -49,7 +51,7 @@ export default function ContactPage() {
                 <div>
                   <h2 className="font-display text-3xl font-extrabold uppercase tracking-tight text-black">Direct contact</h2>
                   <div className="mt-6 space-y-4 text-sm font-medium text-neutral-600">
-                    <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-black/20" />Bahawalnagar, Punjab, Pakistan</p>
+                    <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-black/20" />{site.location}</p>
                     <a href={`mailto:${site.email}`} className="flex items-center gap-2 hover:text-black transition-colors">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ff5400]/60" />{site.email}
                     </a>

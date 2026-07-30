@@ -3,7 +3,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { personJsonLd } from "@/lib/schema";
-import { site } from "@/lib/site-data";
+import { getSiteSettings } from "@/lib/data";
 import { Globe, Sparkles, MessageCircle, ArrowRight, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
 import Link from "next/link";
 
@@ -26,7 +26,9 @@ export const metadata = buildMetadata(
   },
 );
 
-export default function CeoPage() {
+export default async function CeoPage() {
+  const site = await getSiteSettings();
+
   return (
     <>
       <PageStructuredData path="/ceo" name={pageTitle} description={pageDescription} type="ProfilePage" />

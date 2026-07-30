@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/lib/site-data";
+import { getSiteSettings } from "@/lib/data";
 
-export default function manifest(): MetadataRoute.Manifest {
+export default async function manifest(): Promise<MetadataRoute.Manifest> {
+  const site = await getSiteSettings();
+
   return {
     name: site.name,
     short_name: "Voquarn Code",

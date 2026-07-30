@@ -15,7 +15,8 @@ import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { JsonLd } from "@/components/seo/json-ld";
 import { faqJsonLd } from "@/lib/schema";
 import { buildMetadata } from "@/lib/metadata";
-import { faqItems, portfolioItems, testimonials, stats } from "@/lib/site-data";
+import { stats } from "@/lib/site-data";
+import { getServices, getPortfolioItems, getTestimonials, getFaqItems, getSiteSettings } from "@/lib/data";
 
 const pageTitle = "Voquarn Code | Web Development, SEO & AI Automation Agency";
 const pageDescription =
@@ -35,7 +36,15 @@ export const metadata = buildMetadata(
   },
 );
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [services, portfolioItems, testimonials, faqItems, settings] = await Promise.all([
+    getServices(),
+    getPortfolioItems(),
+    getTestimonials(),
+    getFaqItems(),
+    getSiteSettings(),
+  ]);
+
   return (
     <div className="relative bg-[var(--background)] text-[var(--foreground)]">
       <PageStructuredData
@@ -76,7 +85,7 @@ export default function HomePage() {
             description="From high-end websites to custom SaaS products, we provide end-to-end engineering and design."
           />
           <div className="mt-10">
-            <ServicesToggle limit={4} buttonVariant="orange" />
+            <ServicesToggle services={services} whatsapp={settings.whatsapp} limit={4} buttonVariant="orange" />
           </div>
 
           <div className="mt-12 flex justify-center">
@@ -133,7 +142,7 @@ export default function HomePage() {
                 Start Project
               </Link>
               <a
-                href="https://wa.me/923241940988"
+                href={`https://wa.me/${settings.whatsapp}`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex rounded-full border-2 border-[var(--foreground)] bg-[var(--panel)] px-10 py-5 text-sm font-black uppercase tracking-widest text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all"

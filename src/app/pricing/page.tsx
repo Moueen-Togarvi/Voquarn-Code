@@ -2,6 +2,7 @@ import { PricingToggle } from "@/components/ui/pricing-toggle";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
+import { getServices, getSiteSettings } from "@/lib/data";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 
 const pageTitle = "Website, App, SEO & AI Automation Pricing | Voquarn Code";
@@ -22,7 +23,9 @@ export const metadata = buildMetadata(
   },
 );
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const [services, settings] = await Promise.all([getServices(), getSiteSettings()]);
+
   return (
     <>
       <PageStructuredData path="/pricing" name={pageTitle} description={pageDescription} type="CollectionPage" />
@@ -37,7 +40,7 @@ export default function PricingPage() {
         </GSAPReveal>
         <GSAPReveal direction="up" delay={0.15}>
           <div className="mt-10">
-            <PricingToggle />
+            <PricingToggle services={services} whatsapp={settings.whatsapp} />
           </div>
         </GSAPReveal>
         <GSAPReveal direction="fade" delay={0.2}>

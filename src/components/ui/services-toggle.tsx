@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { site, services } from "@/lib/site-data";
+import type { Service } from "@/lib/site-data";
 import { Globe, Bot, Code2, Smartphone, Layers, ArrowRight, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -26,91 +26,55 @@ const getPricingIcon = (categoryName: string, id: string) => {
 };
 
 type ServicesToggleProps = {
+  services: Service[];
+  whatsapp: string;
   limit?: number;
   buttonVariant?: "dark" | "orange";
 };
 
-export function ServicesToggle({ limit, buttonVariant = "dark" }: ServicesToggleProps) {
-  const [activeTab, setActiveTab] = useState<"websites" | "apps" | "ai">("websites");
+export function ServicesToggle({ services, whatsapp, limit, buttonVariant = "dark" }: ServicesToggleProps) {
+  const [activeServiceId, setActiveServiceId] = useState<string>(services[0]?.id ?? "");
+  const activeService = services.find((s) => s.id === activeServiceId) ?? services[0];
 
   const displayItems = useMemo((): DisplayItem[] => {
-    if (activeTab === "websites") {
-      const webDev = services.find((s) => s.id === "web-dev");
-      return (webDev?.subServices || []).map((sub) => ({
-        id: sub.id,
-        name: sub.name,
-        description: sub.description,
-        features: sub.features,
-        categoryName: "Web Development",
-        parentServiceId: "web-dev",
-        pricePkr: sub.pricePkr,
-        priceUsd: sub.priceUsd,
-      }));
-    }
-
-    if (activeTab === "apps") {
-      const appDev = services.find((s) => s.id === "app-dev");
-      const saasApps = services.find((s) => s.id === "saas-apps");
-      const appSubs = appDev?.subServices || [];
-      const saasSubs = saasApps?.subServices || [];
-      return [...appSubs, ...saasSubs].map((sub) => ({
-        id: sub.id,
-        name: sub.name,
-        description: sub.description,
-        features: sub.features,
-        categoryName: "Apps & SaaS",
-        parentServiceId: "app-dev",
-        pricePkr: sub.pricePkr,
-        priceUsd: sub.priceUsd,
-      }));
-    }
-
-    if (activeTab === "ai") {
-      const aiWorkflows = services.find((s) => s.id === "ai-workflows");
-      return (aiWorkflows?.subServices || []).map((sub) => ({
-        id: sub.id,
-        name: sub.name,
-        description: sub.description,
-        features: sub.features,
-        categoryName: "AI & Automation",
-        parentServiceId: "ai-workflows",
-        pricePkr: sub.pricePkr,
-        priceUsd: sub.priceUsd,
-      }));
-    }
-
-    return [];
-  }, [activeTab]);
-
-  const categories = [
-    { id: "websites" as const, label: "Websites" },
-    { id: "apps" as const, label: "Apps" },
-    { id: "ai" as const, label: "AI & Automation" },
-  ];
+    if (!activeService) return [];
+    return (activeService.subServices || []).map((sub) => ({
+      id: sub.id,
+      name: sub.name,
+      description: sub.description,
+      features: sub.features,
+      categoryName: activeService.title,
+      parentServiceId: activeService.id,
+      pricePkr: sub.pricePkr,
+      priceUsd: sub.priceUsd,
+    }));
+  }, [activeService]);
 
   const itemsToDisplay = limit ? displayItems.slice(0, limit) : displayItems;
+
+  if (services.length === 0) return null;
 
   return (
     <div className="space-y-12 w-full">
       <div className="flex flex-col gap-6 items-center justify-center max-w-5xl mx-auto px-4">
-        <div className="flex flex-nowrap justify-center rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1.5 shadow-[0_10px_30px_rgba(255,84,0,0.08)] max-w-full relative">
-          {categories.map((cat) => (
+        <div className="flex flex-wrap justify-center rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1.5 shadow-[0_10px_30px_rgba(255,84,0,0.08)] max-w-full relative">
+          {services.map((service) => (
             <button
-              key={cat.id}
+              key={service.id}
               type="button"
-              onClick={() => setActiveTab(cat.id)}
+              onClick={() => setActiveServiceId(service.id)}
               className={`relative rounded-full px-3 py-2 text-[11px] font-medium uppercase tracking-wide transition-colors duration-300 z-10 whitespace-nowrap sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-wider ${
-                activeTab === cat.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                activeServiceId === service.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
-              {activeTab === cat.id && (
+              {activeServiceId === service.id && (
                 <motion.div
                   layoutId="activeServicesTab"
                   className="absolute inset-0 bg-[#ff5400] rounded-full -z-10 shadow-[0_8px_18px_rgba(255,84,0,0.28)]"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              {cat.label}
+              {service.title}
             </button>
           ))}
         </div>
@@ -165,7 +129,7 @@ export function ServicesToggle({ limit, buttonVariant = "dark" }: ServicesToggle
                     Learn More <ArrowRight size={14} className="ml-1" />
                   </Link>
                   <a
-                    href={`https://wa.me/${site.whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(item.categoryName + " - " + item.name)}%20package.`}
+                    href={`https://wa.me/${whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(item.categoryName + " - " + item.name)}%20package.`}
                     target="_blank"
                     rel="noreferrer"
                     className={`h-11 w-11 py-2.5 rounded-full text-white font-medium text-[13px] flex items-center justify-center transition-all duration-300 active:scale-[0.98] cursor-pointer flex-shrink-0 ${

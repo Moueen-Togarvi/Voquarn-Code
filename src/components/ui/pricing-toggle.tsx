@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { site, services } from "@/lib/site-data";
+import type { Service } from "@/lib/site-data";
 import { MessageCircle, Globe, Bot, Code2, Smartphone, Layers } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -25,9 +25,31 @@ const getPricingIcon = (categoryName: string, id: string) => {
   return <Layers className="w-5 h-5 text-white" />;
 };
 
-export function PricingToggle({ limit }: { limit?: number }) {
+const featuredSubServiceIds = new Set(["ecommerce-web", "saas-web", "saas-app", "full-saas", "ai-agents"]);
+
+const getSubServiceBadge = (id: string) => {
+  switch (id) {
+    case "ecommerce-web": return { text: "High ROI", color: "bg-[#ff5400] text-white" };
+    case "saas-web": return { text: "Best for SaaS", color: "bg-neutral-900 text-white" };
+    case "ai-web":
+    case "ai-app": return { text: "AI-Powered", color: "bg-teal-600 text-white" };
+    case "saas-app": return { text: "Most Popular", color: "bg-[#ff5400] text-white" };
+    case "full-saas": return { text: "Scale Ready", color: "bg-indigo-600 text-white" };
+    case "ai-agents": return { text: "Advanced", color: "bg-purple-600 text-white" };
+    default: return null;
+  }
+};
+
+type PricingToggleProps = {
+  services: Service[];
+  whatsapp: string;
+  limit?: number;
+};
+
+export function PricingToggle({ services, whatsapp, limit }: PricingToggleProps) {
   const [currency, setCurrency] = useState<"PKR" | "USD">("PKR");
-  const [activeTab, setActiveTab] = useState<"websites" | "apps" | "ai">("websites");
+  const [activeServiceId, setActiveServiceId] = useState<string>(services[0]?.id ?? "");
+  const activeService = services.find((s) => s.id === activeServiceId) ?? services[0];
 
   const formatter = useMemo(
     () =>
@@ -39,100 +61,46 @@ export function PricingToggle({ limit }: { limit?: number }) {
     [currency],
   );
 
-  const getSubServiceBadge = (id: string) => {
-    switch (id) {
-      case "ecommerce-web": return { text: "High ROI", color: "bg-[#ff5400] text-white" };
-      case "saas-web": return { text: "Best for SaaS", color: "bg-neutral-900 text-white" };
-      case "ai-web":
-      case "ai-app": return { text: "AI-Powered", color: "bg-teal-600 text-white" };
-      case "saas-app": return { text: "Most Popular", color: "bg-[#ff5400] text-white" };
-      case "full-saas": return { text: "Scale Ready", color: "bg-indigo-600 text-white" };
-      case "ai-agents": return { text: "Advanced", color: "bg-purple-600 text-white" };
-      default: return null;
-    }
-  };
-
   const displayItems = useMemo((): DisplayItem[] => {
-    if (activeTab === "websites") {
-      const webDev = services.find((s) => s.id === "web-dev");
-      return (webDev?.subServices || []).map((sub) => ({
-        id: sub.id,
-        name: sub.name,
-        description: sub.description,
-        pricePkr: sub.pricePkr,
-        priceUsd: sub.priceUsd,
-        features: sub.features,
-        featured: sub.id === "ecommerce-web" || sub.id === "saas-web",
-        badge: getSubServiceBadge(sub.id),
-        categoryName: "Web Development",
-      }));
-    }
-
-    if (activeTab === "apps") {
-      const appDev = services.find((s) => s.id === "app-dev");
-      const saasApps = services.find((s) => s.id === "saas-apps");
-      const appSubs = appDev?.subServices || [];
-      const saasSubs = saasApps?.subServices || [];
-      return [...appSubs, ...saasSubs].map((sub) => ({
-        id: sub.id,
-        name: sub.name,
-        description: sub.description,
-        pricePkr: sub.pricePkr,
-        priceUsd: sub.priceUsd,
-        features: sub.features,
-        featured: sub.id === "saas-app" || sub.id === "full-saas",
-        badge: getSubServiceBadge(sub.id),
-        categoryName: "Apps & SaaS",
-      }));
-    }
-
-    if (activeTab === "ai") {
-      const aiWorkflows = services.find((s) => s.id === "ai-workflows");
-      return (aiWorkflows?.subServices || []).map((sub) => ({
-        id: sub.id,
-        name: sub.name,
-        description: sub.description,
-        pricePkr: sub.pricePkr,
-        priceUsd: sub.priceUsd,
-        features: sub.features,
-        featured: sub.id === "ai-agents",
-        badge: getSubServiceBadge(sub.id),
-        categoryName: "AI & Automation",
-      }));
-    }
-
-    return [];
-  }, [activeTab]);
-
-  const categories = [
-    { id: "websites" as const, label: "Websites" },
-    { id: "apps" as const, label: "Apps" },
-    { id: "ai" as const, label: "AI & Automation" },
-  ];
+    if (!activeService) return [];
+    return (activeService.subServices || []).map((sub) => ({
+      id: sub.id,
+      name: sub.name,
+      description: sub.description,
+      pricePkr: sub.pricePkr,
+      priceUsd: sub.priceUsd,
+      features: sub.features,
+      featured: featuredSubServiceIds.has(sub.id),
+      badge: getSubServiceBadge(sub.id),
+      categoryName: activeService.title,
+    }));
+  }, [activeService]);
 
   const itemsToDisplay = limit ? displayItems.slice(0, limit) : displayItems;
+
+  if (services.length === 0) return null;
 
   return (
     <div className="space-y-12">
       <div className="flex flex-col gap-6 items-center justify-between lg:flex-row max-w-5xl mx-auto px-4">
-        <div className="flex flex-nowrap justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] p-1.5 shadow-sm max-w-full relative">
-          {categories.map((cat) => (
+        <div className="flex flex-wrap justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] p-1.5 shadow-sm max-w-full relative">
+          {services.map((service) => (
             <button
-              key={cat.id}
+              key={service.id}
               type="button"
-              onClick={() => setActiveTab(cat.id)}
+              onClick={() => setActiveServiceId(service.id)}
               className={`relative rounded-full px-3 py-2 text-[11px] font-medium uppercase tracking-wide transition-colors duration-300 z-10 whitespace-nowrap sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-wider ${
-                activeTab === cat.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                activeServiceId === service.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
-              {activeTab === cat.id && (
+              {activeServiceId === service.id && (
                 <motion.div
                   layoutId="activeCategoryTab"
                   className="absolute inset-0 bg-[var(--foreground)] rounded-full -z-10"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              {cat.label}
+              {service.title}
             </button>
           ))}
         </div>
@@ -228,7 +196,7 @@ export function PricingToggle({ limit }: { limit?: number }) {
                   <div className="my-4 border-t border-[var(--border)]" />
 
                   <a
-                    href={`https://wa.me/${site.whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(item.categoryName + " - " + item.name)}%20package.`}
+                    href={`https://wa.me/${whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(item.categoryName + " - " + item.name)}%20package.`}
                     target="_blank"
                     rel="noreferrer"
                     className={`w-full h-12 py-3 rounded-full text-white font-medium text-[13px] flex items-center justify-center transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide ${

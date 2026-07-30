@@ -1,4 +1,4 @@
-import { blogPosts, services } from "@/lib/site-data";
+import { getBlogPosts, getServices } from "@/lib/data";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-static";
@@ -38,8 +38,9 @@ function entry(url: string, lastModified: Date) {
   ].join("\n");
 }
 
-export function GET() {
+export async function GET() {
   const siteUrl = getSiteUrl();
+  const [services, blogPosts] = await Promise.all([getServices(), getBlogPosts()]);
 
   const staticEntries = staticRoutes.map((path) =>
     entry(new URL(path || "/", siteUrl).toString(), SITE_LAST_MODIFIED),

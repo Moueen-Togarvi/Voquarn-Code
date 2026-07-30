@@ -2,7 +2,7 @@ import { PortfolioGrid } from "@/components/ui/portfolio-grid";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
-import { portfolioItems } from "@/lib/site-data";
+import { getPortfolioItems } from "@/lib/data";
 import Image from "next/image";
 import { ArrowRight, ExternalLink } from "lucide-react";
 
@@ -25,7 +25,9 @@ export const metadata = buildMetadata(
   },
 );
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  const portfolioItems = await getPortfolioItems();
+
   return (
     <>
       <PageStructuredData path="/portfolio" name={pageTitle} description={pageDescription} type="CollectionPage" />

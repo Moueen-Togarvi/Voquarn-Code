@@ -6,7 +6,8 @@ import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { serviceJsonLd } from "@/lib/schema";
-import { services, getService, portfolioItems, site } from "@/lib/site-data";
+import { getServices, getService, getPortfolioItems, getSiteSettings } from "@/lib/data";
+import type { PortfolioItem } from "@/lib/site-data";
 
 type ServiceDetailPageProps = {
   params: Promise<{ id: string }>;
@@ -30,12 +31,13 @@ const getPricingIcon = (categoryName: string, id: string) => {
 };
 
 export async function generateStaticParams() {
+  const services = await getServices();
   return services.map((service) => ({ id: service.id }));
 }
 
 export async function generateMetadata({ params }: ServiceDetailPageProps) {
   const { id } = await params;
-  const service = getService(id);
+  const service = await getService(id);
 
   if (!service) {
     return buildMetadata("Service not found", "The requested service could not be found.", "/services");
@@ -55,31 +57,42 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
   );
 }
 
+// Match portfolio items to a service by comparing keywords in the service title
+// against portfolio categories, since services are admin-managed and don't carry
+// a fixed foreign key to portfolio categories.
+function getRelatedWork(serviceTitle: string, portfolioItems: PortfolioItem[]) {
+  const title = serviceTitle.toLowerCase();
+  const keywordToCategory: [string, PortfolioItem["category"]][] = [
+    ["ai", "AI Solutions"],
+    ["seo", "SEO"],
+    ["design", "Graphic Design"],
+    ["app", "App Development"],
+    ["web", "Web Development"],
+  ];
+
+  for (const [keyword, category] of keywordToCategory) {
+    if (title.includes(keyword)) {
+      const matches = portfolioItems.filter((item) => item.category === category);
+      if (matches.length > 0) return matches;
+    }
+  }
+
+  return portfolioItems.slice(0, 2);
+}
+
 export default async function ServiceDetailPage({ params }: ServiceDetailPageProps) {
   const { id } = await params;
-  const service = getService(id);
+  const [service, portfolioItems, site] = await Promise.all([
+    getService(id),
+    getPortfolioItems(),
+    getSiteSettings(),
+  ]);
 
   if (!service) {
     notFound();
   }
 
-  // Helper to match portfolio items to service
-  const getRelatedWork = (serviceId: string) => {
-    switch (serviceId) {
-      case "web-dev":
-        return portfolioItems.filter((item) => item.category === "Web Development");
-      case "app-dev":
-        return portfolioItems.filter((item) => item.category === "App Development");
-      case "saas-apps":
-        return portfolioItems.filter((item) => item.category === "Web Development" || item.category === "AI Solutions").slice(0, 2);
-      case "ai-workflows":
-        return portfolioItems.filter((item) => item.category === "AI Solutions");
-      default:
-        return portfolioItems.slice(0, 2);
-    }
-  };
-
-  const relatedWork = getRelatedWork(service.id);
+  const relatedWork = getRelatedWork(service.title, portfolioItems);
 
   return (
     <div className="relative bg-white text-black min-h-screen pt-40 lg:pt-48">

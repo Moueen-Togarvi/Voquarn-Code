@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { site } from "@/lib/site-data";
+import type { SiteSettings } from "@/lib/data";
 import { Mail, Phone, MapPin, ArrowUp } from "lucide-react";
 import { NewsletterForm } from "@/components/ui/newsletter-form";
 
-export function Footer() {
+export function Footer({ settings }: { settings: SiteSettings }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -74,21 +74,21 @@ export function Footer() {
             <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Direct Contact</h4>
 
             <div className="space-y-4">
-              <a href="mailto:hello@voquarn.com" className="flex items-center gap-3 group w-fit">
+              <a href={`mailto:${settings.email}`} className="flex items-center gap-3 group w-fit">
                 <div className="w-9 h-9 rounded-xl bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--foreground)] transition-colors duration-300">
                   <Mail className="w-4 h-4 text-[var(--muted)] group-hover:text-[var(--background)] transition-colors duration-300" />
                 </div>
                 <span className="text-[13px] font-bold text-[var(--muted)] group-hover:text-[var(--foreground)] transition-colors duration-300">
-                  hello@voquarn.com
+                  {settings.email}
                 </span>
               </a>
 
-              <a href="tel:+923241940988" className="flex items-center gap-3 group w-fit">
+              <a href={`tel:${settings.phone.replace(/\s+/g, "")}`} className="flex items-center gap-3 group w-fit">
                 <div className="w-9 h-9 rounded-xl bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--foreground)] transition-colors duration-300">
                   <Phone className="w-4 h-4 text-[var(--muted)] group-hover:text-[var(--background)] transition-colors duration-300" />
                 </div>
                 <span className="text-[13px] font-bold text-[var(--muted)] group-hover:text-[var(--foreground)] transition-colors duration-300">
-                  +92 324 1940988
+                  {settings.phone}
                 </span>
               </a>
 
@@ -97,7 +97,7 @@ export function Footer() {
                   <MapPin className="w-4 h-4 text-[var(--muted)]" />
                 </div>
                 <span className="text-[13px] font-bold text-[var(--muted)] max-w-[200px] leading-snug">
-                  Bahawalnagar, Punjab, Pakistan
+                  {settings.location}
                 </span>
               </div>
             </div>
@@ -109,7 +109,7 @@ export function Footer() {
 
             <div className="flex items-center gap-3 pt-2">
               <a
-                href={site.socials.linkedin}
+                href={settings.socials.linkedin}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-xl bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center hover:bg-[#0077B5] hover:border-[#0077B5] transition-all duration-300 group"
@@ -121,7 +121,7 @@ export function Footer() {
               </a>
 
               <a
-                href={site.socials.instagram}
+                href={settings.socials.instagram}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-xl bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center hover:bg-gradient-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:border-transparent transition-all duration-300 group"
@@ -133,7 +133,7 @@ export function Footer() {
               </a>
 
               <a
-                href={site.socials.facebook}
+                href={settings.socials.facebook}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-xl bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 group"
@@ -145,7 +145,7 @@ export function Footer() {
               </a>
 
               <a
-                href={`https://wa.me/${site.whatsapp}`}
+                href={`https://wa.me/${settings.whatsapp}`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-xl bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center hover:bg-[#25D366] hover:border-[#25D366] transition-all duration-300 group"

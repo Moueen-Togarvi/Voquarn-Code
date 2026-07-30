@@ -1,5 +1,5 @@
-import type { BlogPost, FaqItem, Service } from "@/lib/site-data";
-import { site, testimonials } from "@/lib/site-data";
+import type { BlogPost, FaqItem, Service, Testimonial } from "@/lib/site-data";
+import type { SiteSettings } from "@/lib/data";
 import { getSiteUrl } from "@/lib/site-url";
 
 export type JsonLdData =
@@ -23,7 +23,7 @@ function websiteId() {
   return absoluteUrl("/#website");
 }
 
-export function siteIdentityJsonLd(): JsonLdData {
+export function siteIdentityJsonLd(site: SiteSettings, testimonials: Testimonial[]): JsonLdData {
   const ratingCount = testimonials.length;
   const ratingValue =
     ratingCount > 0

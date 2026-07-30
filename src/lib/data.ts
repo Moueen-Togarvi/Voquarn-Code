@@ -1,7 +1,7 @@
 import { db } from "@/db";
-import { blogPosts, services, subServices, portfolioItems, teamMembers, testimonials, faqItems, pricingPlans } from "@/db/schema";
+import { blogPosts, services, subServices, portfolioItems, teamMembers, testimonials, faqItems, pricingPlans, siteSettings } from "@/db/schema";
 import { eq, desc, asc } from "drizzle-orm";
-import { blogPosts as staticBlogPosts, services as staticServices, portfolioItems as staticPortfolio, team as staticTeam, testimonials as staticTestimonials, faqItems as staticFaq, pricingPlans as staticPricing } from "@/lib/site-data";
+import { blogPosts as staticBlogPosts, services as staticServices, portfolioItems as staticPortfolio, team as staticTeam, testimonials as staticTestimonials, faqItems as staticFaq, pricingPlans as staticPricing, site as staticSite } from "@/lib/site-data";
 import type { BlogPost, Service, PortfolioItem, TeamMember, Testimonial, FaqItem, PricingPlan } from "@/lib/site-data";
 
 // ── Blog Posts ──
@@ -74,6 +74,32 @@ export async function getServices(): Promise<Service[]> {
     // fallback
   }
   return staticServices;
+}
+
+export async function getService(slug: string): Promise<Service | undefined> {
+  try {
+    const [s] = await db.select().from(services).where(eq(services.slug, slug)).limit(1);
+    if (s) {
+      const subs = await db.select().from(subServices).where(eq(subServices.serviceId, s.id)).orderBy(asc(subServices.order));
+      return {
+        id: s.slug,
+        title: s.title,
+        description: s.description,
+        deliverables: (s.deliverables as string[]) || [],
+        subServices: subs.map((ss) => ({
+          id: ss.slug || ss.name.toLowerCase().replace(/\s+/g, "-"),
+          name: ss.name,
+          description: ss.description || "",
+          pricePkr: ss.pricePkr ?? 0,
+          priceUsd: ss.priceUsd ?? 0,
+          features: (ss.features as string[]) || [],
+        })),
+      };
+    }
+  } catch {
+    // fallback
+  }
+  return staticServices.find((service) => service.id === slug);
 }
 
 // ── Portfolio ──
@@ -167,4 +193,35 @@ export async function getPricingPlans(): Promise<PricingPlan[]> {
     // fallback
   }
   return staticPricing;
+}
+
+// ── Site Settings ──
+export type SiteSettings = typeof staticSite;
+
+export async function getSiteSettings(): Promise<SiteSettings> {
+  const settings: SiteSettings = {
+    ...staticSite,
+    socials: { ...staticSite.socials },
+  };
+
+  try {
+    const rows = await db.select().from(siteSettings);
+    for (const row of rows) {
+      switch (row.key) {
+        case "site_name": settings.name = row.value; break;
+        case "site_description": settings.description = row.value; break;
+        case "site_email": settings.email = row.value; break;
+        case "site_phone": settings.phone = row.value; break;
+        case "site_whatsapp": settings.whatsapp = row.value; break;
+        case "site_location": settings.location = row.value; break;
+        case "social_linkedin": settings.socials.linkedin = row.value; break;
+        case "social_instagram": settings.socials.instagram = row.value; break;
+        case "social_facebook": settings.socials.facebook = row.value; break;
+      }
+    }
+  } catch {
+    // fallback to static defaults
+  }
+
+  return settings;
 }
