@@ -214,6 +214,19 @@ export const newsletterSubscribers = pgTable("newsletter_subscribers", {
   subscribedAt: timestamp("subscribed_at").defaultNow().notNull(),
 });
 
+export const jobOpenings = pgTable("job_openings", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  department: text("department").notNull(),
+  location: text("location").notNull(),
+  type: text("type").notNull(),
+  salary: text("salary"),
+  description: text("description").notNull(),
+  tags: jsonb("tags").$type<string[]>(),
+  order: integer("order").default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Relations for db.query support
 export const servicesRelations = {
   blogPosts,

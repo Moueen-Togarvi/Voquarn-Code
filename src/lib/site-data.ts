@@ -76,6 +76,17 @@ export type FaqItem = {
   answer: string;
 };
 
+export type JobOpening = {
+  id: number;
+  title: string;
+  department: string;
+  location: string;
+  type: string;
+  salary: string;
+  description: string;
+  tags: string[];
+};
+
 export const site = {
   name: "Voquarn Code",
   location: "Bahawalnagar, Punjab, Pakistan",

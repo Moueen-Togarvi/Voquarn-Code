@@ -1,14 +1,50 @@
 import { db } from "@/db";
-import { blogPosts, services, subServices, portfolioItems, teamMembers, testimonials, faqItems, pricingPlans, siteSettings } from "@/db/schema";
+import {
+  blogPosts,
+  services,
+  subServices,
+  portfolioItems,
+  teamMembers,
+  testimonials,
+  faqItems,
+  pricingPlans,
+  siteSettings,
+  jobOpenings,
+} from "@/db/schema";
 import { eq, desc, asc } from "drizzle-orm";
-import { blogPosts as staticBlogPosts, services as staticServices, portfolioItems as staticPortfolio, team as staticTeam, testimonials as staticTestimonials, faqItems as staticFaq, pricingPlans as staticPricing, site as staticSite } from "@/lib/site-data";
-import type { BlogPost, Service, PortfolioItem, TeamMember, Testimonial, FaqItem, PricingPlan } from "@/lib/site-data";
+import { site as staticSite } from "@/lib/site-data";
+import type { BlogPost, Service, PortfolioItem, TeamMember, Testimonial, FaqItem, PricingPlan, JobOpening } from "@/lib/site-data";
+
+// The database is the single source of truth for all content below: if a row
+// isn't in the admin panel, it doesn't render on the site. There is no
+// fallback to static demo content — an empty table means an empty section.
+//
+// The Neon HTTP driver occasionally has a transient "fetch failed" blip
+// (observed during this project's own builds), which is a retry-worthy
+// network hiccup, not a real outage. withRetry re-runs the query a couple of
+// times before giving up, so one flaky request doesn't blank out a page's
+// static generation. Only after retries are exhausted do we log and return
+// an empty result — still no fake data, just resilience against noise.
+async function withRetry<T>(fn: () => Promise<T>, retries = 2, delayMs = 300): Promise<T> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      lastError = error;
+      if (attempt < retries) {
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
+      }
+    }
+  }
+  throw lastError;
+}
 
 // ── Blog Posts ──
 export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
-    const posts = await db.select().from(blogPosts).where(eq(blogPosts.published, true)).orderBy(desc(blogPosts.publishedAt));
-    if (posts.length > 0) {
+    return await withRetry(async () => {
+      const posts = await db.select().from(blogPosts).where(eq(blogPosts.published, true)).orderBy(desc(blogPosts.publishedAt));
       return posts.map((p) => ({
         slug: p.slug,
         title: p.title,
@@ -20,17 +56,18 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
         content: p.content,
         coverImage: p.coverImage,
       }));
-    }
+    });
   } catch (error) {
-    console.error("getBlogPosts DB error, using fallback:", error);
+    console.error("getBlogPosts DB error:", error);
+    return [];
   }
-  return staticBlogPosts;
 }
 
 export async function getBlogPost(slug: string) {
   try {
-    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
-    if (post) {
+    return await withRetry(async () => {
+      const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
+      if (!post) return undefined;
       return {
         slug: post.slug,
         title: post.title,
@@ -42,19 +79,20 @@ export async function getBlogPost(slug: string) {
         content: post.content,
         coverImage: post.coverImage,
       };
-    }
-  } catch {
-    // fallback
+    });
+  } catch (error) {
+    console.error("getBlogPost DB error:", error);
+    return undefined;
   }
-  return staticBlogPosts.find((p) => p.slug === slug);
 }
 
 // ── Services ──
 export async function getServices(): Promise<Service[]> {
   try {
-    const allServices = await db.select().from(services).orderBy(desc(services.createdAt));
-    if (allServices.length > 0) {
-      const allSubs = await db.select().from(subServices);
+    return await withRetry(async () => {
+      const allServices = await db.select().from(services).orderBy(desc(services.createdAt));
+      if (allServices.length === 0) return [];
+      const allSubs = await db.select().from(subServices).orderBy(asc(subServices.order));
       return allServices.map((s) => ({
         id: s.slug,
         title: s.title,
@@ -69,17 +107,18 @@ export async function getServices(): Promise<Service[]> {
           features: (ss.features as string[]) || [],
         })),
       }));
-    }
-  } catch {
-    // fallback
+    });
+  } catch (error) {
+    console.error("getServices DB error:", error);
+    return [];
   }
-  return staticServices;
 }
 
 export async function getService(slug: string): Promise<Service | undefined> {
   try {
-    const [s] = await db.select().from(services).where(eq(services.slug, slug)).limit(1);
-    if (s) {
+    return await withRetry(async () => {
+      const [s] = await db.select().from(services).where(eq(services.slug, slug)).limit(1);
+      if (!s) return undefined;
       const subs = await db.select().from(subServices).where(eq(subServices.serviceId, s.id)).orderBy(asc(subServices.order));
       return {
         id: s.slug,
@@ -95,18 +134,18 @@ export async function getService(slug: string): Promise<Service | undefined> {
           features: (ss.features as string[]) || [],
         })),
       };
-    }
-  } catch {
-    // fallback
+    });
+  } catch (error) {
+    console.error("getService DB error:", error);
+    return undefined;
   }
-  return staticServices.find((service) => service.id === slug);
 }
 
 // ── Portfolio ──
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
   try {
-    const items = await db.select().from(portfolioItems).orderBy(desc(portfolioItems.createdAt));
-    if (items.length > 0) {
+    return await withRetry(async () => {
+      const items = await db.select().from(portfolioItems).orderBy(desc(portfolioItems.createdAt));
       return items.map((p) => ({
         slug: p.slug,
         title: p.title,
@@ -117,69 +156,69 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
         liveUrl: p.liveUrl || "",
         imageUrl: p.imageUrl || "",
       }));
-    }
-  } catch {
-    // fallback
+    });
+  } catch (error) {
+    console.error("getPortfolioItems DB error:", error);
+    return [];
   }
-  return staticPortfolio;
 }
 
 // ── Team ──
 export async function getTeamMembers(): Promise<TeamMember[]> {
   try {
-    const members = await db.select().from(teamMembers).orderBy(asc(teamMembers.order));
-    if (members.length > 0) {
+    return await withRetry(async () => {
+      const members = await db.select().from(teamMembers).orderBy(asc(teamMembers.order));
       return members.map((m) => ({
         name: m.name,
         role: m.role,
         bio: m.bio || "",
       }));
-    }
-  } catch {
-    // fallback
+    });
+  } catch (error) {
+    console.error("getTeamMembers DB error:", error);
+    return [];
   }
-  return staticTeam;
 }
 
 // ── Testimonials ──
 export async function getTestimonials(): Promise<Testimonial[]> {
   try {
-    const items = await db.select().from(testimonials).orderBy(asc(testimonials.order));
-    if (items.length > 0) {
+    return await withRetry(async () => {
+      const items = await db.select().from(testimonials).orderBy(asc(testimonials.order));
       return items.map((t) => ({
         name: t.name,
         company: t.company || "",
         review: t.review,
         stars: t.stars ?? 5,
       }));
-    }
-  } catch {
-    // fallback
+    });
+  } catch (error) {
+    console.error("getTestimonials DB error:", error);
+    return [];
   }
-  return staticTestimonials;
 }
 
 // ── FAQ ──
 export async function getFaqItems(): Promise<FaqItem[]> {
   try {
-    const items = await db.select().from(faqItems).orderBy(asc(faqItems.order));
-    if (items.length > 0) {
+    return await withRetry(async () => {
+      const items = await db.select().from(faqItems).orderBy(asc(faqItems.order));
       return items.map((f) => ({
         question: f.question,
         answer: f.answer,
       }));
-    }
-  } catch {
-    // fallback
+    });
+  } catch (error) {
+    console.error("getFaqItems DB error:", error);
+    return [];
   }
-  return staticFaq;
 }
 
 // ── Pricing ──
 export async function getPricingPlans(): Promise<PricingPlan[]> {
   try {
-    const items = await db.select().from(pricingPlans).orderBy(asc(pricingPlans.order));
-    if (items.length > 0) {
+    return await withRetry(async () => {
+      const items = await db.select().from(pricingPlans).orderBy(asc(pricingPlans.order));
       return items.map((p) => ({
         name: p.name,
         description: p.description || "",
@@ -188,14 +227,40 @@ export async function getPricingPlans(): Promise<PricingPlan[]> {
         featured: p.featured ?? false,
         features: (p.features as string[]) || [],
       }));
-    }
-  } catch {
-    // fallback
+    });
+  } catch (error) {
+    console.error("getPricingPlans DB error:", error);
+    return [];
   }
-  return staticPricing;
+}
+
+// ── Careers ──
+export async function getJobOpenings(): Promise<JobOpening[]> {
+  try {
+    return await withRetry(async () => {
+      const items = await db.select().from(jobOpenings).orderBy(asc(jobOpenings.order));
+      return items.map((j) => ({
+        id: j.id,
+        title: j.title,
+        department: j.department,
+        location: j.location,
+        type: j.type,
+        salary: j.salary || "",
+        description: j.description,
+        tags: (j.tags as string[]) || [],
+      }));
+    });
+  } catch (error) {
+    console.error("getJobOpenings DB error:", error);
+    return [];
+  }
 }
 
 // ── Site Settings ──
+// Settings are per-field overrides on top of static defaults (not a content
+// list), so an unset field falling back to its default is correct here —
+// unlike the content getters above, this isn't "fake data standing in for an
+// empty admin table."
 export type SiteSettings = typeof staticSite;
 
 export async function getSiteSettings(): Promise<SiteSettings> {
@@ -205,7 +270,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   };
 
   try {
-    const rows = await db.select().from(siteSettings);
+    const rows = await withRetry(() => db.select().from(siteSettings));
     for (const row of rows) {
       switch (row.key) {
         case "site_name": settings.name = row.value; break;
@@ -219,8 +284,8 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         case "social_facebook": settings.socials.facebook = row.value; break;
       }
     }
-  } catch {
-    // fallback to static defaults
+  } catch (error) {
+    console.error("getSiteSettings DB error:", error);
   }
 
   return settings;

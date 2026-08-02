@@ -9,6 +9,7 @@ import {
   faqItems,
   pricingPlans,
   newsletterSubscribers,
+  jobOpenings,
 } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { count } from "drizzle-orm";
@@ -28,6 +29,7 @@ export async function GET() {
     const [faqCount] = await db.select({ value: count() }).from(faqItems);
     const [pricingCount] = await db.select({ value: count() }).from(pricingPlans);
     const [newsletterCount] = await db.select({ value: count() }).from(newsletterSubscribers);
+    const [careersCount] = await db.select({ value: count() }).from(jobOpenings);
 
     return NextResponse.json({
       blog: Number(blogCount?.value || 0),
@@ -38,6 +40,7 @@ export async function GET() {
       faq: Number(faqCount?.value || 0),
       pricing: Number(pricingCount?.value || 0),
       newsletter: Number(newsletterCount?.value || 0),
+      careers: Number(careersCount?.value || 0),
     });
   } catch (error) {
     console.error("Dashboard count error:", error);
@@ -51,6 +54,7 @@ export async function GET() {
         faq: 0,
         pricing: 0,
         newsletter: 0,
+        careers: 0,
       },
       { status: 200 },
     );
