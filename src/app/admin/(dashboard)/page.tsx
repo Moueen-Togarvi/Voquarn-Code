@@ -9,6 +9,7 @@ import {
   MessageSquare,
   HelpCircle,
   DollarSign,
+  Mail,
   Plus,
   ArrowRight,
 } from "lucide-react";
@@ -23,6 +24,7 @@ type CountData = {
   testimonials: number;
   faq: number;
   pricing: number;
+  newsletter: number;
 };
 
 const statCards = [
@@ -33,6 +35,7 @@ const statCards = [
   { key: "testimonials" as const, label: "Testimonials", icon: MessageSquare, color: "text-pink-600 bg-pink-50", href: "/admin/testimonials" },
   { key: "faq" as const, label: "FAQ Items", icon: HelpCircle, color: "text-teal-600 bg-teal-50", href: "/admin/faq" },
   { key: "pricing" as const, label: "Pricing Plans", icon: DollarSign, color: "text-amber-600 bg-amber-50", href: "/admin/pricing" },
+  { key: "newsletter" as const, label: "Newsletter Subscribers", icon: Mail, color: "text-indigo-600 bg-indigo-50", href: "/admin/newsletter" },
 ];
 
 export default function AdminDashboard() {
@@ -44,6 +47,7 @@ export default function AdminDashboard() {
     testimonials: 0,
     faq: 0,
     pricing: 0,
+    newsletter: 0,
   });
 
   useEffect(() => {
