@@ -19,13 +19,14 @@ import type { BlogPost, Service, PortfolioItem, TeamMember, Testimonial, FaqItem
 // isn't in the admin panel, it doesn't render on the site. There is no
 // fallback to static demo content — an empty table means an empty section.
 //
-// The Neon HTTP driver occasionally has a transient "fetch failed" blip
-// (observed during this project's own builds), which is a retry-worthy
-// network hiccup, not a real outage. withRetry re-runs the query a couple of
-// times before giving up, so one flaky request doesn't blank out a page's
-// static generation. Only after retries are exhausted do we log and return
-// an empty result — still no fake data, just resilience against noise.
-async function withRetry<T>(fn: () => Promise<T>, retries = 2, delayMs = 300): Promise<T> {
+// Neon's free-tier compute suspends after a few minutes of inactivity, so the
+// first query after idle has to wait for it to wake up — this has measured
+// 4+ seconds on this project, not a quick blip. withRetry backs off
+// exponentially (500ms, 1s, 2s) so a cold start survives instead of failing
+// three times in under a second. Only after retries are exhausted do we log
+// and return an empty result — still no fake data, just resilience against
+// cold starts and genuine network noise.
+async function withRetry<T>(fn: () => Promise<T>, retries = 3, baseDelayMs = 500): Promise<T> {
   let lastError: unknown;
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
@@ -33,7 +34,7 @@ async function withRetry<T>(fn: () => Promise<T>, retries = 2, delayMs = 300): P
     } catch (error) {
       lastError = error;
       if (attempt < retries) {
-        await new Promise((resolve) => setTimeout(resolve, delayMs));
+        await new Promise((resolve) => setTimeout(resolve, baseDelayMs * 2 ** attempt));
       }
     }
   }
