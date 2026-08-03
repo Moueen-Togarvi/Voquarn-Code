@@ -8,7 +8,6 @@ import { ServicesToggle } from "@/components/ui/services-toggle";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { ReviewsCollage } from "@/components/ui/reviews-collage";
 import { StatsSection } from "@/components/ui/stats-section";
-import { HowWeWork } from "@/components/ui/how-we-work";
 import { FaqSection } from "@/components/ui/faq-section";
 import { BlogPreview } from "@/components/ui/blog-preview";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
@@ -99,10 +98,6 @@ export default async function HomePage() {
         </div>
         </GSAPReveal>
       </section>
-
-      <GSAPReveal direction="up" delay={0.05}>
-        <HowWeWork />
-      </GSAPReveal>
 
       <GSAPReveal direction="up" delay={0.05}>
         <HomeLazySections items={portfolioItems} />

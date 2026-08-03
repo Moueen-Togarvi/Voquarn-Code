@@ -19,17 +19,18 @@ type DisplayItem = {
 };
 
 const getPricingIcon = (categoryName: string, id: string) => {
-  if (categoryName.toLowerCase().includes("web")) return <Globe className="w-6 h-6 text-white" />;
-  if (categoryName.toLowerCase().includes("ai")) return <Bot className="w-6 h-6 text-white" />;
-  if (id.toLowerCase().includes("saas")) return <Code2 className="w-6 h-6 text-white" />;
-  if (categoryName.toLowerCase().includes("app")) return <Smartphone className="w-6 h-6 text-white" />;
-  return <Layers className="w-6 h-6 text-white" />;
+  if (categoryName.toLowerCase().includes("web")) return <Globe className="w-6 h-6" />;
+  if (categoryName.toLowerCase().includes("ai")) return <Bot className="w-6 h-6" />;
+  if (id.toLowerCase().includes("saas")) return <Code2 className="w-6 h-6" />;
+  if (categoryName.toLowerCase().includes("app")) return <Smartphone className="w-6 h-6" />;
+  return <Layers className="w-6 h-6" />;
 };
 
 // Matches the "Best for SaaS" / "Most Popular" style badges already used in
 // pricing-toggle.tsx, so the same packages get called out as the best choice
 // wherever they're shown.
 const featuredSubServiceIds = new Set(["ecommerce-web", "saas-web", "saas-app", "full-saas", "ai-agents"]);
+const serviceOrder = ["web-dev", "app-dev", "saas-apps", "ai-workflows"];
 
 type ServicesToggleProps = {
   services: Service[];
@@ -38,8 +39,17 @@ type ServicesToggleProps = {
 };
 
 export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProps) {
-  const [activeServiceId, setActiveServiceId] = useState<string>(services[0]?.id ?? "");
-  const activeService = services.find((s) => s.id === activeServiceId) ?? services[0];
+  const orderedServices = useMemo(
+    () =>
+      [...services].sort((a, b) => {
+        const aIndex = serviceOrder.indexOf(a.id);
+        const bIndex = serviceOrder.indexOf(b.id);
+        return (aIndex === -1 ? 99 : aIndex) - (bIndex === -1 ? 99 : bIndex);
+      }),
+    [services],
+  );
+  const [activeServiceId, setActiveServiceId] = useState<string>(orderedServices[0]?.id ?? "");
+  const activeService = orderedServices.find((s) => s.id === activeServiceId) ?? orderedServices[0];
 
   const displayItems = useMemo((): DisplayItem[] => {
     if (!activeService) return [];
@@ -58,28 +68,31 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
 
   const itemsToDisplay = limit ? displayItems.slice(0, limit) : displayItems;
 
-  if (services.length === 0) return null;
+  if (orderedServices.length === 0) return null;
 
   return (
     <div className="space-y-12 w-full">
-      <div className="flex flex-col gap-6 items-center justify-center max-w-5xl mx-auto px-4">
-        <div className="flex flex-wrap justify-center rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1.5 shadow-[0_10px_30px_rgba(255,84,0,0.08)] max-w-full relative">
-          {services.map((service) => (
+      <div className="flex flex-col gap-6 items-center justify-center max-w-6xl mx-auto px-4">
+        <div className="flex w-full flex-wrap justify-center gap-1 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1.5 shadow-[0_14px_40px_rgba(255,84,0,0.10)] max-w-full relative">
+          {orderedServices.map((service) => (
             <button
               key={service.id}
               type="button"
               onClick={() => setActiveServiceId(service.id)}
-              className={`relative rounded-full px-3 py-2 text-[11px] font-medium uppercase tracking-wide transition-colors duration-300 z-10 whitespace-nowrap sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-wider ${
+              className={`relative inline-flex min-h-11 flex-1 basis-[calc(50%-0.25rem)] items-center justify-center gap-2 rounded-full px-3 py-2 text-[10px] font-semibold uppercase tracking-wide transition-colors duration-300 z-10 whitespace-nowrap sm:basis-auto sm:px-5 sm:py-2.5 sm:text-[11px] md:text-xs md:tracking-wider ${
                 activeServiceId === service.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
               {activeServiceId === service.id && (
                 <motion.div
                   layoutId="activeServicesTab"
-                  className="absolute inset-0 bg-[#ff5400] rounded-full -z-10 shadow-[0_8px_18px_rgba(255,84,0,0.28)]"
+                  className="absolute inset-0 bg-[#ff5400] rounded-full -z-10 shadow-[0_12px_24px_rgba(255,84,0,0.34)]"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
+              <span className="[&_svg]:h-4 [&_svg]:w-4">
+                {getPricingIcon(service.title, service.id)}
+              </span>
               {service.title}
             </button>
           ))}
@@ -90,19 +103,22 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
         {itemsToDisplay.map((item) => (
           <article
             key={item.id}
-            className="group relative flex flex-col justify-between rounded-[32px] border border-[var(--border)] bg-[var(--panel)] p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)] h-full min-h-[380px]"
+            className="group relative flex flex-col justify-between rounded-[24px] border border-[#ff5400]/14 bg-[var(--panel)] p-6 sm:p-7 pt-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)] h-full min-h-[380px]"
           >
             {item.featured && (
-              <div className="absolute -right-11 top-6 w-40 rotate-45 bg-[#ff5400] py-1.5 shadow-[0_4px_12px_rgba(255,84,0,0.35)] z-20">
+              <div className="absolute left-1/2 top-0 z-20 w-40 -translate-x-1/2 overflow-hidden rounded-b-[18px] bg-gradient-to-r from-[#ff5400] to-[#ff8150] py-1.5 shadow-[0_10px_22px_rgba(255,84,0,0.30)]">
                 <span className="flex items-center justify-center gap-1 text-[9px] font-black uppercase tracking-wider text-white">
                   <Star className="w-2.5 h-2.5 fill-white" /> Best Choice
                 </span>
               </div>
             )}
+            {item.featured && (
+              <div className="pointer-events-none absolute left-1/2 top-0 h-16 w-56 -translate-x-1/2 bg-[#ff5400]/10 blur-2xl" />
+            )}
 
             <div className="relative z-10 flex flex-col h-full justify-between">
-              <div className="flex items-start justify-between w-full">
-                <div className="w-[54px] h-[54px] rounded-[16px] bg-[#ff5400] flex items-center justify-center shadow-[0_4px_12px_rgba(255,84,0,0.25)] transition-transform duration-300 group-hover:scale-105">
+              <div className="flex items-start justify-between w-full pt-2">
+                <div className="w-[54px] h-[54px] rounded-[16px] bg-[#ff5400] text-white flex items-center justify-center shadow-[0_4px_12px_rgba(255,84,0,0.25)] transition-transform duration-300 group-hover:scale-105">
                   {getPricingIcon(item.categoryName, item.id)}
                 </div>
                 <div className="text-right">

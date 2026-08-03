@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 
 const CLIENT_LOGOS = [
+  { src: "/cents-marquee.png", name: "Cents" },
   { src: "/client-logo.png", name: "Abayiza" },
   { src: "/client-logo-3.png", name: "Al Farooq" },
   { src: "/client-logo-4.png", name: "Partner" },
