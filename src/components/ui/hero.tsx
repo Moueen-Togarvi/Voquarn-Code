@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
 
 const SERVICES = ["Websites", "Brands", "Apps", "Systems", "SaaS Apps", "AI Agents", "AI Apps"];
@@ -67,9 +68,12 @@ const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }
 };
 
 const RocketImg = () => (
-  <img
+  <Image
     src="/final-logo.png"
     alt="Voquarn Agency Logo"
+    width={500}
+    height={500}
+    priority
     className="hero-rocket-img"
     style={{
       height: "auto",
@@ -193,9 +197,12 @@ export function Hero() {
                 zIndex: 2,
               }}
             >
-              <img
+              <Image
                 src="/image-removebg-preview-2.png"
                 alt="Voquarn Code brand emblem"
+                width={317}
+                height={317}
+                priority
                 style={{
                   width: "100%",
                   height: "100%",

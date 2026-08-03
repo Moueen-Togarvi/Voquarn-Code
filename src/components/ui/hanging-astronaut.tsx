@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export function HangingAstronaut() {
   const pathname = usePathname();
@@ -13,10 +14,11 @@ export function HangingAstronaut() {
           : "right-0 sm:right-4 md:right-6 lg:right-8"
       } w-24 sm:w-32 md:w-40 lg:w-48 xl:w-56`}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img 
-        src="/astronaut-hanging.png" 
+      <Image
+        src="/astronaut-hanging.png"
         alt="Hanging Astronaut"
+        width={224}
+        height={224}
         className="w-full h-auto"
       />
     </div>

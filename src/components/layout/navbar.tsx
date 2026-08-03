@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { navItems } from "@/lib/site-data";
@@ -33,9 +34,12 @@ export function Navbar() {
         />
 
         <Link href="/" className="flex items-center group" onClick={() => setIsOpen(false)}>
-          <img
+          <Image
             src="/final-logo.png"
             alt="Voquarn Logo"
+            width={200}
+            height={200}
+            priority
             className="h-14 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </Link>

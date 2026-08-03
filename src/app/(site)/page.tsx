@@ -85,7 +85,7 @@ export default async function HomePage() {
             description="From high-end websites to custom SaaS products, we provide end-to-end engineering and design."
           />
           <div className="mt-10">
-            <ServicesToggle services={services} whatsapp={settings.whatsapp} limit={4} buttonVariant="orange" />
+            <ServicesToggle services={services} whatsapp={settings.whatsapp} limit={4} />
           </div>
 
           <div className="mt-12 flex justify-center">

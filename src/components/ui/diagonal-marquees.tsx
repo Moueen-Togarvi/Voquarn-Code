@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 export function DiagonalMarquees() {
   return (
@@ -10,9 +11,11 @@ export function DiagonalMarquees() {
           {Array.from({ length: 6 }).map((_, idx) => (
             <React.Fragment key={idx}>
               <div className="flex items-center gap-6 flex-shrink-0">
-                <img
+                <Image
                   src="/final-logo.png"
                   alt="Voquarn Logo"
+                  width={100}
+                  height={100}
                   className="h-11 w-auto object-contain dark:brightness-0 dark:invert"
                 />
                 <div className="flex flex-col text-[11px] md:text-xs font-black tracking-tight leading-[1.1] text-[var(--foreground)] uppercase font-display">
@@ -23,9 +26,11 @@ export function DiagonalMarquees() {
               </div>
 
               <div className="flex items-center gap-6 flex-shrink-0">
-                <img
+                <Image
                   src="/final-logo.png"
                   alt="Voquarn Logo"
+                  width={100}
+                  height={100}
                   className="h-11 w-auto object-contain dark:brightness-0 dark:invert"
                 />
                 <div className="flex items-end gap-3">
@@ -49,9 +54,11 @@ export function DiagonalMarquees() {
           {Array.from({ length: 6 }).map((_, idx) => (
             <React.Fragment key={idx}>
               <div className="flex items-center gap-6 flex-shrink-0">
-                <img
+                <Image
                   src="/final-logo.png"
                   alt="Voquarn Logo"
+                  width={100}
+                  height={100}
                   className="h-11 w-auto object-contain"
                 />
                 <div className="flex flex-col text-[11px] md:text-xs font-black tracking-tight leading-[1.1] text-black uppercase font-display">
@@ -62,9 +69,11 @@ export function DiagonalMarquees() {
               </div>
 
               <div className="flex items-center gap-6 flex-shrink-0">
-                <img
+                <Image
                   src="/final-logo.png"
                   alt="Voquarn Logo"
+                  width={100}
+                  height={100}
                   className="h-11 w-auto object-contain"
                 />
                 <div className="flex items-end gap-3">

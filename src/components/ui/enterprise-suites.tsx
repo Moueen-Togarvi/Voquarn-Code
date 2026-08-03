@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Activity } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const SUITES_DATA = [
   {
@@ -158,10 +159,12 @@ export function EnterpriseSuites() {
                   </h3>
 
                   <div className="relative w-full flex-1 min-h-[250px] max-h-[300px] rounded-xl overflow-hidden mb-4 border border-[var(--border)] shadow-inner bg-[var(--surface)] group/img flex-shrink">
-                    <img
+                    <Image
                       src={activeTab.image}
                       alt={activeTab.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+                      fill
+                      sizes="(min-width: 1024px) 500px, 100vw"
+                      className="object-cover transition-transform duration-700 group-hover/img:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
                     <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-2">

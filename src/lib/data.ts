@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { db } from "@/db";
 import {
   blogPosts,
@@ -41,8 +42,14 @@ async function withRetry<T>(fn: () => Promise<T>, retries = 3, baseDelayMs = 500
   throw lastError;
 }
 
+// Every getter below is wrapped in React's cache() so multiple calls to the
+// same function within one request (e.g. the root layout and the page it
+// wraps both needing site settings) hit the database once, not twice. Without
+// this, every page load paid for duplicate round-trips on top of each other
+// — the exact kind of overhead that hurts most on high-latency connections.
+
 // ── Blog Posts ──
-export async function getBlogPosts(): Promise<BlogPost[]> {
+export const getBlogPosts = cache(async (): Promise<BlogPost[]> => {
   try {
     return await withRetry(async () => {
       const posts = await db.select().from(blogPosts).where(eq(blogPosts.published, true)).orderBy(desc(blogPosts.publishedAt));
@@ -62,9 +69,9 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     console.error("getBlogPosts DB error:", error);
     return [];
   }
-}
+});
 
-export async function getBlogPost(slug: string) {
+export const getBlogPost = cache(async (slug: string) => {
   try {
     return await withRetry(async () => {
       const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
@@ -85,10 +92,10 @@ export async function getBlogPost(slug: string) {
     console.error("getBlogPost DB error:", error);
     return undefined;
   }
-}
+});
 
 // ── Services ──
-export async function getServices(): Promise<Service[]> {
+export const getServices = cache(async (): Promise<Service[]> => {
   try {
     return await withRetry(async () => {
       const allServices = await db.select().from(services).orderBy(desc(services.createdAt));
@@ -113,9 +120,9 @@ export async function getServices(): Promise<Service[]> {
     console.error("getServices DB error:", error);
     return [];
   }
-}
+});
 
-export async function getService(slug: string): Promise<Service | undefined> {
+export const getService = cache(async (slug: string): Promise<Service | undefined> => {
   try {
     return await withRetry(async () => {
       const [s] = await db.select().from(services).where(eq(services.slug, slug)).limit(1);
@@ -140,10 +147,10 @@ export async function getService(slug: string): Promise<Service | undefined> {
     console.error("getService DB error:", error);
     return undefined;
   }
-}
+});
 
 // ── Portfolio ──
-export async function getPortfolioItems(): Promise<PortfolioItem[]> {
+export const getPortfolioItems = cache(async (): Promise<PortfolioItem[]> => {
   try {
     return await withRetry(async () => {
       const items = await db.select().from(portfolioItems).orderBy(desc(portfolioItems.createdAt));
@@ -162,10 +169,10 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
     console.error("getPortfolioItems DB error:", error);
     return [];
   }
-}
+});
 
 // ── Team ──
-export async function getTeamMembers(): Promise<TeamMember[]> {
+export const getTeamMembers = cache(async (): Promise<TeamMember[]> => {
   try {
     return await withRetry(async () => {
       const members = await db.select().from(teamMembers).orderBy(asc(teamMembers.order));
@@ -179,10 +186,10 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     console.error("getTeamMembers DB error:", error);
     return [];
   }
-}
+});
 
 // ── Testimonials ──
-export async function getTestimonials(): Promise<Testimonial[]> {
+export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
   try {
     return await withRetry(async () => {
       const items = await db.select().from(testimonials).orderBy(asc(testimonials.order));
@@ -197,10 +204,10 @@ export async function getTestimonials(): Promise<Testimonial[]> {
     console.error("getTestimonials DB error:", error);
     return [];
   }
-}
+});
 
 // ── FAQ ──
-export async function getFaqItems(): Promise<FaqItem[]> {
+export const getFaqItems = cache(async (): Promise<FaqItem[]> => {
   try {
     return await withRetry(async () => {
       const items = await db.select().from(faqItems).orderBy(asc(faqItems.order));
@@ -213,10 +220,10 @@ export async function getFaqItems(): Promise<FaqItem[]> {
     console.error("getFaqItems DB error:", error);
     return [];
   }
-}
+});
 
 // ── Pricing ──
-export async function getPricingPlans(): Promise<PricingPlan[]> {
+export const getPricingPlans = cache(async (): Promise<PricingPlan[]> => {
   try {
     return await withRetry(async () => {
       const items = await db.select().from(pricingPlans).orderBy(asc(pricingPlans.order));
@@ -233,10 +240,10 @@ export async function getPricingPlans(): Promise<PricingPlan[]> {
     console.error("getPricingPlans DB error:", error);
     return [];
   }
-}
+});
 
 // ── Careers ──
-export async function getJobOpenings(): Promise<JobOpening[]> {
+export const getJobOpenings = cache(async (): Promise<JobOpening[]> => {
   try {
     return await withRetry(async () => {
       const items = await db.select().from(jobOpenings).orderBy(asc(jobOpenings.order));
@@ -255,7 +262,7 @@ export async function getJobOpenings(): Promise<JobOpening[]> {
     console.error("getJobOpenings DB error:", error);
     return [];
   }
-}
+});
 
 // ── Site Settings ──
 // Settings are per-field overrides on top of static defaults (not a content
@@ -264,7 +271,7 @@ export async function getJobOpenings(): Promise<JobOpening[]> {
 // empty admin table."
 export type SiteSettings = typeof staticSite;
 
-export async function getSiteSettings(): Promise<SiteSettings> {
+export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
   const settings: SiteSettings = {
     ...staticSite,
     socials: { ...staticSite.socials },
@@ -290,4 +297,4 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   }
 
   return settings;
-}
+});

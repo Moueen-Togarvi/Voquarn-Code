@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 const CLIENT_LOGOS = [
   { src: "/client-logo.png", name: "Abayiza" },
@@ -41,9 +42,11 @@ export function TrustedClients() {
               className="flex items-center justify-center cursor-pointer min-w-[120px] group relative"
               title={logo.name}
             >
-              <img
+              <Image
                 src={logo.src}
                 alt={logo.name}
+                width={128}
+                height={128}
                 className="object-contain max-h-12 md:max-h-16 w-auto rounded-lg transition-all duration-500 group-hover:scale-105"
               />
               <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-wider text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">

@@ -54,11 +54,13 @@ export default async function BlogPage() {
               {/* Cover image with gradient overlay */}
               <div className="absolute inset-0">
                 {featured.coverImage ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     src={featured.coverImage}
                     alt={featured.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 55vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 ) : (
                   <div className="h-full w-full bg-gradient-to-br from-[#ff5400]/20 to-[#ff5400]/5" />
@@ -129,11 +131,12 @@ export default async function BlogPage() {
                   {/* Image area */}
                   {post.coverImage && (
                     <div className="relative aspect-[16/9] overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={post.coverImage}
                         alt={post.title}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        fill
+                        sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     </div>

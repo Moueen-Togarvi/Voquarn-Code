@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { buildMetadata } from "@/lib/metadata";
@@ -59,12 +60,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <article className="mx-auto max-w-4xl rounded-[2rem] border border-[var(--border)] bg-[var(--panel)] p-8 sm:p-10">
         {/* Cover image */}
         {post.coverImage && (
-          <div className="-mx-8 -mt-8 sm:-mx-10 sm:-mt-10 mb-8 overflow-hidden rounded-t-[2rem]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+          <div className="relative -mx-8 -mt-8 sm:-mx-10 sm:-mt-10 mb-8 aspect-[16/8] overflow-hidden rounded-t-[2rem]">
+            <Image
               src={post.coverImage}
               alt={post.title}
-              className="w-full aspect-[16/8] object-cover"
+              fill
+              priority
+              sizes="(min-width: 1024px) 900px, 100vw"
+              className="object-cover"
             />
           </div>
         )}

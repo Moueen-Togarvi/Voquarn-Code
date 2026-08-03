@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import type { SiteSettings } from "@/lib/data";
 import { Mail, Phone, MapPin, ArrowUp } from "lucide-react";
 import { NewsletterForm } from "@/components/ui/newsletter-form";
@@ -18,9 +19,11 @@ export function Footer({ settings }: { settings: SiteSettings }) {
 
           <div className="lg:col-span-5 flex flex-col space-y-7">
             <Link href="/" className="flex items-center gap-3 w-fit group">
-              <img
+              <Image
                 src="/final-logo.png"
                 alt="Voquarn Logo"
+                width={200}
+                height={200}
                 className="h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </Link>

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, ArrowRight, Globe, Smartphone, Bot, Code2, Layers, MessageCircle } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ArrowRight, Globe, Smartphone, Bot, Code2, Layers, MessageCircle, Star } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -29,6 +29,10 @@ const getPricingIcon = (categoryName: string, id: string) => {
   }
   return <Layers className="w-5 h-5 text-white" />;
 };
+
+// Matches the "Best for SaaS" / "Most Popular" badges used in pricing-toggle.tsx
+// and services-toggle.tsx, so the same packages are called out consistently.
+const featuredSubServiceIds = new Set(["ecommerce-web", "saas-web", "saas-app", "full-saas", "ai-agents"]);
 
 export async function generateStaticParams() {
   const services = await getServices();
@@ -161,63 +165,68 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                   Available Sub-types
                 </h2>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {service.subServices.map((sub) => (
-                    <article 
-                      key={sub.id} 
+                  {service.subServices.map((sub) => {
+                    const featured = featuredSubServiceIds.has(sub.id);
+                    return (
+                    <article
+                      key={sub.id}
                       className="group relative flex flex-col justify-between rounded-[32px] border border-neutral-200/80 bg-white p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)] h-full min-h-[380px]"
                     >
+                      {featured && (
+                        <div className="absolute -right-11 top-6 w-40 rotate-45 bg-[#ff5400] py-1.5 shadow-[0_4px_12px_rgba(255,84,0,0.35)] z-20">
+                          <span className="flex items-center justify-center gap-1 text-[9px] font-black uppercase tracking-wider text-white">
+                            <Star className="w-2.5 h-2.5 fill-white" /> Best Choice
+                          </span>
+                        </div>
+                      )}
+
                       <div className="relative z-10 flex flex-col h-full justify-between">
-                        
-                        {/* ── Top Row: App Icon & Tagline ── */}
-                        <div className="flex items-center">
-                          {/* Rounded Dark Square App Icon */}
-                          <div className="w-[46px] h-[46px] rounded-[14px] bg-[#1a1a1a] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-300">
+
+                        {/* ── Top Row: Icon & Starting Price ── */}
+                        <div className="flex items-start justify-between">
+                          <div className="w-[46px] h-[46px] rounded-[14px] bg-[#ff5400] flex items-center justify-center shadow-[0_4px_12px_rgba(255,84,0,0.25)] group-hover:scale-105 transition-transform duration-300">
                             {getPricingIcon(service.title, sub.id)}
+                          </div>
+                          <div className="text-right">
+                            <p className="text-[9px] font-semibold uppercase tracking-wide text-neutral-400">from</p>
+                            <p className="text-sm font-bold text-neutral-900">
+                              PKR <span className="text-[#ff5400]">{sub.pricePkr.toLocaleString()}</span>
+                            </p>
                           </div>
                         </div>
 
-                        {/* ── Middle Section: Category, Title, Short Desc & Tags ── */}
+                        {/* ── Middle Section: Category, Title, Checklist ── */}
                         <div className="mt-6 flex-1 flex flex-col justify-center">
-                          {/* Category & Tagline */}
                           <div className="flex items-center gap-1.5">
                             <span className="text-[13px] font-medium text-neutral-800">Voquarn</span>
                             <span className="text-[11px] text-neutral-400">• {service.title}</span>
                           </div>
 
-                          {/* Main Title */}
                           <h3 className="mt-1.5 text-base sm:text-[18px] font-bold text-neutral-900 tracking-tight leading-tight truncate">
                             {sub.name}
                           </h3>
 
-                          {/* Short Description */}
-                          <p className="mt-1 text-[11px] text-neutral-500 line-clamp-2 leading-relaxed min-h-[32px]">
-                            {sub.description}
-                          </p>
+                          <div className="my-4 border-t border-neutral-200/80" />
 
-                          {/* Feature Tags (Soft Gray Pill Style - Compact Size) */}
-                          <div className="mt-3 flex flex-wrap gap-1.5">
+                          <ul className="space-y-2">
                             {sub.features.slice(0, 3).map((feature) => (
-                              <span
-                                key={feature}
-                                className="rounded-full bg-neutral-100 px-2.5 py-0.5 text-[9px] font-semibold tracking-wide text-neutral-600"
-                              >
-                                {feature}
-                              </span>
+                              <li key={feature} className="flex items-center gap-2 text-[12px] font-medium text-neutral-500">
+                                <CheckCircle2 className="w-4 h-4 text-[#ff5400] flex-shrink-0" />
+                                <span className="truncate">{feature}</span>
+                              </li>
                             ))}
-                          </div>
+                          </ul>
                         </div>
 
                         {/* ── Bottom Section: Scope Button ── */}
                         <div className="mt-6 pt-2">
-                          {/* Horizontal Divider */}
                           <div className="my-4 border-t border-neutral-200/80" />
 
-                          {/* Spectacular 3D Glossy Black Button */}
                           <a
                             href={`https://wa.me/${site.whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(service.title + " - " + sub.name)}%20package.`}
                             target="_blank"
                             rel="noreferrer"
-                            className="w-full h-12 py-3 rounded-full text-white font-medium text-[13px] flex items-center justify-center transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide bg-gradient-to-b from-[#2c2c2e] to-[#151516] hover:from-[#3a3a3c] hover:to-[#1c1c1e] shadow-[0_8px_20px_rgba(0,0,0,0.2),inset_0_2px_1px_rgba(255,255,255,0.2)]"
+                            className="w-full h-12 py-3 rounded-full text-white font-medium text-[13px] flex items-center justify-center transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide bg-gradient-to-b from-[#ff6b21] to-[#e04800] hover:from-[#ff7c3b] hover:to-[#f05000] shadow-[0_8px_20px_rgba(255,84,0,0.2)]"
                           >
                             <MessageCircle className="w-4 h-4 mr-2" /> Discuss on WhatsApp
                           </a>
@@ -225,7 +234,8 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
                       </div>
                     </article>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             )}
