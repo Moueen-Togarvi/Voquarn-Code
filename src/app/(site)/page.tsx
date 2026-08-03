@@ -115,40 +115,6 @@ export default async function HomePage() {
         <FaqSection items={faqItems} />
       </GSAPReveal>
 
-      <section className="page-section pt-8">
-        <GSAPReveal direction="up" delay={0.1}>
-        <div className="rounded-[4rem] border-4 border-[var(--foreground)] bg-[var(--panel)] p-12 sm:p-16 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 h-32 w-32 bg-[#ff5400] rounded-bl-[4rem] transition-transform group-hover:scale-110" />
-          <span className="eyebrow text-[#ff5400] font-black">Ready when you are</span>
-          <div className="mt-8 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <h2 className="font-display text-4xl font-black uppercase tracking-tighter text-[var(--foreground)] sm:text-5xl leading-none">
-                LET&apos;S BUILD SOMETHING <br /> REMARKABLE TOGETHER.
-              </h2>
-              <p className="mt-4 text-[14px] font-medium text-[var(--muted)]">
-                Free consultation · No commitment · Reply within 24hrs
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/contact"
-                className="inline-flex rounded-full bg-[#ff5400] px-10 py-5 text-sm font-black uppercase tracking-widest text-white hover:scale-105 transition-all active:scale-95 shadow-xl"
-              >
-                Start Project
-              </Link>
-              <a
-                href={`https://wa.me/${settings.whatsapp}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex rounded-full border-2 border-[var(--foreground)] bg-[var(--panel)] px-10 py-5 text-sm font-black uppercase tracking-widest text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all"
-              >
-                Schedule a Call
-              </a>
-            </div>
-          </div>
-        </div>
-        </GSAPReveal>
-      </section>
     </div>
   );
 }

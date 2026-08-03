@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Circle, Clock, Grip } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type PreviewPost = {
@@ -13,6 +13,17 @@ type PreviewPost = {
   readTime: string;
   coverImage?: string | null;
 };
+
+const fallbackBlogImages: Record<string, string> = {
+  "technical-seo-basics-for-service-sites":
+    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop",
+  "when-to-build-a-client-portal":
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+  "using-ai-without-breaking-operations":
+    "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
+};
+
+const formatReadTime = (readTime: string) => readTime.replace(/\s*read$/i, "").toUpperCase();
 
 export function BlogPreview() {
   const [posts, setPosts] = useState<PreviewPost[]>([]);
@@ -53,46 +64,50 @@ export function BlogPreview() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {posts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group rounded-[2rem] border border-[var(--border)] bg-[var(--panel)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(255,84,0,0.06)] hover:border-[#ff5400]/30 flex flex-col"
+              className="group flex min-h-[376px] flex-col overflow-hidden rounded-[18px] border border-black/5 bg-white text-black shadow-[0_14px_35px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-neutral-950 dark:text-white"
             >
-              {/* Image */}
-              {post.coverImage && (
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image
-                    src={post.coverImage}
-                    alt={post.title}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-              )}
-
-              <div className="flex flex-1 flex-col p-6">
-                <span className="inline-block w-fit text-[10px] font-black uppercase tracking-[0.2em] text-[#ff5400] bg-[#ff5400]/5 rounded-full px-2.5 py-1 mb-3">
+              <div className="relative aspect-[1.85/1] overflow-hidden bg-neutral-950">
+                <Image
+                  src={post.coverImage || fallbackBlogImages[post.slug] || fallbackBlogImages["when-to-build-a-client-portal"]}
+                  alt={post.title}
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="object-cover grayscale brightness-[0.48] contrast-125 transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/20" />
+                <span className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                  <Circle className="h-1.5 w-1.5 fill-white" />
                   {post.category}
                 </span>
+                <div className="absolute bottom-4 right-4 inline-flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-black/55 text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)] backdrop-blur-md">
+                  <Clock className="h-3 w-3 opacity-80" />
+                  <span className="mt-0.5 text-[10px] font-black leading-none">{formatReadTime(post.readTime)}</span>
+                </div>
+              </div>
 
-                <h3 className="text-[17px] font-bold leading-snug text-[var(--foreground)] group-hover:text-[#ff5400] transition-colors mb-3">
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <Grip className="mb-3 h-4 w-4 text-neutral-500" />
+
+                <h3 className="mb-3 text-[19px] font-black leading-[1.18] tracking-tight text-black transition-colors group-hover:text-[#ff5400] dark:text-white">
                   {post.title}
                 </h3>
 
-                <p className="text-[13px] font-medium leading-6 text-[var(--muted)] flex-1 mb-4 line-clamp-2">
+                <p className="mb-5 line-clamp-2 flex-1 text-[12px] font-medium leading-6 text-neutral-600 dark:text-neutral-400">
                   {post.excerpt}
                 </p>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-semibold text-[var(--muted)] flex items-center gap-1">
-                    <Clock size={12} />
-                    {post.readTime}
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] font-black uppercase tracking-[0.22em] text-black dark:text-white">
+                    Read Article
                   </span>
-                  <span className="inline-flex items-center gap-1 text-[12px] font-bold text-[#ff5400] group-hover:gap-2 transition-all">
-                    Read <ArrowRight size={12} />
+                  <span className="h-px flex-1 bg-neutral-200 dark:bg-neutral-800" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black text-white shadow-[0_10px_24px_rgba(0,0,0,0.18)] transition-transform duration-300 group-hover:translate-x-1 dark:bg-white dark:text-black">
+                    <ArrowRight size={16} />
                   </span>
                 </div>
               </div>
