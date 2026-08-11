@@ -1,10 +1,12 @@
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { buildMetadata } from "@/lib/metadata";
+import { getSiteSettings } from "@/lib/data";
 
 const pageTitle = "Privacy Policy | Voquarn Code";
 const pageDescription =
   "Read how Voquarn Code handles project inquiries, contact details, website analytics, and personal information.";
+const lastUpdated = "2026-05-31";
 
 export const metadata = buildMetadata(
   pageTitle,
@@ -12,7 +14,9 @@ export const metadata = buildMetadata(
   "/privacy",
 );
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const site = await getSiteSettings();
+
   return (
     <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56 max-w-4xl mx-auto">
       <PageStructuredData path="/privacy" name={pageTitle} description={pageDescription} />
@@ -22,7 +26,11 @@ export default function PrivacyPage() {
         description="We respect your privacy and are committed to protecting it."
         headingLevel="h1"
       />
-      
+      <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-neutral-500">
+        Last updated:{" "}
+        {new Date(lastUpdated).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+      </p>
+
       <div className="mt-16 prose prose-neutral dark:prose-invert max-w-none pb-32 space-y-8 text-neutral-600 dark:text-neutral-300">
         <div>
           <h2 className="text-xl font-semibold text-black dark:text-white mb-4">1. Information We Collect</h2>
@@ -75,7 +83,7 @@ export default function PrivacyPage() {
         <div>
           <h2 className="text-xl font-semibold text-black dark:text-white mb-4">7. Contact Us</h2>
           <p>
-            If you have any questions or concerns about our privacy practices, please contact us at hello@voquarn.com.
+            If you have any questions or concerns about our privacy practices, please contact us at {site.email}.
           </p>
         </div>
       </div>

@@ -88,7 +88,7 @@ export default async function BlogPage() {
                     href={`/blog/${featured.slug}`}
                     className="inline-flex items-center gap-2 rounded-full bg-[#ff5400] px-5 py-2.5 text-[11px] font-black uppercase tracking-widest text-white hover:bg-[#e04800] transition-all hover:gap-3"
                   >
-                    Read article <ArrowRight className="w-3.5 h-3.5" />
+                    Read article<span className="sr-only"> {featured.title}</span> <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                   </Link>
                 </div>
               </div>
@@ -161,7 +161,7 @@ export default async function BlogPage() {
                         href={`/blog/${post.slug}`}
                         className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-[#ff5400] hover:gap-2.5 transition-all duration-200"
                       >
-                        Read <ArrowRight className="w-3.5 h-3.5" />
+                        Read<span className="sr-only"> {post.title}</span> <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                       </Link>
                     </div>
                   </div>

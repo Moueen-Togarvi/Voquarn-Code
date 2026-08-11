@@ -187,8 +187,8 @@ export function PortfolioCarousel({ items }: PortfolioCarouselProps) {
                 href={`/portfolio#${item.slug}`}
                 className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-black text-[#ff5400] hover:gap-3 hover:text-[var(--foreground)]"
               >
-                Read more
-                <ArrowRight className="h-4 w-4" />
+                Read more<span className="sr-only"> about {item.title}</span>
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </article>
           ))}

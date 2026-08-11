@@ -1,10 +1,12 @@
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { buildMetadata } from "@/lib/metadata";
+import { getSiteSettings } from "@/lib/data";
 
 const pageTitle = "Terms of Service | Voquarn Code";
 const pageDescription =
   "Read the terms for using Voquarn Code services, including project scope, payments, deliverables, and client responsibilities.";
+const lastUpdated = "2026-05-31";
 
 export const metadata = buildMetadata(
   pageTitle,
@@ -12,7 +14,9 @@ export const metadata = buildMetadata(
   "/terms",
 );
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const site = await getSiteSettings();
+
   return (
     <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56 max-w-4xl mx-auto">
       <PageStructuredData path="/terms" name={pageTitle} description={pageDescription} />
@@ -22,7 +26,11 @@ export default function TermsPage() {
         description="Please read these terms carefully before using our platform."
         headingLevel="h1"
       />
-      
+      <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-neutral-500">
+        Last updated:{" "}
+        {new Date(lastUpdated).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+      </p>
+
       <div className="mt-16 prose prose-neutral dark:prose-invert max-w-none pb-32 space-y-8 text-neutral-600 dark:text-neutral-300">
         <div>
           <h2 className="text-xl font-semibold text-black dark:text-white mb-4">1. Acceptance of Terms</h2>
@@ -69,7 +77,7 @@ export default function TermsPage() {
         <div>
           <h2 className="text-xl font-semibold text-black dark:text-white mb-4">7. Contact Information</h2>
           <p>
-            If you have any questions about these Terms, please contact us at hello@voquarn.com.
+            If you have any questions about these Terms, please contact us at {site.email}.
           </p>
         </div>
       </div>

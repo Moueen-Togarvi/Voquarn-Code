@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     type: "article",
     publishedTime: post.publishedAt,
     keywords: [post.category, "technical SEO", "digital growth", "AI workflows"],
+    ...(post.coverImage ? { image: post.coverImage } : {}),
   });
 }
 

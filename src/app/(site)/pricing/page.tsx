@@ -1,7 +1,9 @@
 import { PricingToggle } from "@/components/ui/pricing-toggle";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
+import { JsonLd } from "@/components/seo/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
+import { serviceJsonLd } from "@/lib/schema";
 import { getServices, getSiteSettings } from "@/lib/data";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 
@@ -29,6 +31,9 @@ export default async function PricingPage() {
   return (
     <>
       <PageStructuredData path="/pricing" name={pageTitle} description={pageDescription} type="CollectionPage" />
+      {/* Real Offer/AggregateOffer pricing per service, so "how much does X cost" queries
+          landing on /pricing get schema-backed numbers, not just page text. */}
+      <JsonLd data={services.map(serviceJsonLd)} />
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <GSAPReveal direction="up">
           <SectionHeading

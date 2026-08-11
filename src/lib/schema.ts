@@ -1,4 +1,4 @@
-import type { BlogPost, FaqItem, Service, SubService, Testimonial } from "@/lib/site-data";
+import type { BlogPost, FaqItem, Service, SubService, TeamMember, Testimonial } from "@/lib/site-data";
 import type { SiteSettings } from "@/lib/data";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -307,7 +307,7 @@ export function blogPostJsonLd(post: BlogPost): Record<string, unknown> {
     },
     headline: post.title,
     description: post.excerpt,
-    image: absoluteUrl("/bg-home.png"),
+    image: absoluteUrl(post.coverImage || "/bg-home.png"),
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
     author: {
@@ -340,6 +340,86 @@ export function personJsonLd({
     description,
     url: absoluteUrl(path),
     worksFor: { "@id": organizationId() },
+  };
+}
+
+/** Team members without a dedicated profile page still get a Person entity, anchored on /team. */
+export function teamMemberJsonLd(member: TeamMember): Record<string, unknown> {
+  const slug = member.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${absoluteUrl("/team")}#${slug}`,
+    name: member.name,
+    jobTitle: member.role,
+    description: member.bio || undefined,
+    url: absoluteUrl("/team"),
+    worksFor: { "@id": organizationId() },
+  };
+}
+
+export function jobPostingJsonLd(job: {
+  id: number;
+  title: string;
+  department: string;
+  location: string;
+  type: string;
+  salary: string;
+  description: string;
+  tags: string[];
+}): Record<string, unknown> {
+  // Employment type must map to schema.org's enum, not the free-text label
+  // shown in the UI (e.g. "Full-time" -> FULL_TIME), or Google Jobs drops the field.
+  const employmentTypeMap: Record<string, string> = {
+    "full-time": "FULL_TIME",
+    "part-time": "PART_TIME",
+    contract: "CONTRACTOR",
+    freelance: "CONTRACTOR",
+    internship: "INTERN",
+    remote: "OTHER",
+  };
+  const normalizedType = job.type.toLowerCase().replace(/[^a-z]/g, "-");
+  const employmentType =
+    Object.entries(employmentTypeMap).find(([key]) => normalizedType.includes(key))?.[1] || "OTHER";
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "@id": `${absoluteUrl("/careers")}#job-${job.id}`,
+    title: job.title,
+    description: job.description,
+    identifier: {
+      "@type": "PropertyValue",
+      name: "Voquarn Code",
+      value: String(job.id),
+    },
+    datePosted: new Date().toISOString().slice(0, 10),
+    employmentType,
+    hiringOrganization: { "@id": organizationId() },
+    jobLocationType: normalizedType.includes("remote") ? "TELECOMMUTE" : undefined,
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: job.location,
+        addressCountry: "PK",
+      },
+    },
+    industry: job.department,
+    skills: job.tags.join(", "),
+    baseSalary: job.salary
+      ? {
+          "@type": "MonetaryAmount",
+          currency: "PKR",
+          value: {
+            "@type": "QuantitativeValue",
+            value: job.salary,
+            unitText: "MONTH",
+          },
+        }
+      : undefined,
+    directApply: true,
+    url: absoluteUrl("/careers"),
   };
 }
 

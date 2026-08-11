@@ -97,7 +97,7 @@ export function PortfolioGrid({ items }: PortfolioGridProps) {
               href={`/portfolio#${item.slug}`}
               className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-black text-[#ff5400] hover:gap-3 hover:text-black"
             >
-              Read more
+              Read more<span className="sr-only"> about {item.title}</span>
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>
           </article>

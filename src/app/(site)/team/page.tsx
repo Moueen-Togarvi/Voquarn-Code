@@ -1,6 +1,8 @@
 import { PageStructuredData } from "@/components/seo/page-structured-data";
+import { JsonLd } from "@/components/seo/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
+import { teamMemberJsonLd } from "@/lib/schema";
 import { getTeamMembers, getSiteSettings } from "@/lib/data";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ArrowRight, Mail, Sparkles } from "lucide-react";
@@ -32,6 +34,7 @@ export default async function TeamPage() {
   return (
     <>
       <PageStructuredData path="/team" name={pageTitle} description={pageDescription} type="AboutPage" />
+      {members.length > 0 && <JsonLd data={members.map(teamMemberJsonLd)} />}
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <ScrollReveal>
           <SectionHeading
