@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { trackLead } from "@/lib/pixels";
 const initialState = {
   name: "",
   email: "",
@@ -35,6 +36,7 @@ export function ContactForm() {
 
       setStatus("success");
       setFeedback(payload.message || "Message sent.");
+      trackLead();
       setForm(initialState);
     } catch (error) {
       setStatus("error");

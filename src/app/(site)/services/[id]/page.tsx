@@ -8,6 +8,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { serviceJsonLd } from "@/lib/schema";
 import { getServices, getService, getPortfolioItems, getSiteSettings } from "@/lib/data";
 import type { PortfolioItem } from "@/lib/site-data";
+import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 
 type ServiceDetailPageProps = {
   params: Promise<{ id: string }>;
@@ -222,14 +223,12 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                         <div className="mt-6 pt-2">
                           <div className="my-4 border-t border-neutral-200/80" />
 
-                          <a
+                          <WhatsAppLink
                             href={`https://wa.me/${site.whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(service.title + " - " + sub.name)}%20package.`}
-                            target="_blank"
-                            rel="noreferrer"
                             className="w-full h-12 py-3 rounded-full text-white font-medium text-[13px] flex items-center justify-center transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide bg-gradient-to-b from-[#ff6b21] to-[#e04800] hover:from-[#ff7c3b] hover:to-[#f05000] shadow-[0_8px_20px_rgba(255,84,0,0.2)]"
                           >
                             <MessageCircle className="w-4 h-4 mr-2" /> Discuss on WhatsApp
-                          </a>
+                          </WhatsAppLink>
                         </div>
 
                       </div>

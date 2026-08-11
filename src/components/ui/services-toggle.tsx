@@ -5,6 +5,7 @@ import type { Service } from "@/lib/site-data";
 import { Globe, Bot, Code2, Smartphone, Layers, ArrowRight, MessageCircle, CheckCircle2, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 
 type DisplayItem = {
   id: string;
@@ -161,15 +162,13 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
                   >
                     Learn More <ArrowRight size={14} className="ml-1" />
                   </Link>
-                  <a
+                  <WhatsAppLink
                     href={`https://wa.me/${whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(item.categoryName + " - " + item.name)}%20package.`}
-                    target="_blank"
-                    rel="noreferrer"
                     className="h-11 w-11 py-2.5 rounded-full text-white font-medium text-[13px] flex items-center justify-center transition-all duration-300 active:scale-[0.98] cursor-pointer flex-shrink-0 bg-gradient-to-b from-[#2c2c2e] to-[#151516] hover:from-[#3a3a3c] hover:to-[#1c1c1e] shadow-[0_8px_20px_rgba(0,0,0,0.2)]"
                     aria-label="Discuss on WhatsApp"
                   >
                     <MessageCircle className="w-4 h-4" />
-                  </a>
+                  </WhatsAppLink>
                 </div>
               </div>
             </div>

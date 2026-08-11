@@ -6,6 +6,7 @@ import { personJsonLd } from "@/lib/schema";
 import { getSiteSettings } from "@/lib/data";
 import { Globe, Sparkles, MessageCircle, ArrowRight, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
 import Link from "next/link";
+import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 
 const pageTitle = "Moueen Togarvi, Founder & CEO | Voquarn Code";
 const pageDescription =
@@ -69,14 +70,12 @@ export default async function CeoPage() {
             </p>
 
             <div className="mt-8 pt-8 border-t border-neutral-100 space-y-4">
-              <a
+              <WhatsAppLink
                 href={`https://wa.me/${site.whatsapp}?text=Hi%20Moueen,%20I%20would%20like%20to%20discuss%20a%20strategic%20project%20with%20Voquarn%20Code.`}
-                target="_blank"
-                rel="noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#ff5400] py-4 text-xs font-black uppercase tracking-widest text-white hover:bg-[#e04800] shadow-lg transition-all hover:scale-105"
               >
                 <MessageCircle className="w-4 h-4" /> Message CEO on WhatsApp
-              </a>
+              </WhatsAppLink>
 
               <div className="flex items-center justify-center gap-6 pt-4 text-neutral-400">
                 <a href={site.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-black transition-colors flex items-center gap-1.5 text-xs font-bold">

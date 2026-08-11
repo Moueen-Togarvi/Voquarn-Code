@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { getSiteSettings } from "@/lib/data";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
+import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 
 const pageTitle = "Contact Voquarn Code | Web Development & SEO Agency";
 const pageDescription =
@@ -76,14 +77,12 @@ export default async function ContactPage() {
                   </div>
                 </div>
 
-                <a
+                <WhatsAppLink
                   href={`https://wa.me/${site.whatsapp}`}
-                  target="_blank"
-                  rel="noreferrer"
                   className="mt-10 inline-flex w-full items-center justify-center rounded-full bg-[#25d366]/10 border border-[#25d366]/20 px-6 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-[#075E54] hover:bg-[#25d366] hover:text-white transition-all duration-300 shadow-sm"
                 >
                   Message on WhatsApp
-                </a>
+                </WhatsAppLink>
               </div>
 
               <div className="bg-neutral-50 border border-neutral-200/80 shadow-sm rounded-[2.5rem] p-2">

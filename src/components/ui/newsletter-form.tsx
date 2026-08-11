@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { trackSubscribe } from "@/lib/pixels";
 
 type NewsletterFormProps = {
   compact?: boolean;
@@ -33,6 +34,7 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
 
       setStatus("success");
       setMessage(payload.message || "Subscribed.");
+      trackSubscribe();
       event.currentTarget.reset();
     } catch (error) {
       setStatus("error");

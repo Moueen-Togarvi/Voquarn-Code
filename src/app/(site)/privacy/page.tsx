@@ -62,7 +62,7 @@ export default async function PrivacyPage() {
         <div>
           <h2 className="mb-4 text-xl font-semibold text-black">4. Cookies and Tracking</h2>
           <p>
-            Our website may use cookies and similar tracking technologies to analyze traffic and improve user experience. You can control cookies through your browser settings.
+            Our website may use cookies and similar tracking technologies, including Meta Pixel and TikTok Pixel, to analyze traffic, measure ad performance, and improve user experience. You can control cookies through your browser settings.
           </p>
         </div>
 

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { Service } from "@/lib/site-data";
 import { MessageCircle, Globe, Bot, Code2, Smartphone, Layers } from "lucide-react";
 import { motion } from "framer-motion";
+import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 
 type DisplayItem = {
   id: string;
@@ -195,10 +196,8 @@ export function PricingToggle({ services, whatsapp, limit }: PricingToggleProps)
 
                   <div className="my-4 border-t border-[var(--border)]" />
 
-                  <a
+                  <WhatsAppLink
                     href={`https://wa.me/${whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(item.categoryName + " - " + item.name)}%20package.`}
-                    target="_blank"
-                    rel="noreferrer"
                     className={`w-full h-12 py-3 rounded-full text-white font-medium text-[13px] flex items-center justify-center transition-all duration-300 active:scale-[0.98] cursor-pointer tracking-wide ${
                       item.featured
                         ? "bg-gradient-to-b from-[#ff6b21] to-[#e04800] hover:from-[#ff7c3b] hover:to-[#f05000] shadow-[0_8px_20px_rgba(255,84,0,0.2),inset_0_2px_1px_rgba(255,255,255,0.2)]"
@@ -206,7 +205,7 @@ export function PricingToggle({ services, whatsapp, limit }: PricingToggleProps)
                     }`}
                   >
                     <MessageCircle className="w-4 h-4 mr-2" /> Discuss on WhatsApp
-                  </a>
+                  </WhatsAppLink>
                 </div>
               </div>
             </article>

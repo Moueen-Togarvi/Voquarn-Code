@@ -7,6 +7,8 @@ import { CustomCursor } from "@/components/ui/custom-cursor";
 import { HangingAstronaut } from "@/components/ui/hanging-astronaut";
 import { IntroLoader } from "@/components/ui/intro-loader";
 import { MobileDock } from "@/components/layout/mobile-dock";
+import { MetaPixel } from "@/components/analytics/meta-pixel";
+import { TikTokPixel } from "@/components/analytics/tiktok-pixel";
 
 // Site-only chrome (navbar, footer, WhatsApp button, cursor, intro loader,
 // structured data). Scoped to this route group so /admin renders its own
@@ -28,6 +30,9 @@ export default async function SiteLayout({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
+      {/* Ad pixels are scoped to (site) only, so /admin never loads ad-tracking scripts. */}
+      <MetaPixel />
+      <TikTokPixel />
       <IntroLoader />
       <div className="relative flex min-h-screen flex-col overflow-x-clip pb-24 md:pb-0">
         <div className="pointer-events-none absolute inset-0 -z-50 bg-[radial-gradient(circle_at_top_left,var(--gradient-1),transparent_28%),radial-gradient(circle_at_top_right,var(--gradient-2),transparent_25%),var(--gradient-main)]" />

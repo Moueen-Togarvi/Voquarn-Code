@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Sparkles, ArrowRight, Briefcase, MapPin, DollarSign, Clock, Send, Search, X, Upload, Loader2, Sparkle, Link as LinkIcon } from "lucide-react";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import type { JobOpening } from "@/lib/site-data";
+import { trackSubmitApplication } from "@/lib/pixels";
 
 export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
   const departments = ["All", ...Array.from(new Set(jobs.map((r) => r.department)))];
@@ -90,6 +91,7 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
       if (response.ok) {
         setSubmitStatus("success");
         setSubmitMsg("Application and CV successfully submitted via email!");
+        trackSubmitApplication({ content_name: "career_application" });
       } else {
         setSubmitStatus("error");
         setSubmitMsg(data.message || "Failed to submit application.");
