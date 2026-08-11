@@ -22,6 +22,10 @@ npm install
 
 Copy `.env.example` to `.env` and fill in the values you want to use.
 
+- `AUTH_SECRET`: Required by Auth.js to encrypt sessions. Generate it with
+  `openssl rand -base64 33` and configure the same variable in your deployment.
+- `AUTH_URL`: Use `http://localhost:3000` locally and your public site URL in
+  production.
 - `RESEND_API_KEY`: Enables contact form delivery.
 - `CONTACT_TO_EMAIL`: Where contact inquiries should go.
 - `MAILCHIMP_*`: Enables real newsletter subscriptions.

@@ -6,6 +6,8 @@ import { users, accounts, sessions, verificationTokens } from "@/db/schema";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { eq } from "drizzle-orm";
 
+const authSecret = process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET;
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db, {
     usersTable: users,
@@ -77,5 +79,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     signIn: "/admin/login",
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  // AUTH_SECRET is the Auth.js v5 name. Keep NEXTAUTH_SECRET as a fallback so
+  // existing local and production environments continue to work.
+  secret: authSecret,
+  trustHost: true,
 });
