@@ -72,14 +72,14 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
 
   return (
     <div className="space-y-12 w-full">
-      <div className="mx-auto flex w-full max-w-6xl items-center overflow-x-auto px-4 pb-2 [scrollbar-width:none] lg:justify-center [&::-webkit-scrollbar]:hidden">
-        <div className="relative flex min-w-[560px] flex-nowrap gap-1 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1.5 shadow-[0_14px_40px_rgba(255,84,0,0.10)] lg:min-w-0 lg:w-1/2">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-center px-2 pb-2 sm:px-4">
+        <div className="relative flex w-full flex-nowrap gap-0.5 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1 shadow-[0_14px_40px_rgba(255,84,0,0.10)] lg:w-1/2">
           {orderedServices.map((service) => (
             <button
               key={service.id}
               type="button"
               onClick={() => setActiveServiceId(service.id)}
-              className={`relative z-10 inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-2 py-2 text-[9px] font-semibold uppercase tracking-wide transition-colors duration-300 sm:px-3 sm:text-[10px] ${
+              className={`relative z-10 inline-flex min-h-11 min-w-0 flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full px-0.5 py-2 text-[7px] font-semibold uppercase tracking-[0.01em] transition-colors duration-300 sm:gap-1.5 sm:px-2 sm:text-[9px] sm:tracking-wide lg:text-[10px] ${
                 activeServiceId === service.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
@@ -90,7 +90,7 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              <span className="[&_svg]:h-4 [&_svg]:w-4">
+              <span className="hidden sm:inline-flex [&_svg]:h-4 [&_svg]:w-4">
                 {getPricingIcon(service.title, service.id)}
               </span>
               {service.title}

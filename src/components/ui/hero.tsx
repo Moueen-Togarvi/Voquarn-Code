@@ -382,8 +382,12 @@ export function Hero() {
             }
             @media (max-width: 640px) {
               .hero-section {
-                padding-top: 128px;
+                min-height: auto;
+                padding: 112px 16px 24px;
                 background-size: 32px 32px;
+              }
+              .hero-container {
+                gap: 24px;
               }
             }
             @media (min-width: 1024px) {
@@ -629,6 +633,11 @@ export function Hero() {
               box-sizing: border-box;
               order: 2;
             }
+            @media (max-width: 640px) {
+              .hero-col3 {
+                min-height: 210px;
+              }
+            }
             @media (min-width: 1024px) {
               .hero-col3 {
                 height: 100%;
@@ -698,7 +707,7 @@ export function Hero() {
             }
             @media (max-width: 640px) {
               .hero-scroll-indicator {
-                bottom: 16px;
+                bottom: 2px;
               }
             }
           `}} />
