@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSiteSettings } from "@/lib/data";
+import { applyAdminEmail, applyUserEmail } from "@/lib/email-templates";
+import { sendResendEmail } from "@/lib/resend";
 
 type ApplyPayload = {
   name: string;
@@ -23,74 +25,61 @@ export async function POST(request: Request) {
 
     const resendApiKey = process.env.RESEND_API_KEY;
     const toEmail = process.env.CONTACT_TO_EMAIL || (await getSiteSettings()).email;
+    const fromAddress = process.env.CONTACT_FROM_EMAIL || "Voquarn Code Careers <onboarding@resend.dev>";
 
     if (!resendApiKey) {
       return NextResponse.json(
         {
           message: "Application received locally. Add RESEND_API_KEY to send emails.",
         },
-        { status: 200 }
+        { status: 200 },
       );
     }
 
-    let html = `
-      <h2>New Job Application - Voquarn Code</h2>
-      <p><strong>Role:</strong> ${role}</p>
-      <p><strong>Applicant Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>WhatsApp / Phone:</strong> ${phone || "Not provided"}</p>
-      <p><strong>GitHub Profile:</strong> ${github ? `<a href="${github}">${github}</a>` : "Not provided"}</p>
-      <p><strong>Portfolio / Website:</strong> ${website ? `<a href="${website}">${website}</a>` : "Not provided"}</p>
-      <p><strong>CV / Resume Attached:</strong> Yes (${fileName || "cv.pdf"})</p>
-    `;
-
-    const attachments: any[] = [];
+    const attachments: { filename: string; content: string }[] = [];
     if (fileData && fileName) {
       const base64Content = fileData.split(";base64,").pop();
       if (base64Content) {
-        attachments.push({
-          filename: fileName,
-          content: base64Content,
-        });
+        attachments.push({ filename: fileName, content: base64Content });
       }
     }
 
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${resendApiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: process.env.CONTACT_FROM_EMAIL || "Voquarn Code Careers <onboarding@resend.dev>",
-        to: [toEmail],
-        reply_to: email,
-        subject: `[Job Application] ${role} - ${name}`,
-        html,
-        attachments: attachments.length > 0 ? attachments : undefined,
-      }),
+    const adminResult = await sendResendEmail(resendApiKey, {
+      from: fromAddress,
+      to: toEmail,
+      replyTo: email,
+      subject: `[Job Application] ${role} - ${name}`,
+      html: applyAdminEmail({ name, email, phone, role, github, website, fileName }),
+      attachments,
     });
 
-    if (!response.ok) {
-      const errText = await response.text();
-      console.error("Resend send error:", errText);
-      
-      try {
-        const errObj = JSON.parse(errText);
-        if (errObj.statusCode === 403 || errObj.message?.includes("testing emails")) {
-          return NextResponse.json({ 
-            message: "Resend is in Sandbox mode. Please verify voquarn.com on Resend, or temporarily change CONTACT_TO_EMAIL in your .env file to your Resend account email (voquarn@gmail.com) to test submissions."
-          }, { status: 403 });
-        }
-      } catch {}
-      
+    if (!adminResult.ok) {
+      console.error("Resend send error:", adminResult.raw);
+      if (adminResult.sandboxMode) {
+        return NextResponse.json(
+          {
+            message:
+              "Resend is in Sandbox mode. Please verify voquarn.com on Resend, or temporarily change CONTACT_TO_EMAIL in your .env file to your Resend account email (voquarn@gmail.com) to test submissions.",
+          },
+          { status: 403 },
+        );
+      }
       return NextResponse.json({ message: "Failed to send the application email." }, { status: 502 });
     }
+
+    // Confirmation to the applicant — best-effort, doesn't block or fail the
+    // request if it errors (the application itself already landed).
+    sendResendEmail(resendApiKey, {
+      from: fromAddress,
+      to: email,
+      subject: `We've received your application — ${role}`,
+      html: applyUserEmail({ name, role }),
+    }).catch((error) => console.error("Application confirmation email error:", error));
 
     return NextResponse.json({
       message: "Your application and CV have been successfully submitted!",
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Application API error:", error);
     return NextResponse.json({ message: "An unexpected error occurred." }, { status: 500 });
   }
