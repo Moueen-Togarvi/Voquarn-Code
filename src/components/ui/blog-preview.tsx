@@ -69,9 +69,9 @@ export function BlogPreview() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group flex min-h-[376px] flex-col overflow-hidden rounded-[18px] border border-neutral-200 bg-white text-neutral-950 shadow-[0_14px_35px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#ff5400]/45 hover:shadow-[0_22px_48px_rgba(255,84,0,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2"
+              className="group flex min-h-[360px] flex-col overflow-hidden rounded-[18px] border border-neutral-200 bg-white text-neutral-950 shadow-[0_14px_35px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#ff5400]/45 hover:shadow-[0_22px_48px_rgba(255,84,0,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2"
             >
-              <div className="relative aspect-[1.85/1] overflow-hidden bg-neutral-950">
+              <div className="relative aspect-[1.6/1] overflow-hidden bg-neutral-950">
                 <Image
                   src={post.coverImage || fallbackBlogImages[post.slug] || fallbackBlogImages["when-to-build-a-client-portal"]}
                   alt={post.title}
@@ -90,14 +90,14 @@ export function BlogPreview() {
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col border-t-[3px] border-[#ff5400] bg-white p-5 sm:p-6">
-                <Grip className="mb-3 h-4 w-4 text-[#ff5400]" />
+              <div className="flex flex-1 flex-col border-t-[3px] border-[#ff5400] bg-white p-4 sm:p-5">
+                <Grip className="mb-2 h-4 w-4 text-[#ff5400]" />
 
-                <h3 className="mb-3 text-[19px] font-black leading-[1.18] tracking-tight text-neutral-950 transition-colors group-hover:text-[#ff5400]">
+                <h3 className="mb-2 text-[18px] font-black leading-[1.18] tracking-tight text-neutral-950 transition-colors group-hover:text-[#ff5400]">
                   {post.title}
                 </h3>
 
-                <p className="mb-5 line-clamp-2 flex-1 text-[12px] font-medium leading-6 text-neutral-600">
+                <p className="mb-3 line-clamp-2 flex-1 text-[12px] font-medium leading-5 text-neutral-600">
                   {post.excerpt}
                 </p>
 
