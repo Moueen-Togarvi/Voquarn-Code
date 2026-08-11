@@ -43,10 +43,23 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
       setSelectedFile(file);
       setFileBase64("");
       setIsReadingFile(true);
+
+      // Reading a small CV file off local disk can finish in a few
+      // milliseconds — too fast for the loading state to ever paint. Holding
+      // it visible for a minimum stretch keeps the "uploading" feedback from
+      // flashing in and out unseen on fast devices.
+      const readStartedAt = Date.now();
+      const minVisibleMs = 500;
+
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFileBase64(reader.result as string);
-        setIsReadingFile(false);
+        const elapsed = Date.now() - readStartedAt;
+        const remaining = Math.max(0, minVisibleMs - elapsed);
+        const result = reader.result as string;
+        window.setTimeout(() => {
+          setFileBase64(result);
+          setIsReadingFile(false);
+        }, remaining);
       };
       reader.onerror = () => {
         setIsReadingFile(false);
