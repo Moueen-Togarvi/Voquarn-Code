@@ -27,6 +27,10 @@ export const metadata = buildMetadata(
   },
 );
 
+// Regenerated hourly so admin edits to site settings reach the live page
+// without a redeploy.
+export const revalidate = 3600;
+
 export default async function CeoPage() {
   const site = await getSiteSettings();
 

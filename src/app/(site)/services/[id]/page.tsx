@@ -35,6 +35,10 @@ const getPricingIcon = (categoryName: string, id: string) => {
 // Matches the "Best for SaaS" / "Most Popular" badges used in services-toggle.tsx.
 const featuredSubServiceIds = new Set(["ecommerce-web", "saas-web", "saas-app", "full-saas", "ai-agents"]);
 
+// Regenerated hourly so edits reach the live page without a redeploy, and new
+// service ids added after the last build still render on first request.
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const services = await getServices();
   return services.map((service) => ({ id: service.id }));

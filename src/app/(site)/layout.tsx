@@ -8,6 +8,11 @@ import { DeferredSiteEffects } from "@/components/layout/deferred-site-effects";
 import { MetaPixel } from "@/components/analytics/meta-pixel";
 import { TikTokPixel } from "@/components/analytics/tiktok-pixel";
 
+// Regenerated hourly so admin edits (site settings, testimonials) reach the
+// live site without a redeploy — same ISR window used across the rest of
+// the DB-backed (site) routes.
+export const revalidate = 3600;
+
 // Site-only chrome (navbar, footer, WhatsApp button, cursor, intro loader,
 // structured data). Scoped to this route group so /admin renders its own
 // AdminShell instead — nothing here reaches the admin panel.

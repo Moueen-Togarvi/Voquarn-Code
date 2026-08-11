@@ -30,6 +30,10 @@ export const metadata = buildMetadata(
   },
 );
 
+// Regenerated hourly so admin edits to site settings (email, phone, WhatsApp)
+// reach the live page without a redeploy.
+export const revalidate = 3600;
+
 export default async function ContactPage() {
   const site = await getSiteSettings();
 

@@ -12,6 +12,11 @@ type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
 };
 
+// Regenerated hourly so edits reach the live post without a redeploy, and new
+// slugs added after the last build (not in generateStaticParams' snapshot)
+// still render on first request instead of 404ing.
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));

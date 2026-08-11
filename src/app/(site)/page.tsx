@@ -53,6 +53,10 @@ export const metadata = buildMetadata(
   },
 );
 
+// Regenerated hourly so admin content changes (services, portfolio,
+// testimonials, FAQ, blog) reach the live homepage without a redeploy.
+export const revalidate = 3600;
+
 export default async function HomePage() {
   const [services, portfolioItems, testimonials, faqItems, settings, blogPosts] = await Promise.all([
     getServices(),

@@ -14,6 +14,10 @@ export const metadata = buildMetadata(
   "/privacy",
 );
 
+// Regenerated hourly so an updated contact email reaches the live page
+// without a redeploy.
+export const revalidate = 3600;
+
 export default async function PrivacyPage() {
   const site = await getSiteSettings();
 
