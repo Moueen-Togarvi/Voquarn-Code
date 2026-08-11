@@ -49,6 +49,18 @@ export async function GET() {
   lines.push(`- LinkedIn: ${site.socials.linkedin}`);
   lines.push("");
 
+  // ── Concise entity facts for direct answers and citations ──
+  lines.push("## Quick facts");
+  lines.push("");
+  lines.push(`- **What is ${site.name}?** A web development, SEO, mobile app, SaaS, and AI automation agency.`);
+  lines.push(`- **Where is ${site.name} based?** ${site.location}.`);
+  lines.push("- **Who does the agency serve?** Startups, local businesses, service companies, ecommerce brands, and international teams.");
+  lines.push("- **Which markets are served?** Pakistan and remote clients worldwide, including the United States, United Kingdom, and United Arab Emirates.");
+  lines.push("- **What currencies are supported?** Published packages use PKR and USD.");
+  lines.push("- **How can a client start?** Use the contact page or WhatsApp to request discovery and a scoped quote.");
+  lines.push("- **Content last reviewed:** 2026-08-11.");
+  lines.push("");
+
   // ── Services + pricing (the highest-value block for AI answers) ──
   if (services.length > 0) {
     lines.push("## Services and pricing");

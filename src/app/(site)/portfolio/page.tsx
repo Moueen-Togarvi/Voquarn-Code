@@ -11,19 +11,25 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 const pageTitle = "Portfolio & Case Studies | Voquarn Code";
 const pageDescription =
   "Browse Voquarn Code case studies across websites, apps, SEO growth, AI systems, and brand design with outcomes and live project references.";
+const pageKeywords = [
+  "web development portfolio Pakistan",
+  "website design case studies",
+  "Next.js projects portfolio",
+  "mobile app development portfolio",
+  "SaaS development case studies",
+  "SEO results case studies",
+  "AI automation projects",
+  "ecommerce website portfolio",
+  "UI UX design portfolio Pakistan",
+  "software agency case studies",
+];
 
 export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/portfolio",
   {
-    keywords: [
-      "web development portfolio Pakistan",
-      "app development case studies",
-      "SEO results portfolio",
-      "AI solutions projects",
-      "agency portfolio",
-    ],
+    keywords: pageKeywords,
   },
 );
 
@@ -32,7 +38,13 @@ export default async function PortfolioPage() {
 
   return (
     <>
-      <PageStructuredData path="/portfolio" name={pageTitle} description={pageDescription} type="CollectionPage" />
+      <PageStructuredData
+        path="/portfolio"
+        name={pageTitle}
+        description={pageDescription}
+        type="CollectionPage"
+        keywords={pageKeywords}
+      />
       <JsonLd
         data={itemListJsonLd(
           portfolioItems.map((item) => ({

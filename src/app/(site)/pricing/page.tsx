@@ -10,18 +10,25 @@ import { GSAPReveal } from "@/components/ui/gsap-reveal";
 const pageTitle = "Website, App, SEO & AI Automation Pricing | Voquarn Code";
 const pageDescription =
   "Compare starting package prices for Voquarn Code websites, apps, SaaS builds, SEO systems, and AI automation projects in PKR and USD.";
+const pageKeywords = [
+  "website development cost Pakistan",
+  "website design packages Pakistan",
+  "ecommerce website price Pakistan",
+  "mobile app development cost Pakistan",
+  "SaaS development pricing",
+  "SEO packages Pakistan",
+  "technical SEO audit price",
+  "AI automation cost",
+  "AI chatbot development price",
+  "custom software development cost",
+];
 
 export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/pricing",
   {
-    keywords: [
-      "website development pricing",
-      "app development pricing",
-      "SEO package pricing",
-      "AI automation pricing",
-    ],
+    keywords: pageKeywords,
   },
 );
 
@@ -30,7 +37,13 @@ export default async function PricingPage() {
 
   return (
     <>
-      <PageStructuredData path="/pricing" name={pageTitle} description={pageDescription} type="CollectionPage" />
+      <PageStructuredData
+        path="/pricing"
+        name={pageTitle}
+        description={pageDescription}
+        type="CollectionPage"
+        keywords={pageKeywords}
+      />
       {/* Real Offer/AggregateOffer pricing per service, so "how much does X cost" queries
           landing on /pricing get schema-backed numbers, not just page text. */}
       <JsonLd data={services.map(serviceJsonLd)} />

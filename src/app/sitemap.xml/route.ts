@@ -6,21 +6,21 @@ import { getSiteUrl } from "@/lib/site-url";
 export const revalidate = 3600;
 
 const staticRoutes = [
-  "",
-  "/about",
-  "/blog",
-  "/careers",
-  "/ceo",
-  "/contact",
-  "/portfolio",
-  "/pricing",
-  "/privacy",
-  "/services",
-  "/team",
-  "/terms",
-];
+  { path: "", changeFrequency: "weekly", priority: 1 },
+  { path: "/services", changeFrequency: "weekly", priority: 0.95 },
+  { path: "/pricing", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/portfolio", changeFrequency: "monthly", priority: 0.85 },
+  { path: "/blog", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/contact", changeFrequency: "yearly", priority: 0.8 },
+  { path: "/about", changeFrequency: "yearly", priority: 0.7 },
+  { path: "/team", changeFrequency: "monthly", priority: 0.65 },
+  { path: "/ceo", changeFrequency: "yearly", priority: 0.6 },
+  { path: "/careers", changeFrequency: "weekly", priority: 0.6 },
+  { path: "/privacy", changeFrequency: "yearly", priority: 0.2 },
+  { path: "/terms", changeFrequency: "yearly", priority: 0.2 },
+] as const;
 
-const SITE_LAST_MODIFIED = new Date("2026-05-31T00:00:00.000Z");
+const SITE_LAST_MODIFIED = new Date("2026-08-11T00:00:00.000Z");
 
 function escapeXml(value: string) {
   return value
@@ -31,11 +31,18 @@ function escapeXml(value: string) {
     .replaceAll(">", "&gt;");
 }
 
-function entry(url: string, lastModified: Date) {
+function entry(
+  url: string,
+  lastModified: Date,
+  changeFrequency: "weekly" | "monthly" | "yearly",
+  priority: number,
+) {
   return [
     "<url>",
     `<loc>${escapeXml(url)}</loc>`,
     `<lastmod>${lastModified.toISOString()}</lastmod>`,
+    `<changefreq>${changeFrequency}</changefreq>`,
+    `<priority>${priority.toFixed(2)}</priority>`,
     "</url>",
   ].join("\n");
 }
@@ -44,16 +51,21 @@ export async function GET() {
   const siteUrl = getSiteUrl();
   const [services, blogPosts] = await Promise.all([getServices(), getBlogPosts()]);
 
-  const staticEntries = staticRoutes.map((path) =>
-    entry(new URL(path || "/", siteUrl).toString(), SITE_LAST_MODIFIED),
+  const staticEntries = staticRoutes.map((route) =>
+    entry(
+      new URL(route.path || "/", siteUrl).toString(),
+      SITE_LAST_MODIFIED,
+      route.changeFrequency,
+      route.priority,
+    ),
   );
 
   const serviceEntries = services.map((service) =>
-    entry(new URL(`/services/${service.id}`, siteUrl).toString(), SITE_LAST_MODIFIED),
+    entry(new URL(`/services/${service.id}`, siteUrl).toString(), SITE_LAST_MODIFIED, "monthly", 0.8),
   );
 
   const blogEntries = blogPosts.map((post) =>
-    entry(new URL(`/blog/${post.slug}`, siteUrl).toString(), new Date(post.publishedAt)),
+    entry(new URL(`/blog/${post.slug}`, siteUrl).toString(), new Date(post.publishedAt), "monthly", 0.7),
   );
 
   const body = [

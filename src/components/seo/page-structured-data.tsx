@@ -7,6 +7,7 @@ type PageStructuredDataProps = {
   description: string;
   type?: string;
   breadcrumbs?: BreadcrumbItem[];
+  keywords?: string[];
 };
 
 export function PageStructuredData({
@@ -15,12 +16,13 @@ export function PageStructuredData({
   description,
   type = "WebPage",
   breadcrumbs,
+  keywords,
 }: PageStructuredDataProps) {
   const items = breadcrumbs || [
     { name: "Home", path: "/" },
     { name, path },
   ];
-  const data = [webPageJsonLd({ path, name, description, type })];
+  const data = [webPageJsonLd({ path, name, description, type, keywords })];
 
   if (items.length >= 2) {
     data.push(breadcrumbJsonLd(items));

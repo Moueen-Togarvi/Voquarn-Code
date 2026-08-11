@@ -18,19 +18,27 @@ const process = [
 const pageTitle = "Web Development, SEO, Apps & AI Automation Services | Voquarn Code";
 const pageDescription =
   "Explore Voquarn Code services for conversion-focused websites, mobile apps, SaaS products, SEO systems, and AI workflow automation.";
+const pageKeywords = [
+  "web development services Pakistan",
+  "SEO services Pakistan",
+  "technical SEO agency",
+  "mobile app development services",
+  "SaaS development agency",
+  "AI automation services",
+  "AI agent development",
+  "Next.js website development",
+  "ecommerce development Pakistan",
+  "custom business software",
+  "UI UX design services Pakistan",
+  "digital transformation agency Pakistan",
+];
 
 export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/services",
   {
-    keywords: [
-      "web development services",
-      "SEO services",
-      "mobile app development",
-      "AI workflow automation",
-      "SaaS development agency",
-    ],
+    keywords: pageKeywords,
   },
 );
 
@@ -39,7 +47,13 @@ export default async function ServicesPage() {
 
   return (
     <>
-      <PageStructuredData path="/services" name={pageTitle} description={pageDescription} type="CollectionPage" />
+      <PageStructuredData
+        path="/services"
+        name={pageTitle}
+        description={pageDescription}
+        type="CollectionPage"
+        keywords={pageKeywords}
+      />
       <JsonLd
         data={[
           itemListJsonLd(

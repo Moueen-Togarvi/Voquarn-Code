@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import type { Service } from "@/lib/site-data";
 import { Globe, Bot, Code2, Smartphone, Layers, ArrowRight, MessageCircle, CheckCircle2, Star } from "lucide-react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 
@@ -85,10 +84,9 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
               }`}
             >
               {activeServiceId === service.id && (
-                <motion.div
-                  layoutId="activeServicesTab"
+                <span
+                  aria-hidden="true"
                   className="absolute inset-x-0.5 inset-y-1.5 -z-10 rounded-full bg-[#ff5400] shadow-[0_8px_18px_rgba(255,84,0,0.26)]"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
               <span className="hidden shrink-0 items-center sm:inline-flex [&_svg]:h-3.5 [&_svg]:w-3.5">

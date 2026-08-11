@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navItems } from "@/lib/site-data";
 
 const navbarNavItems = navItems.filter((item) => item.href !== "/contact");
@@ -11,26 +11,36 @@ const navbarNavItems = navItems.filter((item) => item.href !== "/contact");
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let frameId = 0;
+
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setScrollProgress(progress);
+      if (frameId) return;
+
+      frameId = window.requestAnimationFrame(() => {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+        progressRef.current?.style.setProperty("transform", `scaleX(${progress / 100})`);
+        frameId = 0;
+      });
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   return (
     <header className="fixed top-6 left-1/2 z-50 w-[92%] max-w-5xl -translate-x-1/2">
       <div className="bg-[var(--nav-bg)] backdrop-blur-md border border-[var(--border)] rounded-full px-4 md:px-6 py-1.5 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.12)] relative">
         <div
-          className="absolute top-0 left-0 h-[2px] bg-[#ff5400] rounded-full transition-all duration-150"
-          style={{ width: `${scrollProgress}%` }}
+          ref={progressRef}
+          className="absolute left-0 top-0 h-[2px] w-full origin-left scale-x-0 rounded-full bg-[#ff5400]"
         />
 
         <Link href="/" className="flex items-center group" onClick={() => setIsOpen(false)}>

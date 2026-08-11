@@ -1,71 +1,7 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
-
-const SERVICES = ["Websites", "Brands", "Apps", "Systems", "SaaS Apps", "AI Agents", "AI Apps"];
-
-
-
-const Typewriter = ({ onIndexChange }: { onIndexChange?: (idx: number) => void }) => {
-  const [text, setText] = useState("Websites");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-
-  useEffect(() => {
-    const i = loopNum % SERVICES.length;
-    const fullText = SERVICES[i];
-
-    onIndexChange?.(i);
-
-    let typingSpeed = isDeleting ? 50 : 120;
-
-    if (!isDeleting && text === fullText) {
-      typingSpeed = 2000;
-    } else if (isDeleting && text === "") {
-      typingSpeed = 500;
-    }
-
-    const timer = setTimeout(() => {
-      if (!isDeleting && text === fullText) {
-        setIsDeleting(true);
-      } else if (isDeleting && text === "") {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-      } else {
-        setText(
-          isDeleting
-            ? fullText.substring(0, text.length - 1)
-            : fullText.substring(0, text.length + 1)
-        );
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, onIndexChange]);
-
-  return (
-    <span className="hero-typewriter" style={{ color: "var(--primary)", display: "inline-flex", alignItems: "center", width: "6.2em", justifyContent: "flex-start", whiteSpace: "nowrap" }}>
-      {text}
-      <motion.span
-        animate={{ opacity: [0, 1, 0] }}
-        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-        style={{
-          width: "0.06em",
-          height: "1.05em",
-          marginLeft: "0.08em",
-          borderRadius: 999,
-          background: "#ff9a66",
-          transform: "translateY(0.02em)",
-          flexShrink: 0,
-        }}
-      />
-    </span>
-  );
-};
+import { HeroTypewriter } from "@/components/ui/hero-typewriter";
 
 const RocketImg = () => (
   <Image
@@ -83,34 +19,9 @@ const RocketImg = () => (
 );
 
 const RocketLauncher = () => {
-  const [phase, setPhase] = useState<"entry" | "hover">("entry");
-
-  useEffect(() => {
-    const t = setTimeout(() => setPhase("hover"), 1650);
-    return () => clearTimeout(t);
-  }, []);
-
-  if (phase === "entry") {
-    return (
-      <div
-        className="rocket-entry"
-        style={{
-          position: "absolute",
-          top: "110%",
-          left: "calc(50% + 5px)",
-          transform: "translate(-50%, -50%)",
-          zIndex: 1,
-          pointerEvents: "none",
-        }}
-      >
-        <RocketImg />
-      </div>
-    );
-  }
-
   return (
     <div
-      className="rocket-hover"
+      className="rocket-launcher"
       style={{
         position: "absolute",
         top: "50%",
@@ -129,16 +40,12 @@ export function Hero() {
   return (
     <section className="hero-section" style={{ background: "var(--background)", color: "var(--hero-text)" }}>
       <div className="hero-container">
-        <motion.div
-          initial={false}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
+        <div
           className="hero-col1"
           style={{ background: "var(--foreground)" }}
         >
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          <div
+            className="hero-brand-emblem"
             style={{
               width: 56,
               height: 56,
@@ -151,9 +58,8 @@ export function Hero() {
               position: "relative",
             }}
           >
-            <motion.div
-              animate={{ scale: [1, 1.35, 1], opacity: [0.4, 0.85, 0.4] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            <div
+              className="hero-brand-glow"
               style={{
                 position: "absolute",
                 width: "100%",
@@ -165,15 +71,8 @@ export function Hero() {
                 pointerEvents: "none",
               }}
             />
-            <motion.div
-              animate={{
-                boxShadow: [
-                  "0 0 10px rgba(255, 84, 0, 0.25)",
-                  "0 0 20px rgba(255, 84, 0, 0.65)",
-                  "0 0 10px rgba(255, 84, 0, 0.25)",
-                ],
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            <div
+              className="hero-brand-ring"
               style={{
                 position: "absolute",
                 inset: -2,
@@ -202,7 +101,6 @@ export function Hero() {
                 alt="Voquarn Code brand emblem"
                 width={317}
                 height={317}
-                priority
                 style={{
                   width: "100%",
                   height: "100%",
@@ -212,20 +110,15 @@ export function Hero() {
                 }}
               />
             </div>
-          </motion.div>
+          </div>
 
           <p className="hero-label" style={{ color: "var(--muted)" }}>
             VOQUARN CODE
           </p>
 
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={false}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          className="hero-col2"
-        >
+        <div className="hero-col2">
           <div style={{ display: "flex", flexDirection: "column", gap: 16, order: -1 }}>
             <p
               className="hero-eyebrow"
@@ -266,7 +159,7 @@ export function Hero() {
                   color: "var(--hero-text)",
                 }}
               >
-                <Typewriter />
+                <HeroTypewriter />
                 <span
                   className="hero-headline-dot"
                   style={{
@@ -278,10 +171,8 @@ export function Hero() {
                     flexShrink: 0,
                   }}
                 />
-                <motion.span
-                  className="hero-headline-star"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                <span
+                  className="hero-headline-star hero-spin"
                   style={{
                     display: "inline-block",
                     fontSize: "0.7em",
@@ -291,26 +182,23 @@ export function Hero() {
                   }}
                 >
                   ✳
-                </motion.span>
+                </span>
               </span>
             </h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="hero-promise"
-            >
+            <div className="hero-promise">
               <span className="hero-promise-mark" />
               <p className="hero-promise-text" style={{ color: "var(--foreground)" }}>
                 From <span>idea</span> to <span>launch</span>, without the messy middle.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+            <p className="hero-answer" data-speakable>
+              Voquarn Code is a Pakistan-based web development, SEO, mobile app, SaaS, and AI
+              automation agency serving businesses locally and worldwide.
+            </p>
+
+            <div
               className="hero-actions"
               style={{ display: 'flex', gap: '16px', marginTop: '34px', flexWrap: 'wrap' }}
             >
@@ -358,10 +246,10 @@ export function Hero() {
               >
                 <Play size={14} /> Watch Showreel
               </Link>
-            </motion.div>
+            </div>
 
           </div>
-        </motion.div>
+        </div>
 
         <div className="hero-col3">
           <style dangerouslySetInnerHTML={{
@@ -496,6 +384,15 @@ export function Hero() {
               color: #ff5400;
               text-shadow: 0 10px 26px rgba(255, 84, 0, 0.22);
             }
+            .hero-answer {
+              max-width: 560px;
+              margin: 18px 0 0;
+              color: var(--muted);
+              font-size: 14px;
+              font-weight: 600;
+              line-height: 1.7;
+              text-wrap: balance;
+            }
             @media (max-width: 640px) {
               .hero-headline {
                 font-size: 32px !important;
@@ -536,6 +433,12 @@ export function Hero() {
               .hero-promise-text {
                 font-size: 24px;
                 text-align: center;
+              }
+              .hero-answer {
+                margin-inline: auto;
+                max-width: 320px;
+                text-align: center;
+                font-size: 13px;
               }
               .hero-actions {
                 width: 100%;

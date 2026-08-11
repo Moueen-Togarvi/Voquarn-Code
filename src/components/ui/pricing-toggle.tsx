@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import type { Service } from "@/lib/site-data";
 import { MessageCircle, Globe, Bot, Code2, Smartphone, Layers } from "lucide-react";
-import { motion } from "framer-motion";
 import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 
 type DisplayItem = {
@@ -95,10 +94,9 @@ export function PricingToggle({ services, whatsapp, limit }: PricingToggleProps)
               }`}
             >
               {activeServiceId === service.id && (
-                <motion.div
-                  layoutId="activeCategoryTab"
+                <span
+                  aria-hidden="true"
                   className="absolute inset-0 bg-[var(--foreground)] rounded-full -z-10"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
               {service.title}
@@ -117,10 +115,9 @@ export function PricingToggle({ services, whatsapp, limit }: PricingToggleProps)
               }`}
             >
               {currency === option && (
-                <motion.div
-                  layoutId="activeCurrencyTab"
+                <span
+                  aria-hidden="true"
                   className="absolute inset-0 bg-[#ff5400] rounded-full -z-10"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
               {option}

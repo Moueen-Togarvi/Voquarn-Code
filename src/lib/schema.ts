@@ -25,14 +25,16 @@ function websiteId() {
 
 export function siteIdentityJsonLd(site: SiteSettings, testimonials: Testimonial[]): JsonLdData {
   const ratingCount = testimonials.length;
-  const ratingValue =
-    ratingCount > 0
-      ? Number(
-          (
-            testimonials.reduce((sum, t) => sum + t.stars, 0) / ratingCount
-          ).toFixed(1),
-        )
-      : 5;
+  const ratingValue = ratingCount
+    ? Number((testimonials.reduce((sum, t) => sum + t.stars, 0) / ratingCount).toFixed(1))
+    : null;
+  const socialProfiles = Object.values(site.socials).filter((url) => /^https?:\/\//.test(url));
+  const serviceAreas = [
+    { "@type": "Country", name: "Pakistan" },
+    { "@type": "Country", name: "United States" },
+    { "@type": "Country", name: "United Kingdom" },
+    { "@type": "Country", name: "United Arab Emirates" },
+  ];
 
   return {
     "@context": "https://schema.org",
@@ -41,9 +43,17 @@ export function siteIdentityJsonLd(site: SiteSettings, testimonials: Testimonial
         "@type": ["Organization", "ProfessionalService"],
         "@id": organizationId(),
         name: site.name,
+        alternateName: "Voquarn",
+        slogan: "From idea to launch, without the messy middle.",
         url: absoluteUrl("/"),
-        logo: absoluteUrl(site.logoPath),
-        image: absoluteUrl(site.logoPath),
+        logo: {
+          "@type": "ImageObject",
+          url: absoluteUrl(site.logoPath),
+          contentUrl: absoluteUrl(site.logoPath),
+          width: 500,
+          height: 500,
+        },
+        image: absoluteUrl("/og-default.jpg"),
         description: site.description,
         email: site.email,
         telephone: site.phone,
@@ -61,12 +71,7 @@ export function siteIdentityJsonLd(site: SiteSettings, testimonials: Testimonial
           latitude: 29.9955,
           longitude: 73.2713,
         },
-        areaServed: [
-          "Pakistan",
-          "United States",
-          "United Kingdom",
-          "United Arab Emirates",
-        ],
+        areaServed: serviceAreas,
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",
@@ -96,31 +101,40 @@ export function siteIdentityJsonLd(site: SiteSettings, testimonials: Testimonial
             availableLanguage: ["English", "Urdu"],
           },
         ],
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue,
-          reviewCount: ratingCount,
-          bestRating: 5,
-          worstRating: 1,
-        },
-        review: testimonials.map((t) => ({
-          "@type": "Review",
-          author: { "@type": "Person", name: t.name },
-          reviewBody: t.review,
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: t.stars,
-            bestRating: 5,
-            worstRating: 1,
-          },
-        })),
-        sameAs: Object.values(site.socials),
+        ...(ratingCount > 0 && ratingValue
+          ? {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue,
+                reviewCount: ratingCount,
+                bestRating: 5,
+                worstRating: 1,
+              },
+              review: testimonials.map((t) => ({
+                "@type": "Review",
+                author: { "@type": "Person", name: t.name },
+                reviewBody: t.review,
+                reviewRating: {
+                  "@type": "Rating",
+                  ratingValue: t.stars,
+                  bestRating: 5,
+                  worstRating: 1,
+                },
+              })),
+            }
+          : {}),
+        ...(socialProfiles.length > 0 ? { sameAs: socialProfiles } : {}),
         knowsAbout: [
           "Web development",
+          "Next.js development",
           "Search engine optimization",
+          "Technical SEO",
+          "Local SEO",
           "Mobile app development",
           "SaaS development",
           "AI workflow automation",
+          "AI agent development",
+          "Business process automation",
           "Brand and interface design",
         ],
       },
@@ -132,11 +146,7 @@ export function siteIdentityJsonLd(site: SiteSettings, testimonials: Testimonial
         description: site.description,
         publisher: { "@id": organizationId() },
         inLanguage: "en",
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `${absoluteUrl("/blog")}?q={search_term_string}`,
-          "query-input": "required name=search_term_string",
-        },
+        about: { "@id": organizationId() },
       },
     ],
   };
@@ -147,11 +157,13 @@ export function webPageJsonLd({
   name,
   description,
   type = "WebPage",
+  keywords = [],
 }: {
   path: string;
   name: string;
   description: string;
   type?: string;
+  keywords?: string[];
 }): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
@@ -163,6 +175,7 @@ export function webPageJsonLd({
     isPartOf: { "@id": websiteId() },
     publisher: { "@id": organizationId() },
     inLanguage: "en",
+    ...(keywords.length > 0 ? { keywords } : {}),
     // Tells voice assistants and answer engines which text on the page is the
     // canonical summary worth reading aloud or quoting.
     speakable: {
@@ -307,7 +320,7 @@ export function blogPostJsonLd(post: BlogPost): Record<string, unknown> {
     },
     headline: post.title,
     description: post.excerpt,
-    image: absoluteUrl(post.coverImage || "/bg-home.png"),
+    image: absoluteUrl(post.coverImage || "/og-default.jpg"),
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
     author: {

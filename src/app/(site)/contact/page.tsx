@@ -9,19 +9,24 @@ import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 const pageTitle = "Contact Voquarn Code | Web Development & SEO Agency";
 const pageDescription =
   "Contact Voquarn Code for website development, SEO, app development, SaaS builds, and AI automation projects in Pakistan or internationally.";
+const pageKeywords = [
+  "hire web development agency Pakistan",
+  "hire Next.js developer Pakistan",
+  "get website development quote",
+  "SEO consultation Pakistan",
+  "hire mobile app developers",
+  "SaaS development consultation",
+  "AI automation consultation Pakistan",
+  "web development company Bahawalnagar contact",
+  "software house Punjab Pakistan",
+];
 
 export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/contact",
   {
-    keywords: [
-      "hire web developer Pakistan",
-      "contact web development agency",
-      "SEO agency contact",
-      "AI automation agency Pakistan",
-      "get a website quote",
-    ],
+    keywords: pageKeywords,
   },
 );
 
@@ -30,7 +35,13 @@ export default async function ContactPage() {
 
   return (
     <>
-      <PageStructuredData path="/contact" name={pageTitle} description={pageDescription} type="ContactPage" />
+      <PageStructuredData
+        path="/contact"
+        name={pageTitle}
+        description={pageDescription}
+        type="ContactPage"
+        keywords={pageKeywords}
+      />
       <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
         <GSAPReveal direction="up">
           <SectionHeading

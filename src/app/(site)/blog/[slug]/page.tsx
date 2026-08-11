@@ -6,6 +6,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { blogPostJsonLd } from "@/lib/schema";
 import { getBlogPost, getBlogPosts } from "@/lib/data";
 import { RichContent } from "@/components/admin/rich-content";
+import { articleKeywordCluster } from "@/lib/seo-keywords";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   return buildMetadata(`${post.title} | Voquarn Code`, post.excerpt, `/blog/${post.slug}`, {
     type: "article",
     publishedTime: post.publishedAt,
-    keywords: [post.category, "technical SEO", "digital growth", "AI workflows"],
+    keywords: articleKeywordCluster(post.title, post.category),
     ...(post.coverImage ? { image: post.coverImage } : {}),
   });
 }
@@ -42,6 +43,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const hasRichContent =
     post.content && Array.isArray(post.content) && post.content.length > 0;
+  const pageKeywords = articleKeywordCluster(post.title, post.category);
 
   return (
     <section className="page-section">
@@ -50,6 +52,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         name={post.title}
         description={post.excerpt}
         type="WebPage"
+        keywords={pageKeywords}
         breadcrumbs={[
           { name: "Home", path: "/" },
           { name: "Blog", path: "/blog" },

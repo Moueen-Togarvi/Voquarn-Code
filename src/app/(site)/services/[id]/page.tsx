@@ -9,6 +9,7 @@ import { serviceJsonLd } from "@/lib/schema";
 import { getServices, getService, getPortfolioItems, getSiteSettings } from "@/lib/data";
 import type { PortfolioItem } from "@/lib/site-data";
 import { WhatsAppLink } from "@/components/ui/whatsapp-link";
+import { serviceKeywordCluster } from "@/lib/seo-keywords";
 
 type ServiceDetailPageProps = {
   params: Promise<{ id: string }>;
@@ -49,15 +50,11 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
   }
 
   return buildMetadata(
-    `${service.title} Services | Voquarn Code`,
-    `${service.description} See deliverables, sub-services, and related work from Voquarn Code.`,
+    `${service.title} Services in Pakistan | Voquarn Code`,
+    `${service.description} Explore scope, pricing, deliverables, and related ${service.title.toLowerCase()} work for businesses in Pakistan and worldwide.`,
     `/services/${service.id}`,
     {
-      keywords: [
-        `${service.title} services`,
-        `${service.title} agency`,
-        `Voquarn Code ${service.title}`,
-      ],
+      keywords: serviceKeywordCluster(service.title, service.id),
     },
   );
 }
@@ -98,14 +95,16 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   }
 
   const relatedWork = getRelatedWork(service.title, portfolioItems);
+  const pageKeywords = serviceKeywordCluster(service.title, service.id);
 
   return (
     <div className="relative bg-white text-black min-h-screen pt-40 lg:pt-48">
       <PageStructuredData
         path={`/services/${service.id}`}
-        name={`${service.title} Services | Voquarn Code`}
+        name={`${service.title} Services in Pakistan | Voquarn Code`}
         description={service.description}
         type="WebPage"
+        keywords={pageKeywords}
         breadcrumbs={[
           { name: "Home", path: "/" },
           { name: "Services", path: "/services" },

@@ -14,33 +14,53 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { faqJsonLd } from "@/lib/schema";
 import { buildMetadata } from "@/lib/metadata";
 import { stats } from "@/lib/site-data";
-import { getServices, getPortfolioItems, getTestimonials, getFaqItems, getSiteSettings } from "@/lib/data";
+import {
+  getBlogPosts,
+  getFaqItems,
+  getPortfolioItems,
+  getServices,
+  getSiteSettings,
+  getTestimonials,
+} from "@/lib/data";
 
 const pageTitle = "Voquarn Code | Web Development, SEO & AI Automation Agency";
 const pageDescription =
   "Voquarn Code builds conversion-focused websites, mobile apps, SEO systems, and AI automation workflows for businesses in Pakistan and worldwide.";
+const pageKeywords = [
+  "web development company Pakistan",
+  "web design agency Pakistan",
+  "SEO agency Pakistan",
+  "technical SEO services Pakistan",
+  "mobile app development company Pakistan",
+  "SaaS development company Pakistan",
+  "AI automation agency Pakistan",
+  "AI agent development company",
+  "Next.js development agency",
+  "ecommerce website development Pakistan",
+  "custom software development Pakistan",
+  "web development company Bahawalnagar",
+  "digital agency Punjab Pakistan",
+  "hire web developers Pakistan",
+  "conversion focused website design",
+];
 
 export const metadata = buildMetadata(
   pageTitle,
   pageDescription,
   "/",
   {
-    keywords: [
-      "web development agency Pakistan",
-      "SEO agency Pakistan",
-      "AI automation agency",
-      "business website development",
-    ],
+    keywords: pageKeywords,
   },
 );
 
 export default async function HomePage() {
-  const [services, portfolioItems, testimonials, faqItems, settings] = await Promise.all([
+  const [services, portfolioItems, testimonials, faqItems, settings, blogPosts] = await Promise.all([
     getServices(),
     getPortfolioItems(),
     getTestimonials(),
     getFaqItems(),
     getSiteSettings(),
+    getBlogPosts(),
   ]);
 
   return (
@@ -49,6 +69,7 @@ export default async function HomePage() {
         path="/"
         name={pageTitle}
         description={pageDescription}
+        keywords={pageKeywords}
         breadcrumbs={[{ name: "Home", path: "/" }]}
       />
       <JsonLd data={faqJsonLd(faqItems)} />
@@ -103,7 +124,7 @@ export default async function HomePage() {
       </GSAPReveal>
 
       <GSAPReveal direction="up" delay={0.05}>
-        <BlogPreview />
+        <BlogPreview posts={blogPosts.slice(0, 3)} />
       </GSAPReveal>
 
       <GSAPReveal direction="up" delay={0.05}>

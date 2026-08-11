@@ -1,9 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Circle, Clock, Grip } from "lucide-react";
-import { useEffect, useState } from "react";
 
 type PreviewPost = {
   slug: string;
@@ -25,16 +22,7 @@ const fallbackBlogImages: Record<string, string> = {
 
 const formatReadTime = (readTime: string) => readTime.replace(/\s*read$/i, "").toUpperCase();
 
-export function BlogPreview() {
-  const [posts, setPosts] = useState<PreviewPost[]>([]);
-
-  useEffect(() => {
-    fetch("/api/blog")
-      .then((res) => res.json())
-      .then((data) => setPosts(data.slice(0, 3) || []))
-      .catch(() => setPosts([]));
-  }, []);
-
+export function BlogPreview({ posts }: { posts: PreviewPost[] }) {
   if (posts.length === 0) return null;
 
   return (

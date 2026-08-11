@@ -1,17 +1,12 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import type { SiteSettings } from "@/lib/data";
-import { Mail, Phone, MapPin, ArrowUp } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { NewsletterForm } from "@/components/ui/newsletter-form";
 import { WhatsAppLink } from "@/components/ui/whatsapp-link";
+import { BackToTopButton } from "@/components/ui/back-to-top-button";
 
 export function Footer({ settings }: { settings: SiteSettings }) {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer className="w-full px-4 py-8 lg:px-8 bg-[var(--surface)] transition-colors duration-300">
       <div className="mx-auto max-w-7xl rounded-[2.5rem] bg-[var(--panel)] border border-[var(--border)] p-8 md:p-12 lg:p-16">
@@ -184,14 +179,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               </Link>
             </div>
 
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="order-3 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-[var(--muted)] hover:text-[var(--foreground)] hover:border-[var(--foreground)] transition-all duration-300"
-              aria-label="Back to top"
-            >
-              <ArrowUp size={12} /> Top
-            </button>
+            <BackToTopButton />
           </div>
         </div>
       </div>

@@ -41,13 +41,13 @@ export function buildMetadata(
 ): Metadata {
   const siteUrl = getSiteUrl();
   const url = new URL(path, siteUrl).toString();
-  const imageUrl = new URL(options.image || "/bg-home.png", siteUrl).toString();
+  const imageUrl = new URL(options.image || "/og-default.jpg", siteUrl).toString();
   const images = [
     {
       url: imageUrl,
       width: 1200,
       height: 675,
-      alt: `${site.name} digital agency preview`,
+      alt: `${title} — ${site.name}`,
     },
   ];
 
@@ -59,7 +59,7 @@ export function buildMetadata(
           siteName: site.name,
           type: "article",
           url,
-          locale: "en_US",
+          locale: "en_PK",
           images,
           publishedTime: options.publishedTime,
           modifiedTime: options.modifiedTime || options.publishedTime,
@@ -70,7 +70,7 @@ export function buildMetadata(
           siteName: site.name,
           type: "website",
           url,
-          locale: "en_US",
+          locale: "en_PK",
           images,
         };
 
@@ -89,13 +89,25 @@ export function buildMetadata(
     authors: [{ name: site.name, url: siteUrl.toString() }],
     creator: site.name,
     publisher: site.name,
-    keywords: [...defaultKeywords, ...(options.keywords || [])],
+    keywords: Array.from(new Set([...defaultKeywords, ...(options.keywords || [])])),
     metadataBase: siteUrl,
     alternates: {
       canonical: path,
     },
     ...(Object.keys(verification).length > 0 ? { verification } : {}),
     category: "Technology",
+    classification: "Web development, SEO, mobile apps, SaaS, and AI automation",
+    referrer: "origin-when-cross-origin",
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    other: {
+      "geo.region": "PK-PB",
+      "geo.placename": "Bahawalnagar, Punjab, Pakistan",
+      ICBM: "29.9955, 73.2713",
+    },
     icons: {
       icon: [
         { url: site.logoPath, type: "image/png", sizes: "500x500" },
