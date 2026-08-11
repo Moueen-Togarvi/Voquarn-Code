@@ -8,7 +8,7 @@ type ApplyPayload = {
   email: string;
   phone: string;
   role: string;
-  github?: string;
+  github: string;
   website?: string;
   fileData?: string; // base64 representation of file
   fileName?: string;
@@ -19,13 +19,14 @@ export async function POST(request: Request) {
     const body = (await request.json()) as ApplyPayload;
     const { name, email, phone, role, github, website, fileData, fileName } = body;
 
-    if (!name || !email || !role || !fileData) {
-      return NextResponse.json({ message: "Name, email, role, and CV file are required." }, { status: 400 });
+    if (!name || !email || !role || !github || !fileData) {
+      return NextResponse.json({ message: "Name, email, role, GitHub URL, and CV file are required." }, { status: 400 });
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    const toEmail = process.env.CONTACT_TO_EMAIL || (await getSiteSettings()).email;
-    const fromAddress = process.env.CONTACT_FROM_EMAIL || "Voquarn Code Careers <hello@voquarn.com>";
+    const site = await getSiteSettings();
+    const toEmail = process.env.CONTACT_TO_EMAIL || site.email;
+    const fromAddress = process.env.CONTACT_FROM_EMAIL || `${site.name} Careers <hello@voquarn.com>`;
 
     if (!resendApiKey) {
       return NextResponse.json(
@@ -49,7 +50,7 @@ export async function POST(request: Request) {
       to: toEmail,
       replyTo: email,
       subject: `[Job Application] ${role} - ${name}`,
-      html: applyAdminEmail({ name, email, phone, role, github, website, fileName }),
+      html: applyAdminEmail(site, { name, email, phone, role, github, website, fileName }),
       attachments,
     });
 
@@ -67,14 +68,22 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Failed to send the application email." }, { status: 502 });
     }
 
-    // Confirmation to the applicant — best-effort, doesn't block or fail the
-    // request if it errors (the application itself already landed).
-    sendResendEmail(resendApiKey, {
-      from: fromAddress,
-      to: email,
-      subject: `We've received your application — ${role}`,
-      html: applyUserEmail({ name, role }),
-    }).catch((error) => console.error("Application confirmation email error:", error));
+    // Confirmation to the applicant. Must be awaited — on serverless (Vercel),
+    // the function can freeze/tear down the instant the response is sent, so
+    // a fire-and-forget call here risks never completing.
+    try {
+      const userResult = await sendResendEmail(resendApiKey, {
+        from: fromAddress,
+        to: email,
+        subject: `We've received your application — ${role}`,
+        html: applyUserEmail(site, { name, role }),
+      });
+      if (!userResult.ok) {
+        console.error("Application confirmation email error:", userResult.raw);
+      }
+    } catch (error) {
+      console.error("Application confirmation email error:", error);
+    }
 
     return NextResponse.json({
       message: "Your application and CV have been successfully submitted!",

@@ -20,8 +20,9 @@ export async function POST(request: Request) {
   }
 
   const resendApiKey = process.env.RESEND_API_KEY;
-  const contactEmail = process.env.CONTACT_TO_EMAIL || (await getSiteSettings()).email;
-  const fromAddress = process.env.CONTACT_FROM_EMAIL || "Voquarn Code <hello@voquarn.com>";
+  const site = await getSiteSettings();
+  const contactEmail = process.env.CONTACT_TO_EMAIL || site.email;
+  const fromAddress = process.env.CONTACT_FROM_EMAIL || `${site.name} <hello@voquarn.com>`;
 
   if (!resendApiKey) {
     return NextResponse.json(
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
     to: contactEmail,
     replyTo: email,
     subject: `New inquiry from ${name}`,
-    html: contactAdminEmail({ name, email, service, budget, message }),
+    html: contactAdminEmail(site, { name, email, service, budget, message }),
   });
 
   if (!adminResult.ok) {
@@ -54,14 +55,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Unable to send the inquiry email right now." }, { status: 502 });
   }
 
-  // Confirmation to the person who submitted the form — best-effort, doesn't
-  // block or fail the request if it errors (the inquiry itself already landed).
-  sendResendEmail(resendApiKey, {
-    from: fromAddress,
-    to: email,
-    subject: "We've received your inquiry — Voquarn Code",
-    html: contactUserEmail({ name }),
-  }).catch((error) => console.error("Contact confirmation email error:", error));
+  // Confirmation to the person who submitted the form. Must be awaited — on
+  // serverless (Vercel), the function can freeze/tear down the instant the
+  // response is sent, so a fire-and-forget call here risks never completing.
+  try {
+    const userResult = await sendResendEmail(resendApiKey, {
+      from: fromAddress,
+      to: email,
+      subject: `We've received your inquiry — ${site.name}`,
+      html: contactUserEmail(site, { name }),
+    });
+    if (!userResult.ok) {
+      console.error("Contact confirmation email error:", userResult.raw);
+    }
+  } catch (error) {
+    console.error("Contact confirmation email error:", error);
+  }
 
   return NextResponse.json({ message: "Inquiry sent successfully. We will get back to you shortly." });
 }

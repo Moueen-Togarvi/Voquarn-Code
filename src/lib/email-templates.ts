@@ -1,4 +1,5 @@
 import { getSiteUrl } from "@/lib/site-url";
+import type { SiteSettings } from "@/lib/data";
 
 const BRAND_COLOR = "#ff5400";
 const BRAND_DARK = "#151516";
@@ -16,6 +17,49 @@ function escapeHtml(value: string) {
     .replaceAll("'", "&#39;");
 }
 
+function whatsappLink(whatsapp: string) {
+  return `https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}`;
+}
+
+/** Small monochrome line-icon as an inline SVG data URI — renders reliably as an <img> across Gmail, Apple Mail, and Outlook, unlike emoji glyphs which vary by OS font. */
+function iconDataUri(path: string) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23999999" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+  return `data:image/svg+xml,${svg}`;
+}
+
+const ICONS = {
+  mail: iconDataUri(
+    '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/>',
+  ),
+  whatsapp: iconDataUri(
+    '<path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Z"/><path d="M8.5 8.3c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .6.4.2.5.7 1.6.7 1.8.1.1.1.3 0 .4-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.6 1 1.3 1.7 2.3 2.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.2.4-.2.6-.1.9.4 1.8.9 2.6 1.3.1.1.2.1.2.3 0 .5 0 1-.3 1.4-.4.6-1.4 1-2 1-1.5 0-3.5-1-4.9-2.4-1.5-1.5-2.5-3.4-2.5-4.9 0-.4.1-.9.2-1.2Z" fill="%23999999" stroke="none"/>',
+  ),
+  globe: iconDataUri(
+    '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>',
+  ),
+};
+
+function contactLine(iconSrc: string, href: string, label: string) {
+  return `
+    <tr>
+      <td style="padding:6px 0;">
+        <a href="${href}" style="text-decoration:none;">
+          <table role="presentation" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="padding-right:8px;vertical-align:middle;">
+                <img src="${iconSrc}" width="14" height="14" alt="" style="display:block;" />
+              </td>
+              <td style="vertical-align:middle;font-size:12.5px;color:#6b6b6b;">
+                ${label}
+              </td>
+            </tr>
+          </table>
+        </a>
+      </td>
+    </tr>
+  `;
+}
+
 /** Renders a single label/value row inside the details card. */
 function detailRow(label: string, value: string) {
   return `
@@ -31,6 +75,7 @@ function detailRow(label: string, value: string) {
 }
 
 type EmailShellOptions = {
+  site: SiteSettings;
   preheader: string;
   eyebrow: string;
   heading: string;
@@ -48,6 +93,7 @@ type EmailShellOptions = {
  * the only reliable way to get consistent rendering everywhere.
  */
 function emailShell({
+  site,
   preheader,
   eyebrow,
   heading,
@@ -58,7 +104,8 @@ function emailShell({
   footerNote,
 }: EmailShellOptions) {
   const siteUrl = getSiteUrl().toString().replace(/\/$/, "");
-  const logoUrl = absoluteAsset("/finalvoquarn-logo.png");
+  const siteHost = siteUrl.replace(/^https?:\/\//, "");
+  const logoUrl = absoluteAsset("/email-logo.png");
   const year = new Date().getFullYear();
 
   return `<!doctype html>
@@ -78,7 +125,10 @@ function emailShell({
             <!-- Header -->
             <tr>
               <td style="background-color:${BRAND_DARK};padding:32px 40px;text-align:center;">
-                <img src="${logoUrl}" alt="Voquarn Code" width="40" height="40" style="display:inline-block;border-radius:10px;" />
+                <img src="${logoUrl}" alt="${escapeHtml(site.name)}" width="40" height="40" style="display:inline-block;border-radius:10px;" />
+                <p style="margin:12px 0 0;font-size:13px;font-weight:700;letter-spacing:0.04em;color:#ffffff;">
+                  ${escapeHtml(site.name)}
+                </p>
               </td>
             </tr>
 
@@ -124,12 +174,29 @@ function emailShell({
               </td>
             </tr>
 
+            <!-- Contact strip -->
+            <tr>
+              <td style="padding:0 40px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #f0f0f0;">
+                  <tr>
+                    <td style="padding:22px 0;">
+                      <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;">
+                        ${contactLine(ICONS.mail, `mailto:${escapeHtml(site.email)}`, escapeHtml(site.email))}
+                        ${contactLine(ICONS.whatsapp, whatsappLink(site.whatsapp), `WhatsApp: ${escapeHtml(site.phone)}`)}
+                        ${contactLine(ICONS.globe, siteUrl, siteHost)}
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
             <!-- Footer -->
             <tr>
-              <td style="padding:24px 40px 32px;border-top:1px solid #f0f0f0;">
+              <td style="padding:20px 40px 32px;border-top:1px solid #f0f0f0;">
                 ${footerNote ? `<p style="margin:0 0 12px;font-size:12px;line-height:1.6;color:#a0a0a0;">${footerNote}</p>` : ""}
                 <p style="margin:0;font-size:11px;color:#c2c2c2;">
-                  &copy; ${year} Voquarn Code &middot; <a href="${siteUrl}" style="color:#c2c2c2;text-decoration:underline;">${siteUrl.replace(/^https?:\/\//, "")}</a>
+                  &copy; ${year} ${escapeHtml(site.name)}
                 </p>
               </td>
             </tr>
@@ -143,13 +210,16 @@ function emailShell({
 }
 
 // ── Contact inquiry: notifies the agency ──
-export function contactAdminEmail(input: {
-  name: string;
-  email: string;
-  service: string;
-  budget: string;
-  message: string;
-}) {
+export function contactAdminEmail(
+  site: SiteSettings,
+  input: {
+    name: string;
+    email: string;
+    service: string;
+    budget: string;
+    message: string;
+  },
+) {
   const rows = [
     detailRow("Name", escapeHtml(input.name)),
     detailRow("Email", `<a href="mailto:${escapeHtml(input.email)}" style="color:${BRAND_COLOR};text-decoration:none;">${escapeHtml(input.email)}</a>`),
@@ -159,6 +229,7 @@ export function contactAdminEmail(input: {
   ].join("");
 
   return emailShell({
+    site,
     preheader: `New inquiry from ${input.name} — ${input.service}`,
     eyebrow: "New Inquiry",
     heading: "You've got a new project inquiry",
@@ -170,9 +241,10 @@ export function contactAdminEmail(input: {
 }
 
 // ── Contact inquiry: confirms receipt to the person who submitted it ──
-export function contactUserEmail(input: { name: string }) {
+export function contactUserEmail(site: SiteSettings, input: { name: string }) {
   return emailShell({
-    preheader: "Thanks for reaching out to Voquarn Code — we'll be in touch within 24 hours.",
+    site,
+    preheader: `Thanks for reaching out to ${site.name} — we'll be in touch within 24 hours.`,
     eyebrow: "Message Received",
     heading: `Thanks for reaching out, ${input.name.split(" ")[0]}`,
     intro:
@@ -182,15 +254,18 @@ export function contactUserEmail(input: { name: string }) {
 }
 
 // ── Job application: notifies the agency ──
-export function applyAdminEmail(input: {
-  name: string;
-  email: string;
-  phone: string;
-  role: string;
-  github?: string;
-  website?: string;
-  fileName?: string;
-}) {
+export function applyAdminEmail(
+  site: SiteSettings,
+  input: {
+    name: string;
+    email: string;
+    phone: string;
+    role: string;
+    github: string;
+    website?: string;
+    fileName?: string;
+  },
+) {
   const rows = [
     detailRow("Role", escapeHtml(input.role)),
     detailRow("Name", escapeHtml(input.name)),
@@ -198,7 +273,7 @@ export function applyAdminEmail(input: {
     detailRow("Phone", escapeHtml(input.phone || "Not provided")),
     detailRow(
       "GitHub",
-      input.github ? `<a href="${escapeHtml(input.github)}" style="color:${BRAND_COLOR};text-decoration:none;">${escapeHtml(input.github)}</a>` : "Not provided",
+      `<a href="${escapeHtml(input.github)}" style="color:${BRAND_COLOR};text-decoration:none;">${escapeHtml(input.github)}</a>`,
     ),
     detailRow(
       "Portfolio",
@@ -208,6 +283,7 @@ export function applyAdminEmail(input: {
   ].join("");
 
   return emailShell({
+    site,
     preheader: `New application for ${input.role} from ${input.name}`,
     eyebrow: "New Application",
     heading: `New application: ${input.role}`,
@@ -219,8 +295,9 @@ export function applyAdminEmail(input: {
 }
 
 // ── Job application: confirms receipt to the applicant ──
-export function applyUserEmail(input: { name: string; role: string }) {
+export function applyUserEmail(site: SiteSettings, input: { name: string; role: string }) {
   return emailShell({
+    site,
     preheader: `We received your application for ${input.role} — our team reviews every submission.`,
     eyebrow: "Application Received",
     heading: `Thanks for applying, ${input.name.split(" ")[0]}`,

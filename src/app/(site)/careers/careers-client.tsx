@@ -21,6 +21,7 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
   const [portfolioUrl, setPortfolioUrl] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileBase64, setFileBase64] = useState<string>("");
+  const [isReadingFile, setIsReadingFile] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [submitMsg, setSubmitMsg] = useState("");
@@ -40,9 +41,16 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setSelectedFile(file);
+      setFileBase64("");
+      setIsReadingFile(true);
       const reader = new FileReader();
       reader.onloadend = () => {
         setFileBase64(reader.result as string);
+        setIsReadingFile(false);
+      };
+      reader.onerror = () => {
+        setIsReadingFile(false);
+        setSelectedFile(null);
       };
       reader.readAsDataURL(file);
     }
@@ -56,14 +64,20 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
     setPortfolioUrl("");
     setSelectedFile(null);
     setFileBase64("");
+    setIsReadingFile(false);
     setSubmitStatus("idle");
     setSubmitMsg("");
   };
 
   const handleApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!applicantName || !applicantEmail || !applicantPhone || !selectedFile) {
-      alert("Name, email, mobile number, and CV file are required.");
+    if (!applicantName || !applicantEmail || !applicantPhone || !githubUrl || !selectedFile) {
+      alert("Name, email, mobile number, GitHub URL, and CV file are required.");
+      return;
+    }
+
+    if (isReadingFile || !fileBase64) {
+      alert("Please wait for the CV to finish uploading.");
       return;
     }
 
@@ -412,10 +426,11 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
                         <svg className="w-3 h-3 text-neutral-500 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
                         </svg>
-                        GitHub URL <span className="text-[8px] text-neutral-500 font-normal lowercase">(optional)</span>
+                        GitHub URL *
                       </label>
                       <input
                         type="url"
+                        required
                         placeholder="https://github.com/..."
                         value={githubUrl}
                         onChange={(e) => setGithubUrl(e.target.value)}
@@ -439,19 +454,36 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
                   {/* CV Uploader */}
                   <div>
                     <label className="block text-[10px] font-bold text-neutral-800 uppercase tracking-wider mb-1 pl-1">Upload CV / Resume *</label>
-                    <div className="border border-dashed border-neutral-300 rounded-xl p-4 flex flex-col items-center justify-center bg-white hover:bg-neutral-50 transition-colors cursor-pointer relative">
+                    <div
+                      className={`border border-dashed rounded-xl p-4 flex flex-col items-center justify-center transition-colors relative ${
+                        isReadingFile
+                          ? "border-[#ff5400]/40 bg-[#ff5400]/5 cursor-wait"
+                          : "border-neutral-300 bg-white hover:bg-neutral-50 cursor-pointer"
+                      }`}
+                    >
                       <input
                         type="file"
                         required
                         accept=".pdf,.docx,.doc"
                         onChange={handleFileChange}
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        disabled={isReadingFile}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-wait"
                       />
-                      <Upload className="w-5 h-5 text-neutral-700 mb-1.5 stroke-[2]" />
-                      <span className="text-xs font-bold text-neutral-900">
-                        {selectedFile ? selectedFile.name : "Choose PDF / Word File"}
-                      </span>
-                      <span className="text-[9px] text-neutral-500 font-bold mt-0.5">Max size: 5MB</span>
+                      {isReadingFile ? (
+                        <>
+                          <Loader2 className="w-5 h-5 text-[#ff5400] mb-1.5 animate-spin" />
+                          <span className="text-xs font-bold text-neutral-900">Uploading {selectedFile?.name}...</span>
+                          <span className="text-[9px] text-neutral-500 font-bold mt-0.5">Please wait</span>
+                        </>
+                      ) : (
+                        <>
+                          <Upload className="w-5 h-5 text-neutral-700 mb-1.5 stroke-[2]" />
+                          <span className="text-xs font-bold text-neutral-900">
+                            {selectedFile && fileBase64 ? selectedFile.name : "Choose PDF / Word File"}
+                          </span>
+                          <span className="text-[9px] text-neutral-500 font-bold mt-0.5">Max size: 5MB</span>
+                        </>
+                      )}
                     </div>
                   </div>
 
@@ -473,13 +505,18 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
                     </button>
                     <button
                       type="submit"
-                      disabled={isSubmitting || !selectedFile}
+                      disabled={isSubmitting || isReadingFile || !selectedFile || !fileBase64}
                       className="w-1/2 py-3 rounded-xl bg-[#ff5400] hover:bg-[#e04800] text-white text-xs font-black tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
                           <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
                           <span>Applying...</span>
+                        </>
+                      ) : isReadingFile ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
+                          <span>Uploading CV...</span>
                         </>
                       ) : (
                         <>
