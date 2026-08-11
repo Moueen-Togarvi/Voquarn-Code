@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 
   const resendApiKey = process.env.RESEND_API_KEY;
   const contactEmail = process.env.CONTACT_TO_EMAIL || (await getSiteSettings()).email;
-  const fromAddress = process.env.CONTACT_FROM_EMAIL || "Voquarn Code <onboarding@resend.dev>";
+  const fromAddress = process.env.CONTACT_FROM_EMAIL || "Voquarn Code <hello@voquarn.com>";
 
   if (!resendApiKey) {
     return NextResponse.json(

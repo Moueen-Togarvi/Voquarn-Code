@@ -20,7 +20,7 @@ export async function sendResendEmail(apiKey: string, input: SendEmailInput): Pr
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: input.from || "Voquarn Code <onboarding@resend.dev>",
+      from: input.from || "Voquarn Code <hello@voquarn.com>",
       to: Array.isArray(input.to) ? input.to : [input.to],
       reply_to: input.replyTo,
       subject: input.subject,
