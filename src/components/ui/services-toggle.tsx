@@ -73,27 +73,27 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
   return (
     <div className="space-y-12 w-full">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-center px-2 pb-2 sm:px-4">
-        <div className="relative flex w-full flex-nowrap gap-0.5 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1 shadow-[0_14px_40px_rgba(255,84,0,0.10)] lg:w-1/2">
+        <div className="relative grid w-full grid-cols-4 items-center gap-0.5 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1 shadow-[0_14px_40px_rgba(255,84,0,0.10)] lg:w-1/2">
           {orderedServices.map((service) => (
             <button
               key={service.id}
               type="button"
               onClick={() => setActiveServiceId(service.id)}
-              className={`relative z-10 inline-flex min-h-11 min-w-0 flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full px-0.5 py-2 text-[7px] font-semibold uppercase tracking-[0.01em] transition-colors duration-300 sm:gap-1.5 sm:px-2 sm:text-[9px] sm:tracking-wide lg:text-[10px] ${
+              className={`relative z-10 inline-flex h-11 w-full min-w-0 items-center justify-center gap-1 whitespace-nowrap rounded-full px-0.5 text-center text-[7px] font-semibold uppercase leading-none tracking-[0.01em] transition-colors duration-300 sm:gap-1.5 sm:px-2 sm:text-[9px] sm:tracking-wide lg:text-[10px] ${
                 activeServiceId === service.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
               {activeServiceId === service.id && (
                 <motion.div
                   layoutId="activeServicesTab"
-                  className="absolute inset-0 bg-[#ff5400] rounded-full -z-10 shadow-[0_12px_24px_rgba(255,84,0,0.34)]"
+                  className="absolute inset-0.5 -z-10 rounded-full bg-[#ff5400] shadow-[0_10px_22px_rgba(255,84,0,0.30)]"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
               <span className="hidden sm:inline-flex [&_svg]:h-4 [&_svg]:w-4">
                 {getPricingIcon(service.title, service.id)}
               </span>
-              {service.title}
+              <span className="block text-center leading-none">{service.title}</span>
             </button>
           ))}
         </div>
