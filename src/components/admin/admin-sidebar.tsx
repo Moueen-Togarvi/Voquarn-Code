@@ -15,6 +15,8 @@ import {
   Settings,
   LogOut,
   ChevronLeft,
+  BarChart3,
+  Building2,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
@@ -26,6 +28,8 @@ const sidebarLinks = [
   { href: "/admin/portfolio", label: "Portfolio", icon: Briefcase },
   { href: "/admin/team", label: "Team", icon: Users },
   { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquare },
+  { href: "/admin/stats", label: "Stats", icon: BarChart3 },
+  { href: "/admin/trusted-clients", label: "Trusted Clients", icon: Building2 },
   { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
   { href: "/admin/pricing", label: "Pricing", icon: DollarSign },
   { href: "/admin/careers", label: "Careers", icon: UserPlus },

@@ -46,6 +46,15 @@ export type Stat = {
   suffix?: string;
 };
 
+export type ClientLogo = {
+  name: string;
+  logoUrl: string;
+};
+
+export type ClientCategory = {
+  label: string;
+};
+
 export type Testimonial = {
   name: string;
   company: string;

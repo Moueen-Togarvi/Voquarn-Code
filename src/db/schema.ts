@@ -224,6 +224,33 @@ export const jobOpenings = pgTable("job_openings", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const stats = pgTable("stats", {
+  id: serial("id").primaryKey(),
+  label: text("label").notNull(),
+  value: integer("value").notNull(),
+  suffix: text("suffix"),
+  order: integer("order").default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Client logo marquee on the homepage ("Teams we've worked with").
+export const clientLogos = pgTable("client_logos", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  logoUrl: text("logo_url").notNull(),
+  order: integer("order").default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Text category chips shown in the second row of the same homepage section
+// (e.g. "Healthcare Clinics", "Retail Brands") — independent of client_logos.
+export const clientCategories = pgTable("client_categories", {
+  id: serial("id").primaryKey(),
+  label: text("label").notNull(),
+  order: integer("order").default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Relations for db.query support
 export const servicesRelations = {
   blogPosts,
@@ -234,4 +261,7 @@ export const servicesRelations = {
   testimonials,
   faqItems,
   pricingPlans,
+  stats,
+  clientLogos,
+  clientCategories,
 };

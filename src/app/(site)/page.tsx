@@ -13,7 +13,6 @@ import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { JsonLd } from "@/components/seo/json-ld";
 import { faqJsonLd } from "@/lib/schema";
 import { buildMetadata } from "@/lib/metadata";
-import { stats } from "@/lib/site-data";
 import {
   getBlogPosts,
   getFaqItems,
@@ -21,6 +20,9 @@ import {
   getServices,
   getSiteSettings,
   getTestimonials,
+  getStats,
+  getClientLogos,
+  getClientCategories,
 } from "@/lib/data";
 
 const pageTitle = "Voquarn Code | Web Development, SEO & AI Automation Agency";
@@ -58,13 +60,16 @@ export const metadata = buildMetadata(
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  const [services, portfolioItems, testimonials, faqItems, settings, blogPosts] = await Promise.all([
+  const [services, portfolioItems, testimonials, faqItems, settings, blogPosts, stats, clientLogos, clientCategories] = await Promise.all([
     getServices(),
     getPortfolioItems(),
     getTestimonials(),
     getFaqItems(),
     getSiteSettings(),
     getBlogPosts(),
+    getStats(),
+    getClientLogos(),
+    getClientCategories(),
   ]);
 
   return (
@@ -85,7 +90,7 @@ export default async function HomePage() {
       </GSAPReveal>
 
       <GSAPReveal>
-        <TrustedClients />
+        <TrustedClients logos={clientLogos} categories={clientCategories} />
       </GSAPReveal>
 
       <section className="page-section relative overflow-hidden border-b border-[var(--section-border)] pb-20">

@@ -11,10 +11,13 @@ import {
   pricingPlans,
   siteSettings,
   jobOpenings,
+  stats,
+  clientLogos,
+  clientCategories,
 } from "@/db/schema";
 import { eq, desc, asc } from "drizzle-orm";
 import { site as staticSite } from "@/lib/site-data";
-import type { BlogPost, Service, PortfolioItem, TeamMember, Testimonial, FaqItem, PricingPlan, JobOpening } from "@/lib/site-data";
+import type { BlogPost, Service, PortfolioItem, TeamMember, Testimonial, FaqItem, PricingPlan, JobOpening, Stat, ClientLogo, ClientCategory } from "@/lib/site-data";
 
 // The database is the single source of truth for all content below: if a row
 // isn't in the admin panel, it doesn't render on the site. There is no
@@ -263,6 +266,54 @@ export const getJobOpenings = cache(async (): Promise<JobOpening[]> => {
     });
   } catch (error) {
     console.error("getJobOpenings DB error:", error);
+    return [];
+  }
+});
+
+// ── Stats ──
+export const getStats = cache(async (): Promise<Stat[]> => {
+  try {
+    return await withRetry(async () => {
+      const items = await db.select().from(stats).orderBy(asc(stats.order));
+      return items.map((s) => ({
+        label: s.label,
+        value: s.value,
+        suffix: s.suffix || undefined,
+      }));
+    });
+  } catch (error) {
+    console.error("getStats DB error:", error);
+    return [];
+  }
+});
+
+// ── Trusted client logos ──
+export const getClientLogos = cache(async (): Promise<ClientLogo[]> => {
+  try {
+    return await withRetry(async () => {
+      const items = await db.select().from(clientLogos).orderBy(asc(clientLogos.order));
+      return items.map((c) => ({
+        name: c.name,
+        logoUrl: c.logoUrl,
+      }));
+    });
+  } catch (error) {
+    console.error("getClientLogos DB error:", error);
+    return [];
+  }
+});
+
+// ── Trusted client category chips ──
+export const getClientCategories = cache(async (): Promise<ClientCategory[]> => {
+  try {
+    return await withRetry(async () => {
+      const items = await db.select().from(clientCategories).orderBy(asc(clientCategories.order));
+      return items.map((c) => ({
+        label: c.label,
+      }));
+    });
+  } catch (error) {
+    console.error("getClientCategories DB error:", error);
     return [];
   }
 });
