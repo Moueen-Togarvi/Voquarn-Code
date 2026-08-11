@@ -7,7 +7,6 @@
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import {
   AnimatePresence,
   MotionValue,
@@ -50,65 +49,37 @@ const FloatingDockMobile = ({
   items: FloatingDockItem[];
   className?: string;
 }) => {
-  const [open, setOpen] = useState(false);
   return (
-    <nav aria-label="Mobile navigation" className={cn("relative block md:hidden", className)}>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            layoutId="nav"
-            className="absolute inset-x-0 bottom-full mb-3 flex max-h-[calc(100dvh-6rem)] flex-col items-center gap-2 overflow-y-auto p-1"
+    <motion.nav
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      aria-label="Mobile dock navigation"
+      className={cn(
+        "block max-w-[calc(100vw-1.5rem)] overflow-x-auto rounded-full border border-neutral-200 bg-white/95 p-1.5 shadow-[0_14px_38px_rgba(15,23,42,0.2)] backdrop-blur-xl [scrollbar-width:none] md:hidden [&::-webkit-scrollbar]:hidden",
+        className,
+      )}
+    >
+      <div className="flex w-max items-center gap-1">
+        {items.map((item) => (
+          <Link
+            href={item.href}
+            key={item.title}
+            aria-label={item.title}
+            aria-current={item.active ? "page" : undefined}
+            title={item.title}
+            className={cn(
+              "flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-all active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2",
+              item.active
+                ? "bg-[#ff5400] text-white shadow-[0_8px_20px_rgba(255,84,0,0.3)]"
+                : "text-neutral-700 hover:bg-[#ff5400]/10 hover:text-[#ff5400]",
+            )}
           >
-            {items.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: {
-                    delay: idx * 0.05,
-                  },
-                }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
-              >
-                <Link
-                  href={item.href}
-                  key={item.title}
-                  aria-label={item.title}
-                  aria-current={item.active ? "page" : undefined}
-                  onClick={() => setOpen(false)}
-                  className={cn(
-                    "group relative flex h-12 w-12 items-center justify-center rounded-full border shadow-lg backdrop-blur-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2",
-                    item.active
-                      ? "border-[#ff5400] bg-[#ff5400] text-white"
-                      : "border-neutral-200 bg-white/95 text-neutral-800 hover:border-[#ff5400] hover:text-[#ff5400]",
-                  )}
-                >
-                  <div className="h-5 w-5">{item.icon}</div>
-                  <span className="pointer-events-none absolute left-full ml-2 rounded-full bg-neutral-950 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
-                    {item.title}
-                  </span>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        aria-label={open ? "Close navigation" : "Open navigation"}
-        aria-expanded={open}
-        className="flex h-13 w-13 items-center justify-center rounded-full border border-white/30 bg-[#ff5400] text-white shadow-[0_14px_34px_rgba(255,84,0,0.38)] transition-transform active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2"
-      >
-        <IconLayoutNavbarCollapse className={cn("h-6 w-6 transition-transform", open && "rotate-180")} />
-      </button>
-    </nav>
+            <span className="h-5 w-5">{item.icon}</span>
+          </Link>
+        ))}
+      </div>
+    </motion.nav>
   );
 };
 
