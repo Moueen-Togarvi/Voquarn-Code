@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { NewsletterForm } from "@/components/ui/newsletter-form";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { blogJsonLd } from "@/lib/schema";
 import { getBlogPosts } from "@/lib/data";
-import { ArrowRight, Clock, Rss } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 
 const pageTitle = "Voquarn Code Blog | SEO, Web Development & AI Automation";
 const pageDescription =
@@ -58,9 +57,8 @@ export default async function BlogPage() {
           headingLevel="h1"
         />
 
-        {/* Featured + Newsletter row */}
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
-          {/* Featured Article — Redesigned */}
+        {/* Featured Article */}
+        <div className="mt-12">
           {featured && (
             <article className="group relative overflow-hidden rounded-[2rem] bg-[var(--foreground)] flex flex-col min-h-[320px]">
               {/* Cover image with gradient overlay */}
@@ -106,24 +104,6 @@ export default async function BlogPage() {
               </div>
             </article>
           )}
-
-          {/* Newsletter */}
-          <div className="rounded-[2rem] border border-[var(--border)] bg-[var(--panel)] p-8 flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#ff5400]/10 flex items-center justify-center text-[#ff5400] mb-5">
-                <Rss className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-xl font-extrabold text-[var(--foreground)] tracking-tight">
-                Join the newsletter
-              </h3>
-              <p className="mt-3 text-sm text-[var(--muted)] leading-relaxed">
-                Get new articles, SEO notes, and workflow ideas without inbox spam.
-              </p>
-            </div>
-            <div className="mt-8">
-              <NewsletterForm />
-            </div>
-          </div>
         </div>
       </section>
 

@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { SiteSettings } from "@/lib/data";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { NewsletterForm } from "@/components/ui/newsletter-form";
 import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 import { BackToTopButton } from "@/components/ui/back-to-top-button";
 
@@ -47,7 +46,6 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             <div className="flex flex-col space-y-4">
               <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Services</h4>
               <Link href="/services" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Web Development</Link>
-              <Link href="/pricing" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Pricing</Link>
               <Link href="/portfolio" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Portfolio</Link>
               <Link href="/services" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">All Services</Link>
             </div>
@@ -99,11 +97,6 @@ export function Footer({ settings }: { settings: SiteSettings }) {
                   {settings.location}
                 </span>
               </div>
-            </div>
-
-            <div>
-              <h4 className="text-[12px] font-bold text-[var(--foreground)] uppercase tracking-widest mb-3">Newsletter</h4>
-              <NewsletterForm compact />
             </div>
 
             <div className="flex items-center gap-3 pt-2">

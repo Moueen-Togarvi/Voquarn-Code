@@ -39,11 +39,6 @@ export function trackLead(params?: PixelParams) {
   track({ meta: "Lead", tiktok: "SubmitForm" }, params);
 }
 
-/** Newsletter signup completed. */
-export function trackSubscribe(params?: PixelParams) {
-  track({ meta: "CompleteRegistration", tiktok: "CompleteRegistration" }, params);
-}
-
 /** Careers application submitted. */
 export function trackSubmitApplication(params?: PixelParams) {
   track({ meta: "SubmitApplication", tiktok: "SubmitForm" }, params);

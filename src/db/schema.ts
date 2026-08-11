@@ -208,12 +208,6 @@ export const siteSettings = pgTable("site_settings", {
   value: text("value").notNull(),
 });
 
-export const newsletterSubscribers = pgTable("newsletter_subscribers", {
-  id: serial("id").primaryKey(),
-  email: text("email").notNull().unique(),
-  subscribedAt: timestamp("subscribed_at").defaultNow().notNull(),
-});
-
 export const jobOpenings = pgTable("job_openings", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),

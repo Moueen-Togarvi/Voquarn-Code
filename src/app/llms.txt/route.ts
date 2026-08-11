@@ -116,7 +116,6 @@ export async function GET() {
   lines.push("## Key pages");
   lines.push("");
   lines.push(`- [Services](${abs("/services")}): Full service catalogue with scope and deliverables.`);
-  lines.push(`- [Pricing](${abs("/pricing")}): Starting package prices in PKR and USD.`);
   lines.push(`- [Portfolio](${abs("/portfolio")}): Case studies with measured outcomes.`);
   lines.push(`- [About](${abs("/about")}): How the agency works and what it optimises for.`);
   lines.push(`- [Team](${abs("/team")}): The people delivering the work.`);

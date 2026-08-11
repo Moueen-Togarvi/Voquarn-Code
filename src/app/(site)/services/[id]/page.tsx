@@ -32,8 +32,7 @@ const getPricingIcon = (categoryName: string, id: string) => {
   return <Layers className="w-5 h-5 text-white" />;
 };
 
-// Matches the "Best for SaaS" / "Most Popular" badges used in pricing-toggle.tsx
-// and services-toggle.tsx, so the same packages are called out consistently.
+// Matches the "Best for SaaS" / "Most Popular" badges used in services-toggle.tsx.
 const featuredSubServiceIds = new Set(["ecommerce-web", "saas-web", "saas-app", "full-saas", "ai-agents"]);
 
 export async function generateStaticParams() {

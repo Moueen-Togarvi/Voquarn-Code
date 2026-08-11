@@ -26,9 +26,7 @@ const getPricingIcon = (categoryName: string, id: string) => {
   return <Layers className="w-6 h-6" />;
 };
 
-// Matches the "Best for SaaS" / "Most Popular" style badges already used in
-// pricing-toggle.tsx, so the same packages get called out as the best choice
-// wherever they're shown.
+// Keeps the same packages called out as the best choice wherever they're shown.
 const featuredSubServiceIds = new Set(["ecommerce-web", "saas-web", "saas-app", "full-saas", "ai-agents"]);
 const serviceOrder = ["web-dev", "app-dev", "saas-apps", "ai-workflows"];
 
@@ -50,6 +48,7 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
   );
   const [activeServiceId, setActiveServiceId] = useState<string>(orderedServices[0]?.id ?? "");
   const activeService = orderedServices.find((s) => s.id === activeServiceId) ?? orderedServices[0];
+  const [currency, setCurrency] = useState<"PKR" | "USD">("PKR");
 
   const displayItems = useMemo((): DisplayItem[] => {
     if (!activeService) return [];
@@ -98,6 +97,29 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
         </div>
       </div>
 
+      <div className="flex justify-center">
+        <div className="inline-flex rounded-full border border-[var(--border)] bg-[var(--surface)] p-1.5 shadow-sm relative">
+          {(["PKR", "USD"] as const).map((option) => (
+            <button
+              key={option}
+              type="button"
+              onClick={() => setCurrency(option)}
+              className={`relative rounded-full px-5 py-2 text-xs font-medium uppercase tracking-wider transition-colors duration-300 z-10 ${
+                currency === option ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
+              }`}
+            >
+              {currency === option && (
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-[#ff5400] rounded-full -z-10"
+                />
+              )}
+              {option}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="grid gap-6 items-stretch max-w-7xl mx-auto px-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {itemsToDisplay.map((item) => (
           <article
@@ -123,7 +145,10 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
                 <div className="text-right">
                   <p className="text-[9px] font-semibold uppercase tracking-wide text-[var(--muted)]">from</p>
                   <p className="text-sm font-bold text-[var(--foreground)]">
-                    PKR <span className="text-[#ff5400]">{item.pricePkr.toLocaleString()}</span>
+                    {currency}{" "}
+                    <span className="text-[#ff5400]">
+                      {(currency === "PKR" ? item.pricePkr : item.priceUsd).toLocaleString()}
+                    </span>
                   </p>
                 </div>
               </div>

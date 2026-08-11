@@ -8,7 +8,6 @@ import {
   testimonials,
   faqItems,
   pricingPlans,
-  newsletterSubscribers,
   jobOpenings,
 } from "@/db/schema";
 import { auth } from "@/lib/auth";
@@ -28,7 +27,6 @@ export async function GET() {
     const [testimonialCount] = await db.select({ value: count() }).from(testimonials);
     const [faqCount] = await db.select({ value: count() }).from(faqItems);
     const [pricingCount] = await db.select({ value: count() }).from(pricingPlans);
-    const [newsletterCount] = await db.select({ value: count() }).from(newsletterSubscribers);
     const [careersCount] = await db.select({ value: count() }).from(jobOpenings);
 
     return NextResponse.json({
@@ -39,7 +37,6 @@ export async function GET() {
       testimonials: Number(testimonialCount?.value || 0),
       faq: Number(faqCount?.value || 0),
       pricing: Number(pricingCount?.value || 0),
-      newsletter: Number(newsletterCount?.value || 0),
       careers: Number(careersCount?.value || 0),
     });
   } catch (error) {
@@ -53,7 +50,6 @@ export async function GET() {
         testimonials: 0,
         faq: 0,
         pricing: 0,
-        newsletter: 0,
         careers: 0,
       },
       { status: 200 },

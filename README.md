@@ -4,9 +4,9 @@ This is a multi-page agency website for Voquarn Code, built with Next.js App Rou
 
 ## Features
 
-- **Homepage and route tree**: Home, About, Services, Portfolio, Pricing, Blog, Blog Post, and Contact.
-- **Reusable components**: Sticky navbar, hero, service cards, portfolio filter, pricing toggle, testimonials, footer, and floating WhatsApp CTA.
-- **API routes**: Contact form and newsletter subscription endpoints.
+- **Homepage and route tree**: Home, About, Services, Portfolio, Blog, Blog Post, and Contact.
+- **Reusable components**: Sticky navbar, hero, service cards, portfolio filter, testimonials, footer, and floating WhatsApp CTA.
+- **API routes**: Contact form endpoint.
 - **Tailwind CSS 4**: Custom visual system with responsive layouts.
 - **Content-driven setup**: Centralized marketing content in `src/lib/site-data.ts`.
 
@@ -28,7 +28,6 @@ Copy `.env.example` to `.env` and fill in the values you want to use.
   production.
 - `RESEND_API_KEY`: Enables contact form delivery.
 - `CONTACT_TO_EMAIL`: Where contact inquiries should go.
-- `MAILCHIMP_*`: Enables real newsletter subscriptions.
 - `DATABASE_URL`: Optional if you still plan to use the included Drizzle/Neon setup.
 
 ### 3. Development

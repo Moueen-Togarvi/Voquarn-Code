@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import {
-  BadgeDollarSign,
   BriefcaseBusiness,
   Home,
   Info,
@@ -16,7 +15,6 @@ const mobileRoutes = [
   { title: "Home", href: "/", icon: Home },
   { title: "About", href: "/about", icon: Info },
   { title: "Services", href: "/services", icon: BriefcaseBusiness },
-  { title: "Pricing", href: "/pricing", icon: BadgeDollarSign },
   { title: "Teams", href: "/team", icon: UsersRound },
   { title: "Blog", href: "/blog", icon: Newspaper },
   { title: "Contact", href: "/contact", icon: Mail },

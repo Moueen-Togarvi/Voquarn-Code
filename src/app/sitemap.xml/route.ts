@@ -8,7 +8,6 @@ export const revalidate = 3600;
 const staticRoutes = [
   { path: "", changeFrequency: "weekly", priority: 1 },
   { path: "/services", changeFrequency: "weekly", priority: 0.95 },
-  { path: "/pricing", changeFrequency: "weekly", priority: 0.9 },
   { path: "/portfolio", changeFrequency: "monthly", priority: 0.85 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.85 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.8 },
