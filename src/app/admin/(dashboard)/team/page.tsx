@@ -2,14 +2,24 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { toast } from "sonner";
-import { Loader2, Plus, Users, Pencil, X, Star, Link2 } from "lucide-react";
+import { Loader2, Plus, Users, Pencil, X, Star, Link2, Mail, Globe } from "lucide-react";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { DeleteDialog } from "@/components/admin/delete-dialog";
 import { ImageUpload } from "@/components/admin/image-upload";
 
-type Member = { id?: number; name: string; role: string; bio: string; imageUrl: string | null; linkedinUrl: string | null; order: number };
+type Member = {
+  id?: number;
+  name: string;
+  role: string;
+  bio: string;
+  imageUrl: string | null;
+  linkedinUrl: string | null;
+  email: string | null;
+  facebookUrl: string | null;
+  order: number;
+};
 
-const emptyMember = { name: "", role: "", bio: "", imageUrl: "", linkedinUrl: "", order: 0 };
+const emptyMember = { name: "", role: "", bio: "", imageUrl: "", linkedinUrl: "", email: "", facebookUrl: "", order: 0 };
 
 export default function AdminTeamPage() {
   const [members, setMembers] = useState<Member[]>([]);
@@ -120,6 +130,30 @@ export default function AdminTeamPage() {
                   value={editing.linkedinUrl ?? ""}
                   onChange={(e) => setEditing({ ...editing, linkedinUrl: e.target.value })}
                   placeholder="https://linkedin.com/in/username"
+                  className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm text-[var(--foreground)] focus:border-[#ff5400] focus:outline-none"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-[var(--foreground)] flex items-center gap-1.5">
+                  <Mail size={14} className="text-[var(--muted)]" /> Email <span className="text-xs font-normal text-[var(--muted)]">(optional)</span>
+                </label>
+                <input
+                  type="email"
+                  value={editing.email ?? ""}
+                  onChange={(e) => setEditing({ ...editing, email: e.target.value })}
+                  placeholder="name@example.com"
+                  className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm text-[var(--foreground)] focus:border-[#ff5400] focus:outline-none"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-[var(--foreground)] flex items-center gap-1.5">
+                  <Globe size={14} className="text-[#1877f2]" /> Facebook URL <span className="text-xs font-normal text-[var(--muted)]">(optional)</span>
+                </label>
+                <input
+                  type="url"
+                  value={editing.facebookUrl ?? ""}
+                  onChange={(e) => setEditing({ ...editing, facebookUrl: e.target.value })}
+                  placeholder="https://facebook.com/username"
                   className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm text-[var(--foreground)] focus:border-[#ff5400] focus:outline-none"
                 />
               </div>

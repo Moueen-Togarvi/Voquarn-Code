@@ -16,6 +16,8 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       bio: body.bio || null,
       imageUrl: body.imageUrl || null,
       linkedinUrl: body.linkedinUrl || null,
+      email: body.email || null,
+      facebookUrl: body.facebookUrl || null,
       order: body.order ?? 0,
     }).where(eq(teamMembers.id, parseInt(id))).returning();
     if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });

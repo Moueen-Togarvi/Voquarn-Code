@@ -36,6 +36,8 @@ export type TeamMember = {
   role: string;
   bio: string;
   linkedinUrl?: string | null;
+  email?: string | null;
+  facebookUrl?: string | null;
 };
 
 export type Stat = {

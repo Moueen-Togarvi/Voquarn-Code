@@ -169,6 +169,8 @@ export const teamMembers = pgTable("team_members", {
   bio: text("bio"),
   imageUrl: text("image_url"),
   linkedinUrl: text("linkedin_url"),
+  email: text("email"),
+  facebookUrl: text("facebook_url"),
   order: integer("order").default(0),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

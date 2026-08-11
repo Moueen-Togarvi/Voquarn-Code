@@ -181,6 +181,8 @@ export const getTeamMembers = cache(async (): Promise<TeamMember[]> => {
         role: m.role,
         bio: m.bio || "",
         linkedinUrl: m.linkedinUrl || null,
+        email: m.email || null,
+        facebookUrl: m.facebookUrl || null,
       }));
     });
   } catch (error) {
