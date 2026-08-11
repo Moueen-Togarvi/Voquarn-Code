@@ -98,7 +98,7 @@ const RocketLauncher = () => {
           position: "absolute",
           top: "110%",
           left: "calc(50% + 5px)",
-          transform: "translateX(-50%)",
+          transform: "translate(-50%, -50%)",
           zIndex: 1,
           pointerEvents: "none",
         }}
@@ -113,9 +113,9 @@ const RocketLauncher = () => {
       className="rocket-hover"
       style={{
         position: "absolute",
-        top: 0,
+        top: "50%",
         left: "calc(50% + 5px)",
-        transform: "translateX(-50%)",
+        transform: "translate(-50%, -50%)",
         zIndex: 1,
         pointerEvents: "none",
       }}
@@ -639,17 +639,17 @@ export function Hero() {
 
             .hero-rocket-img {
               width: 100%;
-              max-width: 260px;
+              max-width: 300px;
               filter: drop-shadow(0 20px 40px rgba(255,84,0,0.35)) drop-shadow(0 4px 20px rgba(0,0,0,0.15));
             }
             @media (min-width: 480px) {
               .hero-rocket-img {
-                max-width: 320px;
+                max-width: 360px;
               }
             }
             @media (min-width: 1024px) {
               .hero-rocket-img {
-                max-width: 380px;
+                max-width: 440px;
               }
             }
 
