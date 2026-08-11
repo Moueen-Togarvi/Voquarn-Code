@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Hero } from "@/components/ui/hero";
 import { HomeLazySections } from "@/components/ui/home-lazy-sections";
 import { TrustedClients } from "@/components/ui/trusted-clients";
-import { TypoSection } from "@/components/ui/typo-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServicesToggle } from "@/components/ui/services-toggle";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
@@ -62,10 +61,6 @@ export default async function HomePage() {
 
       <GSAPReveal>
         <TrustedClients />
-      </GSAPReveal>
-
-      <GSAPReveal direction="up" delay={0.05}>
-        <TypoSection />
       </GSAPReveal>
 
       <section className="page-section relative overflow-hidden border-b border-[var(--section-border)] pb-20">

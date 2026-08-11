@@ -72,14 +72,14 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
 
   return (
     <div className="space-y-12 w-full">
-      <div className="flex flex-col gap-6 items-center justify-center max-w-6xl mx-auto px-4">
-        <div className="flex w-full flex-wrap justify-center gap-1 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1.5 shadow-[0_14px_40px_rgba(255,84,0,0.10)] max-w-full relative">
+      <div className="mx-auto flex w-full max-w-6xl items-center overflow-x-auto px-4 pb-2 [scrollbar-width:none] lg:justify-center [&::-webkit-scrollbar]:hidden">
+        <div className="relative flex min-w-[560px] flex-nowrap gap-1 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1.5 shadow-[0_14px_40px_rgba(255,84,0,0.10)] lg:min-w-0 lg:w-1/2">
           {orderedServices.map((service) => (
             <button
               key={service.id}
               type="button"
               onClick={() => setActiveServiceId(service.id)}
-              className={`relative inline-flex min-h-11 flex-1 basis-[calc(50%-0.25rem)] items-center justify-center gap-2 rounded-full px-3 py-2 text-[10px] font-semibold uppercase tracking-wide transition-colors duration-300 z-10 whitespace-nowrap sm:basis-auto sm:px-5 sm:py-2.5 sm:text-[11px] md:text-xs md:tracking-wider ${
+              className={`relative z-10 inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-2 py-2 text-[9px] font-semibold uppercase tracking-wide transition-colors duration-300 sm:px-3 sm:text-[10px] ${
                 activeServiceId === service.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
