@@ -2,14 +2,14 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { toast } from "sonner";
-import { Loader2, Plus, Users, Pencil, X, Star } from "lucide-react";
+import { Loader2, Plus, Users, Pencil, X, Star, Link2 } from "lucide-react";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { DeleteDialog } from "@/components/admin/delete-dialog";
 import { ImageUpload } from "@/components/admin/image-upload";
 
-type Member = { id?: number; name: string; role: string; bio: string; imageUrl: string | null; order: number };
+type Member = { id?: number; name: string; role: string; bio: string; imageUrl: string | null; linkedinUrl: string | null; order: number };
 
-const emptyMember = { name: "", role: "", bio: "", imageUrl: "", order: 0 };
+const emptyMember = { name: "", role: "", bio: "", imageUrl: "", linkedinUrl: "", order: 0 };
 
 export default function AdminTeamPage() {
   const [members, setMembers] = useState<Member[]>([]);
@@ -110,6 +110,18 @@ export default function AdminTeamPage() {
               <div className="space-y-2">
                 <label className="text-sm font-medium text-[var(--foreground)]">Bio</label>
                 <textarea value={editing.bio} onChange={(e) => setEditing({ ...editing, bio: e.target.value })} rows={3} placeholder="Short bio..." className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm text-[var(--foreground)] focus:border-[#ff5400] focus:outline-none resize-none" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-[var(--foreground)] flex items-center gap-1.5">
+                  <Link2 size={14} className="text-[#0077b5]" /> LinkedIn URL <span className="text-xs font-normal text-[var(--muted)]">(optional)</span>
+                </label>
+                <input
+                  type="url"
+                  value={editing.linkedinUrl ?? ""}
+                  onChange={(e) => setEditing({ ...editing, linkedinUrl: e.target.value })}
+                  placeholder="https://linkedin.com/in/username"
+                  className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm text-[var(--foreground)] focus:border-[#ff5400] focus:outline-none"
+                />
               </div>
               <div className="flex gap-3 pt-2">
                 <button onClick={handleSave} disabled={saving} className="flex-1 rounded-xl bg-[#ff5400] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#e04800] disabled:opacity-50 flex items-center justify-center gap-2">

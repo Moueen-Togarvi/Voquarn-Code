@@ -168,6 +168,7 @@ export const teamMembers = pgTable("team_members", {
   role: text("role").notNull(),
   bio: text("bio"),
   imageUrl: text("image_url"),
+  linkedinUrl: text("linkedin_url"),
   order: integer("order").default(0),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

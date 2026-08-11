@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
       role: body.role,
       bio: body.bio || null,
       imageUrl: body.imageUrl || null,
+      linkedinUrl: body.linkedinUrl || null,
       order: body.order ?? 0,
     }).returning();
     return NextResponse.json(item, { status: 201 });

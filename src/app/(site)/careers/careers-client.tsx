@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Sparkles, ArrowRight, Briefcase, MapPin, DollarSign, Clock, Send, Search, X, Upload, Loader2, Sparkle, Link as LinkIcon } from "lucide-react";
+import { Sparkles, ArrowRight, Briefcase, MapPin, DollarSign, Clock, Send, Search, X, Upload, Loader2, Sparkle, Link as LinkIcon, Share2, Check } from "lucide-react";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import type { JobOpening } from "@/lib/site-data";
 import { trackSubmitApplication } from "@/lib/pixels";
@@ -12,6 +12,8 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
   const [search, setSearch] = useState("");
   const [activeTag, setActiveTag] = useState("All");
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
+  const [copiedRoleId, setCopiedRoleId] = useState<number | null>(null);
+  const [highlightedRoleId, setHighlightedRoleId] = useState<number | null>(null);
 
   // Form state for application modal
   const [applicantName, setApplicantName] = useState("");
@@ -36,6 +38,55 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
       role.tags.some((t) => t.toLowerCase().includes(q));
     return matchesTag && matchesSearch;
   });
+
+  // Deep-link support: a shared role URL (/careers#job-<id>) scrolls to and
+  // briefly highlights that specific card so the recipient lands exactly on
+  // the role that was shared with them, not the top of a long list. The
+  // highlight is triggered from a rAF callback rather than the effect body
+  // itself, since setting state synchronously inside an effect risks
+  // cascading renders.
+  useEffect(() => {
+    const hash = window.location.hash;
+    const match = hash.match(/^#job-(\d+)$/);
+    if (!match) return;
+
+    const jobId = Number(match[1]);
+    const el = document.getElementById(`job-${jobId}`);
+    if (!el) return;
+
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    const frame = window.requestAnimationFrame(() => setHighlightedRoleId(jobId));
+    const timer = window.setTimeout(() => setHighlightedRoleId(null), 2400);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+    };
+  }, []);
+
+  const handleShareRole = async (role: JobOpening) => {
+    const shareUrl = `${window.location.origin}/careers#job-${role.id}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${role.title} — Voquarn Code`,
+          text: `We're hiring a ${role.title} at Voquarn Code.`,
+          url: shareUrl,
+        });
+        return;
+      } catch {
+        // User cancelled the native share sheet — fall through to clipboard copy.
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopiedRoleId(role.id);
+      window.setTimeout(() => setCopiedRoleId((current) => (current === role.id ? null : current)), 2000);
+    } catch {
+      // Clipboard API unavailable (e.g. insecure context) — nothing more we can do silently.
+    }
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -209,9 +260,14 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
                 <p className="text-sm mt-1">Try a different search or filter</p>
               </div>
             ) : filtered.map((role) => (
-              <article 
+              <article
                 key={role.id}
-                className="bg-white border border-neutral-200 rounded-[2.5rem] p-8 sm:p-10 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-8"
+                id={`job-${role.id}`}
+                className={`bg-white border rounded-[2.5rem] p-8 sm:p-10 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-8 scroll-mt-32 ${
+                  highlightedRoleId === role.id
+                    ? "border-[#ff5400] ring-4 ring-[#ff5400]/20"
+                    : "border-neutral-200"
+                }`}
               >
                 <div className="space-y-4 max-w-2xl">
                   <div className="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider">
@@ -233,16 +289,39 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
                   </div>
                 </div>
 
-                <div className="flex-shrink-0 w-full lg:w-auto pt-4 lg:pt-0 border-t lg:border-t-0 border-neutral-100">
+                <div className="flex-shrink-0 w-full lg:w-auto pt-4 lg:pt-0 border-t lg:border-t-0 border-neutral-100 flex items-center gap-3">
                   <button
                     onClick={() => {
                       setSelectedRole(role.title);
                       resetForm();
                     }}
-                    className="w-full lg:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-neutral-950 px-8 py-5 text-xs font-black uppercase tracking-widest text-white hover:bg-[#ff5400] shadow-md hover:shadow-xl transition-all hover:scale-105"
+                    className="flex-1 lg:flex-none inline-flex items-center justify-center gap-2 rounded-full bg-neutral-950 px-8 py-5 text-xs font-black uppercase tracking-widest text-white hover:bg-[#ff5400] shadow-md hover:shadow-xl transition-all hover:scale-105"
                   >
                     <Send className="w-4 h-4" /> <span>Apply for Role</span>
                   </button>
+                  <div className="relative flex-shrink-0">
+                    {copiedRoleId === role.id && (
+                      <span className="absolute -top-11 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-neutral-950 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-lg">
+                        Link copied
+                      </span>
+                    )}
+                    <button
+                      onClick={() => handleShareRole(role)}
+                      aria-label={`Share ${role.title} role`}
+                      title="Share this role"
+                      className={`inline-flex items-center justify-center w-[52px] h-[52px] rounded-full border-2 transition-all duration-300 hover:scale-105 active:scale-95 ${
+                        copiedRoleId === role.id
+                          ? "border-emerald-500 bg-emerald-50 text-emerald-600"
+                          : "border-neutral-200 bg-white text-neutral-700 hover:border-[#ff5400] hover:text-[#ff5400] hover:shadow-lg"
+                      }`}
+                    >
+                      {copiedRoleId === role.id ? (
+                        <Check className="w-4 h-4" />
+                      ) : (
+                        <Share2 className="w-4 h-4" />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </article>
             ))}

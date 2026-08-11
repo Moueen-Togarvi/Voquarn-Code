@@ -180,6 +180,7 @@ export const getTeamMembers = cache(async (): Promise<TeamMember[]> => {
         name: m.name,
         role: m.role,
         bio: m.bio || "",
+        linkedinUrl: m.linkedinUrl || null,
       }));
     });
   } catch (error) {

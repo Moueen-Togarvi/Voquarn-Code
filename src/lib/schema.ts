@@ -368,6 +368,7 @@ export function teamMemberJsonLd(member: TeamMember): Record<string, unknown> {
     description: member.bio || undefined,
     url: absoluteUrl("/team"),
     worksFor: { "@id": organizationId() },
+    sameAs: member.linkedinUrl ? [member.linkedinUrl] : undefined,
   };
 }
 
