@@ -21,25 +21,18 @@ function whatsappLink(whatsapp: string) {
   return `https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}`;
 }
 
-/** Small monochrome line-icon as an inline SVG data URI — renders reliably as an <img> across Gmail, Apple Mail, and Outlook, unlike emoji glyphs which vary by OS font. */
-function iconDataUri(path: string) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23999999" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
-  return `data:image/svg+xml,${svg}`;
-}
-
+// Real hosted PNGs, not inline SVG data URIs — Gmail's HTML sanitizer strips
+// `data:` image sources from incoming mail, which left broken <img> tags with
+// only their attributes visible. A normal https:// image URL (same pattern
+// as the logo) renders reliably everywhere.
 const ICONS = {
-  mail: iconDataUri(
-    '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/>',
-  ),
-  whatsapp: iconDataUri(
-    '<path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Z"/><path d="M8.5 8.3c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .6.4.2.5.7 1.6.7 1.8.1.1.1.3 0 .4-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.6 1 1.3 1.7 2.3 2.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.2.4-.2.6-.1.9.4 1.8.9 2.6 1.3.1.1.2.1.2.3 0 .5 0 1-.3 1.4-.4.6-1.4 1-2 1-1.5 0-3.5-1-4.9-2.4-1.5-1.5-2.5-3.4-2.5-4.9 0-.4.1-.9.2-1.2Z" fill="%23999999" stroke="none"/>',
-  ),
-  globe: iconDataUri(
-    '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>',
-  ),
+  mail: "/email-icons/mail.png",
+  whatsapp: "/email-icons/whatsapp.png",
+  globe: "/email-icons/globe.png",
 };
 
-function contactLine(iconSrc: string, href: string, label: string) {
+function contactLine(iconPath: string, href: string, label: string) {
+  const iconSrc = absoluteAsset(iconPath);
   return `
     <tr>
       <td style="padding:6px 0;">
@@ -47,7 +40,7 @@ function contactLine(iconSrc: string, href: string, label: string) {
           <table role="presentation" cellpadding="0" cellspacing="0">
             <tr>
               <td style="padding-right:8px;vertical-align:middle;">
-                <img src="${iconSrc}" width="14" height="14" alt="" style="display:block;" />
+                <img src="${iconSrc}" width="16" height="16" alt="" style="display:block;" />
               </td>
               <td style="vertical-align:middle;font-size:12.5px;color:#6b6b6b;">
                 ${label}
@@ -124,11 +117,8 @@ function emailShell({
 
             <!-- Header -->
             <tr>
-              <td style="background-color:${BRAND_DARK};padding:32px 40px;text-align:center;">
-                <img src="${logoUrl}" alt="${escapeHtml(site.name)}" width="40" height="40" style="display:inline-block;border-radius:10px;" />
-                <p style="margin:12px 0 0;font-size:13px;font-weight:700;letter-spacing:0.04em;color:#ffffff;">
-                  ${escapeHtml(site.name)}
-                </p>
+              <td style="background-color:${BRAND_DARK};padding:36px 40px;text-align:center;">
+                <img src="${logoUrl}" alt="${escapeHtml(site.name)}" width="72" height="72" style="display:inline-block;border-radius:16px;" />
               </td>
             </tr>
 
