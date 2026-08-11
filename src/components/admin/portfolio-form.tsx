@@ -31,6 +31,7 @@ function slugify(text: string): string {
 const categories = [
   "Web Development",
   "App Development",
+  "Ecommerce",
   "SEO",
   "AI Solutions",
   "Graphic Design",

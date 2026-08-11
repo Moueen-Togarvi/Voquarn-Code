@@ -16,7 +16,7 @@ type PortfolioCarouselProps = {
   items: PortfolioItem[];
 };
 
-const CATEGORIES = ["All", "Web Development", "App Development", "AI Solutions", "SEO", "Graphic Design"] as const;
+const CATEGORIES = ["All", "Web Development", "App Development", "Ecommerce", "AI Solutions", "SEO", "Graphic Design"] as const;
 type Category = typeof CATEGORIES[number];
 
 export function PortfolioCarousel({ items }: PortfolioCarouselProps) {

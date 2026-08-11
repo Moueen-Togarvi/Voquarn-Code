@@ -23,7 +23,7 @@ export type Service = {
 export type PortfolioItem = {
   slug: string;
   title: string;
-  category: "Web Development" | "App Development" | "SEO" | "AI Solutions" | "Graphic Design";
+  category: "Web Development" | "App Development" | "SEO" | "AI Solutions" | "Graphic Design" | "Ecommerce";
   summary: string;
   outcome: string;
   stack: string[];

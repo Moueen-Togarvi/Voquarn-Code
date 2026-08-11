@@ -72,6 +72,7 @@ function getRelatedWork(serviceTitle: string, portfolioItems: PortfolioItem[]) {
     ["seo", "SEO"],
     ["design", "Graphic Design"],
     ["app", "App Development"],
+    ["ecommerce", "Ecommerce"],
     ["web", "Web Development"],
   ];
 
