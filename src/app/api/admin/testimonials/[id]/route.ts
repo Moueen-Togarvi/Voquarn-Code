@@ -15,6 +15,8 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       company: body.company || null,
       review: body.review,
       stars: body.stars ?? 5,
+      mediaUrl: body.mediaUrl || null,
+      mediaType: body.mediaType || null,
       order: body.order ?? 0,
     }).where(eq(testimonials.id, parseInt(id))).returning();
     if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });

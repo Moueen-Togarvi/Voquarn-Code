@@ -5,30 +5,6 @@ type ReviewsCollageProps = {
   reviews: Testimonial[];
 };
 
-type ReviewLayout = {
-  className: string;
-  cardClassName: string;
-  shape: string;
-};
-
-const layouts: ReviewLayout[] = [
-  {
-    className: "lg:col-start-1 lg:row-start-1 lg:mt-8 lg:w-[280px] lg:-rotate-2 lg:justify-self-center",
-    cardClassName: "min-h-[220px] px-7 py-7",
-    shape: "1.4rem 4rem 1.4rem 1.4rem",
-  },
-  {
-    className: "lg:col-start-2 lg:row-start-1 lg:mt-0 lg:w-[300px] lg:rotate-1 lg:justify-self-center",
-    cardClassName: "min-h-[240px] px-8 py-8",
-    shape: "1rem 1rem 3.8rem 1rem",
-  },
-  {
-    className: "lg:col-start-3 lg:row-start-1 lg:mt-12 lg:w-[280px] lg:-rotate-1 lg:justify-self-center",
-    cardClassName: "min-h-[220px] px-7 py-7",
-    shape: "1.3rem 2.8rem 2.8rem 1.3rem",
-  },
-];
-
 function Stars({ count }: { count: number }) {
   return (
     <div className="flex items-center gap-0.5 text-[var(--foreground)]" aria-label={`${count} star review`}>
@@ -45,21 +21,33 @@ function getInitials(name: string) {
 
 const AVATAR_COLORS = ["bg-[#ff5400]", "bg-[#14b8a6]", "bg-[#f59e0b]"];
 
-function ReviewBubble({
-  review,
-  layout,
-  index,
-}: {
-  review: Testimonial;
-  layout: ReviewLayout;
-  index: number;
-}) {
+function ReviewCard({ review, index }: { review: Testimonial; index: number }) {
   return (
-    <article className={`relative ${layout.className}`}>
-      <div
-        className={`relative flex flex-col overflow-visible border border-[var(--border)] bg-[var(--panel)] shadow-[0_18px_42px_rgba(0,0,0,0.08)] ${layout.cardClassName}`}
-        style={{ borderRadius: layout.shape }}
-      >
+    <article className="flex flex-col overflow-hidden rounded-[1.4rem] border border-[var(--border)] bg-[var(--panel)] shadow-[0_18px_42px_rgba(0,0,0,0.08)]">
+      {review.mediaUrl && (
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--surface)]">
+          {review.mediaType === "video" ? (
+            <video
+              src={review.mediaUrl}
+              className="h-full w-full object-cover"
+              muted
+              loop
+              playsInline
+              autoPlay
+              aria-label={`Video testimonial from ${review.name}`}
+            />
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={review.mediaUrl}
+              alt={`Photo from ${review.name}`}
+              className="h-full w-full object-cover"
+            />
+          )}
+        </div>
+      )}
+
+      <div className="relative flex flex-1 flex-col px-7 py-7">
         <Quote
           className="absolute text-[var(--muted)] right-5 top-5 h-8 w-8 opacity-15"
           fill="currentColor"
@@ -97,9 +85,7 @@ function ReviewBubble({
 }
 
 export function ReviewsCollage({ reviews }: ReviewsCollageProps) {
-  const visibleReviews = reviews.slice(0, layouts.length);
-
-  if (visibleReviews.length === 0) return null;
+  if (reviews.length === 0) return null;
 
   return (
     <section
@@ -125,19 +111,10 @@ export function ReviewsCollage({ reviews }: ReviewsCollageProps) {
           </div>
         </div>
 
-        <div className="relative mx-auto mt-14 grid max-w-[1000px] gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:items-start lg:gap-x-8 lg:gap-y-14">
-          {visibleReviews.map((review, index) => {
-            const layout = layouts[index];
-            if (!layout) return null;
-            return (
-              <ReviewBubble
-                key={`${review.name}-${review.company}`}
-                review={review}
-                layout={layout}
-                index={index}
-              />
-            );
-          })}
+        <div className="relative mx-auto mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {reviews.map((review, index) => (
+            <ReviewCard key={`${review.name}-${review.company}-${index}`} review={review} index={index} />
+          ))}
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">

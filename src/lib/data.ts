@@ -204,6 +204,8 @@ export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
         company: t.company || "",
         review: t.review,
         stars: t.stars ?? 5,
+        mediaUrl: t.mediaUrl || null,
+        mediaType: (t.mediaType as "image" | "video" | null) || null,
       }));
     });
   } catch (error) {

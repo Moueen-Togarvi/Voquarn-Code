@@ -60,6 +60,8 @@ export type Testimonial = {
   company: string;
   review: string;
   stars: number;
+  mediaUrl?: string | null;
+  mediaType?: "image" | "video" | null;
 };
 
 export type PricingPlan = {

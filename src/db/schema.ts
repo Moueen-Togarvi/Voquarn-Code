@@ -181,6 +181,8 @@ export const testimonials = pgTable("testimonials", {
   company: text("company"),
   review: text("review").notNull(),
   stars: integer("stars").default(5),
+  mediaUrl: text("media_url"),
+  mediaType: text("media_type"), // "image" | "video" | null
   order: integer("order").default(0),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

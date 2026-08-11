@@ -26,6 +26,8 @@ export async function POST(req: NextRequest) {
       company: body.company || null,
       review: body.review,
       stars: body.stars ?? 5,
+      mediaUrl: body.mediaUrl || null,
+      mediaType: body.mediaType || null,
       order: body.order ?? 0,
     }).returning();
     return NextResponse.json(item, { status: 201 });
