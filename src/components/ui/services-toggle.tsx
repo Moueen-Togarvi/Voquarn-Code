@@ -73,24 +73,24 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
   return (
     <div className="space-y-12 w-full">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-center px-2 pb-2 sm:px-4">
-        <div className="relative grid w-full grid-cols-4 items-center gap-0.5 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-1 shadow-[0_14px_40px_rgba(255,84,0,0.10)] lg:w-1/2">
+        <div className="relative grid w-full grid-cols-4 items-center gap-0.5 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-0.5 shadow-[0_10px_28px_rgba(255,84,0,0.08)] lg:w-1/2">
           {orderedServices.map((service) => (
             <button
               key={service.id}
               type="button"
               onClick={() => setActiveServiceId(service.id)}
-              className={`relative z-10 inline-flex h-11 w-full min-w-0 items-center justify-center gap-1 whitespace-nowrap rounded-full px-0.5 text-center text-[7px] font-semibold uppercase leading-none tracking-[0.01em] transition-colors duration-300 sm:gap-1.5 sm:px-2 sm:text-[9px] sm:tracking-wide lg:text-[10px] ${
+              className={`relative z-10 inline-flex h-11 w-full min-w-0 items-center justify-center gap-0.5 whitespace-nowrap rounded-full px-0.5 text-center text-[7px] font-semibold uppercase leading-none tracking-[0.01em] transition-colors duration-300 sm:gap-1 sm:px-1.5 sm:text-[9px] sm:tracking-wide lg:text-[10px] ${
                 activeServiceId === service.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
               {activeServiceId === service.id && (
                 <motion.div
                   layoutId="activeServicesTab"
-                  className="absolute inset-0.5 -z-10 rounded-full bg-[#ff5400] shadow-[0_10px_22px_rgba(255,84,0,0.30)]"
+                  className="absolute inset-x-0.5 inset-y-1.5 -z-10 rounded-full bg-[#ff5400] shadow-[0_8px_18px_rgba(255,84,0,0.26)]"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              <span className="hidden sm:inline-flex [&_svg]:h-4 [&_svg]:w-4">
+              <span className="hidden shrink-0 items-center sm:inline-flex [&_svg]:h-3.5 [&_svg]:w-3.5">
                 {getPricingIcon(service.title, service.id)}
               </span>
               <span className="block text-center leading-none">{service.title}</span>
