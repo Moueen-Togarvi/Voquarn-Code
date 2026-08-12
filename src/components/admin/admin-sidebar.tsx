@@ -10,7 +10,6 @@ import {
   Users,
   MessageSquare,
   HelpCircle,
-  DollarSign,
   UserPlus,
   Settings,
   LogOut,
@@ -31,7 +30,6 @@ const sidebarLinks = [
   { href: "/admin/stats", label: "Stats", icon: BarChart3 },
   { href: "/admin/trusted-clients", label: "Trusted Clients", icon: Building2 },
   { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
-  { href: "/admin/pricing", label: "Pricing", icon: DollarSign },
   { href: "/admin/careers", label: "Careers", icon: UserPlus },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];

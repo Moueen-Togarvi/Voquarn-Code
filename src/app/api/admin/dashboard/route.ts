@@ -7,7 +7,6 @@ import {
   teamMembers,
   testimonials,
   faqItems,
-  pricingPlans,
   jobOpenings,
 } from "@/db/schema";
 import { auth } from "@/lib/auth";
@@ -26,7 +25,6 @@ export async function GET() {
     const [teamCount] = await db.select({ value: count() }).from(teamMembers);
     const [testimonialCount] = await db.select({ value: count() }).from(testimonials);
     const [faqCount] = await db.select({ value: count() }).from(faqItems);
-    const [pricingCount] = await db.select({ value: count() }).from(pricingPlans);
     const [careersCount] = await db.select({ value: count() }).from(jobOpenings);
 
     return NextResponse.json({
@@ -36,7 +34,6 @@ export async function GET() {
       team: Number(teamCount?.value || 0),
       testimonials: Number(testimonialCount?.value || 0),
       faq: Number(faqCount?.value || 0),
-      pricing: Number(pricingCount?.value || 0),
       careers: Number(careersCount?.value || 0),
     });
   } catch (error) {
@@ -49,7 +46,6 @@ export async function GET() {
         team: 0,
         testimonials: 0,
         faq: 0,
-        pricing: 0,
         careers: 0,
       },
       { status: 200 },

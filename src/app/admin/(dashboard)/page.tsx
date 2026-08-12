@@ -8,7 +8,6 @@ import {
   Users,
   MessageSquare,
   HelpCircle,
-  DollarSign,
   UserPlus,
   Plus,
   ArrowRight,
@@ -23,7 +22,6 @@ type CountData = {
   team: number;
   testimonials: number;
   faq: number;
-  pricing: number;
   careers: number;
 };
 
@@ -34,7 +32,6 @@ const statCards = [
   { key: "team" as const, label: "Team Members", icon: Users, color: "text-orange-600 bg-orange-50", href: "/admin/team" },
   { key: "testimonials" as const, label: "Testimonials", icon: MessageSquare, color: "text-pink-600 bg-pink-50", href: "/admin/testimonials" },
   { key: "faq" as const, label: "FAQ Items", icon: HelpCircle, color: "text-teal-600 bg-teal-50", href: "/admin/faq" },
-  { key: "pricing" as const, label: "Pricing Plans", icon: DollarSign, color: "text-amber-600 bg-amber-50", href: "/admin/pricing" },
   { key: "careers" as const, label: "Open Roles", icon: UserPlus, color: "text-cyan-600 bg-cyan-50", href: "/admin/careers" },
 ];
 
@@ -46,7 +43,6 @@ export default function AdminDashboard() {
     team: 0,
     testimonials: 0,
     faq: 0,
-    pricing: 0,
     careers: 0,
   });
 

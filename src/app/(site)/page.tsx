@@ -129,15 +129,15 @@ export default async function HomePage() {
       </GSAPReveal>
 
       <GSAPReveal direction="up" delay={0.05}>
-        <ReviewsCollage reviews={testimonials} />
-      </GSAPReveal>
-
-      <GSAPReveal direction="up" delay={0.05}>
         <BlogPreview posts={blogPosts.slice(0, 3)} />
       </GSAPReveal>
 
       <GSAPReveal direction="up" delay={0.05}>
         <FaqSection items={faqItems} />
+      </GSAPReveal>
+
+      <GSAPReveal direction="up" delay={0.05}>
+        <ReviewsCollage reviews={testimonials} />
       </GSAPReveal>
 
     </div>

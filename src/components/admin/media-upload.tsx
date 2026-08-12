@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Upload, X, Loader2, Video as VideoIcon } from "lucide-react";
+import { Upload, X, Loader2, Video as VideoIcon, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type MediaType = "image" | "video";
@@ -21,6 +21,7 @@ export function MediaUpload({
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -29,6 +30,7 @@ export function MediaUpload({
     const detectedType: MediaType = file.type.startsWith("video/") ? "video" : "image";
 
     setLoading(true);
+    setError("");
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -44,17 +46,12 @@ export function MediaUpload({
       }
       const data = await res.json();
       onChange(data.url, (data.type as MediaType) || detectedType);
-    } catch {
-      // fallback: use base64 data URL (images only — videos are too large for this path)
-      if (detectedType === "image") {
-        const reader = new FileReader();
-        reader.onload = () => {
-          if (typeof reader.result === "string") {
-            onChange(reader.result, "image");
-          }
-        };
-        reader.readAsDataURL(file);
-      }
+    } catch (err) {
+      // No base64 fallback here on purpose — embedding a multi-MB file as a
+      // data URI in the database once bloated a page past what Vercel's
+      // serverless response size allows, which silently broke the entire
+      // section that read it. Surface the failure instead of hiding it.
+      setError(err instanceof Error ? err.message : "Upload failed. Please try again.");
     } finally {
       setLoading(false);
       e.target.value = "";
@@ -120,6 +117,11 @@ export function MediaUpload({
         onChange={handleUpload}
         className="hidden"
       />
+      {error && (
+        <p className="flex items-center gap-1.5 text-xs font-medium text-red-600">
+          <AlertCircle size={13} /> {error}
+        </p>
+      )}
     </div>
   );
 }
