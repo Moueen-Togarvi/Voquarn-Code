@@ -176,7 +176,7 @@ export default function AdminLoginPage() {
     .padStart(2, "0")}`;
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-6 py-10">
+    <main className="flex min-h-dvh items-center justify-center bg-[var(--background)] px-6 py-10">
       <div className="w-full max-w-md">
         <div className="mb-8 flex justify-center">
           <Image
@@ -261,7 +261,7 @@ export default function AdminLoginPage() {
                     type="button"
                     onClick={() => setShowPassword((visible) => !visible)}
                     aria-label={showPassword ? "Hide password" : "Show password"}
-                    className="absolute right-1 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-lg text-[var(--muted)] transition hover:text-[var(--foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]/30"
+                    className="absolute right-1 top-1/2 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-lg text-[var(--muted)] transition hover:text-[var(--foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]/30"
                   >
                     {showPassword ? <EyeOff aria-hidden="true" size={18} /> : <Eye aria-hidden="true" size={18} />}
                   </button>
@@ -271,7 +271,7 @@ export default function AdminLoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#ff5400] px-4 text-sm font-bold text-white transition hover:bg-[#e04800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]/40 disabled:cursor-not-allowed disabled:opacity-60"
+                className="flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#ff5400] px-4 text-sm font-bold text-white transition hover:bg-[#e04800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]/40 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading ? <Loader2 className="animate-spin" aria-hidden="true" size={17} /> : <MailCheck aria-hidden="true" size={17} />}
                 {loading ? "Sending code..." : "Continue with email code"}
@@ -296,9 +296,9 @@ export default function AdminLoginPage() {
                   required
                   aria-describedby="code-help"
                   aria-invalid={Boolean(error)}
-                  className="h-14 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 text-center text-2xl font-bold tracking-[0.35em] text-[var(--foreground)] outline-none transition focus:border-[#ff5400] focus:ring-2 focus:ring-[#ff5400]/20"
+                  className="h-14 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 text-center text-2xl font-bold tabular-nums tracking-[0.35em] text-[var(--foreground)] outline-none transition focus:border-[#ff5400] focus:ring-2 focus:ring-[#ff5400]/20"
                 />
-                <p id="code-help" className="text-center text-xs text-[var(--muted)]">
+                <p id="code-help" className="text-center text-xs tabular-nums text-[var(--muted)]">
                   {expiresIn > 0 ? `Code expires in ${expiryLabel}` : "Code expired — start a new login attempt."}
                 </p>
               </div>
@@ -306,7 +306,7 @@ export default function AdminLoginPage() {
               <button
                 type="submit"
                 disabled={loading || expiresIn <= 0 || code.length !== 6}
-                className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#ff5400] px-4 text-sm font-bold text-white transition hover:bg-[#e04800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]/40 disabled:cursor-not-allowed disabled:opacity-60"
+                className="flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#ff5400] px-4 text-sm font-bold text-white transition hover:bg-[#e04800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]/40 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading ? <Loader2 className="animate-spin" aria-hidden="true" size={17} /> : <ShieldCheck aria-hidden="true" size={17} />}
                 {loading ? "Verifying..." : "Verify and sign in"}
@@ -316,7 +316,7 @@ export default function AdminLoginPage() {
                 <button
                   type="button"
                   onClick={restartLogin}
-                  className="flex min-h-11 items-center gap-2 rounded-lg px-2 font-medium text-[var(--muted)] transition hover:text-[var(--foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]/30"
+                  className="flex min-h-11 cursor-pointer items-center gap-2 rounded-lg px-2 font-medium text-[var(--muted)] transition hover:text-[var(--foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]/30"
                 >
                   <ArrowLeft aria-hidden="true" size={16} />
                   Start again
@@ -325,7 +325,7 @@ export default function AdminLoginPage() {
                   type="button"
                   onClick={resendCode}
                   disabled={resendIn > 0 || expiresIn <= 0 || resending}
-                  className="flex min-h-11 items-center gap-2 rounded-lg px-2 font-medium text-[#ff5400] transition hover:text-[#e04800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]/30 disabled:cursor-not-allowed disabled:text-[var(--muted)]"
+                  className="flex min-h-11 cursor-pointer items-center gap-2 rounded-lg px-2 font-medium text-[#ff5400] transition hover:text-[#e04800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]/30 disabled:cursor-not-allowed disabled:text-[var(--muted)]"
                 >
                   {resending ? <Loader2 className="animate-spin" aria-hidden="true" size={16} /> : <RefreshCw aria-hidden="true" size={16} />}
                   {resendIn > 0 ? `Resend in ${resendIn}s` : "Resend code"}
