@@ -1,10 +1,16 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
 import { db } from "@/db";
-import { users, accounts, sessions, verificationTokens } from "@/db/schema";
+import {
+  users,
+  accounts,
+  sessions,
+  verificationTokens,
+  adminLoginChallenges,
+} from "@/db/schema";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { eq } from "drizzle-orm";
+import { and, eq, gt, isNull } from "drizzle-orm";
+import { hashAdminLoginToken } from "@/lib/admin-otp";
 
 const authSecret = process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET;
 
@@ -19,51 +25,76 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Credentials({
       name: "credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        challengeId: { label: "Challenge ID", type: "text" },
+        loginToken: { label: "One-time login token", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        const challengeId =
+          typeof credentials?.challengeId === "string" ? credentials.challengeId : "";
+        const loginToken =
+          typeof credentials?.loginToken === "string" ? credentials.loginToken : "";
+
+        if (!challengeId || !loginToken) {
           return null;
         }
 
-        const user = await db
+        const now = new Date();
+        const loginTokenHash = hashAdminLoginToken(challengeId, loginToken);
+        const [claimedChallenge] = await db
+          .update(adminLoginChallenges)
+          .set({ usedAt: now })
+          .where(
+            and(
+              eq(adminLoginChallenges.id, challengeId),
+              eq(adminLoginChallenges.loginTokenHash, loginTokenHash),
+              isNull(adminLoginChallenges.usedAt),
+              gt(adminLoginChallenges.expiresAt, now),
+            ),
+          )
+          .returning({
+            userId: adminLoginChallenges.userId,
+            email: adminLoginChallenges.email,
+          });
+
+        if (!claimedChallenge) {
+          return null;
+        }
+
+        const [user] = await db
           .select()
           .from(users)
-          .where(eq(users.email, credentials.email as string))
+          .where(eq(users.id, claimedChallenge.userId))
           .limit(1);
+        const allowedEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
 
-        if (!user.length || !user[0].password) {
-          return null;
-        }
-
-        const isValid = await bcrypt.compare(
-          credentials.password as string,
-          user[0].password,
-        );
-
-        if (!isValid) {
+        if (
+          !user ||
+          user.role !== "admin" ||
+          !allowedEmail ||
+          user.email.toLowerCase() !== allowedEmail ||
+          claimedChallenge.email.toLowerCase() !== allowedEmail
+        ) {
           return null;
         }
 
         return {
-          id: user[0].id,
-          name: user[0].name,
-          email: user[0].email,
-          image: user[0].image,
-          role: user[0].role,
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          image: user.image,
+          role: user.role,
         };
       },
     }),
   ],
   session: {
     strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 12 * 60 * 60,
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = (user as { role?: string }).role ?? "admin";
+        token.role = (user as { role?: string }).role ?? "member";
         token.id = user.id;
       }
       return token;
@@ -74,6 +105,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         (session.user as { role?: string }).role = token.role as string;
       }
       return session;
+    },
+    authorized({ auth: session }) {
+      return (session?.user as { role?: string } | undefined)?.role === "admin";
     },
   },
   pages: {

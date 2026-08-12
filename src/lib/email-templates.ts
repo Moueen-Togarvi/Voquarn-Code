@@ -295,3 +295,18 @@ export function applyUserEmail(site: SiteSettings, input: { name: string; role: 
     footerNote: "This is an automated confirmation. No need to reply to this email.",
   });
 }
+
+// ── Admin authentication: one-time verification code ──
+export function adminLoginCodeEmail(site: SiteSettings, code: string) {
+  return emailShell({
+    site,
+    preheader: `${code} is your ${site.name} admin verification code.`,
+    eyebrow: "Admin Security",
+    heading: "Verify your admin login",
+    intro:
+      "Use the verification code below to finish signing in. It expires in 5 minutes and can only be used once.",
+    detailRows: detailRow("Verification code", `<strong style="font-size:24px;letter-spacing:0.22em;color:${BRAND_DARK};">${escapeHtml(code)}</strong>`),
+    footerNote:
+      "If you did not attempt to sign in, you can ignore this email. Your password may need to be changed if these messages continue.",
+  });
+}

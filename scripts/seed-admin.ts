@@ -16,8 +16,15 @@ async function seedAdmin() {
   const sql = neon(url);
   const db = drizzle(sql);
 
-  const email = process.env.ADMIN_EMAIL || "admin@voquarn.com";
-  const password = process.env.ADMIN_PASSWORD || "admin123456";
+  const email = process.env.ADMIN_EMAIL;
+  const password = process.env.ADMIN_PASSWORD;
+
+  if (!email || !password || password === "admin123456" || password.length < 12) {
+    console.error(
+      "Set ADMIN_EMAIL and a unique ADMIN_PASSWORD with at least 12 characters before seeding.",
+    );
+    process.exit(1);
+  }
 
   const hashedPassword = await bcrypt.hash(password, 12);
 
@@ -31,8 +38,6 @@ async function seedAdmin() {
 
     console.log(`✅ Admin user created:`);
     console.log(`   Email: ${email}`);
-    console.log(`   Password: ${password}`);
-    console.log(`   ⚠️  Change this password after first login!`);
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     if (msg.includes("unique")) {

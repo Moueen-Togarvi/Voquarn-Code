@@ -26,7 +26,7 @@ export const users = pgTable(
     emailVerified: timestamp("email_verified", { mode: "date" }),
     image: text("image"),
     password: text("password"),
-    role: text("role").notNull().default("admin"), // admin | member
+    role: text("role").notNull().default("member"), // admin | member
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
@@ -79,6 +79,46 @@ export const verificationTokens = pgTable(
   (table) => [
     uniqueIndex("verification_tokens_token_key").on(table.token),
   ],
+);
+
+// Short-lived challenges used by the admin password + email OTP flow. Codes
+// and one-time login grants are HMAC hashes, so a database read cannot reveal
+// a usable credential.
+export const adminLoginChallenges = pgTable(
+  "admin_login_challenges",
+  {
+    id: text("id").primaryKey(),
+    userId: text("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    email: text("email").notNull(),
+    codeHash: text("code_hash").notNull(),
+    loginTokenHash: text("login_token_hash").unique(),
+    attemptsRemaining: integer("attempts_remaining").notNull().default(5),
+    sendCount: integer("send_count").notNull().default(1),
+    expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
+    resendAvailableAt: timestamp("resend_available_at", { mode: "date" }).notNull(),
+    verifiedAt: timestamp("verified_at", { mode: "date" }),
+    usedAt: timestamp("used_at", { mode: "date" }),
+    ipHash: text("ip_hash").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [
+    index("admin_login_challenges_user_created_idx").on(table.userId, table.createdAt),
+    index("admin_login_challenges_ip_created_idx").on(table.ipHash, table.createdAt),
+  ],
+);
+
+// Failed password attempts are kept separately so brute-force protection also
+// works across serverless instances without storing raw client IP addresses.
+export const adminLoginAttempts = pgTable(
+  "admin_login_attempts",
+  {
+    id: serial("id").primaryKey(),
+    ipHash: text("ip_hash").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [index("admin_login_attempts_ip_created_idx").on(table.ipHash, table.createdAt)],
 );
 
 // ─────────────────────────────────────────────

@@ -19,28 +19,24 @@ function ReviewCard({ review }: { review: Testimonial }) {
   const firstName = review.name.split(" ")[0];
 
   return (
-    <article className="relative w-full max-w-[300px] shrink-0 rounded-[1.6rem] border border-[var(--border)] bg-[var(--panel)] p-5 shadow-[0_18px_42px_rgba(0,0,0,0.08)] sm:max-w-none">
-      <p className="text-center font-display text-[13px] italic text-[var(--muted)]">Customer Review</p>
-
-      <div className="mt-3 flex items-center justify-between gap-2">
-        <span className="inline-flex items-center gap-1 rounded-full bg-[#ff5400]/10 px-2.5 py-1 text-[9px] font-black uppercase tracking-wider text-[#ff5400]">
-          Verified Client
-        </span>
-        <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
-          {review.company || "Voquarn Code Client"}
+    <article className="relative w-full max-w-[300px] shrink-0 rounded-[1.6rem] border border-[var(--border)] bg-[var(--panel)] p-4 shadow-[0_18px_42px_rgba(0,0,0,0.08)] sm:max-w-none">
+      <div className="flex items-center justify-between gap-2">
+        <p className="font-display text-[12px] italic text-[var(--muted)]">Customer Review</p>
+        <span className="inline-flex items-center gap-1 rounded-full bg-[#ff5400]/10 px-2 py-0.5 text-[8px] font-black uppercase tracking-wider text-[#ff5400]">
+          Verified
         </span>
       </div>
 
       {/* Chat-mockup media frame */}
       {review.mediaUrl ? (
-        <div className="relative mt-3 overflow-hidden rounded-[1rem] border border-[var(--border)] bg-[#0b141a]">
-          <div className="flex items-center gap-2 bg-[#1f2c34] px-3 py-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#ff5400] text-[10px] font-bold text-white">
+        <div className="relative mt-2.5 overflow-hidden rounded-[0.85rem] border border-[var(--border)] bg-[#0b141a]">
+          <div className="flex items-center gap-2 bg-[#1f2c34] px-2.5 py-1.5">
+            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#ff5400] text-[9px] font-bold text-white">
               {firstName.charAt(0)}
             </div>
-            <span className="text-[11px] font-semibold text-white">{firstName}</span>
+            <span className="text-[10px] font-semibold text-white">{firstName}</span>
           </div>
-          <div className="relative aspect-[4/5] w-full">
+          <div className="relative aspect-[16/9] w-full">
             {review.mediaType === "video" ? (
               <video
                 src={review.mediaUrl}
@@ -62,43 +58,35 @@ function ReviewCard({ review }: { review: Testimonial }) {
           </div>
         </div>
       ) : (
-        <div className="mt-3 flex aspect-[4/5] w-full flex-col items-center justify-center gap-3 rounded-[1rem] border border-dashed border-[var(--border)] bg-[var(--surface)] px-6 text-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ff5400] text-lg font-black text-white">
+        <div className="mt-2.5 flex items-center gap-3 rounded-[0.85rem] border border-dashed border-[var(--border)] bg-[var(--surface)] px-4 py-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ff5400] text-sm font-black text-white">
             {firstName.charAt(0)}
           </div>
-          <p className="text-[13px] font-semibold leading-6 text-[var(--foreground)] opacity-80">
+          <p className="line-clamp-2 text-[12px] font-semibold leading-5 text-[var(--foreground)] opacity-80">
             &ldquo;{review.review}&rdquo;
           </p>
         </div>
       )}
 
-      <div className="mt-4 space-y-2 text-center">
-        <p className="font-display text-[13px] font-black uppercase leading-tight text-[var(--foreground)]">
-          Real Words.
-          <br />
-          Real Happiness.
+      <div className="mt-3 flex items-center justify-between gap-2">
+        <p className="font-display text-[11px] font-black uppercase leading-tight text-[var(--foreground)]">
+          Real Words. Real Happiness.
         </p>
-        <div className="flex justify-center">
-          <Stars count={review.stars} />
-        </div>
+        <Stars count={review.stars} />
       </div>
 
       {review.mediaUrl && (
-        <p className="mt-3 line-clamp-3 text-center text-[12px] font-medium leading-5 text-[var(--muted)]">
+        <p className="mt-2 line-clamp-2 text-[11px] font-medium leading-4 text-[var(--muted)]">
           &ldquo;{review.review}&rdquo;
         </p>
       )}
 
-      <div className="mt-4 rounded-[1rem] bg-[#ff5400]/10 p-4 text-center">
-        <p className="text-[11px] font-semibold leading-5 text-[var(--foreground)] opacity-80">
-          Your kind words motivate us to keep delivering the best quality with care and attention to detail.
+      <div className="mt-3 flex items-center justify-between gap-2 rounded-[0.85rem] bg-[#ff5400]/10 px-3 py-2">
+        <p className="font-display text-[12px] italic text-[#ff5400]">Thank You! ♥</p>
+        <p className="text-[10px] font-black uppercase tracking-wide text-[var(--foreground)] opacity-80">
+          {review.name}
         </p>
-        <p className="mt-2 font-display text-[13px] italic text-[#ff5400]">Thank You! ♥</p>
       </div>
-
-      <p className="mt-3 text-center text-[11px] font-black uppercase tracking-wide text-[var(--foreground)]">
-        {review.name}
-      </p>
     </article>
   );
 }
