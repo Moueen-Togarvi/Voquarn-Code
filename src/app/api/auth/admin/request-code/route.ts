@@ -6,6 +6,8 @@ import { adminLoginAttempts, adminLoginChallenges, users } from "@/db/schema";
 import { adminLoginCodeEmail } from "@/lib/email-templates";
 import { getSiteSettings } from "@/lib/data";
 import { sendResendEmail } from "@/lib/resend";
+import { sendAdminLoginSecurityAlert } from "@/lib/admin-login-notifications";
+import { getLoginRequestInfo } from "@/lib/login-request-info";
 import {
   ADMIN_OTP_MAX_ATTEMPTS,
   ADMIN_OTP_MAX_CHALLENGES,
@@ -56,6 +58,7 @@ export async function POST(request: Request) {
     }
 
     const now = new Date();
+    const requestInfo = getLoginRequestInfo(request.headers, now);
     const ipHash = hashClientIp(getClientIp(request.headers));
     const passwordWindowStart = new Date(now.getTime() - ADMIN_PASSWORD_WINDOW_MS);
 
@@ -79,16 +82,27 @@ export async function POST(request: Request) {
     const [adminUser] = await db
       .select()
       .from(users)
-      .where(eq(users.email, email))
+      .where(eq(users.role, "admin"))
       .limit(1);
 
     const passwordMatches = await bcrypt.compare(
       password,
       adminUser?.password ?? DUMMY_PASSWORD_HASH,
     );
+    const emailMatches = adminUser?.email.toLowerCase() === email;
 
-    if (!adminUser || adminUser.role !== "admin" || !passwordMatches) {
+    if (!adminUser || !emailMatches || !passwordMatches) {
       await db.insert(adminLoginAttempts).values({ ipHash });
+
+      if (adminUser) {
+        await sendAdminLoginSecurityAlert({
+          to: adminUser.email,
+          status: "failed",
+          attemptedEmail: email,
+          requestInfo,
+        });
+      }
+
       return noStoreJson({ message: "Invalid email or password." }, { status: 401 });
     }
 
@@ -156,7 +170,7 @@ export async function POST(request: Request) {
       from: fromAddress,
       to: adminUser.email,
       subject: `${code} is your ${site.name} admin verification code`,
-      html: adminLoginCodeEmail(site, code),
+      html: adminLoginCodeEmail(site, code, requestInfo),
     });
 
     if (!result.ok) {

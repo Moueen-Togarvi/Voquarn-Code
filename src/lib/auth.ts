@@ -11,6 +11,8 @@ import {
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { and, eq, gt, isNull } from "drizzle-orm";
 import { hashAdminLoginToken } from "@/lib/admin-otp";
+import { sendAdminLoginSecurityAlert } from "@/lib/admin-login-notifications";
+import { getLoginRequestInfo } from "@/lib/login-request-info";
 
 const authSecret = process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET;
 
@@ -28,7 +30,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         challengeId: { label: "Challenge ID", type: "text" },
         loginToken: { label: "One-time login token", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
         const challengeId =
           typeof credentials?.challengeId === "string" ? credentials.challengeId : "";
         const loginToken =
@@ -72,6 +74,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         ) {
           return null;
         }
+
+        await sendAdminLoginSecurityAlert({
+          to: user.email,
+          status: "successful",
+          attemptedEmail: user.email,
+          requestInfo: getLoginRequestInfo(request.headers, now),
+        });
 
         return {
           id: user.id,

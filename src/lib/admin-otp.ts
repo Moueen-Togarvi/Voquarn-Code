@@ -51,8 +51,9 @@ export function secureHashEqual(left: string, right: string) {
 
 export function getClientIp(headers: Headers) {
   return (
-    headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    headers.get("cf-connecting-ip")?.trim() ||
     headers.get("x-real-ip")?.trim() ||
+    headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     "unknown"
   );
 }

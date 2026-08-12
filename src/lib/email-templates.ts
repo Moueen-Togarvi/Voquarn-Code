@@ -1,5 +1,6 @@
 import { getSiteUrl } from "@/lib/site-url";
 import type { SiteSettings } from "@/lib/data";
+import type { LoginRequestInfo } from "@/lib/login-request-info";
 
 const BRAND_COLOR = "#ff5400";
 const BRAND_DARK = "#151516";
@@ -65,6 +66,23 @@ function detailRow(label: string, value: string) {
       </td>
     </tr>
   `;
+}
+
+function loginRequestRows(info: LoginRequestInfo, attemptedEmail?: string) {
+  return [
+    attemptedEmail ? detailRow("Email entered", escapeHtml(attemptedEmail)) : "",
+    detailRow("Time (PKT)", escapeHtml(info.occurredAt)),
+    detailRow("IP address", escapeHtml(info.ipAddress)),
+    detailRow("Approx. location", escapeHtml(info.location)),
+    detailRow("Coordinates", escapeHtml(info.coordinates)),
+    detailRow("Location timezone", escapeHtml(info.timezone)),
+    detailRow("Device", escapeHtml(info.device)),
+    detailRow("Device type", escapeHtml(info.deviceType)),
+    detailRow("Operating system", escapeHtml(info.operatingSystem)),
+    detailRow("Browser", escapeHtml(info.browser)),
+    detailRow("Language", escapeHtml(info.language)),
+    detailRow("User agent", escapeHtml(info.userAgent)),
+  ].join("");
 }
 
 type EmailShellOptions = {
@@ -297,7 +315,11 @@ export function applyUserEmail(site: SiteSettings, input: { name: string; role: 
 }
 
 // ── Admin authentication: one-time verification code ──
-export function adminLoginCodeEmail(site: SiteSettings, code: string) {
+export function adminLoginCodeEmail(
+  site: SiteSettings,
+  code: string,
+  requestInfo: LoginRequestInfo,
+) {
   return emailShell({
     site,
     preheader: `${code} is your ${site.name} admin verification code.`,
@@ -305,8 +327,38 @@ export function adminLoginCodeEmail(site: SiteSettings, code: string) {
     heading: "Verify your admin login",
     intro:
       "Use the verification code below to finish signing in. It expires in 5 minutes and can only be used once.",
-    detailRows: detailRow("Verification code", `<strong style="font-size:24px;letter-spacing:0.22em;color:${BRAND_DARK};">${escapeHtml(code)}</strong>`),
+    detailRows: [
+      detailRow("Verification code", `<strong style="font-size:24px;letter-spacing:0.22em;color:${BRAND_DARK};">${escapeHtml(code)}</strong>`),
+      loginRequestRows(requestInfo),
+    ].join(""),
     footerNote:
-      "If you did not attempt to sign in, you can ignore this email. Your password may need to be changed if these messages continue.",
+      "Location is approximate and depends on hosting-provider headers. If this was not you, change the admin password immediately.",
+  });
+}
+
+export function adminLoginSecurityAlertEmail(
+  site: SiteSettings,
+  input: {
+    status: "failed" | "successful";
+    attemptedEmail: string;
+    requestInfo: LoginRequestInfo;
+  },
+) {
+  const isFailed = input.status === "failed";
+
+  return emailShell({
+    site,
+    preheader: isFailed
+      ? `A failed ${site.name} admin login was detected.`
+      : `A successful ${site.name} admin login was detected.`,
+    eyebrow: isFailed ? "Security Alert" : "Security Notice",
+    heading: isFailed ? "Failed admin login attempt" : "Successful admin login",
+    intro: isFailed
+      ? "Someone entered an incorrect admin email or password. Review the request details below. The password itself is never recorded or emailed."
+      : "An admin session was created after successful password and email-code verification. Confirm that the device and location below belong to you.",
+    detailRows: loginRequestRows(input.requestInfo, input.attemptedEmail),
+    footerNote: isFailed
+      ? "Login attempts are rate-limited. If you do not recognize this activity, use a new unique admin password. Location is approximate."
+      : "If this was not you, change the admin password and rotate AUTH_SECRET immediately. Location is approximate.",
   });
 }

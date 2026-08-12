@@ -12,6 +12,7 @@ import {
 } from "@/lib/admin-otp";
 import { getSiteSettings } from "@/lib/data";
 import { adminLoginCodeEmail } from "@/lib/email-templates";
+import { getLoginRequestInfo } from "@/lib/login-request-info";
 import { sendResendEmail } from "@/lib/resend";
 
 export const runtime = "nodejs";
@@ -78,7 +79,7 @@ export async function POST(request: Request) {
       from: fromAddress,
       to: reserved.email,
       subject: `${code} is your ${site.name} admin verification code`,
-      html: adminLoginCodeEmail(site, code),
+      html: adminLoginCodeEmail(site, code, getLoginRequestInfo(request.headers, now)),
     });
 
     if (!result.ok) {
