@@ -46,10 +46,9 @@ export async function POST(request: Request) {
       return noStoreJson({ message: "Invalid email or password." }, { status: 401 });
     }
 
-    const allowedEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
     const resendApiKey = process.env.RESEND_API_KEY;
-    if (!allowedEmail || !resendApiKey) {
-      console.error("Admin OTP requires ADMIN_EMAIL and RESEND_API_KEY");
+    if (!resendApiKey) {
+      console.error("Admin OTP requires RESEND_API_KEY");
       return noStoreJson(
         { message: "Email verification is not configured." },
         { status: 503 },
@@ -77,13 +76,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const [adminUser] = email === allowedEmail
-      ? await db
-          .select()
-          .from(users)
-          .where(eq(users.email, allowedEmail))
-          .limit(1)
-      : [];
+    const [adminUser] = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, email))
+      .limit(1);
 
     const passwordMatches = await bcrypt.compare(
       password,
@@ -144,7 +141,7 @@ export async function POST(request: Request) {
     await db.insert(adminLoginChallenges).values({
       id: challengeId,
       userId: adminUser.id,
-      email: allowedEmail,
+      email: adminUser.email,
       codeHash: hashAdminOtp(challengeId, code),
       attemptsRemaining: ADMIN_OTP_MAX_ATTEMPTS,
       expiresAt,
@@ -157,7 +154,7 @@ export async function POST(request: Request) {
       process.env.CONTACT_FROM_EMAIL || `${site.name} Security <hello@voquarn.com>`;
     const result = await sendResendEmail(resendApiKey, {
       from: fromAddress,
-      to: allowedEmail,
+      to: adminUser.email,
       subject: `${code} is your ${site.name} admin verification code`,
       html: adminLoginCodeEmail(site, code),
     });
@@ -180,7 +177,7 @@ export async function POST(request: Request) {
 
     return noStoreJson({
       challengeId,
-      maskedEmail: maskEmail(allowedEmail),
+      maskedEmail: maskEmail(adminUser.email),
       expiresInSeconds: Math.floor(ADMIN_OTP_TTL_MS / 1000),
       resendAfterSeconds: Math.floor(ADMIN_OTP_RESEND_COOLDOWN_MS / 1000),
     });

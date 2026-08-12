@@ -32,8 +32,7 @@ export async function POST(request: Request) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    const allowedEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
-    if (!resendApiKey || !allowedEmail) {
+    if (!resendApiKey) {
       return noStoreJson(
         { message: "Email verification is not configured." },
         { status: 503 },
@@ -57,7 +56,6 @@ export async function POST(request: Request) {
       .where(
         and(
           eq(adminLoginChallenges.id, challengeId),
-          eq(adminLoginChallenges.email, allowedEmail),
           isNull(adminLoginChallenges.verifiedAt),
           gt(adminLoginChallenges.expiresAt, now),
           lte(adminLoginChallenges.resendAvailableAt, now),

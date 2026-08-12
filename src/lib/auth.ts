@@ -65,14 +65,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           .from(users)
           .where(eq(users.id, claimedChallenge.userId))
           .limit(1);
-        const allowedEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
-
         if (
           !user ||
           user.role !== "admin" ||
-          !allowedEmail ||
-          user.email.toLowerCase() !== allowedEmail ||
-          claimedChallenge.email.toLowerCase() !== allowedEmail
+          claimedChallenge.email.toLowerCase() !== user.email.toLowerCase()
         ) {
           return null;
         }
