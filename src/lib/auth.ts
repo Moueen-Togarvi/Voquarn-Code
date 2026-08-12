@@ -15,6 +15,7 @@ import { sendAdminLoginSecurityAlert } from "@/lib/admin-login-notifications";
 import { getLoginRequestInfo } from "@/lib/login-request-info";
 
 const authSecret = process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET;
+const isProduction = process.env.NODE_ENV === "production";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db, {
@@ -94,13 +95,38 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   session: {
     strategy: "jwt",
-    maxAge: 12 * 60 * 60,
+    maxAge: 2 * 60 * 60,
+  },
+  useSecureCookies: isProduction,
+  cookies: {
+    sessionToken: {
+      name: isProduction
+        ? "__Host-authjs.session-token"
+        : "authjs.session-token",
+      options: {
+        httpOnly: true,
+        sameSite: "strict",
+        path: "/",
+        secure: isProduction,
+      },
+    },
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.role = (user as { role?: string }).role ?? "member";
         token.id = user.id;
+      } else if (typeof token.id === "string") {
+        // Re-check authorization against the database on every authenticated
+        // request. A removed/demoted admin therefore cannot keep using an old
+        // cookie until its normal expiry.
+        const [currentUser] = await db
+          .select({ role: users.role })
+          .from(users)
+          .where(eq(users.id, token.id))
+          .limit(1);
+
+        token.role = currentUser?.role === "admin" ? "admin" : "member";
       }
       return token;
     },
