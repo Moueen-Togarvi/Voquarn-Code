@@ -5,7 +5,8 @@ description: "Deploy Enterprise AI agents with identity, permissions, data contr
 category: "Enterprise AI"
 targetKeyword: "Enterprise AI agents"
 readTime: "7 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **Enterprise AI agents** operate across sensitive knowledge, business applications, teams, and control environments. Governance must make useful experimentation possible while preventing every department from creating invisible access and risk.

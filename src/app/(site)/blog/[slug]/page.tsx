@@ -12,10 +12,9 @@ type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-// Regenerated hourly so edits reach the live post without a redeploy, and new
-// slugs added after the last build (not in generateStaticParams' snapshot)
-// still render on first request instead of 404ing.
-export const revalidate = 3600;
+// Markdown is deployed with the application, so every published file is built
+// as a known route and content changes become live with the next deployment.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();

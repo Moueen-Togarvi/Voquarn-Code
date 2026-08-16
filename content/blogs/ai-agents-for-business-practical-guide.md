@@ -5,7 +5,8 @@ description: "Use AI agents for business responsibly by selecting bounded tasks,
 category: "AI Agents"
 targetKeyword: "AI agents for business"
 readTime: "7 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 Useful **AI agents for business** complete bounded work across knowledge and software tools. They differ from simple chat because they can choose and execute steps. That capability requires stronger authorization, testing, and operational ownership.

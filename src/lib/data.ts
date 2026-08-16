@@ -1,7 +1,6 @@
 import { cache } from "react";
 import { db } from "@/db";
 import {
-  blogPosts,
   services,
   subServices,
   portfolioItems,
@@ -18,10 +17,10 @@ import {
 import { eq, desc, asc } from "drizzle-orm";
 import { site as staticSite } from "@/lib/site-data";
 import type { BlogPost, Service, PortfolioItem, TeamMember, Testimonial, FaqItem, PricingPlan, JobOpening, Stat, ClientLogo, ClientCategory } from "@/lib/site-data";
+import { getMarkdownBlogPost, getMarkdownBlogPosts } from "@/lib/markdown-blogs";
 
-// The database is the single source of truth for all content below: if a row
-// isn't in the admin panel, it doesn't render on the site. There is no
-// fallback to static demo content — an empty table means an empty section.
+// Markdown files are the source of truth for blog content. The remaining CMS
+// content below stays database-backed; there is no fallback to demo content.
 //
 // Neon's free-tier compute suspends after a few minutes of inactivity, so the
 // first query after idle has to wait for it to wake up — this has measured
@@ -51,51 +50,9 @@ async function withRetry<T>(fn: () => Promise<T>, retries = 3, baseDelayMs = 500
 // this, every page load paid for duplicate round-trips on top of each other
 // — the exact kind of overhead that hurts most on high-latency connections.
 
-// ── Blog Posts ──
-export const getBlogPosts = cache(async (): Promise<BlogPost[]> => {
-  try {
-    return await withRetry(async () => {
-      const posts = await db.select().from(blogPosts).where(eq(blogPosts.published, true)).orderBy(desc(blogPosts.publishedAt));
-      return posts.map((p) => ({
-        slug: p.slug,
-        title: p.title,
-        excerpt: p.excerpt || "",
-        category: p.category || "",
-        publishedAt: p.publishedAt ? p.publishedAt.toISOString().split("T")[0] : new Date(p.createdAt).toISOString().split("T")[0],
-        readTime: p.readTime || "",
-        sections: [], // Rich content rendered separately
-        content: p.content,
-        coverImage: p.coverImage,
-      }));
-    });
-  } catch (error) {
-    console.error("getBlogPosts DB error:", error);
-    return [];
-  }
-});
-
-export const getBlogPost = cache(async (slug: string) => {
-  try {
-    return await withRetry(async () => {
-      const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
-      if (!post) return undefined;
-      return {
-        slug: post.slug,
-        title: post.title,
-        excerpt: post.excerpt || "",
-        category: post.category || "",
-        publishedAt: post.publishedAt ? post.publishedAt.toISOString().split("T")[0] : new Date(post.createdAt).toISOString().split("T")[0],
-        readTime: post.readTime || "",
-        sections: [],
-        content: post.content,
-        coverImage: post.coverImage,
-      };
-    });
-  } catch (error) {
-    console.error("getBlogPost DB error:", error);
-    return undefined;
-  }
-});
+// ── Blog Posts (content/blogs/*.md) ──
+export const getBlogPosts = getMarkdownBlogPosts;
+export const getBlogPost = getMarkdownBlogPost;
 
 // ── Services ──
 export const getServices = cache(async (): Promise<Service[]> => {

@@ -5,7 +5,8 @@ description: "Use AI lead generation automation for ethical research, enrichment
 category: "AI Lead Generation"
 targetKeyword: "AI lead generation automation"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 Effective **AI lead generation automation** helps teams identify and respond to relevant demand. It should not manufacture large lists or automate unwanted messages. Sustainable lead generation begins with a clear ideal customer and useful offer.

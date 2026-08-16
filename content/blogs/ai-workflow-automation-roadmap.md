@@ -5,7 +5,8 @@ description: "Implement AI workflow automation by mapping processes, separating 
 category: "AI Automation"
 targetKeyword: "AI workflow automation"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **AI workflow automation** combines predictable process orchestration with AI at steps involving language, classification, extraction, or flexible judgment. The workflow—not the model—remains the primary product.

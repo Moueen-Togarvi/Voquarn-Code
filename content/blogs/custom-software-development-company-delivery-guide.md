@@ -5,7 +5,8 @@ description: "Audit a custom software development company through delivery evide
 category: "Custom Software"
 targetKeyword: "Custom software development company"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 Before signing with a **Custom software development company**, examine how the work will be delivered after the sales process ends. Delivery due diligence tests whether proposed governance, engineering, and ownership can survive real uncertainty.

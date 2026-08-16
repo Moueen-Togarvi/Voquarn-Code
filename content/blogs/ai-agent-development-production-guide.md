@@ -5,7 +5,8 @@ description: "Plan AI agent development for bounded tasks, tool access, memory, 
 category: "AI Agents"
 targetKeyword: "AI agent development"
 readTime: "7 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **AI agent development** creates software that can interpret a goal, choose steps, use tools, and respond to results. The production challenge is not making an agent act; it is making its actions bounded, observable, economical, and accountable.

@@ -5,7 +5,8 @@ description: "Plan AI software development as a complete product with trusted da
 category: "AI Development"
 targetKeyword: "AI software development"
 readTime: "7 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **AI software development** combines uncertain model behavior with conventional software that must remain secure, testable, and operable. Teams should treat the AI capability as one subsystem with explicit contracts and failure modes.

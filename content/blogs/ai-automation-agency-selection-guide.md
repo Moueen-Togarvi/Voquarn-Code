@@ -5,7 +5,8 @@ description: "Choose an AI automation agency by evaluating process discovery, in
 category: "AI Automation"
 targetKeyword: "AI automation agency"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 An **AI automation agency** should improve a business process, not maximize the number of automated steps. Buyers should select on operational understanding, integration quality, controls, and measurable results.

@@ -5,7 +5,8 @@ description: "Follow a custom AI agent development roadmap for workflow discover
 category: "AI Agents"
 targetKeyword: "Custom AI agent development"
 readTime: "7 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **Custom AI agent development** adapts an agent to a company's proprietary workflow, systems, knowledge, permissions, and escalation rules. Customization creates value when packaged assistants cannot represent these boundaries safely.

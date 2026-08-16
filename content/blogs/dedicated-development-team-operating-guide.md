@@ -5,7 +5,8 @@ description: "Build a dedicated development team with clear roles, onboarding, p
 category: "Development Teams"
 targetKeyword: "dedicated development team"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 A **dedicated development team** is a stable external group assigned to one product or portfolio. The model works when the product evolves continuously and the client needs durable context, not a sequence of short project handoffs.

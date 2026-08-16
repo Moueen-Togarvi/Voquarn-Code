@@ -5,7 +5,8 @@ description: "Plan cloud application development around managed services, scalab
 category: "Cloud Engineering"
 targetKeyword: "cloud application development"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 Effective **cloud application development** uses cloud capabilities to improve delivery, resilience, and economics. Moving code to a cloud provider without changing architecture or operations does not automatically create those benefits.

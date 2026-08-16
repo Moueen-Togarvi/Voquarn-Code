@@ -5,7 +5,8 @@ description: "Use staff augmentation services effectively by planning skill gaps
 category: "Development Teams"
 targetKeyword: "staff augmentation services"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **Staff augmentation services** add external specialists to a client-managed team. The model is useful for temporary capacity, scarce expertise, or a delivery peak, but it does not repair unclear priorities, weak architecture, or a broken engineering system.

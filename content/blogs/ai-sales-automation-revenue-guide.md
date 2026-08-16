@@ -5,7 +5,8 @@ description: "Use AI sales automation for research, qualification, summaries, fo
 category: "AI Sales"
 targetKeyword: "AI sales automation"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 Useful **AI sales automation** returns selling time and improves follow-through. It should not generate more irrelevant outreach. The strongest applications support research, preparation, record quality, and timely human action.

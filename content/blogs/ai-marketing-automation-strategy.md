@@ -5,7 +5,8 @@ description: "Plan AI marketing automation for research, content assistance, seg
 category: "AI Marketing"
 targetKeyword: "AI marketing automation"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 Responsible **AI marketing automation** improves learning and execution without sacrificing audience relevance, consent, or brand trust. The goal is not maximum content volume; it is better customer communication and measurable growth.

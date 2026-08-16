@@ -5,7 +5,8 @@ description: "Build an enterprise software development strategy around business 
 category: "Enterprise Software"
 targetKeyword: "enterprise software development"
 readTime: "7 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **Enterprise software development** fails when it is managed as a large collection of features instead of organizational change. The software may work technically while teams avoid it, data remains fragmented, or local workarounds return.

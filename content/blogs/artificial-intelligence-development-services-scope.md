@@ -5,7 +5,8 @@ description: "Scope artificial intelligence development services around use-case
 category: "AI Development"
 targetKeyword: "artificial intelligence development services"
 readTime: "7 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 The scope of **artificial intelligence development services** should describe a measurable operational capability, not a broad promise to “add AI.” Buyers need clarity about data, behavior, integration, risk, and ownership.

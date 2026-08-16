@@ -5,7 +5,8 @@ description: "Decide when Custom AI solutions are justified and plan proprietary
 category: "AI Development"
 targetKeyword: "Custom AI solutions"
 readTime: "7 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **Custom AI solutions** are justified when proprietary workflows, data, integrations, controls, or user experience create value that a packaged assistant cannot support. Custom does not necessarily mean training a model; it often means engineering the system around one.

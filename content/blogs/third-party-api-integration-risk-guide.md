@@ -5,7 +5,8 @@ description: "Deliver a reliable third-party API integration by planning vendor 
 category: "API Integration"
 targetKeyword: "third-party API integration"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 A **third-party API integration** adds capability quickly, but it also introduces a dependency your team cannot control. The vendor can change limits, schemas, authentication, pricing, availability, or product strategy. Good integration design contains that risk.

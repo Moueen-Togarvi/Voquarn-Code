@@ -5,7 +5,8 @@ description: "Plan Custom mobile app development from user research and prototyp
 category: "Mobile App Development"
 targetKeyword: "Custom mobile app development"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **Custom mobile app development** should begin with a mobile-specific need: a frequent task, device capability, location context, notification, or offline workflow that creates meaningful value.

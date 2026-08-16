@@ -5,7 +5,8 @@ description: "Use Business process automation with AI to improve cross-team work
 category: "Business Automation"
 targetKeyword: "Business process automation with AI"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **Business process automation with AI** creates value when it improves an end-to-end outcome across people and systems. Automating isolated tasks can move work faster into the next bottleneck without improving the process.

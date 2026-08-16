@@ -5,7 +5,8 @@ description: "Estimate a Mobile app development company engagement across platfo
 category: "Mobile App Development"
 targetKeyword: "Mobile app development company"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 Cost estimates from a **Mobile app development company** should reflect the full product, including backend services, platform delivery, store release, analytics, and post-launch operation. Screen counts hide the most important complexity.

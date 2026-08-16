@@ -26,6 +26,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
+  outputFileTracingIncludes: {
+    "/*": ["./content/blogs/**/*.md"],
+  },
   allowedDevOrigins: ["127.0.0.1"],
   turbopack: {
     root: process.cwd(),

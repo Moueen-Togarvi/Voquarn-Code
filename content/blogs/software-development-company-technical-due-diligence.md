@@ -5,7 +5,8 @@ description: "Perform technical due diligence on a Software development company 
 category: "Software Development"
 targetKeyword: "Software development company"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 Technical due diligence on a **Software development company** verifies that marketing claims are supported by people, practices, and evidence. The depth should match the consequence of the product.

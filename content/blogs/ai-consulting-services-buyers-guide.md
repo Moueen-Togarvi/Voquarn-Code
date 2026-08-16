@@ -5,7 +5,8 @@ description: "Choose AI consulting services that prioritize use cases, assess da
 category: "AI Consulting"
 targetKeyword: "AI consulting services"
 readTime: "6 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 Useful **AI consulting services** help leadership decide where AI creates value, which risks need control, and what should be built, bought, or avoided. The engagement should end with evidence and accountable next steps.

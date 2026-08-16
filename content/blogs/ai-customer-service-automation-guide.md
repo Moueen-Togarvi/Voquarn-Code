@@ -5,7 +5,8 @@ description: "Implement AI customer service automation with trusted knowledge, i
 category: "AI Customer Service"
 targetKeyword: "AI customer service automation"
 readTime: "7 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 Responsible **AI customer service automation** improves speed and consistency while preserving a clear path to accountable human help. It should solve customer needs, not merely reduce ticket counts.

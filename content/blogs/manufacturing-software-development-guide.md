@@ -5,7 +5,8 @@ description: "Plan manufacturing software development for production visibility,
 category: "Manufacturing Software"
 targetKeyword: "manufacturing software development"
 readTime: "7 min read"
-status: "draft"
+publishedAt: "2026-08-17"
+status: "published"
 ---
 
 **Manufacturing software development** must respect production continuity. The product may connect planning, materials, machines, operators, quality, maintenance, warehouses, and enterprise systems where downtime has direct cost.
