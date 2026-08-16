@@ -1,15 +1,16 @@
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
-import { BlogForm } from "@/components/admin/blog-form";
 
 export default function NewBlogPostPage() {
   return (
     <div>
       <AdminPageHeader
-        title="New Blog Post"
-        description="Create a new article for your blog"
+        title="File-Managed Blog"
+        description="Blog posts are maintained as Markdown files"
         backHref="/admin/blog"
       />
-      <BlogForm />
+      <p className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 text-[var(--muted)]">
+        Add new posts manually in <code>content/blogs</code>. The database editor is disabled for blog content.
+      </p>
     </div>
   );
 }

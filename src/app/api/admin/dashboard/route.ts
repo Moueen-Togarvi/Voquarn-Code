@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db";
 import {
-  blogPosts,
   services,
   portfolioItems,
   teamMembers,
@@ -11,6 +10,7 @@ import {
 } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { count } from "drizzle-orm";
+import { getMarkdownBlogPosts } from "@/lib/markdown-blogs";
 
 export async function GET() {
   const session = await auth();
@@ -19,7 +19,7 @@ export async function GET() {
   }
 
   try {
-    const [blogCount] = await db.select({ value: count() }).from(blogPosts);
+    const blogPosts = await getMarkdownBlogPosts();
     const [serviceCount] = await db.select({ value: count() }).from(services);
     const [portfolioCount] = await db.select({ value: count() }).from(portfolioItems);
     const [teamCount] = await db.select({ value: count() }).from(teamMembers);
@@ -28,7 +28,7 @@ export async function GET() {
     const [careersCount] = await db.select({ value: count() }).from(jobOpenings);
 
     return NextResponse.json({
-      blog: Number(blogCount?.value || 0),
+      blog: blogPosts.length,
       services: Number(serviceCount?.value || 0),
       portfolio: Number(portfolioCount?.value || 0),
       team: Number(teamCount?.value || 0),

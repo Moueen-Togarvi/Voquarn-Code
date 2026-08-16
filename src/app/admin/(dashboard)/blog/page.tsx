@@ -2,19 +2,16 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { Plus, FileText, Search, Pencil, ExternalLink } from "lucide-react";
+import { FileText, Search, ExternalLink } from "lucide-react";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
-import { DeleteDialog } from "@/components/admin/delete-dialog";
 import { Badge } from "@/components/ui/badge";
 
 type Post = {
-  id: number;
   title: string;
   slug: string;
   category: string | null;
   published: boolean;
   publishedAt: string | null;
-  createdAt: string;
 };
 
 export default function AdminBlogPage() {
@@ -46,18 +43,13 @@ export default function AdminBlogPage() {
     <div>
       <AdminPageHeader
         title="Blog Posts"
-        description={`${posts.length} post${posts.length !== 1 ? "s" : ""} total`}
+        description={`${posts.length} Markdown post${posts.length !== 1 ? "s" : ""} in content/blogs`}
         backHref="/admin"
-        action={
-          <Link
-            href="/admin/blog/new"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#ff5400] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#e04800] transition-colors"
-          >
-            <Plus size={16} />
-            New Post
-          </Link>
-        }
       />
+
+      <p className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--muted)]">
+        Blog posts are read from Markdown files and are not stored or edited in the database.
+      </p>
 
       {/* Search */}
       <div className="relative mb-6 max-w-sm">
@@ -86,14 +78,6 @@ export default function AdminBlogPage() {
             <p className="text-[var(--foreground)] font-medium">
               {search ? "No posts found" : "No blog posts yet"}
             </p>
-            {!search && (
-              <Link
-                href="/admin/blog/new"
-                className="mt-3 text-sm text-[#ff5400] hover:underline"
-              >
-                Create your first post
-              </Link>
-            )}
           </div>
         ) : (
           <table className="w-full">
@@ -118,7 +102,7 @@ export default function AdminBlogPage() {
             </thead>
             <tbody className="divide-y divide-[var(--border)]">
               {filtered.map((post) => (
-                <tr key={post.id} className="hover:bg-[var(--surface)]">
+                <tr key={post.slug} className="hover:bg-[var(--surface)]">
                   <td className="px-4 py-3">
                     <div className="font-medium text-[var(--foreground)]">
                       {post.title}
@@ -144,7 +128,7 @@ export default function AdminBlogPage() {
                   <td className="hidden px-4 py-3 text-sm text-[var(--muted)] md:table-cell">
                     {post.publishedAt
                       ? new Date(post.publishedAt).toLocaleDateString()
-                      : new Date(post.createdAt).toLocaleDateString()}
+                      : "—"}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center justify-end gap-1">
@@ -158,18 +142,6 @@ export default function AdminBlogPage() {
                           <ExternalLink size={15} />
                         </Link>
                       )}
-                      <Link
-                        href={`/admin/blog/${post.id}`}
-                        className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--muted)] hover:bg-[var(--surface)] hover:text-[var(--foreground)] transition-colors"
-                        title="Edit"
-                      >
-                        <Pencil size={15} />
-                      </Link>
-                      <DeleteDialog
-                        itemName="Blog Post"
-                        apiPath={`/api/admin/blog/${post.id}`}
-                        onSuccess={fetchPosts}
-                      />
                     </div>
                   </td>
                 </tr>

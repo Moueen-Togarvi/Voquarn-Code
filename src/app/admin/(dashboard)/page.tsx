@@ -113,11 +113,11 @@ export default function AdminDashboard() {
         </h2>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link
-            href="/admin/blog/new"
+            href="/admin/blog"
             className="inline-flex items-center gap-2 rounded-xl bg-[#ff5400] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#e04800] transition-colors"
           >
-            <Plus size={16} />
-            New Blog Post
+            <FileText size={16} />
+            View Markdown Posts
           </Link>
           <Link
             href="/admin/services/new"

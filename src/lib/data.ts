@@ -16,7 +16,7 @@ import {
 } from "@/db/schema";
 import { eq, desc, asc } from "drizzle-orm";
 import { site as staticSite } from "@/lib/site-data";
-import type { BlogPost, Service, PortfolioItem, TeamMember, Testimonial, FaqItem, PricingPlan, JobOpening, Stat, ClientLogo, ClientCategory } from "@/lib/site-data";
+import type { Service, PortfolioItem, TeamMember, Testimonial, FaqItem, PricingPlan, JobOpening, Stat, ClientLogo, ClientCategory } from "@/lib/site-data";
 import { getMarkdownBlogPost, getMarkdownBlogPosts } from "@/lib/markdown-blogs";
 
 // Markdown files are the source of truth for blog content. The remaining CMS
