@@ -434,52 +434,6 @@ export const faqItems: FaqItem[] = [
   },
 ];
 
-export const blogPosts: BlogPost[] = [
-  {
-    slug: "technical-seo-basics-for-service-sites",
-    title: "Technical SEO Basics for Service Websites That Want Better Leads",
-    excerpt: "A practical guide to fixing structure, speed, and metadata issues before scaling content production.",
-    category: "SEO Articles",
-    publishedAt: "2026-04-14",
-    readTime: "6 min read",
-    sections: [
-      "Most service sites do not have a traffic problem first. They usually have a clarity problem. If your page structure, metadata, and internal linking are weak, content has less room to perform.",
-      "Start with service pages that map closely to real buyer intent. Each page should explain the offer, proof, next step, and location relevance without stuffing keywords unnaturally.",
-      "Then work through technical basics: page titles, headings, crawlable navigation, image compression, structured internal links, and a contact path that is easy to complete on mobile.",
-    ],
-  },
-  {
-    slug: "when-to-build-a-client-portal",
-    title: "When a Client Portal Starts Paying for Itself",
-    excerpt: "Signs that your business is ready to replace scattered updates and manual coordination with a shared product surface.",
-    category: "Tech Tips",
-    publishedAt: "2026-03-28",
-    readTime: "5 min read",
-    sections: [
-      "Client portals make sense when your team repeatedly shares the same files, approval requests, progress notes, or service updates through fragmented channels.",
-      "The return is not just time saved. A portal often improves trust because clients can see status, expectations, and documents in one predictable place.",
-      "Before building one, identify the high-friction workflows first. Good product scope removes recurring confusion instead of digitizing a broken process.",
-    ],
-  },
-  {
-    slug: "using-ai-without-breaking-operations",
-    title: "Using AI Without Breaking the Way Your Team Actually Works",
-    excerpt: "A grounded approach to AI adoption that starts with operations, not hype.",
-    category: "Tech Tips",
-    publishedAt: "2026-02-19",
-    readTime: "7 min read",
-    sections: [
-      "The strongest AI projects begin with repetitive work that already has rough structure: triage, summarization, drafting, categorization, or routing.",
-      "Teams get into trouble when they try to replace judgment-heavy steps too early. Start by reducing friction around the humans who still own the final decision.",
-      "Measure adoption in hours saved, turnaround time, and error reduction. If those numbers improve, the AI layer is helping. If not, the workflow likely needs redesign.",
-    ],
-  },
-];
-
-export function getBlogPost(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
-}
-
 export function getService(id: string) {
   return services.find((service) => service.id === id);
 }

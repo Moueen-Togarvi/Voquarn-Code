@@ -44,7 +44,7 @@ async function withRetry<T>(fn: () => Promise<T>, retries = 3, baseDelayMs = 500
   throw lastError;
 }
 
-// Every getter below is wrapped in React's cache() so multiple calls to the
+// Every database getter below is wrapped in React's cache() so multiple calls to the
 // same function within one request (e.g. the root layout and the page it
 // wraps both needing site settings) hit the database once, not twice. Without
 // this, every page load paid for duplicate round-trips on top of each other

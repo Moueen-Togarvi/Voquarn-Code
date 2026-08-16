@@ -8,7 +8,6 @@ import {
   testimonials as staticTestimonials,
   faqItems as staticFaq,
   pricingPlans as staticPricing,
-  blogPosts as staticBlogPosts,
 } from "../src/lib/site-data";
 import {
   services,
@@ -18,7 +17,6 @@ import {
   testimonials,
   faqItems,
   pricingPlans,
-  blogPosts,
   jobOpenings,
 } from "../src/db/schema";
 
@@ -161,20 +159,6 @@ async function seedContent() {
       featured: plan.featured ?? false,
       features: plan.features,
       order: index,
-    })),
-  );
-
-  console.log("Seeding blog posts...");
-  await db.insert(blogPosts).values(
-    staticBlogPosts.map((post) => ({
-      slug: post.slug,
-      title: post.title,
-      excerpt: post.excerpt,
-      category: post.category,
-      published: true,
-      publishedAt: new Date(post.publishedAt),
-      readTime: post.readTime,
-      content: post.sections.map((text) => ({ type: "paragraph", content: [{ type: "text", text }] })),
     })),
   );
 
