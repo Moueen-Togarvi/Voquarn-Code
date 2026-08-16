@@ -255,7 +255,17 @@ async function readMarkdownPosts(): Promise<BlogPost[]> {
   return posts
     .filter((post) => post.status === "published")
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt) || a.title.localeCompare(b.title))
-    .map(({ status: _status, ...post }) => post);
+    .map((post) => ({
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.excerpt,
+      category: post.category,
+      publishedAt: post.publishedAt,
+      readTime: post.readTime,
+      sections: post.sections,
+      content: post.content,
+      coverImage: post.coverImage,
+    }));
 }
 
 export const getMarkdownBlogPosts = cache(readMarkdownPosts);
