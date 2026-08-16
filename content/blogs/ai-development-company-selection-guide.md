@@ -30,6 +30,10 @@ AI products still need UX, APIs, databases, identity, integrations, queues, moni
 
 Confirm ownership of code, prompts, evaluation sets, pipelines, indexes, accounts, telemetry, and feedback data. Understand model-provider fees and how usage will be controlled.
 
+## Compare commercial assumptions
+
+Normalize provider fees, model usage, data preparation, expert review, cloud resources, evaluation maintenance, and support. Ask how cost changes at ten times the pilot volume and what limits prevent unexpected spend. A low build estimate can hide a production model whose unit economics do not support the intended business case.
+
 ## Frequently asked questions
 
 ### What proof should an AI company provide?

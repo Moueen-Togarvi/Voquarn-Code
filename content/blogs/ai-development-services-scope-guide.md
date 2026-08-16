@@ -34,6 +34,10 @@ Build automated scenario tests and human review for important qualities. Add inp
 
 Monitor task success, failure type, escalation, latency, availability, token or inference use, cost, and business outcome. Version model, prompt, retrieval, tool, and evaluation changes.
 
+## Define acceptance by stage
+
+Discovery should end with prioritized use cases and risk. A prototype should end with feasibility evidence. A pilot should demonstrate user and quality outcomes under control. Production should meet operational, security, and support readiness. Stage-specific acceptance prevents a persuasive prototype from being treated as a deployable product without the work required between them.
+
 ## Frequently asked questions
 
 ### Is a prototype part of AI development services?

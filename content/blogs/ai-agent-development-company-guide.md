@@ -30,6 +30,10 @@ Operators need a trace of decisions, model and prompt versions, tool calls, resu
 
 The client should control source, cloud, model accounts, prompts, tool definitions, evaluation data, dashboards, and documentation. Clarify provider usage fees and ongoing maintenance.
 
+## Run a controlled vendor exercise
+
+Give shortlisted teams the same representative case, tool definitions, policy limits, and sample data. Ask each team to design the agent, identify attacks and failure modes, and specify its evaluation plan. Compare what they refuse to automate as closely as what they propose. A short paid exercise exposes engineering judgment, communication, and safety practice more reliably than a generic proposal.
+
 ## Frequently asked questions
 
 ### What is the safest agent pilot?

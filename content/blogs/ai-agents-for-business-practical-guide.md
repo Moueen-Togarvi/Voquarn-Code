@@ -34,6 +34,10 @@ Test complete scenarios with interruptions, missing information, conflicting ins
 
 Begin with observation, then drafting, approval, and finally low-risk action. Review logs and user corrections at each stage. Expand only when the benefit and failure rate justify it.
 
+## Prepare the operating team
+
+Assign people who can review traces, resolve exceptions, update tool policies, and suspend the agent. Train users to recognize uncertainty and report unsafe behavior. Document the manual fallback for every important task. An agent without an operating owner becomes invisible process risk even when its early demonstrations appear successful.
+
 ## Frequently asked questions
 
 ### Which business agent should we build first?

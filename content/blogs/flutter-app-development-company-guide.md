@@ -28,6 +28,10 @@ Ask how the company maintains platform channels and third-party plugins. Review 
 
 Clarify APIs, identity, databases, administration, payments, content, and offline synchronization. Define monitoring and support across app and backend. Store accounts and signing credentials should belong to the client.
 
+## Plan framework upgrades
+
+Ask how the team reviews Flutter, Dart, Android, iOS, and plugin releases. Maintain supported versions, automated builds, real-device regression, and an upgrade cadence. Cross-platform efficiency depends on keeping the shared foundation healthy; deferred upgrades can turn a later store requirement into an urgent and risky project.
+
 ## Frequently asked questions
 
 ### Flutter or React Native?

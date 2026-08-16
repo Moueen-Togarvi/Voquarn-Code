@@ -36,6 +36,10 @@ Penetration testing is useful for scoped assurance but does not replace secure e
 
 Monitor meaningful security events, define alert ownership, preserve useful evidence, rehearse incidents, and maintain communication and recovery plans. Establish vulnerability intake and remediation targets.
 
+## Prioritize remediation responsibly
+
+Classify findings by exploitability, exposure, asset consequence, and existing control. Assign owners and target dates, then verify the fix rather than closing on a code change alone. Maintain a process for accepted risk with accountable approval and review dates. Security backlogs need business context to prevent both panic and indefinite deferral.
+
 ## Frequently asked questions
 
 ### Can software be completely secure?

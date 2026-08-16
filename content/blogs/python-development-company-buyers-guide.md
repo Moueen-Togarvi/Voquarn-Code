@@ -32,6 +32,10 @@ Discuss authentication, authorization, secrets, dependency vulnerabilities, data
 
 Have the proposed engineers explain a similar system, its hardest tradeoff, a failure encountered, and its post-launch operation. Review artifacts or code samples where confidentiality allows.
 
+## Review maintenance discipline
+
+Ask how the company handles Python runtime upgrades, framework support windows, package vulnerabilities, database migrations, worker compatibility, and reproducible builds. A product can remain functionally unchanged while its support risk grows. Planned maintenance is cheaper than an urgent upgrade caused by an unsupported dependency.
+
 ## Frequently asked questions
 
 ### Is Python fast enough?

@@ -32,6 +32,10 @@ Validate input, enforce authorization server-side, protect secrets, manage depen
 
 Test business rules, databases, APIs, permissions, integrations, and failure paths. Monitor latency, error rate, event-loop delay, memory, queue depth, dependency health, and critical business events.
 
+## Manage dependencies deliberately
+
+Prefer well-maintained packages with clear ownership and avoid adding libraries for trivial behavior. Use lockfiles, automated vulnerability review, controlled updates, and regression tests. Record critical package decisions and replacement options. Node.js ecosystem speed is useful only when dependency change remains visible and manageable.
+
 ## Frequently asked questions
 
 ### Node.js or Python?

@@ -34,6 +34,8 @@ Test representative users and environments. Address accessibility, error prevent
 
 Monitor availability, latency, data exchange, security events, and workflow failures. Establish support escalation and downtime procedures. Review changes for clinical and operational impact.
 
+Include procurement, data-processing, subcontractor, support-location, and service-continuity questions in vendor review, not only product features.
+
 ## Frequently asked questions
 
 ### Does a vendor make a product compliant?

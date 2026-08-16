@@ -34,6 +34,10 @@ Build a versioned test set with expected outcomes and important failure cases. D
 
 Monitor task success, error categories, escalation, latency, usage, cost, and business results. Capture feedback without treating every user correction as automatically safe training data.
 
+## Separate pilot and production commitments
+
+A pilot can use controlled data, limited users, manual review, and temporary infrastructure to answer feasibility questions. Production requires durable identity, permissions, evaluation, monitoring, support, incident response, cost controls, and change management. Make the gap explicit in the proposal so pilot success does not create pressure for an unsafe immediate launch.
+
 ## Frequently asked questions
 
 ### What should a proposal include?

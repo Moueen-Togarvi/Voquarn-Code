@@ -34,6 +34,10 @@ Segment networks, minimize access, manage identities and vendors, monitor change
 
 Pilot a line, product, or shift. Rehearse data, devices, support, fallback, and training. Measure cycle time, downtime, scrap, first-pass yield, schedule adherence, traceability, and user adoption.
 
+## Prepare plant support
+
+Define first-line support by shift, device replacement, network escalation, integration ownership, and safe manual fallback. Record which incidents require production leadership or safety review. A successful pilot needs an operating model that works at night and on weekends, not only when the project team is present.
+
 ## Frequently asked questions
 
 ### Should legacy equipment be replaced?

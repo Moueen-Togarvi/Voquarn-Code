@@ -36,6 +36,10 @@ Profile quality, ownership, identifiers, history, retention, and volume. Rehears
 
 Archive required data, remove access, stop jobs, terminate licenses, update dependencies, and document the new source of truth. Incomplete retirement preserves cost and risk.
 
+## Preserve business knowledge
+
+Capture decisions from experienced operators and engineers before roles change or systems are retired. Link business rules to tests, data definitions, and new workflows. Modernization that replaces code while losing institutional knowledge can recreate old defects in a cleaner technology stack.
+
 ## Frequently asked questions
 
 ### Rewrite or refactor?

@@ -43,6 +43,10 @@ Ask how advice will become reviewed infrastructure, pipelines, policies, dashboa
 
 If the consultant will implement, separate assessment decisions from delivery estimates so incentives remain visible.
 
+## Require an operating decision map
+
+The target architecture should show who approves access, deploys changes, responds to alerts, restores data, reviews cost, and manages provider support. Cloud responsibility shared across teams can quickly become responsibility owned by nobody. A clear map helps the organization decide which capability to build internally and which service to obtain externally.
+
 ## Frequently asked questions
 
 ### Can cloud consulting be vendor-neutral?

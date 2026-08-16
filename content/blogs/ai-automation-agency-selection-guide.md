@@ -30,6 +30,10 @@ Agree on cycle time, human effort, accuracy, backlog, conversion, resolution, or
 
 Use client-controlled workflow, model, cloud, and integration accounts where practical. Require documentation, credentials handover, monitoring, and a transition plan.
 
+## Review maintenance before signing
+
+Workflow vendors, APIs, model behavior, business rules, and staff responsibilities will change. Require a maintenance plan covering connector failures, credential rotation, evaluation updates, cost alerts, workflow versions, and incident response. Clarify which changes are included in support and which become new project work. This prevents a useful pilot from becoming an unsupported operational dependency.
+
 ## Frequently asked questions
 
 ### Should an agency guarantee time savings?

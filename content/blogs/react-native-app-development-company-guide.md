@@ -32,6 +32,8 @@ Require testing on real devices across supported OS versions. Cover startup, slo
 
 Developer accounts, signing credentials, push certificates, repositories, cloud services, and analytics should be controlled by the client. Include store submissions, privacy disclosures, phased rollout, and review-response work.
 
+Review how over-the-air updates, store releases, backend compatibility, and minimum supported app versions are coordinated across the product lifecycle.
+
 ## Frequently asked questions
 
 ### Is React Native slower than native?

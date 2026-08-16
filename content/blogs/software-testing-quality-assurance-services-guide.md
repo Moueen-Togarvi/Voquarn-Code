@@ -34,6 +34,10 @@ Test performance under realistic load, accessibility with automated and human me
 
 Dashboards should show risk coverage, critical failures, flaky tests, escaped defects, release blockers, and trends. A large pass count can hide untested important behavior.
 
+## Connect production learning
+
+Feed incidents, support issues, analytics, and escaped defects back into risk models and automated regression. Review why earlier checks missed the problem and improve the system rather than only adding one test. Quality assurance becomes more valuable when each production failure strengthens future release evidence.
+
 ## Frequently asked questions
 
 ### Should QA be independent?

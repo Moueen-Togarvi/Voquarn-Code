@@ -30,6 +30,10 @@ Conventional code needs unit, integration, permission, and browser tests. AI beh
 
 Track success, groundedness, refusal, escalation, latency, usage, and cost by feature or tenant. Observe model-provider changes and knowledge freshness. Use sampled review with privacy safeguards.
 
+## Manage product change safely
+
+Treat prompt, model, retrieval, tool, and policy updates as releases. Record the reason, run regression evaluation, review cost and latency, and stage production exposure. Provide a quick rollback or disable path. This discipline makes AI improvement compatible with the change control expected from dependable software products.
+
 ## Frequently asked questions
 
 ### Which model should we use?

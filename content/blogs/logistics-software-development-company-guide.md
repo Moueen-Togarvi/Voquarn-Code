@@ -32,6 +32,10 @@ Operations teams need prioritized exception queues, context, ownership, and next
 
 Track on-time performance, planning time, utilization, empty distance, failed delivery, dwell time, proof completeness, exception resolution, and customer communication.
 
+## Plan data latency and confidence
+
+Show when a location or status was last observed and whether it came from driver input, telematics, partner API, or inference. Operations staff need to distinguish current fact from stale estimate. Design decisions and customer messages around data confidence instead of presenting every map marker as equally reliable.
+
 ## Frequently asked questions
 
 ### Should routing be custom-built?

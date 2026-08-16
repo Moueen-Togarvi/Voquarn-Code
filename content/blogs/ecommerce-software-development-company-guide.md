@@ -34,6 +34,10 @@ Customers need clear pricing, delivery, availability, policies, security, and er
 
 Track product views, search, add-to-cart, checkout steps, payment outcome, order completion, returns, margin, and repeat purchase. Validate analytics against transactional systems.
 
+## Review merchant operations
+
+Ask how staff create products, correct orders, manage promotions, issue refunds, handle fraud review, and resolve integration failures. Safe administration and clear audit reduce support dependency. A company that demonstrates only the customer storefront may be overlooking the daily work that keeps commerce accurate and profitable.
+
 ## Frequently asked questions
 
 ### Shopify or custom ecommerce?

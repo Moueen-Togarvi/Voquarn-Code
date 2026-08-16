@@ -32,6 +32,10 @@ Customers and owners need clear status, documents, payments, maintenance, messag
 
 Plan CRM, accounting, payments, identity, maps, listing feeds, messaging, signatures, and analytics. Define authoritative records and reconciliation.
 
+## Protect listing and customer trust
+
+Show freshness, source, availability, fees, and important limitations clearly. Create reporting and correction workflows for inaccurate listings or documents. Review who can publish, modify, or suppress property information. Trust declines quickly when attractive interfaces expose stale availability or ambiguous commercial terms.
+
 ## Frequently asked questions
 
 ### Build or buy a real estate platform?

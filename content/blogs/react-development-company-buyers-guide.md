@@ -32,6 +32,8 @@ Look for deliberate separation of server data, local interface state, forms, and
 
 Critical journeys need component, integration, and browser tests. Code review, type safety, linting, and automated builds should support change.
 
+Confirm how frontend errors and user-performance data reach the team after launch; laboratory tests alone cannot represent every device and network.
+
 ## Frequently asked questions
 
 ### React or Next.js?

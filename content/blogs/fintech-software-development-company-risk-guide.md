@@ -32,6 +32,10 @@ Banks, payment processors, identity providers, and market-data services can be s
 
 Test duplicate events, reordered webhooks, timeouts, partial settlement, bad data, provider outage, backup restoration, and incident response. Monitor technical and financial invariants.
 
+## Require financial reconciliation evidence
+
+Ask the proposed team to demonstrate how it proves that internal records, provider reports, and bank or ledger outcomes agree. Reconciliation should expose missing, duplicate, delayed, and mismatched transactions with clear ownership. Financial correctness cannot depend on a customer reporting that a balance looks wrong.
+
 ## Frequently asked questions
 
 ### Should a startup build payment infrastructure?

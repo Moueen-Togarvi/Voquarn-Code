@@ -34,6 +34,10 @@ Summarize operational changes, explain exceptions, draft status reports, and rou
 
 Score frequency, manual cost, data readiness, error consequence, integration effort, owner commitment, and measurability. Pilot one workflow and compare it with the baseline.
 
+## Build a small automation portfolio
+
+After the first pilot, rank additional opportunities using observed evidence rather than enthusiasm. Include benefit, implementation effort, exception volume, data sensitivity, operating cost, owner readiness, and dependency risk. Retire experiments that do not create measurable value. A smaller portfolio of dependable automations is more valuable than dozens of disconnected tools nobody monitors.
+
 ## Frequently asked questions
 
 ### Which departments benefit first?
