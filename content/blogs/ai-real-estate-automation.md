@@ -30,51 +30,51 @@ Use this checklist when comparing proposals:
 - Evaluation by workflow segment, user group, risk level, and realistic failure conditions.
 - Controlled rollout, monitoring, auditability, feedback, retraining or update policy, and recovery.
 
-The proposal should distinguish facts, assumptions, dependencies, client responsibilities, and exclusions. It should also state how each important capability will be demonstrated. A list of model features is not an acceptance plan.
+Ask the provider to label every important statement as verified, assumed, optional, or excluded. Each assumption should have a planned test and decision date. This makes cost and timeline changes explainable when discovery reveals new evidence.
 
 ## Architecture and data boundaries
 
-Start with authoritative sources and identities. Decide where context originates, how it is refreshed, which user or service identity applies, and how permissions travel through retrieval and tool calls. Do not copy sensitive information into an index, prompt, memory store, or log without retention and deletion rules.
+Draw the data path from authoritative source to final outcome. At every boundary, record identity, purpose, permitted fields, transformation, storage, retention, and deletion. Retrieval and tool execution must preserve the requesting user’s authority instead of inheriting a broad service account.
 
-Keep probabilistic interpretation separate from deterministic enforcement. Models can classify, retrieve, summarize, propose, or plan; conventional code should validate schemas, check permission, enforce limits, manage credentials, protect idempotency, and verify consequential results. This division makes failures easier to contain and investigate.
+Treat every proposed action as a transaction with preconditions and postconditions. Verify the actor and current state before execution, use idempotency where retries are possible, and confirm the authoritative system reflects the intended result afterward.
 
-Design for provider and dependency failure. Timeouts, rate limits, malformed output, stale context, partial tool success, and unavailable human reviewers need deliberate behavior. Define when to retry, fall back, pause, compensate, or escalate. Silent continuation is rarely the safest default.
+Test recovery before launch. Interrupt the workflow after each consequential step, restore it from recorded state, reconcile external effects, and confirm the user receives a clear outcome. This is especially important when APIs can time out after completing an action.
 
 ## Delivery roadmap
 
 Begin with the riskiest assumption, not the easiest interface. Use representative data and a production-shaped integration to test whether the required quality and controls are feasible. Keep the first release narrow enough that every outcome can be reviewed and corrected quickly.
 
-Maintain a versioned record of prompts, models, tools, retrieval configuration, policies, and test results. A production outcome must be traceable to the configuration that produced it. Changes should pass regression gates and support rollback without losing audit history.
+Treat prompts and retrieval settings as production code. Review changes, link them to test evidence, deploy gradually, monitor comparative outcomes, and preserve the previous configuration. Provider aliases should not change behavior silently behind your release process.
 
 For broader context, read our [AI implementation pillar guide](/blog/ai-automation-for-businesses-use-cases). It explains how this capability fits into a larger AI delivery and governance program.
 
 ## Security and human control
 
-Threat-model users, models, retrieved content, connected systems, administrators, and external providers. Test indirect prompt injection, malicious files, excessive tool scope, cross-user context, data leakage, denial of service, and attempts to bypass approval. Apply least privilege and short-lived credentials at the execution layer.
+Security review should include cross-tenant access, broken object authorization, indirect injection, unsafe file handling, tool argument manipulation, sensitive logging, denial of wallet, and compromised dependencies. Retest controls after model or connector changes.
 
-Human review must be designed as an operational interface, not a generic confirmation button. Reviewers need the source context, proposed action, uncertainty, policy result, and consequences. They should be able to correct, reject, escalate, or stop the workflow, and those decisions should improve future evaluations.
+Approval quality depends on workload. Estimate exception volume, staff the queue, prevent alert fatigue, and sample apparently successful automation for hidden errors. A control that nobody can review in time is not an effective control.
 
 In this case, the release must prove it can control this failure: stale listing data or invented property details are communicated to a prospective customer. Define detection, containment, user communication, recovery, evidence retention, and ownership before production access expands.
 
 ## Evaluation and monitoring
 
-Build a representative test set from real workflow categories, including ambiguous, incomplete, outdated, multilingual, unauthorized, adversarial, and dependency-failure cases. Report results by meaningful slice. A strong average can hide an unacceptable failure in a small but high-risk group.
+Use layered evaluation: deterministic contract and policy checks, model-graded comparisons calibrated by people, expert review for consequential tasks, adversarial testing, and end-to-end production scenarios. No single score captures the full system.
 
 The primary outcome should be measured this way: response and coordination improve while listing accuracy, consent, handoff quality, corrections, and qualified outcomes are tracked. Pair that measure with leading indicators for quality, policy compliance, human corrections, escalation, latency, availability, and cost. Monitor changes by model and workflow version so regressions can be attributed and rolled back.
 
-Production feedback should become labeled evaluation material after privacy review. Do not train or tune blindly on every interaction. User behavior can include mistakes, sensitive information, workarounds, or abuse; governance applies to the feedback loop as well as the initial dataset.
+Respect deletion and purpose limitation in analytics. Feedback stores should not become indefinite transcripts containing sensitive data. Retain the smallest evidence needed for quality and security, with controlled access and auditable use.
 
 ## Cost and timeline
 
 Separate the validation budget from scale investment. First fund evidence that the workflow is useful and controllable. Then model recurring spend for models, infrastructure, storage, monitoring, review, maintenance, security testing, and vendor or model changes.
 
-Use staged commercial commitments: discovery and validation, controlled pilot, production hardening, then measured expansion. Each stage should have exit criteria. A project that fails its safety or value test should stop or change direction without consuming the full roadmap budget.
+Keep the first commitment small enough to abandon responsibly. Expansion should depend on measured value, manageable exception load, passed controls, operator readiness, and a cost model supported by observed usage rather than optimistic volume assumptions.
 
 ## How to select a delivery partner
 
 Give finalists the same difficult scenario and ask them to map assumptions, boundaries, controls, tests, and a first release. Strong teams explain what should remain deterministic, what they would not automate, and what evidence could stop the project.
 
-Contracts should cover data use, provider retention, intellectual property, third-party terms, evaluation evidence, security duties, incident notification, service levels, source and infrastructure access, warranty, support, termination, and transition assistance. Your organization should retain practical control of critical accounts and artifacts.
+Contract for difficult events while both sides are aligned: provider change, data incident, unacceptable regression, extended outage, disputed acceptance, staff departure, and termination. Name decision rights, remedies, evidence, and transition duties.
 
 ## Questions to ask before signing
 
@@ -89,15 +89,14 @@ Contracts should cover data use, provider retention, intellectual property, thir
 
 ### How should we start with AI real estate automation?
 
-Choose one bounded workflow with accessible evidence, a measurable baseline, a named owner, and failures that people can review safely. Validate the hardest assumption before expanding features or authority.
+Use discovery to rank candidate workflows by value, feasibility, data readiness, risk, and change effort. Validate the strongest candidate with real constraints and compare it against the existing process rather than against doing nothing.
 
 ### Which model should we use?
 
-Select models after defining the task and evaluation. Compare quality, latency, context, tool behavior, privacy terms, regional availability, reliability, and cost on representative cases. Preserve a provider-change path where practical.
+Model selection is a release decision, not a permanent identity for the product. Encapsulate provider APIs, version configurations, preserve evaluations, and rehearse rollback. A new model should earn deployment through measured improvement.
 
 ### How do we know it is ready for production?
 
-It is ready only when task, safety, security, reliability, recovery, and cost criteria pass; accountable owners accept the residual risk; monitoring and incident response are active; and users have a clear correction or escalation route.
+Production readiness requires passed outcome and control tests, an approved residual-risk record, trained operators, monitoring, budgets, incident and rollback procedures, user support, and a rollout small enough to contain unexpected behavior.
 
 Explore [Voquarn Code AI services](/services) or [discuss your AI workflow](/contact) for a scoped production assessment.
-

@@ -30,51 +30,51 @@ Use this checklist when comparing proposals:
 - Evaluation by workflow segment, user group, risk level, and realistic failure conditions.
 - Controlled rollout, monitoring, auditability, feedback, retraining or update policy, and recovery.
 
-The proposal should distinguish facts, assumptions, dependencies, client responsibilities, and exclusions. It should also state how each important capability will be demonstrated. A list of model features is not an acceptance plan.
+A credible proposal separates known requirements from hypotheses and names the owner of every dependency. It defines evidence for acceptance, including difficult and failed cases. Model capabilities may support the solution, but they do not prove the workflow is complete.
 
 ## Architecture and data boundaries
 
-Start with authoritative sources and identities. Decide where context originates, how it is refreshed, which user or service identity applies, and how permissions travel through retrieval and tool calls. Do not copy sensitive information into an index, prompt, memory store, or log without retention and deletion rules.
+Draw the data path from authoritative source to final outcome. At every boundary, record identity, purpose, permitted fields, transformation, storage, retention, and deletion. Retrieval and tool execution must preserve the requesting user’s authority instead of inheriting a broad service account.
 
-Keep probabilistic interpretation separate from deterministic enforcement. Models can classify, retrieve, summarize, propose, or plan; conventional code should validate schemas, check permission, enforce limits, manage credentials, protect idempotency, and verify consequential results. This division makes failures easier to contain and investigate.
+Use deterministic code for rules that must always hold and models for interpretation that benefits from context. Record both layers in the trace so an investigator can distinguish model reasoning, policy decisions, execution, and observed result.
 
-Design for provider and dependency failure. Timeouts, rate limits, malformed output, stale context, partial tool success, and unavailable human reviewers need deliberate behavior. Define when to retry, fall back, pause, compensate, or escalate. Silent continuation is rarely the safest default.
+Test recovery before launch. Interrupt the workflow after each consequential step, restore it from recorded state, reconcile external effects, and confirm the user receives a clear outcome. This is especially important when APIs can time out after completing an action.
 
 ## Delivery roadmap
 
 Begin with the riskiest assumption, not the easiest interface. Use representative data and a production-shaped integration to test whether the required quality and controls are feasible. Keep the first release narrow enough that every outcome can be reviewed and corrected quickly.
 
-Maintain a versioned record of prompts, models, tools, retrieval configuration, policies, and test results. A production outcome must be traceable to the configuration that produced it. Changes should pass regression gates and support rollback without losing audit history.
+Use staged releases with a small traffic cohort and automatic guardrails. Compare quality, policy, latency, escalation, and cost against the current version. Stop or reverse rollout when any critical slice crosses its threshold.
 
 For broader context, read our [AI implementation pillar guide](/blog/ai-automation-for-businesses-use-cases). It explains how this capability fits into a larger AI delivery and governance program.
 
 ## Security and human control
 
-Threat-model users, models, retrieved content, connected systems, administrators, and external providers. Test indirect prompt injection, malicious files, excessive tool scope, cross-user context, data leakage, denial of service, and attempts to bypass approval. Apply least privilege and short-lived credentials at the execution layer.
+Security review should include cross-tenant access, broken object authorization, indirect injection, unsafe file handling, tool argument manipulation, sensitive logging, denial of wallet, and compromised dependencies. Retest controls after model or connector changes.
 
-Human review must be designed as an operational interface, not a generic confirmation button. Reviewers need the source context, proposed action, uncertainty, policy result, and consequences. They should be able to correct, reject, escalate, or stop the workflow, and those decisions should improve future evaluations.
+Place human control where it changes risk, not after every harmless step. Route ambiguous and consequential cases with priority, context, and a deadline; measure queue age and reviewer disagreement; and preserve a manual process when automation is paused.
 
 In this case, the release must prove it can control this failure: a model change or bad signal influences production without validation, traceability, or a safe fallback. Define detection, containment, user communication, recovery, evidence retention, and ownership before production access expands.
 
 ## Evaluation and monitoring
 
-Build a representative test set from real workflow categories, including ambiguous, incomplete, outdated, multilingual, unauthorized, adversarial, and dependency-failure cases. Report results by meaningful slice. A strong average can hide an unacceptable failure in a small but high-risk group.
+Construct evaluations from the actual distribution of work plus deliberately difficult cases. Include missing context, conflicting evidence, permission boundaries, unsafe requests, edge languages, tool errors, and unanswerable tasks. Publish results by risk and user segment.
 
 The primary outcome should be measured this way: downtime, defect detection, response, false alarms, operator acceptance, and controlled recovery show measurable improvement. Pair that measure with leading indicators for quality, policy compliance, human corrections, escalation, latency, availability, and cost. Monitor changes by model and workflow version so regressions can be attributed and rolled back.
 
-Production feedback should become labeled evaluation material after privacy review. Do not train or tune blindly on every interaction. User behavior can include mistakes, sensitive information, workarounds, or abuse; governance applies to the feedback loop as well as the initial dataset.
+Monitor drift in input mix, source content, tool behavior, and outcome quality. Trigger review when the production population moves beyond the evaluated range. Updating the model is only one response; workflow or data repair may be more appropriate.
 
 ## Cost and timeline
 
 Total ownership cost depends on how often the system changes. Include evaluation maintenance, source updates, prompt and model releases, integration changes, access reviews, incident response, and staff training. A one-time build estimate hides these operating duties.
 
-Use staged commercial commitments: discovery and validation, controlled pilot, production hardening, then measured expansion. Each stage should have exit criteria. A project that fails its safety or value test should stop or change direction without consuming the full roadmap budget.
+Fund the work in evidence gates: workflow discovery, risky technical proof, supervised pilot, production controls, and only then wider rollout. Define continue, redirect, and stop criteria so sunk cost does not turn a weak use case into permanent infrastructure.
 
 ## How to select a delivery partner
 
 Ask references about a model regression, data problem, provider outage, or unsafe output. The response reveals more than a perfect demo. Confirm who investigated, how users were protected, what evidence existed, and how recurrence was prevented.
 
-Contracts should cover data use, provider retention, intellectual property, third-party terms, evaluation evidence, security duties, incident notification, service levels, source and infrastructure access, warranty, support, termination, and transition assistance. Your organization should retain practical control of critical accounts and artifacts.
+Keep repositories, cloud projects, domains, monitoring, secrets management, and production vendor accounts under appropriate organizational control. Access should follow least privilege, and the client should not depend on a departing contractor to recover the system.
 
 ## Questions to ask before signing
 
@@ -89,15 +89,14 @@ Contracts should cover data use, provider retention, intellectual property, thir
 
 ### How should we start with AI manufacturing automation?
 
-Choose one bounded workflow with accessible evidence, a measurable baseline, a named owner, and failures that people can review safely. Validate the hardest assumption before expanding features or authority.
+Choose a workflow important enough to matter but bounded enough to observe completely. Document inputs, expected evidence, allowed outcomes, failure cases, and a stop condition. Expand only after the first cohort produces credible value and control data.
 
 ### Which model should we use?
 
-Select models after defining the task and evaluation. Compare quality, latency, context, tool behavior, privacy terms, regional availability, reliability, and cost on representative cases. Preserve a provider-change path where practical.
+Review provider contracts and technical controls together. Data use, retention, abuse monitoring, region, availability, version deprecation, and incident communication can disqualify a model even when its task score is strong.
 
 ### How do we know it is ready for production?
 
-It is ready only when task, safety, security, reliability, recovery, and cost criteria pass; accountable owners accept the residual risk; monitoring and incident response are active; and users have a clear correction or escalation route.
+Use a readiness review covering product, data, security, legal, operations, and business ownership. Record known limits and prohibited uses in user-facing guidance, then monitor whether real usage stays inside the evaluated boundary.
 
 Explore [Voquarn Code AI services](/services) or [discuss your AI workflow](/contact) for a scoped production assessment.
-

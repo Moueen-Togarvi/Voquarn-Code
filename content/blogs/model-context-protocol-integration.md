@@ -30,51 +30,51 @@ Use this checklist when comparing proposals:
 - Representative quality, security, latency, load, freshness, and failure evaluations.
 - Deployment, observability, backup, migration, incident response, and change ownership.
 
-The proposal should distinguish facts, assumptions, dependencies, client responsibilities, and exclusions. It should also state how each important capability will be demonstrated. A list of model features is not an acceptance plan.
+A credible proposal separates known requirements from hypotheses and names the owner of every dependency. It defines evidence for acceptance, including difficult and failed cases. Model capabilities may support the solution, but they do not prove the workflow is complete.
 
 ## Architecture and data boundaries
 
-Start with authoritative sources and identities. Decide where context originates, how it is refreshed, which user or service identity applies, and how permissions travel through retrieval and tool calls. Do not copy sensitive information into an index, prompt, memory store, or log without retention and deletion rules.
+Inventory context before choosing infrastructure. Classify each source, confirm who owns its quality, and define freshness and revocation. Minimize what enters prompts, indexes, memories, traces, and vendor systems; every copy needs access and lifecycle controls.
 
-Keep probabilistic interpretation separate from deterministic enforcement. Models can classify, retrieve, summarize, propose, or plan; conventional code should validate schemas, check permission, enforce limits, manage credentials, protect idempotency, and verify consequential results. This division makes failures easier to contain and investigate.
+Design AI output as untrusted structured input. Parse it against strict contracts, validate state and policy independently, and reject ambiguous or excessive requests. Tool adapters should expose narrow business operations rather than raw database or shell access.
 
-Design for provider and dependency failure. Timeouts, rate limits, malformed output, stale context, partial tool success, and unavailable human reviewers need deliberate behavior. Define when to retry, fall back, pause, compensate, or escalate. Silent continuation is rarely the safest default.
+Test recovery before launch. Interrupt the workflow after each consequential step, restore it from recorded state, reconcile external effects, and confirm the user receives a clear outcome. This is especially important when APIs can time out after completing an action.
 
 ## Delivery roadmap
 
 Separate experimentation from production. The experiment can compare prompts, models, retrieval, or workflow designs; the production path needs versioning, access control, tests, observability, fallback, rollback, and an owner who can stop the system.
 
-Maintain a versioned record of prompts, models, tools, retrieval configuration, policies, and test results. A production outcome must be traceable to the configuration that produced it. Changes should pass regression gates and support rollback without losing audit history.
+Version the complete behavior stack, not only the model name. Tool descriptions, system instructions, indexes, policies, and post-processing can all change outcomes. A decision log should explain why the release was approved and which risk remains.
 
 For broader context, read our [AI implementation pillar guide](/blog/ai-integration-services-architecture-guide). It explains how this capability fits into a larger AI delivery and governance program.
 
 ## Security and human control
 
-Threat-model users, models, retrieved content, connected systems, administrators, and external providers. Test indirect prompt injection, malicious files, excessive tool scope, cross-user context, data leakage, denial of service, and attempts to bypass approval. Apply least privilege and short-lived credentials at the execution layer.
+Protect the action layer even if the model is deceived. Bind tools to user identity, narrow scopes and destinations, limit frequency and value, require approval for high-risk operations, and record tamper-resistant evidence of policy and execution.
 
-Human review must be designed as an operational interface, not a generic confirmation button. Reviewers need the source context, proposed action, uncertainty, policy result, and consequences. They should be able to correct, reject, escalate, or stop the workflow, and those decisions should improve future evaluations.
+A reviewer needs enough evidence to make an independent decision: user request, relevant sources, proposed result, policy checks, uncertainty, and likely consequence. Provide correction and escalation tools, not a binary approval that encourages rubber-stamping.
 
 In this case, the release must prove it can control this failure: protocol convenience bypasses existing authorization, rate limits, validation, or business rules. Define detection, containment, user communication, recovery, evidence retention, and ownership before production access expands.
 
 ## Evaluation and monitoring
 
-Build a representative test set from real workflow categories, including ambiguous, incomplete, outdated, multilingual, unauthorized, adversarial, and dependency-failure cases. Report results by meaningful slice. A strong average can hide an unacceptable failure in a small but high-risk group.
+Construct evaluations from the actual distribution of work plus deliberately difficult cases. Include missing context, conflicting evidence, permission boundaries, unsafe requests, edge languages, tool errors, and unanswerable tasks. Publish results by risk and user segment.
 
 The primary outcome should be measured this way: multiple approved AI clients reuse the integration with consistent permissions, results, errors, and observability. Pair that measure with leading indicators for quality, policy compliance, human corrections, escalation, latency, availability, and cost. Monitor changes by model and workflow version so regressions can be attributed and rolled back.
 
-Production feedback should become labeled evaluation material after privacy review. Do not train or tune blindly on every interaction. User behavior can include mistakes, sensitive information, workarounds, or abuse; governance applies to the feedback loop as well as the initial dataset.
+Respect deletion and purpose limitation in analytics. Feedback stores should not become indefinite transcripts containing sensitive data. Retain the smallest evidence needed for quality and security, with controlled access and auditable use.
 
 ## Cost and timeline
 
 Budget includes more than API usage. Discovery, data preparation, integrations, identity, evaluations, security, user experience, observability, human review, support, and change management often determine production cost. Ask for cost per accepted outcome, not only cost per model call.
 
-Use staged commercial commitments: discovery and validation, controlled pilot, production hardening, then measured expansion. Each stage should have exit criteria. A project that fails its safety or value test should stop or change direction without consuming the full roadmap budget.
+Tie commercial milestones to useful artifacts and accepted behavior rather than model access or screen count. A stage should reduce uncertainty, deliver a controlled outcome, or establish an operating capability your team can retain.
 
 ## How to select a delivery partner
 
 Give finalists the same difficult scenario and ask them to map assumptions, boundaries, controls, tests, and a first release. Strong teams explain what should remain deterministic, what they would not automate, and what evidence could stop the project.
 
-Contracts should cover data use, provider retention, intellectual property, third-party terms, evaluation evidence, security duties, incident notification, service levels, source and infrastructure access, warranty, support, termination, and transition assistance. Your organization should retain practical control of critical accounts and artifacts.
+Define acceptance through agreed evaluations and operational readiness, not subjective satisfaction with a demo. State warranty and remediation terms for failed controls, and clarify recurring responsibilities for model, data, security, and dependency updates.
 
 ## Questions to ask before signing
 
@@ -89,15 +89,14 @@ Contracts should cover data use, provider retention, intellectual property, thir
 
 ### How should we start with Model Context Protocol integration?
 
-Choose one bounded workflow with accessible evidence, a measurable baseline, a named owner, and failures that people can review safely. Validate the hardest assumption before expanding features or authority.
+Choose a workflow important enough to matter but bounded enough to observe completely. Document inputs, expected evidence, allowed outcomes, failure cases, and a stop condition. Expand only after the first cohort produces credible value and control data.
 
 ### Which model should we use?
 
-Select models after defining the task and evaluation. Compare quality, latency, context, tool behavior, privacy terms, regional availability, reliability, and cost on representative cases. Preserve a provider-change path where practical.
+Use the least complex model that reliably passes the acceptance suite. Route harder cases to stronger models when evidence supports it, and monitor the routing decision itself. Provider diversity is useful only when it is tested and operable.
 
 ### How do we know it is ready for production?
 
-It is ready only when task, safety, security, reliability, recovery, and cost criteria pass; accountable owners accept the residual risk; monitoring and incident response are active; and users have a clear correction or escalation route.
+Start with a controlled cohort after the readiness gate. Production is another source of evidence, not permission to stop testing. Expand only when outcomes, incidents, exception queues, user behavior, and cost support the decision.
 
 Explore [Voquarn Code AI services](/services) or [discuss your AI workflow](/contact) for a scoped production assessment.
-
