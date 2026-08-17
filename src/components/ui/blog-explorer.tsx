@@ -100,7 +100,7 @@ export function BlogExplorer({ posts }: { posts: BlogExplorerPost[] }) {
   }
 
   return (
-    <main>
+    <div>
       <h1 className="sr-only">Voquarn Code blog articles</h1>
 
       <section className="mx-auto mt-24 w-full max-w-7xl px-5 pb-6 pt-10 sm:pt-12 lg:mt-28 lg:px-8 lg:pb-8">
@@ -125,7 +125,7 @@ export function BlogExplorer({ posts }: { posts: BlogExplorerPost[] }) {
               <button
                 type="button"
                 onClick={() => setQuery("")}
-                className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-[var(--muted)] hover:bg-[#ff5400]/10 hover:text-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]"
+                className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full text-[var(--muted)] hover:bg-[#ff5400]/10 hover:text-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]"
                 aria-label="Clear search"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
@@ -142,7 +142,7 @@ export function BlogExplorer({ posts }: { posts: BlogExplorerPost[] }) {
                   type="button"
                   aria-pressed={isActive}
                   onClick={() => setActiveKeyword(isActive ? null : keyword.label)}
-                  className={`min-h-11 rounded-full border px-4 text-xs font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2 ${
+                  className={`min-h-11 cursor-pointer rounded-full border px-4 text-xs font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2 ${
                     isActive
                       ? "border-[#ff5400] bg-[#ff5400] text-white"
                       : "border-[var(--border)] bg-[var(--panel)] text-[var(--muted)] hover:border-[#ff5400]/50 hover:text-[#ff5400]"
@@ -228,7 +228,7 @@ export function BlogExplorer({ posts }: { posts: BlogExplorerPost[] }) {
               <button
                 type="button"
                 onClick={resetFilters}
-                className="mt-5 min-h-11 rounded-full bg-[#ff5400] px-5 text-xs font-black uppercase tracking-wider text-white hover:bg-[#e04800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2"
+                className="mt-5 min-h-11 cursor-pointer rounded-full bg-[#ff5400] px-5 text-xs font-black uppercase tracking-wider text-white hover:bg-[#e04800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2"
               >
                 Show all articles
               </button>
@@ -249,6 +249,6 @@ export function BlogExplorer({ posts }: { posts: BlogExplorerPost[] }) {
           )
         )}
       </section>
-    </main>
+    </div>
   );
 }
