@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { buildMetadata } from "@/lib/metadata";
@@ -39,11 +41,19 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = await getBlogPost(slug);
+  const [post, posts] = await Promise.all([getBlogPost(slug), getBlogPosts()]);
 
   if (!post) {
     notFound();
   }
+
+  const categoryPosts = posts.filter((candidate) => candidate.category === post.category);
+  const relatedCandidates = categoryPosts.length > 1 ? categoryPosts : posts;
+  const currentIndex = relatedCandidates.findIndex((candidate) => candidate.slug === post.slug);
+  const relatedPosts = Array.from(
+    { length: Math.min(3, Math.max(0, relatedCandidates.length - 1)) },
+    (_, offset) => relatedCandidates[(currentIndex + offset + 1) % relatedCandidates.length],
+  );
 
   const hasRichContent =
     post.content && Array.isArray(post.content) && post.content.length > 0;
@@ -107,6 +117,34 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
         </div>
       </article>
+
+      {relatedPosts.length > 0 && (
+        <aside className="mx-auto mt-8 max-w-4xl" aria-labelledby="related-articles-heading">
+          <h2
+            id="related-articles-heading"
+            className="font-display text-2xl font-extrabold text-[var(--foreground)]"
+          >
+            Related articles
+          </h2>
+          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            {relatedPosts.map((relatedPost) => (
+              <Link
+                key={relatedPost.slug}
+                href={`/blog/${relatedPost.slug}`}
+                className="group flex min-h-36 flex-col justify-between rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-colors hover:border-[#ff5400]/50"
+              >
+                <span className="text-sm font-bold leading-snug text-[var(--foreground)] group-hover:text-[#ff5400]">
+                  {relatedPost.title}
+                </span>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#ff5400]">
+                  Read article
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </aside>
+      )}
     </section>
   );
 }

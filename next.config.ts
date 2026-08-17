@@ -64,6 +64,16 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "@tabler/icons-react"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "voquarn.com" }],
+        destination: "https://www.voquarn.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
