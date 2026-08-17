@@ -4,7 +4,6 @@ import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 import { siteIdentityJsonLd } from "@/lib/schema";
 import { getSiteSettings, getTestimonials } from "@/lib/data";
 import { DeferredSiteEffects } from "@/components/layout/deferred-site-effects";
-import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { MetaPixel } from "@/components/analytics/meta-pixel";
 import { TikTokPixel } from "@/components/analytics/tiktok-pixel";
 
@@ -33,9 +32,8 @@ export default async function SiteLayout({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
-      {/* Analytics/ad tags are scoped to (site) only, so /admin never loads
-          tracking scripts and internal admin traffic stays out of reporting. */}
-      <GoogleAnalytics />
+      {/* Advertising pixels stay scoped to the public site. Google Analytics
+          is loaded once globally from the root layout. */}
       <MetaPixel />
       <TikTokPixel />
       <div className="relative flex min-h-screen flex-col overflow-x-clip">
