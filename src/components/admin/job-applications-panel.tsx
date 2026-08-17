@@ -2,8 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import {
+  ArrowLeft,
   CalendarClock,
   CheckCircle2,
+  ChevronRight,
   Download,
   ExternalLink,
   Loader2,
@@ -55,7 +57,10 @@ type JobApplication = {
 };
 
 type EmailActionStatus = "shortlisted" | "selected" | "rejected";
-type EmailAction = { application: JobApplication; status: EmailActionStatus };
+
+// The detail dialog swaps between these screens instead of opening a second
+// dialog on top — nested overlays stack their focus traps and dim the page twice.
+type DetailView = "detail" | "interview" | EmailActionStatus;
 
 const statusStyles: Record<ApplicationStatus, string> = {
   new: "border-blue-200 bg-blue-50 text-blue-700",
@@ -84,6 +89,8 @@ const actionCopy: Record<EmailActionStatus, { title: string; description: string
   },
 };
 
+const dateTimeFormat = new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" });
+
 function defaultInterviewDate() {
   const date = new Date(Date.now() + 24 * 60 * 60 * 1000);
   date.setMinutes(0, 0, 0);
@@ -102,9 +109,9 @@ export function JobApplicationsPanel() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | ApplicationStatus>("all");
   const [pendingKey, setPendingKey] = useState<string | null>(null);
-  const [emailAction, setEmailAction] = useState<EmailAction | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [view, setView] = useState<DetailView>("detail");
   const [actionNote, setActionNote] = useState("");
-  const [interviewApplication, setInterviewApplication] = useState<JobApplication | null>(null);
   const [interviewAt, setInterviewAt] = useState(defaultInterviewDate);
   const [interviewTimezone, setInterviewTimezone] = useState(
     () => Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Karachi",
@@ -146,6 +153,25 @@ export function JobApplicationsPanel() {
     });
   }, [applications, search, statusFilter]);
 
+  // Read the open application out of the list rather than copying it into state,
+  // so a status update re-renders the detail view without a second setState.
+  const selected = useMemo(
+    () => applications.find((application) => application.id === selectedId) || null,
+    [applications, selectedId],
+  );
+
+  function openDetail(application: JobApplication) {
+    setSelectedId(application.id);
+    setView("detail");
+    setActionNote("");
+  }
+
+  function closeDetail() {
+    setSelectedId(null);
+    setView("detail");
+    setActionNote("");
+  }
+
   async function updateStatus(
     application: JobApplication,
     status: ApplicationStatus,
@@ -178,26 +204,27 @@ export function JobApplicationsPanel() {
     }
   }
 
-  function openEmailAction(application: JobApplication, status: EmailActionStatus) {
+  function openEmailAction(status: EmailActionStatus) {
     setActionNote("");
-    setEmailAction({ application, status });
+    setView(status);
   }
 
   async function submitEmailAction() {
-    if (!emailAction) return;
-    const success = await updateStatus(emailAction.application, emailAction.status, { note: actionNote });
-    if (success) setEmailAction(null);
+    if (!selected || view === "detail" || view === "interview") return;
+    const success = await updateStatus(selected, view, { note: actionNote });
+    if (success) setView("detail");
   }
 
   function openInterview(application: JobApplication) {
-    setInterviewApplication(application);
     setInterviewAt(defaultInterviewDate());
     setInterviewLocation(application.interviewLocation || "");
     setInterviewNotes(application.interviewNotes || "");
+    setView("interview");
   }
 
   async function submitInterview() {
-    if (!interviewApplication || !interviewAt || !interviewTimezone.trim() || !interviewLocation.trim()) {
+    if (!selected) return;
+    if (!interviewAt || !interviewTimezone.trim() || !interviewLocation.trim()) {
       toast.error("Date, timezone, and location or meeting link are required");
       return;
     }
@@ -208,14 +235,16 @@ export function JobApplicationsPanel() {
       return;
     }
 
-    const success = await updateStatus(interviewApplication, "interview", {
+    const success = await updateStatus(selected, "interview", {
       interviewAt: date.toISOString(),
       interviewTimezone,
       interviewLocation,
       interviewNotes,
     });
-    if (success) setInterviewApplication(null);
+    if (success) setView("detail");
   }
+
+  const sending = Boolean(pendingKey);
 
   return (
     <section aria-labelledby="applications-heading" className="space-y-5">
@@ -226,6 +255,7 @@ export function JobApplicationsPanel() {
           </h2>
           <p className="mt-1 text-sm text-[var(--muted)]">
             {applications.length} total application{applications.length === 1 ? "" : "s"}
+            {filteredApplications.length !== applications.length && ` · ${filteredApplications.length} shown`}
           </p>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row">
@@ -266,187 +296,243 @@ export function JobApplicationsPanel() {
           <p className="mt-1 text-sm text-[var(--muted)]">New career applications will appear here automatically.</p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <ul className="divide-y divide-[var(--border)] overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--panel)]">
           {filteredApplications.map((application) => (
-            <article key={application.id} className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-4 sm:p-5">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <li key={application.id} className="flex items-center gap-2 pr-2 transition-colors hover:bg-[var(--surface)]">
+              <button
+                type="button"
+                onClick={() => openDetail(application)}
+                aria-label={`Open ${application.name}'s application`}
+                className="flex min-w-0 flex-1 items-center gap-3 px-4 py-3.5 text-left outline-none focus-visible:bg-[var(--surface)]"
+              >
                 <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-base font-semibold text-[var(--foreground)]">{application.name}</h3>
-                    <span className={cn("rounded-full border px-2.5 py-1 text-xs font-semibold", statusStyles[application.status])}>
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <span className="truncate font-semibold text-[var(--foreground)]">{application.name}</span>
+                    <span className={cn("rounded-full border px-2 py-0.5 text-[11px] font-semibold", statusStyles[application.status])}>
                       {applicationStatusLabels[application.status]}
                     </span>
-                    <span className="text-xs text-[var(--muted)]">#{application.id}</span>
                   </div>
-                  <p className="mt-1 text-sm font-medium text-[#ff5400]">{application.role}</p>
-                  <p className="mt-1 text-xs text-[var(--muted)]">
-                    Applied {new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(new Date(application.createdAt))}
+                  <p className="mt-0.5 truncate text-sm text-[#ff5400]">{application.role}</p>
+                  <p className="mt-0.5 truncate text-xs text-[var(--muted)]">
+                    #{application.id} · {application.email} · {dateTimeFormat.format(new Date(application.createdAt))}
                   </p>
-
-                  <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                    <a href={`mailto:${application.email}`} className="inline-flex min-h-8 items-center gap-1.5 text-[var(--foreground)] hover:text-[#ff5400]">
-                      <Mail size={15} /> {application.email}
-                    </a>
-                    <a href={`tel:${application.phone}`} className="inline-flex min-h-8 items-center gap-1.5 text-[var(--foreground)] hover:text-[#ff5400]">
-                      <Phone size={15} /> {application.phone}
-                    </a>
-                    <a href={application.githubUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-8 items-center gap-1.5 text-[var(--foreground)] hover:text-[#ff5400]">
-                      GitHub <ExternalLink size={14} />
-                    </a>
-                    {application.websiteUrl && (
-                      <a href={application.websiteUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-8 items-center gap-1.5 text-[var(--foreground)] hover:text-[#ff5400]">
-                        Portfolio <ExternalLink size={14} />
-                      </a>
-                    )}
-                    <a href={`/api/admin/applications/${application.id}/cv`} className="inline-flex min-h-8 items-center gap-1.5 font-medium text-[#ff5400] hover:underline">
-                      <Download size={15} /> {application.cvFileName}
-                    </a>
-                  </div>
-
-                  <div className="mt-4 rounded-xl bg-[var(--surface)] p-3">
-                    <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
-                      <MessageSquareText size={14} /> Applicant message
-                    </p>
-                    <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-[var(--foreground)]">
-                      {application.message || "No message provided."}
-                    </p>
-                  </div>
-
-                  {application.status === "interview" && application.interviewAt && (
-                    <div className="mt-3 rounded-xl border border-cyan-200 bg-cyan-50 p-3 text-sm text-cyan-900">
-                      <p className="font-semibold">Interview details</p>
-                      <p className="mt-1">
-                        {new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(new Date(application.interviewAt))}
-                        {application.interviewTimezone ? ` (${application.interviewTimezone})` : ""}
-                      </p>
-                      <p className="mt-1 break-words">{application.interviewLocation}</p>
-                    </div>
-                  )}
                 </div>
-
-                <div className="flex w-full flex-wrap gap-2 lg:w-72 lg:justify-end">
-                  <ActionButton
-                    label="Reviewing"
-                    icon={Star}
-                    active={application.status === "reviewing"}
-                    loading={pendingKey === `${application.id}-reviewing`}
-                    onClick={() => updateStatus(application, "reviewing")}
-                  />
-                  <ActionButton
-                    label="Shortlist"
-                    icon={CheckCircle2}
-                    active={application.status === "shortlisted"}
-                    loading={pendingKey === `${application.id}-shortlisted`}
-                    onClick={() => openEmailAction(application, "shortlisted")}
-                  />
-                  <ActionButton
-                    label={application.status === "interview" ? "Reschedule" : "Interview"}
-                    icon={CalendarClock}
-                    active={false}
-                    loading={pendingKey === `${application.id}-interview`}
-                    onClick={() => openInterview(application)}
-                  />
-                  <ActionButton
-                    label="Select"
-                    icon={UserRoundCheck}
-                    active={application.status === "selected"}
-                    loading={pendingKey === `${application.id}-selected`}
-                    onClick={() => openEmailAction(application, "selected")}
-                  />
-                  <ActionButton
-                    label="Reject"
-                    icon={XCircle}
-                    active={application.status === "rejected"}
-                    loading={pendingKey === `${application.id}-rejected`}
-                    destructive
-                    onClick={() => openEmailAction(application, "rejected")}
-                  />
-                  <DeleteDialog
-                    itemName={`${application.name}'s application`}
-                    apiPath={`/api/admin/applications/${application.id}`}
-                    onSuccess={() => setApplications((current) => current.filter((item) => item.id !== application.id))}
-                  />
-                </div>
-              </div>
-            </article>
+                <ChevronRight size={18} className="shrink-0 text-[var(--muted)]" />
+              </button>
+              <DeleteDialog
+                itemName={`${application.name}'s application`}
+                apiPath={`/api/admin/applications/${application.id}`}
+                onSuccess={() => {
+                  if (selectedId === application.id) closeDetail();
+                  setApplications((current) => current.filter((item) => item.id !== application.id));
+                }}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
       )}
 
-      <Dialog open={Boolean(emailAction)} onOpenChange={(open) => !open && setEmailAction(null)}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{emailAction ? actionCopy[emailAction.status].title : "Update application"}</DialogTitle>
-            <DialogDescription>
-              {emailAction && `${emailAction.application.name} (${emailAction.application.email}). ${actionCopy[emailAction.status].description}`}
-            </DialogDescription>
-          </DialogHeader>
-          <label className="space-y-2">
-            <span className="text-sm font-medium text-[var(--foreground)]">Optional note included in email</span>
-            <textarea
-              value={actionNote}
-              onChange={(event) => setActionNote(event.target.value)}
-              rows={4}
-              maxLength={3000}
-              placeholder="Add a personal note..."
-              className="w-full resize-none rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none focus:border-[#ff5400]"
-            />
-          </label>
-          <DialogFooter>
-            <button onClick={() => setEmailAction(null)} disabled={Boolean(pendingKey)} className="min-h-11 rounded-xl border border-[var(--border)] px-4 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--surface)] disabled:opacity-50">
-              Cancel
-            </button>
-            <button
-              onClick={submitEmailAction}
-              disabled={!emailAction || Boolean(pendingKey)}
-              className={cn(
-                "inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 text-sm font-medium text-white disabled:opacity-50",
-                emailAction?.status === "rejected" ? "bg-red-600 hover:bg-red-700" : "bg-[#ff5400] hover:bg-[#e04800]",
-              )}
-            >
-              {pendingKey ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
-              {pendingKey ? "Sending..." : emailAction ? actionCopy[emailAction.status].button : "Send email"}
-            </button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <Dialog open={Boolean(selected)} onOpenChange={(open) => !open && closeDetail()}>
+        <DialogContent className="max-h-[88vh] overflow-y-auto sm:max-w-2xl">
+          {selected && view === "detail" && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="flex flex-wrap items-center gap-2 pr-6">
+                  {selected.name}
+                  <span className={cn("rounded-full border px-2.5 py-1 text-xs font-semibold", statusStyles[selected.status])}>
+                    {applicationStatusLabels[selected.status]}
+                  </span>
+                </DialogTitle>
+                <DialogDescription>
+                  {selected.role} · applied {dateTimeFormat.format(new Date(selected.createdAt))}
+                </DialogDescription>
+              </DialogHeader>
 
-      <Dialog open={Boolean(interviewApplication)} onOpenChange={(open) => !open && setInterviewApplication(null)}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Schedule interview</DialogTitle>
-            <DialogDescription>
-              {interviewApplication && `${interviewApplication.name} will immediately receive these interview details by email.`}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4">
-            <label className="block space-y-2">
-              <span className="text-sm font-medium text-[var(--foreground)]">Date and time *</span>
-              <input type="datetime-local" value={interviewAt} onChange={(event) => setInterviewAt(event.target.value)} className="min-h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 text-sm text-[var(--foreground)] outline-none focus:border-[#ff5400]" />
-            </label>
-            <label className="block space-y-2">
-              <span className="text-sm font-medium text-[var(--foreground)]">Timezone *</span>
-              <input value={interviewTimezone} onChange={(event) => setInterviewTimezone(event.target.value)} placeholder="Asia/Karachi" className="min-h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 text-sm text-[var(--foreground)] outline-none focus:border-[#ff5400]" />
-            </label>
-            <label className="block space-y-2">
-              <span className="text-sm font-medium text-[var(--foreground)]">Location or meeting link *</span>
-              <input value={interviewLocation} onChange={(event) => setInterviewLocation(event.target.value)} placeholder="Google Meet link or office address" maxLength={1000} className="min-h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 text-sm text-[var(--foreground)] outline-none focus:border-[#ff5400]" />
-            </label>
-            <label className="block space-y-2">
-              <span className="text-sm font-medium text-[var(--foreground)]">Optional preparation note</span>
-              <textarea value={interviewNotes} onChange={(event) => setInterviewNotes(event.target.value)} rows={3} maxLength={3000} placeholder="What should the candidate prepare?" className="w-full resize-none rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none focus:border-[#ff5400]" />
-            </label>
-          </div>
-          <DialogFooter>
-            <button onClick={() => setInterviewApplication(null)} disabled={Boolean(pendingKey)} className="min-h-11 rounded-xl border border-[var(--border)] px-4 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--surface)] disabled:opacity-50">Cancel</button>
-            <button onClick={submitInterview} disabled={Boolean(pendingKey)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#ff5400] px-4 text-sm font-medium text-white hover:bg-[#e04800] disabled:opacity-50">
-              {pendingKey ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
-              {pendingKey ? "Sending..." : "Schedule & send email"}
-            </button>
-          </DialogFooter>
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                  <a href={`mailto:${selected.email}`} className="inline-flex min-h-8 items-center gap-1.5 text-[var(--foreground)] hover:text-[#ff5400]">
+                    <Mail size={15} /> {selected.email}
+                  </a>
+                  <a href={`tel:${selected.phone}`} className="inline-flex min-h-8 items-center gap-1.5 text-[var(--foreground)] hover:text-[#ff5400]">
+                    <Phone size={15} /> {selected.phone}
+                  </a>
+                  <a href={selected.githubUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-8 items-center gap-1.5 text-[var(--foreground)] hover:text-[#ff5400]">
+                    GitHub <ExternalLink size={14} />
+                  </a>
+                  {selected.websiteUrl && (
+                    <a href={selected.websiteUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-8 items-center gap-1.5 text-[var(--foreground)] hover:text-[#ff5400]">
+                      Portfolio <ExternalLink size={14} />
+                    </a>
+                  )}
+                  <a href={`/api/admin/applications/${selected.id}/cv`} className="inline-flex min-h-8 items-center gap-1.5 font-medium text-[#ff5400] hover:underline">
+                    <Download size={15} /> {selected.cvFileName}
+                  </a>
+                </div>
+
+                <div className="rounded-xl bg-[var(--surface)] p-3">
+                  <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                    <MessageSquareText size={14} /> Applicant message
+                  </p>
+                  <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-[var(--foreground)]">
+                    {selected.message || "No message provided."}
+                  </p>
+                </div>
+
+                {selected.status === "interview" && selected.interviewAt && (
+                  <div className="rounded-xl border border-cyan-200 bg-cyan-50 p-3 text-sm text-cyan-900">
+                    <p className="font-semibold">Interview details</p>
+                    <p className="mt-1">
+                      {dateTimeFormat.format(new Date(selected.interviewAt))}
+                      {selected.interviewTimezone ? ` (${selected.interviewTimezone})` : ""}
+                    </p>
+                    <p className="mt-1 break-words">{selected.interviewLocation}</p>
+                    {selected.interviewNotes && <p className="mt-1 whitespace-pre-wrap">{selected.interviewNotes}</p>}
+                  </div>
+                )}
+
+                {selected.statusNote && (
+                  <div className="rounded-xl border border-[var(--border)] p-3">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Last note sent</p>
+                    <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-[var(--foreground)]">{selected.statusNote}</p>
+                  </div>
+                )}
+
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                    Hiring actions
+                  </p>
+                  <p className="mt-1 text-xs text-[var(--muted)]">
+                    Shortlist, interview, select, and reject each send an email to the applicant.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <ActionButton
+                      label="Reviewing"
+                      icon={Star}
+                      active={selected.status === "reviewing"}
+                      loading={pendingKey === `${selected.id}-reviewing`}
+                      onClick={() => updateStatus(selected, "reviewing")}
+                    />
+                    <ActionButton
+                      label="Shortlist"
+                      icon={CheckCircle2}
+                      active={selected.status === "shortlisted"}
+                      loading={false}
+                      onClick={() => openEmailAction("shortlisted")}
+                    />
+                    <ActionButton
+                      label={selected.status === "interview" ? "Reschedule" : "Interview"}
+                      icon={CalendarClock}
+                      active={false}
+                      loading={false}
+                      onClick={() => openInterview(selected)}
+                    />
+                    <ActionButton
+                      label="Select"
+                      icon={UserRoundCheck}
+                      active={selected.status === "selected"}
+                      loading={false}
+                      onClick={() => openEmailAction("selected")}
+                    />
+                    <ActionButton
+                      label="Reject"
+                      icon={XCircle}
+                      active={selected.status === "rejected"}
+                      loading={false}
+                      destructive
+                      onClick={() => openEmailAction("rejected")}
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+
+          {selected && (view === "shortlisted" || view === "selected" || view === "rejected") && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="pr-6">{actionCopy[view].title}</DialogTitle>
+                <DialogDescription>
+                  {`${selected.name} (${selected.email}). ${actionCopy[view].description}`}
+                </DialogDescription>
+              </DialogHeader>
+              <label className="space-y-2">
+                <span className="text-sm font-medium text-[var(--foreground)]">Optional note included in email</span>
+                <textarea
+                  value={actionNote}
+                  onChange={(event) => setActionNote(event.target.value)}
+                  rows={4}
+                  maxLength={3000}
+                  placeholder="Add a personal note..."
+                  className="w-full resize-none rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none focus:border-[#ff5400]"
+                />
+              </label>
+              <DialogFooter>
+                <BackButton disabled={sending} onClick={() => setView("detail")} />
+                <button
+                  onClick={submitEmailAction}
+                  disabled={sending}
+                  className={cn(
+                    "inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 text-sm font-medium text-white disabled:opacity-50",
+                    view === "rejected" ? "bg-red-600 hover:bg-red-700" : "bg-[#ff5400] hover:bg-[#e04800]",
+                  )}
+                >
+                  {sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+                  {sending ? "Sending..." : actionCopy[view].button}
+                </button>
+              </DialogFooter>
+            </>
+          )}
+
+          {selected && view === "interview" && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="pr-6">Schedule interview</DialogTitle>
+                <DialogDescription>
+                  {`${selected.name} will immediately receive these interview details by email.`}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4">
+                <label className="block space-y-2">
+                  <span className="text-sm font-medium text-[var(--foreground)]">Date and time *</span>
+                  <input type="datetime-local" value={interviewAt} onChange={(event) => setInterviewAt(event.target.value)} className="min-h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 text-sm text-[var(--foreground)] outline-none focus:border-[#ff5400]" />
+                </label>
+                <label className="block space-y-2">
+                  <span className="text-sm font-medium text-[var(--foreground)]">Timezone *</span>
+                  <input value={interviewTimezone} onChange={(event) => setInterviewTimezone(event.target.value)} placeholder="Asia/Karachi" className="min-h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 text-sm text-[var(--foreground)] outline-none focus:border-[#ff5400]" />
+                </label>
+                <label className="block space-y-2">
+                  <span className="text-sm font-medium text-[var(--foreground)]">Location or meeting link *</span>
+                  <input value={interviewLocation} onChange={(event) => setInterviewLocation(event.target.value)} placeholder="Google Meet link or office address" maxLength={1000} className="min-h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 text-sm text-[var(--foreground)] outline-none focus:border-[#ff5400]" />
+                </label>
+                <label className="block space-y-2">
+                  <span className="text-sm font-medium text-[var(--foreground)]">Optional preparation note</span>
+                  <textarea value={interviewNotes} onChange={(event) => setInterviewNotes(event.target.value)} rows={3} maxLength={3000} placeholder="What should the candidate prepare?" className="w-full resize-none rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none focus:border-[#ff5400]" />
+                </label>
+              </div>
+              <DialogFooter>
+                <BackButton disabled={sending} onClick={() => setView("detail")} />
+                <button onClick={submitInterview} disabled={sending} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#ff5400] px-4 text-sm font-medium text-white hover:bg-[#e04800] disabled:opacity-50">
+                  {sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+                  {sending ? "Sending..." : "Schedule & send email"}
+                </button>
+              </DialogFooter>
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </section>
+  );
+}
+
+function BackButton({ disabled, onClick }: { disabled: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-[var(--border)] px-4 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--surface)] disabled:opacity-50"
+    >
+      <ArrowLeft size={15} /> Back
+    </button>
   );
 }
 
