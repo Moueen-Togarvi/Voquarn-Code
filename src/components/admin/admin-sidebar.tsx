@@ -2,14 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession, signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import type { LucideIcon } from "lucide-react";
 import {
   BarChart3,
   BriefcaseBusiness,
   Building2,
-  ChevronLeft,
-  ExternalLink,
+  ChevronsUpDown,
   Globe2,
   HelpCircle,
   LayoutDashboard,
@@ -21,6 +20,14 @@ import {
   X,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Sheet,
   SheetContent,
@@ -56,20 +63,14 @@ const sidebarGroups: Array<{ label: string; links: SidebarLink[] }> = [
     label: "Hiring",
     links: [{ href: "/admin/careers", label: "Careers", icon: UserPlus }],
   },
-  {
-    label: "System",
-    links: [{ href: "/admin/settings", label: "Settings", icon: Settings }],
-  },
 ];
 
 export function AdminSidebar({
   collapsed,
-  onToggle,
   mobileOpen,
   onMobileOpenChange,
 }: {
   collapsed: boolean;
-  onToggle: () => void;
   mobileOpen: boolean;
   onMobileOpenChange: (open: boolean) => void;
 }) {
@@ -78,17 +79,17 @@ export function AdminSidebar({
       <aside
         className={cn(
           "fixed inset-y-0 left-0 z-40 hidden border-r border-[#e4e4e7] bg-white transition-[width] duration-200 ease-out motion-reduce:transition-none md:flex",
-          collapsed ? "w-20" : "w-[272px]",
+          collapsed ? "w-[72px]" : "w-[236px]",
         )}
       >
-        <SidebarFrame collapsed={collapsed} onToggle={onToggle} />
+        <SidebarFrame collapsed={collapsed} />
       </aside>
 
       <Sheet open={mobileOpen} onOpenChange={onMobileOpenChange}>
         <SheetContent
           side="left"
           showCloseButton={false}
-          className="w-[min(19rem,88vw)] gap-0 border-[#e4e4e7] bg-white p-0 text-[#18181b] sm:max-w-[19rem]"
+          className="w-[min(15rem,84vw)] gap-0 border-[#e4e4e7] bg-white p-0 text-[#18181b] sm:max-w-[15rem]"
         >
           <SheetTitle className="sr-only">Admin navigation</SheetTitle>
           <SheetDescription className="sr-only">
@@ -97,7 +98,7 @@ export function AdminSidebar({
           <SidebarFrame
             collapsed={false}
             mobile
-            onToggle={() => onMobileOpenChange(false)}
+            onClose={() => onMobileOpenChange(false)}
             onNavigate={() => onMobileOpenChange(false)}
           />
         </SheetContent>
@@ -109,17 +110,18 @@ export function AdminSidebar({
 function SidebarFrame({
   collapsed,
   mobile = false,
-  onToggle,
+  onClose,
   onNavigate,
 }: {
   collapsed: boolean;
   mobile?: boolean;
-  onToggle: () => void;
+  onClose?: () => void;
   onNavigate?: () => void;
 }) {
   const pathname = usePathname();
   const { data: session } = useSession();
-  const userName = session?.user?.name || "Administrator";
+  const userName = session?.user?.name || "Admin";
+  const userEmail = session?.user?.email || "Admin account";
   const initials = userName
     .split(" ")
     .map((part) => part[0])
@@ -151,34 +153,33 @@ function SidebarFrame({
           )}
         </Link>
 
-        {!collapsed && (
+        {mobile && (
           <button
             type="button"
-            onClick={onToggle}
+            onClick={onClose}
             className="flex size-11 shrink-0 items-center justify-center rounded-xl text-[#71717a] outline-none transition-colors hover:bg-[#f4f4f5] hover:text-[#18181b] focus-visible:ring-2 focus-visible:ring-[#ff5400] motion-reduce:transition-none"
-            aria-label={mobile ? "Close navigation" : "Collapse sidebar"}
-            title={mobile ? "Close navigation" : "Collapse sidebar (Ctrl+B)"}
+            aria-label="Close navigation"
+            title="Close navigation"
           >
-            {mobile ? <X size={19} /> : <ChevronLeft size={18} />}
+            <X size={19} />
           </button>
         )}
       </div>
 
-      <nav aria-label="Admin navigation" className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-4">
+      <nav aria-label="Admin navigation" className="min-h-0 flex-1 overflow-hidden px-2 py-2">
         {sidebarGroups.map((group, groupIndex) => (
           <div
             key={group.label}
             className={cn(
-              groupIndex > 0 && "mt-4 border-t border-[#f0f0f2] pt-4",
-              collapsed && groupIndex > 0 && "mt-3 pt-3",
+              groupIndex > 0 && "mt-2 border-t border-[#f0f0f2] pt-2",
             )}
           >
-            {!collapsed && (
-              <p className="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#a1a1aa]">
+            {!collapsed && groupIndex > 0 && (
+              <p className="mb-1 px-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#a1a1aa]">
                 {group.label}
               </p>
             )}
-            <ul className="space-y-1">
+            <ul className="space-y-0.5">
               {group.links.map((link) => {
                 const isActive = link.href === "/admin" ? pathname === "/admin" : pathname.startsWith(link.href);
                 const Icon = link.icon;
@@ -193,7 +194,7 @@ function SidebarFrame({
                       title={collapsed ? link.label : undefined}
                       className={cn(
                         "group relative flex min-h-11 items-center rounded-xl text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-1 motion-reduce:transition-none",
-                        collapsed ? "justify-center px-2" : "gap-3 px-3",
+                        collapsed ? "justify-center px-2" : "gap-3 px-2.5",
                         isActive
                           ? "bg-[#fff1e9] font-semibold text-[#c2410c]"
                           : "text-[#52525b] hover:bg-[#f4f4f5] hover:text-[#18181b]",
@@ -211,62 +212,71 @@ function SidebarFrame({
         ))}
       </nav>
 
-      <div className="shrink-0 border-t border-[#ececef] p-3">
-        {!collapsed && (
-          <div className="mb-2 flex min-w-0 items-center gap-3 rounded-xl bg-[#fafafa] px-3 py-2.5">
-            <Avatar className="size-9 border border-[#e4e4e7]">
-              <AvatarImage src={session?.user?.image || undefined} alt={userName} />
-              <AvatarFallback className="bg-[#fff1e9] text-xs font-bold text-[#c2410c]">{initials}</AvatarFallback>
-            </Avatar>
-            <div className="min-w-0">
-              <p className="truncate text-sm font-semibold text-[#27272a]">{userName}</p>
-              <p className="truncate text-xs text-[#71717a]">{session?.user?.email || "Admin account"}</p>
-            </div>
-          </div>
-        )}
-
-        <div className={cn("flex", collapsed ? "flex-col gap-1" : "gap-1")}>
-          <Link
-            href="/"
-            target="_blank"
-            rel="noreferrer"
-            onClick={onNavigate}
-            aria-label={collapsed ? "View website" : undefined}
-            title={collapsed ? "View website" : undefined}
-            className={cn(
-              "flex min-h-11 items-center rounded-xl text-sm font-medium text-[#52525b] outline-none transition-colors hover:bg-[#f4f4f5] hover:text-[#18181b] focus-visible:ring-2 focus-visible:ring-[#ff5400] motion-reduce:transition-none",
-              collapsed ? "justify-center px-2" : "flex-1 justify-center gap-2 px-3",
-            )}
+      <div className="shrink-0 border-t border-[#ececef] p-2">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button
+              type="button"
+              className={cn(
+                "flex min-h-14 w-full items-center rounded-xl text-left outline-none transition-colors hover:bg-[#f4f4f5] focus-visible:ring-2 focus-visible:ring-[#ff5400] motion-reduce:transition-none",
+                collapsed ? "justify-center px-1" : "gap-2.5 px-2",
+                pathname.startsWith("/admin/settings") && "bg-[#fff1e9]",
+              )}
+              aria-label={collapsed ? "Open profile menu" : undefined}
+              title={collapsed ? "Profile" : undefined}
+            >
+              <Avatar className="size-9 border border-[#e4e4e7]">
+                <AvatarImage src={session?.user?.image || undefined} alt={userName} />
+                <AvatarFallback className="bg-[#fff1e9] text-xs font-bold text-[#c2410c]">
+                  {initials}
+                </AvatarFallback>
+              </Avatar>
+              {!collapsed && (
+                <>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-semibold text-[#27272a]">{userName}</span>
+                    <span className="block truncate text-xs text-[#71717a]">{userEmail}</span>
+                  </span>
+                  <ChevronsUpDown size={15} className="shrink-0 text-[#71717a]" aria-hidden="true" />
+                </>
+              )}
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            side={mobile ? "top" : "right"}
+            align="end"
+            sideOffset={8}
+            className="w-56 border-[#e4e4e7] bg-white p-1.5 text-[#18181b] shadow-xl"
           >
-            <ExternalLink size={17} aria-hidden="true" />
-            {!collapsed && <span>View site</span>}
-          </Link>
-          <button
-            type="button"
-            onClick={() => signOut({ callbackUrl: "/admin/login" })}
-            aria-label={collapsed ? "Sign out" : undefined}
-            title={collapsed ? "Sign out" : undefined}
-            className={cn(
-              "flex min-h-11 items-center rounded-xl text-sm font-medium text-[#dc2626] outline-none transition-colors hover:bg-[#fef2f2] focus-visible:ring-2 focus-visible:ring-[#dc2626] motion-reduce:transition-none",
-              collapsed ? "justify-center px-2" : "flex-1 justify-center gap-2 px-3",
-            )}
-          >
-            <LogOut size={17} aria-hidden="true" />
-            {!collapsed && <span>Sign out</span>}
-          </button>
-        </div>
-
-        {collapsed && (
-          <button
-            type="button"
-            onClick={onToggle}
-            className="mt-2 flex size-11 w-full items-center justify-center rounded-xl border border-[#e4e4e7] text-[#71717a] outline-none transition-colors hover:bg-[#f4f4f5] hover:text-[#18181b] focus-visible:ring-2 focus-visible:ring-[#ff5400] motion-reduce:transition-none"
-            aria-label="Expand sidebar"
-            title="Expand sidebar (Ctrl+B)"
-          >
-            <ChevronLeft size={18} className="rotate-180" aria-hidden="true" />
-          </button>
-        )}
+            <DropdownMenuLabel className="flex min-w-0 items-center gap-2.5 px-2 py-2 font-normal">
+              <Avatar className="size-9 border border-[#e4e4e7]">
+                <AvatarImage src={session?.user?.image || undefined} alt={userName} />
+                <AvatarFallback className="bg-[#fff1e9] text-xs font-bold text-[#c2410c]">
+                  {initials}
+                </AvatarFallback>
+              </Avatar>
+              <span className="min-w-0">
+                <span className="block truncate text-sm font-semibold text-[#27272a]">{userName}</span>
+                <span className="block truncate text-xs text-[#71717a]">{userEmail}</span>
+              </span>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator className="bg-[#ececef]" />
+            <DropdownMenuItem asChild className="min-h-11 rounded-lg focus:bg-[#f4f4f5] focus:text-[#18181b]">
+              <Link href="/admin/settings" onClick={onNavigate}>
+                <Settings size={16} aria-hidden="true" />
+                Settings
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-[#ececef]" />
+            <DropdownMenuItem
+              onClick={() => signOut({ callbackUrl: "/admin/login" })}
+              className="min-h-11 rounded-lg text-red-600 focus:bg-red-50 focus:text-red-600"
+            >
+              <LogOut size={16} aria-hidden="true" />
+              Sign out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );

@@ -33,14 +33,13 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       </a>
       <AdminSidebar
         collapsed={collapsed}
-        onToggle={() => setCollapsed((current) => !current)}
         mobileOpen={mobileOpen}
         onMobileOpenChange={setMobileOpen}
       />
       <div
         className={cn(
           "min-h-dvh transition-[margin] duration-200 ease-out motion-reduce:transition-none",
-          collapsed ? "md:ml-20" : "md:ml-[272px]",
+          collapsed ? "md:ml-[72px]" : "md:ml-[236px]",
         )}
       >
         <AdminHeader
