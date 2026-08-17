@@ -10,6 +10,7 @@ import {
   UserPlus,
   Plus,
   ArrowRight,
+  Inbox,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -21,6 +22,7 @@ type CountData = {
   testimonials: number;
   faq: number;
   careers: number;
+  applications: number;
 };
 
 const statCards = [
@@ -30,6 +32,7 @@ const statCards = [
   { key: "testimonials" as const, label: "Testimonials", icon: MessageSquare, color: "text-pink-600 bg-pink-50", href: "/admin/testimonials" },
   { key: "faq" as const, label: "FAQ Items", icon: HelpCircle, color: "text-teal-600 bg-teal-50", href: "/admin/faq" },
   { key: "careers" as const, label: "Open Roles", icon: UserPlus, color: "text-cyan-600 bg-cyan-50", href: "/admin/careers" },
+  { key: "applications" as const, label: "Applications", icon: Inbox, color: "text-blue-600 bg-blue-50", href: "/admin/careers" },
 ];
 
 export default function AdminDashboard() {
@@ -40,6 +43,7 @@ export default function AdminDashboard() {
     testimonials: 0,
     faq: 0,
     careers: 0,
+    applications: 0,
   });
 
   useEffect(() => {

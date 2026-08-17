@@ -21,6 +21,7 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
   const [applicantPhone, setApplicantPhone] = useState("");
   const [githubUrl, setGithubUrl] = useState("");
   const [portfolioUrl, setPortfolioUrl] = useState("");
+  const [applicationMessage, setApplicationMessage] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileBase64, setFileBase64] = useState<string>("");
   const [isReadingFile, setIsReadingFile] = useState(false);
@@ -91,6 +92,16 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
+      if (!/\.(pdf|doc|docx)$/i.test(file.name)) {
+        alert("Please choose a PDF, DOC, or DOCX file.");
+        e.target.value = "";
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        alert("CV file must be 5MB or smaller.");
+        e.target.value = "";
+        return;
+      }
       setSelectedFile(file);
       setFileBase64("");
       setIsReadingFile(true);
@@ -126,6 +137,7 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
     setApplicantPhone("");
     setGithubUrl("");
     setPortfolioUrl("");
+    setApplicationMessage("");
     setSelectedFile(null);
     setFileBase64("");
     setIsReadingFile(false);
@@ -159,6 +171,7 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
           role: selectedRole,
           github: githubUrl || undefined,
           website: portfolioUrl || undefined,
+          message: applicationMessage || undefined,
           fileData: fileBase64,
           fileName: selectedFile.name,
         }),
@@ -168,7 +181,7 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
 
       if (response.ok) {
         setSubmitStatus("success");
-        setSubmitMsg("Application and CV successfully submitted via email!");
+        setSubmitMsg("Application and CV successfully submitted!");
         trackSubmitApplication({ content_name: "career_application" });
       } else {
         setSubmitStatus("error");
@@ -541,6 +554,20 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
                         className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-950 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25 focus:border-[#ff5400]/50 transition-all"
                       />
                     </div>
+                  </div>
+
+                  <div>
+                    <label className="mb-1 block pl-1 text-[10px] font-bold uppercase tracking-wider text-neutral-800">
+                      Message <span className="text-[8px] font-normal lowercase text-neutral-500">(optional)</span>
+                    </label>
+                    <textarea
+                      value={applicationMessage}
+                      onChange={(e) => setApplicationMessage(e.target.value)}
+                      maxLength={3000}
+                      rows={3}
+                      placeholder="Tell us briefly why this role interests you..."
+                      className="w-full resize-none rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-xs font-semibold text-neutral-950 placeholder-neutral-400 transition-all focus:border-[#ff5400]/50 focus:outline-none focus:ring-2 focus:ring-[#ff5400]/25"
+                    />
                   </div>
 
                   {/* CV Uploader */}

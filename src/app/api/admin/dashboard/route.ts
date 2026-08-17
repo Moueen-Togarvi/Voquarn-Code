@@ -7,6 +7,7 @@ import {
   testimonials,
   faqItems,
   jobOpenings,
+  jobApplications,
 } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { count } from "drizzle-orm";
@@ -24,6 +25,7 @@ export async function GET() {
     const [testimonialCount] = await db.select({ value: count() }).from(testimonials);
     const [faqCount] = await db.select({ value: count() }).from(faqItems);
     const [careersCount] = await db.select({ value: count() }).from(jobOpenings);
+    const [applicationCount] = await db.select({ value: count() }).from(jobApplications);
 
     return NextResponse.json({
       services: Number(serviceCount?.value || 0),
@@ -32,6 +34,7 @@ export async function GET() {
       testimonials: Number(testimonialCount?.value || 0),
       faq: Number(faqCount?.value || 0),
       careers: Number(careersCount?.value || 0),
+      applications: Number(applicationCount?.value || 0),
     });
   } catch (error) {
     console.error("Dashboard count error:", error);
@@ -43,6 +46,7 @@ export async function GET() {
         testimonials: 0,
         faq: 0,
         careers: 0,
+        applications: 0,
       },
       { status: 200 },
     );

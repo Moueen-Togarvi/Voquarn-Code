@@ -265,16 +265,19 @@ export function contactUserEmail(site: SiteSettings, input: { name: string }) {
 export function applyAdminEmail(
   site: SiteSettings,
   input: {
+    applicationId: number;
     name: string;
     email: string;
     phone: string;
     role: string;
     github: string;
     website?: string;
+    message?: string;
     fileName?: string;
   },
 ) {
   const rows = [
+    detailRow("Application ID", `#${input.applicationId}`),
     detailRow("Role", escapeHtml(input.role)),
     detailRow("Name", escapeHtml(input.name)),
     detailRow("Email", `<a href="mailto:${escapeHtml(input.email)}" style="color:${BRAND_COLOR};text-decoration:none;">${escapeHtml(input.email)}</a>`),
@@ -288,6 +291,9 @@ export function applyAdminEmail(
       input.website ? `<a href="${escapeHtml(input.website)}" style="color:${BRAND_COLOR};text-decoration:none;">${escapeHtml(input.website)}</a>` : "Not provided",
     ),
     detailRow("CV attached", escapeHtml(input.fileName || "cv.pdf")),
+    input.message
+      ? detailRow("Applicant message", escapeHtml(input.message).replaceAll("\n", "<br />"))
+      : "",
   ].join("");
 
   return emailShell({
@@ -311,6 +317,79 @@ export function applyUserEmail(site: SiteSettings, input: { name: string; role: 
     heading: `Thanks for applying, ${input.name.split(" ")[0]}`,
     intro: `We've received your application for the <strong style="color:#1a1a1a;">${escapeHtml(input.role)}</strong> role along with your CV. Our team reviews every submission personally — if there's a fit, we'll reach out to schedule a conversation.`,
     footerNote: "This is an automated confirmation. No need to reply to this email.",
+  });
+}
+
+export function applicationStatusEmail(
+  site: SiteSettings,
+  input: {
+    name: string;
+    role: string;
+    status: "shortlisted" | "interview" | "selected" | "rejected";
+    note?: string;
+    interviewDate?: string;
+    interviewTimezone?: string;
+    interviewLocation?: string;
+  },
+) {
+  const firstName = escapeHtml(input.name.split(" ")[0] || input.name);
+  const role = escapeHtml(input.role);
+  const note = input.note
+    ? `<br /><br /><strong>Additional note:</strong><br />${escapeHtml(input.note).replaceAll("\n", "<br />")}`
+    : "";
+
+  if (input.status === "shortlisted") {
+    return emailShell({
+      site,
+      preheader: `Your ${input.role} application has been shortlisted.`,
+      eyebrow: "Application Shortlisted",
+      heading: `Great news, ${firstName}`,
+      intro: `Your application for the <strong style="color:#1a1a1a;">${role}</strong> role has been shortlisted. Our hiring team was impressed by your profile and will contact you about the next step.${note}`,
+      footerNote: "You can reply directly to this email if your contact details or availability change.",
+    });
+  }
+
+  if (input.status === "interview") {
+    const rows = [
+      detailRow("Role", role),
+      detailRow("Interview", escapeHtml(input.interviewDate || "To be confirmed")),
+      detailRow("Timezone", escapeHtml(input.interviewTimezone || "Not specified")),
+      detailRow("Location / link", escapeHtml(input.interviewLocation || "To be confirmed")),
+    ].join("");
+
+    return emailShell({
+      site,
+      preheader: `Interview scheduled for your ${input.role} application.`,
+      eyebrow: "Interview Scheduled",
+      heading: `Your interview is scheduled, ${firstName}`,
+      intro: `We would like to interview you for the <strong style="color:#1a1a1a;">${role}</strong> role. Please review the schedule below and reply to this email if you need to request a change.${note}`,
+      detailRows: rows,
+      ctaLabel: "Confirm availability",
+      ctaUrl: `mailto:${site.email}?subject=${encodeURIComponent(`Interview confirmation — ${input.role}`)}`,
+      footerNote: "Please join a few minutes early and keep any relevant portfolio links ready.",
+    });
+  }
+
+  if (input.status === "selected") {
+    return emailShell({
+      site,
+      preheader: `You have been selected for the ${input.role} role.`,
+      eyebrow: "Application Successful",
+      heading: `Congratulations, ${firstName}!`,
+      intro: `We are pleased to let you know that you have been selected for the <strong style="color:#1a1a1a;">${role}</strong> role. Our team will contact you with the offer and onboarding details.${note}`,
+      ctaLabel: "Reply to our team",
+      ctaUrl: `mailto:${site.email}?subject=${encodeURIComponent(`Selected — ${input.role}`)}`,
+      footerNote: `Welcome to the next chapter with ${site.name}.`,
+    });
+  }
+
+  return emailShell({
+    site,
+    preheader: `An update about your ${input.role} application.`,
+    eyebrow: "Application Update",
+    heading: `Thank you for your time, ${firstName}`,
+    intro: `After careful review, we will not be moving forward with your application for the <strong style="color:#1a1a1a;">${role}</strong> role at this time. We appreciate the effort you put into applying and wish you success in your search.${note}`,
+    footerNote: "We will keep your details only as required by our recruitment and data-retention process.",
   });
 }
 

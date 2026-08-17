@@ -1,7 +1,16 @@
 import { NextResponse } from "next/server";
+import { db } from "@/db";
+import { jobApplications } from "@/db/schema";
 import { getSiteSettings } from "@/lib/data";
 import { applyAdminEmail, applyUserEmail } from "@/lib/email-templates";
 import { sendResendEmail } from "@/lib/resend";
+
+const MAX_CV_BYTES = 5 * 1024 * 1024;
+const allowedCvTypes = new Set([
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]);
 
 type ApplyPayload = {
   name: string;
@@ -10,84 +19,151 @@ type ApplyPayload = {
   role: string;
   github: string;
   website?: string;
-  fileData?: string; // base64 representation of file
+  message?: string;
+  fileData?: string;
   fileName?: string;
 };
+
+function cleanText(value: unknown, maxLength: number) {
+  return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
+}
+
+function validHttpUrl(value: string) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
 
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as ApplyPayload;
-    const { name, email, phone, role, github, website, fileData, fileName } = body;
+    const name = cleanText(body.name, 120);
+    const email = cleanText(body.email, 254).toLowerCase();
+    const phone = cleanText(body.phone, 50);
+    const role = cleanText(body.role, 160);
+    const github = cleanText(body.github, 500);
+    const website = cleanText(body.website, 500);
+    const message = cleanText(body.message, 3000);
+    const fileName = cleanText(body.fileName, 255).split(/[\\/]/).pop() || "cv.pdf";
+    const fileMatch = body.fileData?.match(/^data:([^;,]*);base64,([\s\S]+)$/);
 
-    if (!name || !email || !role || !github || !fileData) {
-      return NextResponse.json({ message: "Name, email, role, GitHub URL, and CV file are required." }, { status: 400 });
-    }
-
-    const resendApiKey = process.env.RESEND_API_KEY;
-    const site = await getSiteSettings();
-    const toEmail = process.env.CONTACT_TO_EMAIL || site.email;
-    const fromAddress = process.env.CONTACT_FROM_EMAIL || `${site.name} Careers <hello@voquarn.com>`;
-
-    if (!resendApiKey) {
+    if (!name || !email || !phone || !role || !github || !fileMatch) {
       return NextResponse.json(
-        {
-          message: "Application received locally. Add RESEND_API_KEY to send emails.",
-        },
-        { status: 200 },
+        { message: "Name, email, phone, role, GitHub URL, and CV file are required." },
+        { status: 400 },
       );
     }
 
-    const attachments: { filename: string; content: string }[] = [];
-    if (fileData && fileName) {
-      const base64Content = fileData.split(";base64,").pop();
-      if (base64Content) {
-        attachments.push({ filename: fileName, content: base64Content });
-      }
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      return NextResponse.json({ message: "Enter a valid email address." }, { status: 400 });
     }
 
-    const adminResult = await sendResendEmail(resendApiKey, {
-      from: fromAddress,
-      to: toEmail,
-      replyTo: email,
-      subject: `[Job Application] ${role} - ${name}`,
-      html: applyAdminEmail(site, { name, email, phone, role, github, website, fileName }),
-      attachments,
-    });
-
-    if (!adminResult.ok) {
-      console.error("Resend send error:", adminResult.raw);
-      if (adminResult.sandboxMode) {
-        return NextResponse.json(
-          {
-            message:
-              "Resend is in Sandbox mode. Please verify voquarn.com on Resend, or temporarily change CONTACT_TO_EMAIL in your .env file to your Resend account email (voquarn@gmail.com) to test submissions.",
-          },
-          { status: 403 },
-        );
-      }
-      return NextResponse.json({ message: "Failed to send the application email." }, { status: 502 });
+    if (!validHttpUrl(github) || (website && !validHttpUrl(website))) {
+      return NextResponse.json({ message: "Enter valid GitHub and portfolio URLs." }, { status: 400 });
     }
 
-    // Confirmation to the applicant. Must be awaited — on serverless (Vercel),
-    // the function can freeze/tear down the instant the response is sent, so
-    // a fire-and-forget call here risks never completing.
-    try {
-      const userResult = await sendResendEmail(resendApiKey, {
-        from: fromAddress,
-        to: email,
-        subject: `We've received your application — ${role}`,
-        html: applyUserEmail(site, { name, role }),
+    const extension = fileName.split(".").pop()?.toLowerCase();
+    const inferredMimeType =
+      extension === "pdf"
+        ? "application/pdf"
+        : extension === "doc"
+          ? "application/msword"
+          : extension === "docx"
+            ? "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            : "";
+    const cvMimeType = inferredMimeType;
+    const cvData = fileMatch[2].replace(/\s/g, "");
+    if (!allowedCvTypes.has(cvMimeType) || !/^[A-Za-z0-9+/]+={0,2}$/.test(cvData)) {
+      return NextResponse.json({ message: "Only PDF, DOC, and DOCX CV files are allowed." }, { status: 400 });
+    }
+
+    const cvFile = Buffer.from(cvData, "base64");
+    if (cvFile.byteLength === 0 || cvFile.byteLength > MAX_CV_BYTES) {
+      return NextResponse.json({ message: "CV file must be 5MB or smaller." }, { status: 400 });
+    }
+
+    const isPdf = cvFile.subarray(0, 5).toString("ascii") === "%PDF-";
+    const isDoc = cvFile.subarray(0, 8).toString("hex") === "d0cf11e0a1b11ae1";
+    const isDocx = cvFile.subarray(0, 4).toString("hex") === "504b0304";
+    if ((extension === "pdf" && !isPdf) || (extension === "doc" && !isDoc) || (extension === "docx" && !isDocx)) {
+      return NextResponse.json({ message: "The uploaded CV does not match its file type." }, { status: 400 });
+    }
+
+    const [application] = await db
+      .insert(jobApplications)
+      .values({
+        name,
+        email,
+        phone,
+        role,
+        githubUrl: github,
+        websiteUrl: website || null,
+        message: message || null,
+        cvFileName: fileName,
+        cvMimeType,
+        cvData,
+      })
+      .returning({ id: jobApplications.id });
+
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (!resendApiKey) {
+      return NextResponse.json({
+        message: "Your application has been saved successfully. Email notifications are currently unavailable.",
+        applicationId: application.id,
       });
-      if (!userResult.ok) {
-        console.error("Application confirmation email error:", userResult.raw);
-      }
-    } catch (error) {
-      console.error("Application confirmation email error:", error);
     }
 
-    return NextResponse.json({
-      message: "Your application and CV have been successfully submitted!",
-    });
+    try {
+      const site = await getSiteSettings();
+      const toEmail = process.env.CONTACT_TO_EMAIL || site.email;
+      const fromAddress = process.env.CONTACT_FROM_EMAIL || `${site.name} Careers <hello@voquarn.com>`;
+
+      const [adminResult, userResult] = await Promise.all([
+        sendResendEmail(resendApiKey, {
+          from: fromAddress,
+          to: toEmail,
+          replyTo: email,
+          subject: `[Job Application #${application.id}] ${role} - ${name}`,
+          html: applyAdminEmail(site, {
+            applicationId: application.id,
+            name,
+            email,
+            phone,
+            role,
+            github,
+            website: website || undefined,
+            message: message || undefined,
+            fileName,
+          }),
+          attachments: [{ filename: fileName, content: cvData }],
+        }),
+        sendResendEmail(resendApiKey, {
+          from: fromAddress,
+          to: email,
+          subject: `We've received your application — ${role}`,
+          html: applyUserEmail(site, { name, role }),
+        }),
+      ]);
+
+      if (!adminResult.ok) console.error("Application admin email error:", adminResult.raw);
+      if (!userResult.ok) console.error("Application confirmation email error:", userResult.raw);
+
+      return NextResponse.json({
+        message: "Your application and CV have been successfully submitted!",
+        applicationId: application.id,
+        emailSent: adminResult.ok && userResult.ok,
+      });
+    } catch (emailError) {
+      console.error("Application saved, but email notification failed:", emailError);
+      return NextResponse.json({
+        message: "Your application and CV have been successfully submitted!",
+        applicationId: application.id,
+        emailSent: false,
+      });
+    }
   } catch (error) {
     console.error("Application API error:", error);
     return NextResponse.json({ message: "An unexpected error occurred." }, { status: 500 });

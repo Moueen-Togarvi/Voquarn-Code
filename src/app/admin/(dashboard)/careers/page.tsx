@@ -2,9 +2,10 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { toast } from "sonner";
-import { Loader2, Plus, Briefcase, Pencil, X } from "lucide-react";
+import { Loader2, Plus, Briefcase, Pencil, X, Inbox } from "lucide-react";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { DeleteDialog } from "@/components/admin/delete-dialog";
+import { JobApplicationsPanel } from "@/components/admin/job-applications-panel";
 
 type Job = {
   id?: number;
@@ -30,6 +31,7 @@ const emptyJob: Job = {
 };
 
 export default function AdminCareersPage() {
+  const [activeView, setActiveView] = useState<"applications" | "roles">("applications");
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<(Job & { isNew?: boolean }) | null>(null);
@@ -73,11 +75,40 @@ export default function AdminCareersPage() {
 
   return (
     <div>
-      <AdminPageHeader title="Careers" description={`${jobs.length} open role${jobs.length !== 1 ? "s" : ""}`} backHref="/admin" action={
-        <button onClick={() => setEditing({ ...emptyJob, isNew: true })} className="inline-flex items-center gap-2 rounded-xl bg-[#ff5400] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#e04800] transition-colors">
-          <Plus size={16} /> Post Role
+      <AdminPageHeader
+        title="Careers"
+        description={activeView === "applications" ? "Review candidates and manage hiring updates" : `${jobs.length} open role${jobs.length !== 1 ? "s" : ""}`}
+        backHref="/admin"
+        action={activeView === "roles" ? (
+          <button onClick={() => setEditing({ ...emptyJob, isNew: true })} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#ff5400] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#e04800]">
+            <Plus size={16} /> Post Role
+          </button>
+        ) : undefined}
+      />
+
+      <div className="mb-5 inline-flex rounded-xl border border-[var(--border)] bg-[var(--panel)] p-1" role="tablist" aria-label="Career admin views">
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeView === "applications"}
+          onClick={() => setActiveView("applications")}
+          className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-4 text-sm font-medium transition-colors ${activeView === "applications" ? "bg-[#ff5400] text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"}`}
+        >
+          <Inbox size={16} /> Applications
         </button>
-      } />
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeView === "roles"}
+          onClick={() => setActiveView("roles")}
+          className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-4 text-sm font-medium transition-colors ${activeView === "roles" ? "bg-[#ff5400] text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"}`}
+        >
+          <Briefcase size={16} /> Open Roles
+        </button>
+      </div>
+
+      {activeView === "applications" ? <JobApplicationsPanel /> : (
+        <>
 
       {loading ? <div className="flex items-center justify-center py-20 text-[var(--muted)]">Loading...</div> :
       jobs.length === 0 ? (
@@ -162,6 +193,8 @@ export default function AdminCareersPage() {
             </div>
           </div>
         </div>
+      )}
+        </>
       )}
     </div>
   );

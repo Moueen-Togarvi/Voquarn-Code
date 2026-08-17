@@ -49,8 +49,9 @@ export function DeleteDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <button
-          className="flex h-8 w-8 items-center justify-center rounded-lg text-red-500 hover:bg-red-50 transition-colors"
+          className="flex h-11 w-11 items-center justify-center rounded-lg text-red-500 hover:bg-red-50 transition-colors"
           title="Delete"
+          aria-label={`Delete ${itemName}`}
         >
           <Trash2 size={15} />
         </button>

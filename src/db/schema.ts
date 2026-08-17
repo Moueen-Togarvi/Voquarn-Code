@@ -238,6 +238,37 @@ export const jobOpenings = pgTable("job_openings", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const jobApplications = pgTable(
+  "job_applications",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    email: text("email").notNull(),
+    phone: text("phone").notNull(),
+    role: text("role").notNull(),
+    githubUrl: text("github_url").notNull(),
+    websiteUrl: text("website_url"),
+    message: text("message"),
+    cvFileName: text("cv_file_name").notNull(),
+    cvMimeType: text("cv_mime_type").notNull(),
+    cvData: text("cv_data").notNull(),
+    status: text("status").notNull().default("new"),
+    statusNote: text("status_note"),
+    interviewAt: timestamp("interview_at", { mode: "date", withTimezone: true }),
+    interviewTimezone: text("interview_timezone"),
+    interviewLocation: text("interview_location"),
+    interviewNotes: text("interview_notes"),
+    statusUpdatedAt: timestamp("status_updated_at", { mode: "date" }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => [
+    index("job_applications_status_idx").on(table.status),
+    index("job_applications_created_at_idx").on(table.createdAt),
+    index("job_applications_email_idx").on(table.email),
+  ],
+);
+
 export const stats = pgTable("stats", {
   id: serial("id").primaryKey(),
   label: text("label").notNull(),
@@ -274,6 +305,7 @@ export const servicesRelations = {
   testimonials,
   faqItems,
   pricingPlans,
+  jobApplications,
   stats,
   clientLogos,
   clientCategories,
