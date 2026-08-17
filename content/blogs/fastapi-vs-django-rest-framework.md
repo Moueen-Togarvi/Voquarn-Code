@@ -82,4 +82,6 @@ Cost depends on fit. A platform may reduce common development while increasing f
 
 Yes, although switching cost varies. Portable data, stable interfaces, documented decisions, automated behavior tests, and organization-owned accounts reduce the risk.
 
+For this comparison, test authentication, authorization, validation, database access, background work, API documentation, and one failure path. Fast endpoint code is only part of the service; the proof should reveal how each stack supports the complete security and operating model.
+
 Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.

@@ -82,4 +82,6 @@ Use a range rather than one headline figure. Identify which assumptions about us
 
 Yes, although switching cost varies. Portable data, stable interfaces, documented decisions, automated behavior tests, and organization-owned accounts reduce the risk.
 
+Before deciding, prototype the most unusual business rule and the hardest integration in the low-code option. Compare that evidence with a small custom implementation, including permissions, auditability, testing, deployment, and export. This shows whether configuration remains an advantage when the workflow reaches its real complexity.
+
 Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.

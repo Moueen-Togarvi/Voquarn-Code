@@ -82,4 +82,6 @@ The economical choice minimizes the combined cost of technology, people, delay, 
 
 A later move is possible, but undocumented behavior and proprietary data paths make it expensive. Preserve contracts, tests, schemas, decision records, and access from the start.
 
+Model cold starts, long-running work, burst patterns, concurrency limits, network boundaries, deployment rollback, and local debugging with the intended cloud services. Containers and serverless functions can coexist; the decision can be made per workload when shared observability and ownership remain clear.
+
 Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.

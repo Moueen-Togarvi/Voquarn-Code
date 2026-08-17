@@ -82,4 +82,6 @@ Cost depends on fit. A platform may reduce common development while increasing f
 
 Plan that possibility now. Identify the coupled areas, define data ownership, and avoid unnecessary dependence on private extensions when a standard boundary is available.
 
+Ask the proposed team to implement one form-heavy workflow with validation, permissions, loading states, failure handling, accessibility checks, and tests. Review both the result and the consistency of the code. Startup speed comes from predictable change, not only the number of components produced in a sprint.
+
 Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.

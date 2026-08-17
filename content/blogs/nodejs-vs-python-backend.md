@@ -82,4 +82,6 @@ Use a range rather than one headline figure. Identify which assumptions about us
 
 Potentially. Estimate exit effort as part of the current decision and keep a transition runbook current as integrations, data, and infrastructure evolve.
 
+Benchmark a representative workload rather than a synthetic endpoint. Include database calls, serialization, third-party latency, concurrency, background processing, logging, and error recovery. If the product includes data science or CPU-heavy work, test its deployment boundary explicitly instead of assuming one runtime must own every task.
+
 Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.
