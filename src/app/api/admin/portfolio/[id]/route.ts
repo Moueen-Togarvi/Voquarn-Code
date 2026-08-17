@@ -1,25 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
 import { portfolioItems } from "@/db/schema";
-import { auth } from "@/lib/auth";
+import { auth, isAdminSession } from "@/lib/auth";
 import { eq } from "drizzle-orm";
+import {
+  AdminValidationError,
+  optionalText,
+  parsePositiveId,
+  requiredText,
+  safeSlug,
+  safeUrl,
+  stringArray,
+} from "@/lib/admin-validation";
 
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
   const session = await auth();
-  if (!session) {
+  if (!isAdminSession(session)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
+  const { id: rawId } = await params;
 
   try {
+    const id = parsePositiveId(rawId);
     const [item] = await db
       .select()
       .from(portfolioItems)
-      .where(eq(portfolioItems.id, parseInt(id)))
+      .where(eq(portfolioItems.id, id))
       .limit(1);
 
     if (!item) {
@@ -31,6 +41,7 @@ export async function GET(
 
     return NextResponse.json(item);
   } catch (error) {
+    if (error instanceof AdminValidationError) return NextResponse.json({ error: error.message }, { status: 400 });
     console.error("GET /api/admin/portfolio/[id] error:", error);
     return NextResponse.json(
       { error: "Failed to fetch portfolio item" },
@@ -44,28 +55,29 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const session = await auth();
-  if (!session) {
+  if (!isAdminSession(session)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
+  const { id: rawId } = await params;
 
   try {
+    const id = parsePositiveId(rawId);
     const body = await req.json();
 
     const [updated] = await db
       .update(portfolioItems)
       .set({
-        title: body.title,
-        slug: body.slug,
-        category: body.category,
-        summary: body.summary || null,
-        outcome: body.outcome || null,
-        stack: body.stack || [],
-        liveUrl: body.liveUrl || null,
-        imageUrl: body.imageUrl || null,
+        title: requiredText(body.title, "Title", 160),
+        slug: safeSlug(body.slug),
+        category: requiredText(body.category, "Category", 120),
+        summary: optionalText(body.summary, "Summary", 2000),
+        outcome: optionalText(body.outcome, "Outcome", 2000),
+        stack: stringArray(body.stack, "Stack", 30, 80),
+        liveUrl: safeUrl(body.liveUrl, "Live URL"),
+        imageUrl: safeUrl(body.imageUrl, "Image URL", { allowRelative: true }),
       })
-      .where(eq(portfolioItems.id, parseInt(id)))
+      .where(eq(portfolioItems.id, id))
       .returning();
 
     if (!updated) {
@@ -77,6 +89,7 @@ export async function PUT(
 
     return NextResponse.json(updated);
   } catch (error) {
+    if (error instanceof AdminValidationError) return NextResponse.json({ error: error.message }, { status: 400 });
     console.error("PUT /api/admin/portfolio/[id] error:", error);
     return NextResponse.json(
       { error: "Failed to update portfolio item" },
@@ -90,16 +103,17 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const session = await auth();
-  if (!session) {
+  if (!isAdminSession(session)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
+  const { id: rawId } = await params;
 
   try {
+    const id = parsePositiveId(rawId);
     const [deleted] = await db
       .delete(portfolioItems)
-      .where(eq(portfolioItems.id, parseInt(id)))
+      .where(eq(portfolioItems.id, id))
       .returning();
 
     if (!deleted) {
@@ -111,6 +125,7 @@ export async function DELETE(
 
     return NextResponse.json({ success: true });
   } catch (error) {
+    if (error instanceof AdminValidationError) return NextResponse.json({ error: error.message }, { status: 400 });
     console.error("DELETE /api/admin/portfolio/[id] error:", error);
     return NextResponse.json(
       { error: "Failed to delete portfolio item" },

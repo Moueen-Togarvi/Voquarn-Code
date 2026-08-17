@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
-import { jobApplications } from "@/db/schema";
-import { auth } from "@/lib/auth";
+import { applicationStatusNotifications, jobApplications } from "@/db/schema";
+import { auth, isAdminSession } from "@/lib/auth";
 import { getSiteSettings } from "@/lib/data";
 import { applicationStatusEmail } from "@/lib/email-templates";
 import { isApplicationStatus, type ApplicationStatus } from "@/lib/job-applications";
 import { sendResendEmail } from "@/lib/resend";
+import { createHash } from "crypto";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -43,7 +44,7 @@ function formatInterviewDate(date: Date, timeZone: string) {
 
 export async function PATCH(request: NextRequest, { params }: RouteContext) {
   const session = await auth();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!isAdminSession(session)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id: rawId } = await params;
   const id = parseApplicationId(rawId);
@@ -97,26 +98,66 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
       }
 
       const emailStatus = status as "shortlisted" | "interview" | "selected" | "rejected";
-      const site = await getSiteSettings();
-      const fromAddress = process.env.CONTACT_FROM_EMAIL || `${site.name} Careers <hello@voquarn.com>`;
-      const emailResult = await sendResendEmail(resendApiKey, {
-        from: fromAddress,
-        to: application.email,
-        replyTo: site.email,
-        subject: `${subjectByStatus[emailStatus]} — ${application.role}`,
-        html: applicationStatusEmail(site, {
-          name: application.name,
-          role: application.role,
+      const fingerprint = createHash("sha256")
+        .update(JSON.stringify({
+          applicationId: id,
           status: emailStatus,
-          note: note || interviewNotes || undefined,
-          interviewDate: formattedInterviewDate,
-          interviewTimezone: interviewTimezone || undefined,
-          interviewLocation: interviewLocation || undefined,
-        }),
-      });
+          note,
+          interviewAt: interviewAt?.toISOString() || null,
+          interviewTimezone,
+          interviewLocation,
+          interviewNotes,
+        }))
+        .digest("hex");
+
+      let notificationReservation: { id: number };
+      try {
+        [notificationReservation] = await db
+          .insert(applicationStatusNotifications)
+          .values({ applicationId: id, fingerprint })
+          .returning({ id: applicationStatusNotifications.id });
+      } catch (error) {
+        if (error instanceof Error && /unique|duplicate/i.test(error.message)) {
+          return NextResponse.json(
+            { error: "This exact status notification has already been sent." },
+            { status: 409 },
+          );
+        }
+        throw error;
+      }
+
+      const emailResult = await (async () => {
+        try {
+          const site = await getSiteSettings();
+          const fromAddress = process.env.CONTACT_FROM_EMAIL || `${site.name} Careers <hello@voquarn.com>`;
+          return await sendResendEmail(resendApiKey, {
+            from: fromAddress,
+            to: application.email,
+            replyTo: site.email,
+            subject: `${subjectByStatus[emailStatus]} — ${application.role}`,
+            html: applicationStatusEmail(site, {
+              name: application.name,
+              role: application.role,
+              status: emailStatus,
+              note: note || interviewNotes || undefined,
+              interviewDate: formattedInterviewDate,
+              interviewTimezone: interviewTimezone || undefined,
+              interviewLocation: interviewLocation || undefined,
+            }),
+          });
+        } catch (error) {
+          await db
+            .delete(applicationStatusNotifications)
+            .where(eq(applicationStatusNotifications.id, notificationReservation.id));
+          throw error;
+        }
+      })();
 
       if (!emailResult.ok) {
-        console.error("Application status email error:", emailResult.raw);
+        await db
+          .delete(applicationStatusNotifications)
+          .where(eq(applicationStatusNotifications.id, notificationReservation.id));
+        console.error("Application status email error:", emailResult.status);
         return NextResponse.json(
           { error: "Email could not be sent. Status was not changed." },
           { status: 502 },
@@ -159,7 +200,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
 
 export async function DELETE(_request: NextRequest, { params }: RouteContext) {
   const session = await auth();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!isAdminSession(session)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id: rawId } = await params;
   const id = parseApplicationId(rawId);

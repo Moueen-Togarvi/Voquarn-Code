@@ -22,6 +22,7 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
   const [githubUrl, setGithubUrl] = useState("");
   const [portfolioUrl, setPortfolioUrl] = useState("");
   const [applicationMessage, setApplicationMessage] = useState("");
+  const [companyWebsite, setCompanyWebsite] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileBase64, setFileBase64] = useState<string>("");
   const [isReadingFile, setIsReadingFile] = useState(false);
@@ -138,6 +139,7 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
     setGithubUrl("");
     setPortfolioUrl("");
     setApplicationMessage("");
+    setCompanyWebsite("");
     setSelectedFile(null);
     setFileBase64("");
     setIsReadingFile(false);
@@ -174,6 +176,7 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
           message: applicationMessage || undefined,
           fileData: fileBase64,
           fileName: selectedFile.name,
+          companyWebsite,
         }),
       });
 
@@ -486,6 +489,16 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
 
                 {/* Form */}
                 <form onSubmit={handleApplySubmit} className="space-y-3.5">
+                  <label className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+                    Company website
+                    <input
+                      name="companyWebsite"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={companyWebsite}
+                      onChange={(event) => setCompanyWebsite(event.target.value)}
+                    />
+                  </label>
                   {/* Core Details */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>

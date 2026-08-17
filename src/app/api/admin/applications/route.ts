@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import { desc } from "drizzle-orm";
 import { db } from "@/db";
 import { jobApplications } from "@/db/schema";
-import { auth } from "@/lib/auth";
+import { auth, isAdminSession } from "@/lib/auth";
 
 export async function GET() {
   const session = await auth();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!isAdminSession(session)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
     const applications = await db

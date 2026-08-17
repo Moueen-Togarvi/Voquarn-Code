@@ -50,10 +50,22 @@ export function secureHashEqual(left: string, right: string) {
 }
 
 export function getClientIp(headers: Headers) {
+  if (process.env.VERCEL === "1") {
+    return (
+      headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      headers.get("x-real-ip")?.trim() ||
+      "unknown"
+    );
+  }
+
+  if (process.env.CF_PAGES === "1" || process.env.CLOUDFLARE === "1") {
+    return headers.get("cf-connecting-ip")?.trim() || "unknown";
+  }
+
   return (
-    headers.get("cf-connecting-ip")?.trim() ||
     headers.get("x-real-ip")?.trim() ||
     headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    headers.get("cf-connecting-ip")?.trim() ||
     "unknown"
   );
 }

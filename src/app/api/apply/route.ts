@@ -1,9 +1,19 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { jobApplications } from "@/db/schema";
+import { jobApplications, jobOpenings } from "@/db/schema";
 import { getSiteSettings } from "@/lib/data";
 import { applyAdminEmail, applyUserEmail } from "@/lib/email-templates";
 import { sendResendEmail } from "@/lib/resend";
+import { eq } from "drizzle-orm";
+import {
+  checkRateLimit,
+  cleanText,
+  InvalidJsonError,
+  isSafeHttpUrl,
+  isValidEmail,
+  readJsonBody,
+  RequestBodyTooLargeError,
+} from "@/lib/request-security";
 
 const MAX_CV_BYTES = 5 * 1024 * 1024;
 const allowedCvTypes = new Set([
@@ -22,24 +32,27 @@ type ApplyPayload = {
   message?: string;
   fileData?: string;
   fileName?: string;
+  companyWebsite?: string;
 };
-
-function cleanText(value: unknown, maxLength: number) {
-  return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
-}
-
-function validHttpUrl(value: string) {
-  try {
-    const url = new URL(value);
-    return url.protocol === "http:" || url.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as ApplyPayload;
+    const rateLimit = await checkRateLimit(request, {
+      namespace: "career-application",
+      limit: 3,
+      windowMs: 60 * 60 * 1000,
+    });
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { message: "Too many applications. Please try again later." },
+        { status: 429, headers: { "Retry-After": String(rateLimit.retryAfter) } },
+      );
+    }
+
+    const body = await readJsonBody<ApplyPayload>(request, 7 * 1024 * 1024);
+    if (cleanText(body.companyWebsite, 500)) {
+      return NextResponse.json({ message: "Your application has been submitted." });
+    }
     const name = cleanText(body.name, 120);
     const email = cleanText(body.email, 254).toLowerCase();
     const phone = cleanText(body.phone, 50);
@@ -57,12 +70,21 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!/^\S+@\S+\.\S+$/.test(email)) {
+    if (!isValidEmail(email)) {
       return NextResponse.json({ message: "Enter a valid email address." }, { status: 400 });
     }
 
-    if (!validHttpUrl(github) || (website && !validHttpUrl(website))) {
+    if (!isSafeHttpUrl(github) || (website && !isSafeHttpUrl(website))) {
       return NextResponse.json({ message: "Enter valid GitHub and portfolio URLs." }, { status: 400 });
+    }
+
+    const [opening] = await db
+      .select({ id: jobOpenings.id })
+      .from(jobOpenings)
+      .where(eq(jobOpenings.title, role))
+      .limit(1);
+    if (!opening) {
+      return NextResponse.json({ message: "This role is no longer accepting applications." }, { status: 400 });
     }
 
     const extension = fileName.split(".").pop()?.toLowerCase();
@@ -148,8 +170,8 @@ export async function POST(request: Request) {
         }),
       ]);
 
-      if (!adminResult.ok) console.error("Application admin email error:", adminResult.raw);
-      if (!userResult.ok) console.error("Application confirmation email error:", userResult.raw);
+      if (!adminResult.ok) console.error("Application admin email error:", adminResult.status);
+      if (!userResult.ok) console.error("Application confirmation email error:", userResult.status);
 
       return NextResponse.json({
         message: "Your application and CV have been successfully submitted!",
@@ -165,6 +187,12 @@ export async function POST(request: Request) {
       });
     }
   } catch (error) {
+    if (error instanceof RequestBodyTooLargeError) {
+      return NextResponse.json({ message: "Application payload is too large." }, { status: 413 });
+    }
+    if (error instanceof InvalidJsonError) {
+      return NextResponse.json({ message: "Invalid application request." }, { status: 400 });
+    }
     console.error("Application API error:", error);
     return NextResponse.json({ message: "An unexpected error occurred." }, { status: 500 });
   }

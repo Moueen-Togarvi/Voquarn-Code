@@ -17,6 +17,10 @@ import { getLoginRequestInfo } from "@/lib/login-request-info";
 const authSecret = process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET;
 const isProduction = process.env.NODE_ENV === "production";
 
+export function isAdminSession(session: unknown) {
+  return (session as { user?: { role?: unknown } | null } | null)?.user?.role === "admin";
+}
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db, {
     usersTable: users,

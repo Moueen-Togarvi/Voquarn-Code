@@ -2,6 +2,14 @@ import { NextResponse } from "next/server";
 import { getSiteSettings } from "@/lib/data";
 import { contactAdminEmail, contactUserEmail } from "@/lib/email-templates";
 import { sendResendEmail } from "@/lib/resend";
+import {
+  checkRateLimit,
+  cleanText,
+  InvalidJsonError,
+  isValidEmail,
+  readJsonBody,
+  RequestBodyTooLargeError,
+} from "@/lib/request-security";
 
 type ContactPayload = {
   name?: string;
@@ -9,68 +17,90 @@ type ContactPayload = {
   service?: string;
   budget?: string;
   message?: string;
+  companyWebsite?: string;
 };
 
 export async function POST(request: Request) {
-  const body = (await request.json()) as ContactPayload;
-  const { name, email, service, budget, message } = body;
-
-  if (!name || !email || !service || !budget || !message) {
-    return NextResponse.json({ message: "Please fill in all required fields." }, { status: 400 });
-  }
-
-  const resendApiKey = process.env.RESEND_API_KEY;
-  const site = await getSiteSettings();
-  const contactEmail = process.env.CONTACT_TO_EMAIL || site.email;
-  const fromAddress = process.env.CONTACT_FROM_EMAIL || `${site.name} <hello@voquarn.com>`;
-
-  if (!resendApiKey) {
-    return NextResponse.json(
-      {
-        message: "Form received. Add RESEND_API_KEY to enable email delivery.",
-      },
-      { status: 200 },
-    );
-  }
-
-  const adminResult = await sendResendEmail(resendApiKey, {
-    from: fromAddress,
-    to: contactEmail,
-    replyTo: email,
-    subject: `New inquiry from ${name}`,
-    html: contactAdminEmail(site, { name, email, service, budget, message }),
-  });
-
-  if (!adminResult.ok) {
-    console.error("Resend contact error:", adminResult.raw);
-    if (adminResult.sandboxMode) {
+  try {
+    const rateLimit = await checkRateLimit(request, {
+      namespace: "contact",
+      limit: 5,
+      windowMs: 15 * 60 * 1000,
+    });
+    if (!rateLimit.allowed) {
       return NextResponse.json(
-        {
-          message:
-            "Resend is in Sandbox mode. Please verify voquarn.com on Resend, or temporarily change CONTACT_TO_EMAIL in your .env file to your Resend account email (voquarn@gmail.com) to test submissions.",
-        },
-        { status: 403 },
+        { message: "Too many inquiries. Please try again later." },
+        { status: 429, headers: { "Retry-After": String(rateLimit.retryAfter) } },
       );
     }
-    return NextResponse.json({ message: "Unable to send the inquiry email right now." }, { status: 502 });
-  }
 
-  // Confirmation to the person who submitted the form. Must be awaited — on
-  // serverless (Vercel), the function can freeze/tear down the instant the
-  // response is sent, so a fire-and-forget call here risks never completing.
-  try {
-    const userResult = await sendResendEmail(resendApiKey, {
-      from: fromAddress,
-      to: email,
-      subject: `We've received your inquiry — ${site.name}`,
-      html: contactUserEmail(site, { name }),
-    });
-    if (!userResult.ok) {
-      console.error("Contact confirmation email error:", userResult.raw);
+    const body = await readJsonBody<ContactPayload>(request, 32 * 1024);
+    const name = cleanText(body.name, 120);
+    const email = cleanText(body.email, 254).toLowerCase();
+    const service = cleanText(body.service, 120);
+    const budget = cleanText(body.budget, 120);
+    const message = cleanText(body.message, 5000);
+
+    // Hidden honeypot field: normal users never fill it, basic form bots do.
+    if (cleanText(body.companyWebsite, 500)) {
+      return NextResponse.json({ message: "Inquiry sent successfully." });
     }
-  } catch (error) {
-    console.error("Contact confirmation email error:", error);
-  }
 
-  return NextResponse.json({ message: "Inquiry sent successfully. We will get back to you shortly." });
+    if (!name || !email || !service || !budget || !message || !isValidEmail(email)) {
+      return NextResponse.json({ message: "Please enter valid details in every field." }, { status: 400 });
+    }
+
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const site = await getSiteSettings();
+    const contactEmail = process.env.CONTACT_TO_EMAIL || site.email;
+    const fromAddress = process.env.CONTACT_FROM_EMAIL || `${site.name} <hello@voquarn.com>`;
+
+    if (!resendApiKey) {
+      return NextResponse.json(
+        { message: "Form received. Email delivery is temporarily unavailable." },
+        { status: 200 },
+      );
+    }
+
+    const adminResult = await sendResendEmail(resendApiKey, {
+      from: fromAddress,
+      to: contactEmail,
+      replyTo: email,
+      subject: `New inquiry from ${name}`,
+      html: contactAdminEmail(site, { name, email, service, budget, message }),
+    });
+
+    if (!adminResult.ok) {
+      console.error("Resend contact error:", adminResult.status);
+      return NextResponse.json(
+        { message: "Unable to send the inquiry email right now." },
+        { status: 502 },
+      );
+    }
+
+    // Confirmation must be awaited because serverless functions can freeze
+    // immediately after returning their response.
+    try {
+      const userResult = await sendResendEmail(resendApiKey, {
+        from: fromAddress,
+        to: email,
+        subject: `We've received your inquiry — ${site.name}`,
+        html: contactUserEmail(site, { name }),
+      });
+      if (!userResult.ok) console.error("Contact confirmation email error:", userResult.status);
+    } catch (error) {
+      console.error("Contact confirmation email error:", error);
+    }
+
+    return NextResponse.json({ message: "Inquiry sent successfully. We will get back to you shortly." });
+  } catch (error) {
+    if (error instanceof RequestBodyTooLargeError) {
+      return NextResponse.json({ message: "Inquiry is too large." }, { status: 413 });
+    }
+    if (error instanceof InvalidJsonError) {
+      return NextResponse.json({ message: "Invalid request." }, { status: 400 });
+    }
+    console.error("Contact API error:", error);
+    return NextResponse.json({ message: "Unable to send the inquiry right now." }, { status: 500 });
+  }
 }

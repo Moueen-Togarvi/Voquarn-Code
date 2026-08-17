@@ -9,6 +9,7 @@ const initialState = {
   service: "",
   budget: "",
   message: "",
+  companyWebsite: "",
 };
 
 export function ContactForm() {
@@ -100,6 +101,16 @@ export function ContactForm() {
 
   return (
     <form className="bg-[var(--panel)] border border-[var(--border)] shadow-sm rounded-[2.5rem] p-8 sm:p-10" onSubmit={handleSubmit}>
+      <label className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+        Company website
+        <input
+          name="companyWebsite"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.companyWebsite}
+          onChange={(event) => setForm((current) => ({ ...current, companyWebsite: event.target.value }))}
+        />
+      </label>
       <div className="grid gap-6 sm:grid-cols-2">
         <label className="space-y-2 text-xs font-bold uppercase tracking-wider text-[var(--muted)]">
           <span>Name</span>

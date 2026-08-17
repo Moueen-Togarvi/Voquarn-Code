@@ -21,6 +21,7 @@ import {
   hashClientIp,
   maskEmail,
 } from "@/lib/admin-otp";
+import { readJsonBody } from "@/lib/request-security";
 
 export const runtime = "nodejs";
 
@@ -40,7 +41,7 @@ function noStoreJson(body: object, init?: ResponseInit) {
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as RequestCodePayload;
+    const body = await readJsonBody<RequestCodePayload>(request, 4 * 1024);
     const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
     const password = typeof body.password === "string" ? body.password : "";
 
@@ -175,7 +176,7 @@ export async function POST(request: Request) {
 
     if (!result.ok) {
       await db.delete(adminLoginChallenges).where(eq(adminLoginChallenges.id, challengeId));
-      console.error("Admin OTP email error:", result.status, result.raw);
+      console.error("Admin OTP email error:", result.status);
       return noStoreJson(
         { message: "Unable to send the verification code right now." },
         { status: 502 },

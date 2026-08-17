@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
 import { services, subServices } from "@/db/schema";
-import { auth } from "@/lib/auth";
-import { desc, eq } from "drizzle-orm";
+import { auth, isAdminSession } from "@/lib/auth";
+import { desc } from "drizzle-orm";
+import { AdminValidationError, parseService } from "@/lib/admin-validation";
 
 export async function GET() {
   const session = await auth();
-  if (!session) {
+  if (!isAdminSession(session)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -43,58 +44,36 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const session = await auth();
-  if (!session) {
+  if (!isAdminSession(session)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
     const body = await req.json();
-
-    const slug = body.slug || slugify(body.title);
+    const parsed = parseService(body);
 
     const [service] = await db
       .insert(services)
-      .values({
-        title: body.title,
-        slug,
-        description: body.description,
-        deliverables: body.deliverables || [],
-        icon: body.icon || null,
-      })
+      .values(parsed.service)
       .returning();
 
     // Insert sub-services if provided
-    if (body.subServices?.length > 0) {
-      for (let i = 0; i < body.subServices.length; i++) {
-        const ss = body.subServices[i];
+    if (parsed.subServices.length > 0) {
+      for (const ss of parsed.subServices) {
         await db.insert(subServices).values({
           serviceId: service.id,
-          slug: ss.slug || slugify(ss.name),
-          name: ss.name,
-          description: ss.description || null,
-          pricePkr: ss.pricePkr || null,
-          priceUsd: ss.priceUsd || null,
-          features: ss.features || [],
-          order: i,
+          ...ss,
         });
       }
     }
 
     return NextResponse.json(service, { status: 201 });
   } catch (error) {
+    if (error instanceof AdminValidationError) return NextResponse.json({ error: error.message }, { status: 400 });
     console.error("POST /api/admin/services error:", error);
     return NextResponse.json(
       { error: "Failed to create service" },
       { status: 500 },
     );
   }
-}
-
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/[\s_-]+/g, "-")
-    .replace(/^-+|-+$/g, "");
 }

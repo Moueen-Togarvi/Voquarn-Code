@@ -2,13 +2,13 @@ import { NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { jobApplications } from "@/db/schema";
-import { auth } from "@/lib/auth";
+import { auth, isAdminSession } from "@/lib/auth";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
 export async function GET(_request: Request, { params }: RouteContext) {
   const session = await auth();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!isAdminSession(session)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id: rawId } = await params;
   const id = Number(rawId);

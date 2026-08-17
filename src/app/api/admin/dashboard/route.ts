@@ -9,12 +9,12 @@ import {
   jobOpenings,
   jobApplications,
 } from "@/db/schema";
-import { auth } from "@/lib/auth";
+import { auth, isAdminSession } from "@/lib/auth";
 import { count } from "drizzle-orm";
 
 export async function GET() {
   const session = await auth();
-  if (!session) {
+  if (!isAdminSession(session)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

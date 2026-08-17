@@ -8,7 +8,9 @@ import {
   jsonb,
   index,
   uniqueIndex,
+  check,
 } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
 
 // ─────────────────────────────────────────────
 // Auth tables (compatible with next-auth DrizzleAdapter)
@@ -29,7 +31,10 @@ export const users = pgTable(
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
-  (table) => [uniqueIndex("users_email_key").on(table.email)],
+  (table) => [
+    uniqueIndex("users_email_key").on(table.email),
+    check("users_role_check", sql`${table.role} in ('admin', 'member')`),
+  ],
 );
 
 export const accounts = pgTable(
@@ -120,6 +125,24 @@ export const adminLoginAttempts = pgTable(
   (table) => [index("admin_login_attempts_ip_created_idx").on(table.ipHash, table.createdAt)],
 );
 
+// Shared, database-backed rate-limit buckets. Keeping these in Postgres makes
+// abuse protection consistent across serverless instances and deployments.
+export const requestRateLimits = pgTable(
+  "request_rate_limits",
+  {
+    key: text("key").primaryKey(),
+    count: integer("count").notNull().default(1),
+    windowEndsAt: timestamp("window_ends_at", { mode: "date", withTimezone: true }).notNull(),
+    updatedAt: timestamp("updated_at", { mode: "date", withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  },
+  (table) => [
+    index("request_rate_limits_window_ends_at_idx").on(table.windowEndsAt),
+    check("request_rate_limits_count_check", sql`${table.count} > 0`),
+  ],
+);
+
 // ─────────────────────────────────────────────
 // CMS Content tables
 // ─────────────────────────────────────────────
@@ -187,17 +210,24 @@ export const teamMembers = pgTable("team_members", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-export const testimonials = pgTable("testimonials", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  company: text("company"),
-  review: text("review").notNull(),
-  stars: integer("stars").default(5),
-  mediaUrl: text("media_url"),
-  mediaType: text("media_type"), // "image" | "video" | null
-  order: integer("order").default(0),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+export const testimonials = pgTable(
+  "testimonials",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    company: text("company"),
+    review: text("review").notNull(),
+    stars: integer("stars").default(5),
+    mediaUrl: text("media_url"),
+    mediaType: text("media_type"), // "image" | "video" | null
+    order: integer("order").default(0),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [
+    check("testimonials_stars_check", sql`${table.stars} between 1 and 5`),
+    check("testimonials_media_type_check", sql`${table.mediaType} is null or ${table.mediaType} in ('image', 'video')`),
+  ],
+);
 
 export const faqItems = pgTable("faq_items", {
   id: serial("id").primaryKey(),
@@ -259,6 +289,9 @@ export const jobApplications = pgTable(
     interviewLocation: text("interview_location"),
     interviewNotes: text("interview_notes"),
     statusUpdatedAt: timestamp("status_updated_at", { mode: "date" }),
+    retentionExpiresAt: timestamp("retention_expires_at", { mode: "date", withTimezone: true })
+      .default(sql`now() + interval '180 days'`)
+      .notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
@@ -266,7 +299,25 @@ export const jobApplications = pgTable(
     index("job_applications_status_idx").on(table.status),
     index("job_applications_created_at_idx").on(table.createdAt),
     index("job_applications_email_idx").on(table.email),
+    index("job_applications_retention_expires_at_idx").on(table.retentionExpiresAt),
+    check(
+      "job_applications_status_check",
+      sql`${table.status} in ('new', 'reviewing', 'shortlisted', 'interview', 'selected', 'rejected')`,
+    ),
   ],
+);
+
+export const applicationStatusNotifications = pgTable(
+  "application_status_notifications",
+  {
+    id: serial("id").primaryKey(),
+    applicationId: integer("application_id")
+      .notNull()
+      .references(() => jobApplications.id, { onDelete: "cascade" }),
+    fingerprint: text("fingerprint").notNull().unique(),
+    createdAt: timestamp("created_at", { mode: "date", withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [index("application_status_notifications_application_id_idx").on(table.applicationId)],
 );
 
 export const stats = pgTable("stats", {
@@ -308,5 +359,7 @@ export const servicesRelations = {
   jobApplications,
   stats,
   clientLogos,
-  clientCategories,
-};
+    clientCategories,
+    requestRateLimits,
+    applicationStatusNotifications,
+  };

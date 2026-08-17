@@ -8,12 +8,15 @@ import {
   ADMIN_OTP_RESEND_COOLDOWN_MS,
   ADMIN_OTP_TTL_MS,
   createAdminOtp,
+  getClientIp,
   hashAdminOtp,
+  hashClientIp,
 } from "@/lib/admin-otp";
 import { getSiteSettings } from "@/lib/data";
 import { adminLoginCodeEmail } from "@/lib/email-templates";
 import { getLoginRequestInfo } from "@/lib/login-request-info";
 import { sendResendEmail } from "@/lib/resend";
+import { readJsonBody } from "@/lib/request-security";
 
 export const runtime = "nodejs";
 
@@ -25,7 +28,7 @@ function noStoreJson(body: object, init?: ResponseInit) {
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as { challengeId?: unknown };
+    const body = await readJsonBody<{ challengeId?: unknown }>(request, 4 * 1024);
     const challengeId =
       typeof body.challengeId === "string" ? body.challengeId.trim() : "";
     if (!challengeId) {
@@ -44,6 +47,7 @@ export async function POST(request: Request) {
     const code = createAdminOtp();
     const resendAvailableAt = new Date(now.getTime() + ADMIN_OTP_RESEND_COOLDOWN_MS);
     const expiresAt = new Date(now.getTime() + ADMIN_OTP_TTL_MS);
+    const ipHash = hashClientIp(getClientIp(request.headers));
 
     const [reserved] = await db
       .update(adminLoginChallenges)
@@ -57,6 +61,7 @@ export async function POST(request: Request) {
       .where(
         and(
           eq(adminLoginChallenges.id, challengeId),
+          eq(adminLoginChallenges.ipHash, ipHash),
           isNull(adminLoginChallenges.verifiedAt),
           gt(adminLoginChallenges.expiresAt, now),
           lte(adminLoginChallenges.resendAvailableAt, now),
@@ -83,9 +88,10 @@ export async function POST(request: Request) {
     });
 
     if (!result.ok) {
-      console.error("Admin OTP resend error:", result.status, result.raw);
+      await db.delete(adminLoginChallenges).where(eq(adminLoginChallenges.id, challengeId));
+      console.error("Admin OTP resend error:", result.status);
       return noStoreJson(
-        { message: "Unable to resend the verification code right now." },
+        { message: "Unable to resend the code. Please start a new login attempt." },
         { status: 502 },
       );
     }

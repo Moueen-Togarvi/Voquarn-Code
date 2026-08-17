@@ -32,7 +32,7 @@ export async function sendAdminLoginSecurityAlert(input: LoginAlertInput) {
     });
 
     if (!result.ok) {
-      console.error("Admin login security alert email error:", result.status, result.raw);
+      console.error("Admin login security alert email error:", result.status);
       return false;
     }
 

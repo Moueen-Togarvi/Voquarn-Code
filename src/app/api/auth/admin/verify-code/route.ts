@@ -6,8 +6,11 @@ import {
   createAdminLoginToken,
   hashAdminLoginToken,
   hashAdminOtp,
+  hashClientIp,
+  getClientIp,
   secureHashEqual,
 } from "@/lib/admin-otp";
+import { readJsonBody } from "@/lib/request-security";
 
 export const runtime = "nodejs";
 
@@ -24,7 +27,7 @@ function noStoreJson(body: object, init?: ResponseInit) {
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as VerifyCodePayload;
+    const body = await readJsonBody<VerifyCodePayload>(request, 4 * 1024);
     const challengeId =
       typeof body.challengeId === "string" ? body.challengeId.trim() : "";
     const code = typeof body.code === "string" ? body.code.replace(/\D/g, "") : "";
@@ -50,6 +53,11 @@ export async function POST(request: Request) {
         { message: "This code has expired. Request a new code." },
         { status: 410 },
       );
+    }
+
+    const currentIpHash = hashClientIp(getClientIp(request.headers));
+    if (!secureHashEqual(currentIpHash, challenge.ipHash)) {
+      return noStoreJson({ message: "Verification session does not match this connection." }, { status: 403 });
     }
 
     if (challenge.attemptsRemaining <= 0) {
