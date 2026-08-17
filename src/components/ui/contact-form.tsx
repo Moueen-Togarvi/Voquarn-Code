@@ -1,13 +1,18 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { ChevronDown } from "lucide-react";
 import { trackLead } from "@/lib/pixels";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 const initialState = {
   name: "",
   email: "",
   service: "",
-  budget: "",
   message: "",
   companyWebsite: "",
 };
@@ -19,6 +24,13 @@ export function ContactForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!form.service) {
+      setStatus("error");
+      setFeedback("Please select a service.");
+      return;
+    }
+
     setStatus("loading");
     setFeedback("");
 
@@ -133,33 +145,27 @@ export function ContactForm() {
             placeholder="john@example.com"
           />
         </label>
-        <label className="space-y-2 text-xs font-bold uppercase tracking-wider text-[var(--muted)]">
-          <span>Service</span>
-          <div className="relative">
-            <select
-              required
-              value={form.service}
-              onChange={(event) => setForm((current) => ({ ...current, service: event.target.value }))}
-              className="w-full rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3.5 pr-10 text-base normal-case font-medium text-[var(--foreground)] outline-none transition-all focus:border-[#ff5400] focus:bg-[var(--panel)] appearance-none cursor-pointer"
+        <div className="space-y-2 text-xs font-bold uppercase tracking-wider text-[var(--muted)] sm:col-span-2">
+          <label id="contact-service-label" htmlFor="contact-service">Service</label>
+          <Select
+            value={form.service}
+            onValueChange={(service) => setForm((current) => ({ ...current, service }))}
+          >
+            <SelectTrigger
+              id="contact-service"
+              aria-labelledby="contact-service-label"
+              aria-required="true"
+              className="h-14 w-full rounded-2xl border-[var(--border)] bg-[var(--surface)] px-4 text-base font-medium normal-case text-[var(--foreground)] shadow-none focus-visible:border-[#ff5400] focus-visible:ring-[#ff5400]/15"
             >
-              <option value="">Select one</option>
-              <option value="Web Development">Web Development</option>
-              <option value="App Development">App Development</option>
-              <option value="AI & Automation">AI & Automation</option>
-            </select>
-            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted)] pointer-events-none" />
-          </div>
-        </label>
-        <label className="space-y-2 text-xs font-bold uppercase tracking-wider text-[var(--muted)]">
-          <span>Budget</span>
-          <input
-            required
-            value={form.budget}
-            onChange={(event) => setForm((current) => ({ ...current, budget: event.target.value }))}
-            placeholder="PKR 250,000"
-            className="w-full rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3.5 text-base normal-case font-medium text-[var(--foreground)] outline-none transition-all focus:border-[#ff5400] focus:bg-[var(--panel)] placeholder:text-[var(--muted)]"
-          />
-        </label>
+              <SelectValue placeholder="Select one" />
+            </SelectTrigger>
+            <SelectContent position="popper">
+              <SelectItem value="Web Development">Web Development</SelectItem>
+              <SelectItem value="App Development">App Development</SelectItem>
+              <SelectItem value="AI & Automation">AI & Automation</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <label className="mt-6 block space-y-2 text-xs font-bold uppercase tracking-wider text-[var(--muted)]">

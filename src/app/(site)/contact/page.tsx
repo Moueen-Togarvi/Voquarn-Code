@@ -1,4 +1,4 @@
-import { ContactForm } from "@/components/ui/contact-form";
+import { ContactPanel } from "@/components/ui/contact-panel";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
@@ -8,7 +8,7 @@ import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 
 const pageTitle = "Contact Voquarn Code | Web Development & SEO Agency";
 const pageDescription =
-  "Contact Voquarn Code for website development, SEO, app development, SaaS builds, and AI automation projects in Pakistan or internationally.";
+  "Contact Voquarn Code or book a consultation for website development, SEO, app development, SaaS builds, and AI automation projects.";
 const pageKeywords = [
   "hire web development agency Pakistan",
   "hire Next.js developer Pakistan",
@@ -51,14 +51,14 @@ export default async function ContactPage() {
           <SectionHeading
             eyebrow="Contact"
             title="Let's talk about the next version of your digital presence"
-            description="Use the form for a proper brief, reach out on WhatsApp for a faster conversation, or find us in Bahawalnagar, Punjab, Pakistan."
+            description="Send a project brief, request a consultation slot, reach out on WhatsApp, or find us in Bahawalnagar, Punjab, Pakistan."
             headingLevel="h1"
           />
         </GSAPReveal>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <GSAPReveal direction="left" delay={0.1}>
-            <ContactForm />
+            <ContactPanel />
           </GSAPReveal>
 
           <GSAPReveal direction="right" delay={0.2}>

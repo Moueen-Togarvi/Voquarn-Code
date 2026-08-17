@@ -15,7 +15,6 @@ type ContactPayload = {
   name?: string;
   email?: string;
   service?: string;
-  budget?: string;
   message?: string;
   companyWebsite?: string;
 };
@@ -38,7 +37,6 @@ export async function POST(request: Request) {
     const name = cleanText(body.name, 120);
     const email = cleanText(body.email, 254).toLowerCase();
     const service = cleanText(body.service, 120);
-    const budget = cleanText(body.budget, 120);
     const message = cleanText(body.message, 5000);
 
     // Hidden honeypot field: normal users never fill it, basic form bots do.
@@ -46,7 +44,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Inquiry sent successfully." });
     }
 
-    if (!name || !email || !service || !budget || !message || !isValidEmail(email)) {
+    if (!name || !email || !service || !message || !isValidEmail(email)) {
       return NextResponse.json({ message: "Please enter valid details in every field." }, { status: 400 });
     }
 
@@ -67,7 +65,7 @@ export async function POST(request: Request) {
       to: contactEmail,
       replyTo: email,
       subject: `New inquiry from ${name}`,
-      html: contactAdminEmail(site, { name, email, service, budget, message }),
+      html: contactAdminEmail(site, { name, email, service, message }),
     });
 
     if (!adminResult.ok) {

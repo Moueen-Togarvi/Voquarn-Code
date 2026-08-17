@@ -224,7 +224,6 @@ export function contactAdminEmail(
     name: string;
     email: string;
     service: string;
-    budget: string;
     message: string;
   },
 ) {
@@ -232,7 +231,6 @@ export function contactAdminEmail(
     detailRow("Name", escapeHtml(input.name)),
     detailRow("Email", `<a href="mailto:${escapeHtml(input.email)}" style="color:${BRAND_COLOR};text-decoration:none;">${escapeHtml(input.email)}</a>`),
     detailRow("Service", escapeHtml(input.service)),
-    detailRow("Budget", escapeHtml(input.budget)),
     detailRow("Message", escapeHtml(input.message).replace(/\n/g, "<br />")),
   ].join("");
 
@@ -244,7 +242,7 @@ export function contactAdminEmail(
     intro: `${escapeHtml(input.name)} just submitted the contact form on the website. Reply directly to this email to reach them.`,
     detailRows: rows,
     ctaLabel: "Reply now",
-    ctaUrl: `mailto:${input.email}`,
+    ctaUrl: `mailto:${escapeHtml(input.email)}`,
   });
 }
 
@@ -258,6 +256,67 @@ export function contactUserEmail(site: SiteSettings, input: { name: string }) {
     intro:
       "We've received your project inquiry and a member of our team will review it shortly. Expect a reply within 24 hours — for anything urgent, feel free to message us directly on WhatsApp.",
     footerNote: "This is an automated confirmation. No need to reply to this email.",
+  });
+}
+
+type MeetingEmailInput = {
+  name: string;
+  email: string;
+  phone: string;
+  topic: string;
+  date: string;
+  time: string;
+  timezone: string;
+  duration: string;
+  meetingType: string;
+  agenda: string;
+};
+
+// ── Meeting request: notifies the agency ──
+export function meetingAdminEmail(site: SiteSettings, input: MeetingEmailInput) {
+  const rows = [
+    detailRow("Name", escapeHtml(input.name)),
+    detailRow("Email", `<a href="mailto:${escapeHtml(input.email)}" style="color:${BRAND_COLOR};text-decoration:none;">${escapeHtml(input.email)}</a>`),
+    detailRow("Phone / WhatsApp", escapeHtml(input.phone || "Not provided")),
+    detailRow("Topic", escapeHtml(input.topic)),
+    detailRow("Preferred date", escapeHtml(input.date)),
+    detailRow("Preferred time", `${escapeHtml(input.time)} (${escapeHtml(input.timezone)})`),
+    detailRow("Duration", escapeHtml(input.duration)),
+    detailRow("Meeting format", escapeHtml(input.meetingType)),
+    detailRow("Agenda", escapeHtml(input.agenda).replace(/\n/g, "<br />")),
+  ].join("");
+
+  return emailShell({
+    site,
+    preheader: `Meeting request from ${input.name} for ${input.date}`,
+    eyebrow: "Meeting Request",
+    heading: "A new meeting has been requested",
+    intro: `${escapeHtml(input.name)} selected a preferred slot. Check availability before confirming the meeting by replying directly to this email.`,
+    detailRows: rows,
+    ctaLabel: "Reply and confirm",
+    ctaUrl: `mailto:${escapeHtml(input.email)}`,
+  });
+}
+
+// ── Meeting request: acknowledges the preferred slot ──
+export function meetingUserEmail(site: SiteSettings, input: MeetingEmailInput) {
+  const rows = [
+    detailRow("Topic", escapeHtml(input.topic)),
+    detailRow("Preferred date", escapeHtml(input.date)),
+    detailRow("Preferred time", `${escapeHtml(input.time)} (${escapeHtml(input.timezone)})`),
+    detailRow("Duration", escapeHtml(input.duration)),
+    detailRow("Meeting format", escapeHtml(input.meetingType)),
+  ].join("");
+
+  return emailShell({
+    site,
+    preheader: `We received your preferred meeting slot for ${input.date}.`,
+    eyebrow: "Request Received",
+    heading: `Thanks, ${input.name.split(" ")[0]}`,
+    intro:
+      "We've received your meeting request. This is not a final booking yet — our team will check availability and send you a separate confirmation with the meeting details.",
+    detailRows: rows,
+    footerNote: "Please reply to this email if you need to change your preferred date or time.",
   });
 }
 
