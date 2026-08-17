@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
-  FileText,
   Globe,
   Briefcase,
   Users,
@@ -22,7 +21,6 @@ import { cn } from "@/lib/utils";
 
 const sidebarLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/blog", label: "Blog Posts", icon: FileText },
   { href: "/admin/services", label: "Services", icon: Globe },
   { href: "/admin/portfolio", label: "Portfolio", icon: Briefcase },
   { href: "/admin/team", label: "Team", icon: Users },

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import {
-  FileText,
   Globe,
   Briefcase,
   Users,
@@ -16,7 +15,6 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 type CountData = {
-  blog: number;
   services: number;
   portfolio: number;
   team: number;
@@ -26,7 +24,6 @@ type CountData = {
 };
 
 const statCards = [
-  { key: "blog" as const, label: "Blog Posts", icon: FileText, color: "text-blue-600 bg-blue-50", href: "/admin/blog" },
   { key: "services" as const, label: "Services", icon: Globe, color: "text-green-600 bg-green-50", href: "/admin/services" },
   { key: "portfolio" as const, label: "Portfolio", icon: Briefcase, color: "text-purple-600 bg-purple-50", href: "/admin/portfolio" },
   { key: "team" as const, label: "Team Members", icon: Users, color: "text-orange-600 bg-orange-50", href: "/admin/team" },
@@ -37,7 +34,6 @@ const statCards = [
 
 export default function AdminDashboard() {
   const [counts, setCounts] = useState<CountData>({
-    blog: 0,
     services: 0,
     portfolio: 0,
     team: 0,
@@ -113,15 +109,8 @@ export default function AdminDashboard() {
         </h2>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link
-            href="/admin/blog"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#ff5400] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#e04800] transition-colors"
-          >
-            <FileText size={16} />
-            View Markdown Posts
-          </Link>
-          <Link
             href="/admin/services/new"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-2.5 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--surface)] transition-colors"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#ff5400] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#e04800] transition-colors"
           >
             <Plus size={16} />
             Add Service

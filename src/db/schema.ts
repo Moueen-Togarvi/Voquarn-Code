@@ -6,7 +6,6 @@ import {
   boolean,
   integer,
   jsonb,
-  varchar,
   index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
@@ -124,33 +123,6 @@ export const adminLoginAttempts = pgTable(
 // ─────────────────────────────────────────────
 // CMS Content tables
 // ─────────────────────────────────────────────
-
-export const blogPosts = pgTable(
-  "blog_posts",
-  {
-    id: serial("id").primaryKey(),
-    slug: text("slug").notNull().unique(),
-    title: text("title").notNull(),
-    excerpt: text("excerpt"),
-    content: jsonb("content").$type<Record<string, unknown>[]>(), // TipTap JSON
-    coverImage: text("cover_image"),
-    category: text("category"),
-    published: boolean("published").notNull().default(false),
-    publishedAt: timestamp("published_at", { mode: "date" }),
-    readTime: text("read_time"),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    updatedAt: timestamp("updated_at").defaultNow().notNull(),
-  },
-  (table) => [index("blog_posts_slug_idx").on(table.slug)],
-);
-
-export const blogImages = pgTable("blog_images", {
-  id: serial("id").primaryKey(),
-  blogPostId: integer("blog_post_id")
-    .references(() => blogPosts.id, { onDelete: "cascade" }),
-  url: text("url").notNull(),
-  altText: text("alt_text"),
-});
 
 export const services = pgTable(
   "services",
@@ -295,7 +267,6 @@ export const clientCategories = pgTable("client_categories", {
 
 // Relations for db.query support
 export const servicesRelations = {
-  blogPosts,
   services,
   subServices,
   portfolioItems,

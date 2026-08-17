@@ -5,7 +5,7 @@ import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { buildMetadata } from "@/lib/metadata";
 import { blogPostJsonLd } from "@/lib/schema";
 import { getBlogPost, getBlogPosts } from "@/lib/data";
-import { RichContent } from "@/components/admin/rich-content";
+import { RichContent } from "@/components/ui/rich-content";
 import { articleKeywordCluster } from "@/lib/seo-keywords";
 
 type BlogPostPageProps = {

@@ -10,7 +10,6 @@ import {
 } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { count } from "drizzle-orm";
-import { getMarkdownBlogPosts } from "@/lib/markdown-blogs";
 
 export async function GET() {
   const session = await auth();
@@ -19,7 +18,6 @@ export async function GET() {
   }
 
   try {
-    const blogPosts = await getMarkdownBlogPosts();
     const [serviceCount] = await db.select({ value: count() }).from(services);
     const [portfolioCount] = await db.select({ value: count() }).from(portfolioItems);
     const [teamCount] = await db.select({ value: count() }).from(teamMembers);
@@ -28,7 +26,6 @@ export async function GET() {
     const [careersCount] = await db.select({ value: count() }).from(jobOpenings);
 
     return NextResponse.json({
-      blog: blogPosts.length,
       services: Number(serviceCount?.value || 0),
       portfolio: Number(portfolioCount?.value || 0),
       team: Number(teamCount?.value || 0),
@@ -40,7 +37,6 @@ export async function GET() {
     console.error("Dashboard count error:", error);
     return NextResponse.json(
       {
-        blog: 0,
         services: 0,
         portfolio: 0,
         team: 0,
