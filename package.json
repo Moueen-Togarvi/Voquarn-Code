@@ -14,6 +14,7 @@
     "db:cleanup:applications": "tsx scripts/cleanup-expired-applications.ts",
     "db:provision:runtime-role": "tsx scripts/provision-runtime-db-role.ts",
     "db:studio": "drizzle-kit studio",
+    "blogs:generate:trends": "node scripts/generate-trend-blogs.mjs",
     "seed:admin": "npx tsx scripts/seed-admin.ts"
   },
   "dependencies": {
