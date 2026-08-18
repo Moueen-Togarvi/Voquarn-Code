@@ -29,6 +29,10 @@ Copy `.env.example` to `.env` and fill in the values you want to use.
 - `RESEND_API_KEY`: Enables contact form delivery.
 - `CONTACT_TO_EMAIL`: Where contact inquiries should go.
 - `DATABASE_URL`: Optional if you still plan to use the included Drizzle/Neon setup.
+- `BLOB_READ_WRITE_TOKEN`: Enables persistent admin image/video uploads. On
+  Vercel, create a public Blob store in the project Storage tab; Vercel adds
+  this variable automatically. Pull the project environment locally to test
+  uploads outside production.
 
 ### 3. Development
 

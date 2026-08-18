@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
-import { Upload, X, Loader2 } from "lucide-react";
+import { Upload, X, Loader2, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { uploadAdminMedia } from "@/lib/client-media-upload";
 
 export function ImageUpload({
   value,
@@ -18,33 +18,20 @@ export function ImageUpload({
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     setLoading(true);
+    setError("");
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) throw new Error("Upload failed");
-      const data = await res.json();
+      if (!file.type.startsWith("image/")) throw new Error("Please select an image file");
+      const data = await uploadAdminMedia(file);
       onChange(data.url);
-    } catch {
-      // fallback: use base64 data URL
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (typeof reader.result === "string") {
-          onChange(reader.result);
-        }
-      };
-      reader.readAsDataURL(file);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed. Please try again.");
     } finally {
       setLoading(false);
       e.target.value = "";
@@ -98,6 +85,11 @@ export function ImageUpload({
           </div>
         )}
       </div>
+      {error && (
+        <p className="flex items-center gap-1.5 text-xs font-medium text-red-600">
+          <AlertCircle size={13} /> {error}
+        </p>
+      )}
       <input
         ref={inputRef}
         type="file"

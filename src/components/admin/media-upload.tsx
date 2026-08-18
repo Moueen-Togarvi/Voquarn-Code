@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { Upload, X, Loader2, Video as VideoIcon, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { uploadAdminMedia } from "@/lib/client-media-upload";
 
 type MediaType = "image" | "video";
 
@@ -27,25 +28,11 @@ export function MediaUpload({
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const detectedType: MediaType = file.type.startsWith("video/") ? "video" : "image";
-
     setLoading(true);
     setError("");
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) {
-        const data = await res.json().catch(() => null);
-        throw new Error(data?.error || "Upload failed");
-      }
-      const data = await res.json();
-      onChange(data.url, (data.type as MediaType) || detectedType);
+      const data = await uploadAdminMedia(file);
+      onChange(data.url, data.type);
     } catch (err) {
       // No base64 fallback here on purpose — embedding a multi-MB file as a
       // data URI in the database once bloated a page past what Vercel's
