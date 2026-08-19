@@ -8,7 +8,6 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Retrieval evaluation metrics** tell you whether a RAG system fails because it did not find the right information or because it mishandled information it did find. Without separating these, teams tune prompts to fix retrieval problems and change models to fix ranking problems, neither of which works.
 
 ## Separate the two stages
@@ -21,25 +20,19 @@ An end-to-end score alone cannot distinguish them, which is why systems with onl
 
 ## Retrieval metrics
 
-**Recall at k.** Of the documents needed to answer, how many appeared in the top k results. This is the most important retrieval metric, because generation cannot recover from missing evidence.
-
-**Precision at k.** Of the returned documents, how many were relevant. Precision matters more than intuition suggests, since irrelevant passages act as distractors and degrade answer quality.
-
-**Mean reciprocal rank.** Where the first relevant document appeared. Useful when a single correct source exists.
-
-**Normalized discounted cumulative gain.** Accounts for graded relevance and position, appropriate when some documents are more useful than others.
+- **Recall at k.** Of the documents needed to answer, how many appeared in the top k results. This is the most important retrieval metric, because generation cannot recover from missing evidence.
+- **Precision at k.** Of the returned documents, how many were relevant. Precision matters more than intuition suggests, since irrelevant passages act as distractors and degrade answer quality.
+- **Mean reciprocal rank.** Where the first relevant document appeared. Useful when a single correct source exists.
+- **Normalized discounted cumulative gain.** Accounts for graded relevance and position, appropriate when some documents are more useful than others.
 
 Track recall at the k you actually pass to the model, not at a larger k that flatters the number. Recall at fifty is irrelevant if you send three passages.
 
 ## Generation metrics
 
-**Faithfulness.** Whether every claim in the answer is supported by the retrieved context. This catches fabrication, which is the failure users find least acceptable.
-
-**Answer relevance.** Whether the answer addresses the question, independent of correctness.
-
-**Correctness** against a reference answer where one exists.
-
-**Appropriate refusal.** Whether the system declines when the answer is genuinely not in the corpus. Systems are frequently never tested on unanswerable questions, and then fabricate confidently in production.
+- **Faithfulness.** Whether every claim in the answer is supported by the retrieved context. This catches fabrication, which is the failure users find least acceptable.
+- **Answer relevance.** Whether the answer addresses the question, independent of correctness.
+- **Correctness** against a reference answer where one exists.
+- **Appropriate refusal.** Whether the system declines when the answer is genuinely not in the corpus. Systems are frequently never tested on unanswerable questions, and then fabricate confidently in production.
 
 ## Building the test set
 

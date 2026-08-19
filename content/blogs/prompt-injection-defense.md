@@ -8,7 +8,6 @@ readTime: "7 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Prompt injection defense** is an architecture problem, not a filtering problem. Any system where a model reads content it did not author and can then take actions is exposed, and no amount of instruction hardening closes the gap reliably.
 
 The workable approach assumes injection will succeed sometimes and limits what a successful injection can accomplish.
@@ -27,15 +26,11 @@ Detection classifiers help at the margin and produce both false negatives on nov
 
 This is the single highest-value control, and it is architectural. It cannot be added later by tightening prompts.
 
-**Least privilege on credentials.** Agents holding broad service credentials turn any injection into privilege escalation. Scope credentials to the specific operations the workflow needs, per user where possible.
-
-**Human approval on consequential actions.** Sending external communication, moving money, changing permissions, and deleting data should require confirmation showing exactly what will happen. Approval must display the concrete action, not a model-written summary of it, since the summary is also attacker-influenced.
-
-**Separation of read and write paths.** An agent that reads untrusted content should ideally not be the same agent that executes writes. Where they must be combined, gate writes behind stricter checks.
-
-**Output encoding and validation.** Validate that tool arguments produced after reading untrusted content conform to expected values, and treat model output rendered into other systems as untrusted, since injection can produce content that attacks downstream consumers.
-
-**Egress control.** Restrict which destinations an agent can send data to. Exfiltration through an allowed outbound channel is a common objective of injection, and an allowlist limits it directly.
+- **Least privilege on credentials.** Agents holding broad service credentials turn any injection into privilege escalation. Scope credentials to the specific operations the workflow needs, per user where possible.
+- **Human approval on consequential actions.** Sending external communication, moving money, changing permissions, and deleting data should require confirmation showing exactly what will happen. Approval must display the concrete action, not a model-written summary of it, since the summary is also attacker-influenced.
+- **Separation of read and write paths.** An agent that reads untrusted content should ideally not be the same agent that executes writes. Where they must be combined, gate writes behind stricter checks.
+- **Output encoding and validation.** Validate that tool arguments produced after reading untrusted content conform to expected values, and treat model output rendered into other systems as untrusted, since injection can produce content that attacks downstream consumers.
+- **Egress control.** Restrict which destinations an agent can send data to. Exfiltration through an allowed outbound channel is a common objective of injection, and an allowlist limits it directly.
 
 ## Content provenance
 

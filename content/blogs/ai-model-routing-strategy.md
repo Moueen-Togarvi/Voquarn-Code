@@ -8,32 +8,25 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 An **AI model routing strategy** sends each request to the model best suited to it rather than using one model for everything. Done well it reduces cost and latency while maintaining quality. Done carelessly it adds a component that fails in ways that are hard to diagnose.
 
 The main risk is building a sophisticated router that costs more in complexity than it saves in tokens.
 
 ## Routing signals
 
-**Task type** is the most reliable signal and the simplest. If your application distinguishes classification, extraction, drafting, and complex reasoning at the call site, route on that directly. No inference required, fully predictable.
-
-**Input characteristics** such as length, language, and structure. Long-context requests may require specific models; short structured ones rarely need a large one.
-
-**Confidence** from a first-pass small model, escalating when it is uncertain. This adapts well and requires calibration work, since raw model self-assessment is often poorly calibrated.
-
-**Business context** such as customer tier, request value, or regulatory classification. A high-value transaction may justify the stronger model regardless of apparent complexity.
+- **Task type** is the most reliable signal and the simplest. If your application distinguishes classification, extraction, drafting, and complex reasoning at the call site, route on that directly. No inference required, fully predictable.
+- **Input characteristics** such as length, language, and structure. Long-context requests may require specific models; short structured ones rarely need a large one.
+- **Confidence** from a first-pass small model, escalating when it is uncertain. This adapts well and requires calibration work, since raw model self-assessment is often poorly calibrated.
+- **Business context** such as customer tier, request value, or regulatory classification. A high-value transaction may justify the stronger model regardless of apparent complexity.
 
 **Availability and latency**, routing away from a degraded provider. This overlaps with fallback handling and is worth building regardless of cost motivation.
 
 ## Patterns
 
-**Static routing by task type.** Deterministic mapping from call site to model. Start here. It captures most of the available saving with almost no added failure surface.
-
-**Cascade.** A small model attempts the task; if confidence is low or validation fails, a larger model retries. Effective when most requests are easy and the small model can recognize when it is not.
-
-**Verification cascade.** The small model answers and the large model checks only high-stakes cases. Cheaper than running the large model throughout while preserving accuracy where it matters.
-
-**Learned routing.** A classifier predicts which model is needed. Most sophisticated, requires labeled data and maintenance, and rarely justified before simpler patterns have been exhausted.
+- **Static routing by task type.** Deterministic mapping from call site to model. Start here. It captures most of the available saving with almost no added failure surface.
+- **Cascade.** A small model attempts the task; if confidence is low or validation fails, a larger model retries. Effective when most requests are easy and the small model can recognize when it is not.
+- **Verification cascade.** The small model answers and the large model checks only high-stakes cases. Cheaper than running the large model throughout while preserving accuracy where it matters.
+- **Learned routing.** A classifier predicts which model is needed. Most sophisticated, requires labeled data and maintenance, and rarely justified before simpler patterns have been exhausted.
 
 ## Measuring the router
 

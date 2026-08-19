@@ -225,7 +225,7 @@ async function readMarkdownPosts(): Promise<BlogPost[]> {
   const posts = await Promise.all(
     filenames.map(async (filename) => {
       const source = await readFile(path.join(BLOG_DIRECTORY, filename), "utf8");
-      const { frontmatter, markdown } = parseFrontmatter(source, filename);
+      const { frontmatter } = parseFrontmatter(source, filename);
 
       if (`${frontmatter.slug}.md` !== filename) {
         throw new Error(`Slug and filename do not match in ${filename}`);
@@ -239,7 +239,9 @@ async function readMarkdownPosts(): Promise<BlogPost[]> {
         publishedAt: frontmatter.publishedAt ?? "",
         readTime: frontmatter.readTime,
         sections: [],
-        content: markdownToRichContent(markdown),
+        // Listing, sitemap, and static-param consumers only need metadata.
+        // The article body is parsed on demand by getMarkdownBlogPost below.
+        content: null,
         coverImage: frontmatter.coverImage ?? null,
         status: frontmatter.status,
       };
@@ -268,9 +270,28 @@ async function readMarkdownPosts(): Promise<BlogPost[]> {
     }));
 }
 
-export const getMarkdownBlogPosts = cache(readMarkdownPosts);
+let markdownPostsPromise: Promise<BlogPost[]> | undefined;
+
+function readMemoizedMarkdownPosts() {
+  // Markdown ships with the deployment, so one warm-instance read is enough.
+  // React cache still deduplicates consumers inside the same render request.
+  markdownPostsPromise ??= readMarkdownPosts();
+  return markdownPostsPromise;
+}
+
+export const getMarkdownBlogPosts = cache(readMemoizedMarkdownPosts);
 
 export const getMarkdownBlogPost = cache(async (slug: string): Promise<BlogPost | undefined> => {
   const posts = await getMarkdownBlogPosts();
-  return posts.find((post) => post.slug === slug);
+  const post = posts.find((candidate) => candidate.slug === slug);
+  if (!post) return undefined;
+
+  const filename = `${post.slug}.md`;
+  const source = await readFile(path.join(BLOG_DIRECTORY, filename), "utf8");
+  const { markdown } = parseFrontmatter(source, filename);
+
+  return {
+    ...post,
+    content: markdownToRichContent(markdown),
+  };
 });

@@ -8,18 +8,15 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **AI ecommerce personalization** delivers uneven returns. Some surfaces produce reliable revenue lift; others consume engineering effort and change nothing measurable. Knowing the difference before building saves most of the wasted work.
 
 The determining factor is usually whether the surface sits at a point where the shopper is genuinely deciding between options.
 
 ## Surfaces that pay back
 
-**Search results ranking.** Shoppers who search have stated intent, and ranking to that intent produces the most consistent measurable lift of any personalization surface. If you do one thing, do this.
-
-**Product recommendations on the product page.** Complementary and alternative items shown at the moment of consideration. Alternatives matter more than accessories when the shopper has not committed.
-
-**Category and listing ordering** for returning shoppers with meaningful history.
+- **Search results ranking.** Shoppers who search have stated intent, and ranking to that intent produces the most consistent measurable lift of any personalization surface. If you do one thing, do this.
+- **Product recommendations on the product page.** Complementary and alternative items shown at the moment of consideration. Alternatives matter more than accessories when the shopper has not committed.
+- **Category and listing ordering** for returning shoppers with meaningful history.
 
 **Cart and checkout suggestions**, kept narrowly relevant, since distraction at checkout costs more than the marginal attach revenue.
 

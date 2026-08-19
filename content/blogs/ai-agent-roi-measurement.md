@@ -8,20 +8,16 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **AI agent ROI measurement** goes wrong in a predictable way: token cost is counted, human review time is not, and the resulting figure shows savings that never appear in a budget.
 
 An honest model counts every cost the agent creates and compares against a baseline measured the same way.
 
 ## Cost lines teams routinely omit
 
-**Human review time.** In any workflow with approval gates, reviewers spend real time. If a reviewer takes ninety seconds to check a draft that previously took four minutes to write, the saving is two and a half minutes, not four.
-
-**Escalation handling.** Cases the agent escalates often take longer than they would have unassisted, because the receiver must first understand what the agent already did.
-
-**Rework from errors.** Wrong outputs that reach a customer cost more than the original task. Count correction time and the downstream consequence.
-
-**Evaluation maintenance.** Test sets need updating as processes change and models are replaced. This is ongoing engineering time, not a one-off.
+- **Human review time.** In any workflow with approval gates, reviewers spend real time. If a reviewer takes ninety seconds to check a draft that previously took four minutes to write, the saving is two and a half minutes, not four.
+- **Escalation handling.** Cases the agent escalates often take longer than they would have unassisted, because the receiver must first understand what the agent already did.
+- **Rework from errors.** Wrong outputs that reach a customer cost more than the original task. Count correction time and the downstream consequence.
+- **Evaluation maintenance.** Test sets need updating as processes change and models are replaced. This is ongoing engineering time, not a one-off.
 
 **Model and infrastructure cost**, including retries and failed attempts, which are frequently excluded from estimates based on a happy path.
 

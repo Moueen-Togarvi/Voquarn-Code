@@ -8,22 +8,17 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Small language model deployment** is often the correct answer for production workloads that default to the largest available model out of habit. Many production tasks are classification, extraction, routing, and formatting, where a smaller model matches a larger one at a fraction of the cost and latency.
 
 The decision should come from measurement on your own tasks, not from general benchmarks.
 
 ## Tasks where smaller models perform well
 
-**Classification and routing.** Deciding which category a request belongs to, which team should handle it, or which tool applies. These have constrained output spaces and are well within small model capability.
-
-**Structured extraction.** Pulling defined fields from documents or messages into a schema. Accuracy here depends more on prompt clarity and output constraints than on model scale.
-
-**Reformatting and transformation.** Converting between formats, normalizing text, and generating structured output from structured input.
-
-**Short-form generation** with clear constraints, such as subject lines, summaries of bounded length, or templated responses.
-
-**First-pass filtering** in a pipeline where a larger model handles the cases the small one flags as uncertain.
+- **Classification and routing.** Deciding which category a request belongs to, which team should handle it, or which tool applies. These have constrained output spaces and are well within small model capability.
+- **Structured extraction.** Pulling defined fields from documents or messages into a schema. Accuracy here depends more on prompt clarity and output constraints than on model scale.
+- **Reformatting and transformation.** Converting between formats, normalizing text, and generating structured output from structured input.
+- **Short-form generation** with clear constraints, such as subject lines, summaries of bounded length, or templated responses.
+- **First-pass filtering** in a pipeline where a larger model handles the cases the small one flags as uncertain.
 
 ## Tasks where they usually do not
 

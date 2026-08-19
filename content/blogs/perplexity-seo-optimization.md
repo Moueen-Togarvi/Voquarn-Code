@@ -8,7 +8,6 @@ readTime: "5 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Perplexity SEO optimization** targets answer engines that retrieve live sources, synthesize a response, and display citations prominently alongside it. Compared with assistants that cite sparingly, these engines surface sources visibly, which makes them a meaningful referral channel rather than only a visibility one.
 
 ## How the retrieval and citation loop works
@@ -19,15 +18,11 @@ Because citations are displayed and clickable, inclusion produces actual visits.
 
 ## What earns inclusion
 
-**Retrievability.** The crawler must reach and parse your page. Verify access by user agent at both robots and CDN level, and confirm content is present in the server response rather than assembled client-side.
-
-**Direct answering.** Engines favor passages that address the question in one or two sentences. Put the answer immediately under a question-shaped heading, then expand beneath it.
-
-**Specificity.** Concrete numbers, named conditions, dates, and defined terms are quoted more readily than general statements. Include the qualifier in the same sentence as the claim.
-
-**Freshness where relevant.** For questions with a temporal dimension, recently updated pages with honest modification dates are favored. Do not fake updates; the mismatch between claimed date and unchanged content is checkable.
-
-**Independent support.** Claims corroborated elsewhere are safer for the engine to repeat, so off-site presence continues to matter.
+- **Retrievability.** The crawler must reach and parse your page. Verify access by user agent at both robots and CDN level, and confirm content is present in the server response rather than assembled client-side.
+- **Direct answering.** Engines favor passages that address the question in one or two sentences. Put the answer immediately under a question-shaped heading, then expand beneath it.
+- **Specificity.** Concrete numbers, named conditions, dates, and defined terms are quoted more readily than general statements. Include the qualifier in the same sentence as the claim.
+- **Freshness where relevant.** For questions with a temporal dimension, recently updated pages with honest modification dates are favored. Do not fake updates; the mismatch between claimed date and unchanged content is checkable.
+- **Independent support.** Claims corroborated elsewhere are safer for the engine to repeat, so off-site presence continues to matter.
 
 ## Content patterns that perform
 

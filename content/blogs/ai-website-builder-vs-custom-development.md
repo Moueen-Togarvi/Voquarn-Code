@@ -8,30 +8,22 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 The choice of **AI website builder vs custom development** depends less on the technology than on what the site has to do. AI builders now produce genuinely usable marketing sites quickly. They remain constrained where the site is a business system rather than a brochure.
 
 ## Where AI builders work well
 
-**Marketing sites with standard structure.** Home, services, about, blog, contact. The requirements are well understood, the patterns are common, and speed matters more than differentiation.
-
-**Early-stage validation.** Getting a credible presence online in days while the business model is still moving. Rebuilding later is a reasonable plan when the alternative is delaying entry.
-
-**Small budgets with simple needs.** Where custom development cannot be justified and the alternative is no site at all.
-
-**Content-led sites** where the value is in the writing and the design is a container for it.
+- **Marketing sites with standard structure.** Home, services, about, blog, contact. The requirements are well understood, the patterns are common, and speed matters more than differentiation.
+- **Early-stage validation.** Getting a credible presence online in days while the business model is still moving. Rebuilding later is a reasonable plan when the alternative is delaying entry.
+- **Small budgets with simple needs.** Where custom development cannot be justified and the alternative is no site at all.
+- **Content-led sites** where the value is in the writing and the design is a container for it.
 
 ## Where they run out
 
-**Integration with business systems.** CRM, ERP, inventory, custom authentication, and internal APIs. Builders offer common integrations; anything specific to your operations quickly hits the limits of what the platform permits.
-
-**Custom application behavior.** Configurators, calculators, booking with complex availability rules, portals with role-based access. These are software, and a builder that generates pages is not the right tool.
-
-**Performance under real conditions.** Generated sites often carry substantial unused code and third-party scripts. This matters for search visibility and for conversion, and control over it is usually limited.
-
-**Accessibility to a required standard.** Generated markup frequently falls short of WCAG conformance, and remediation within a builder's constraints is difficult. If you have a legal obligation, verify before committing.
-
-**Content model complexity.** Structured content with relationships, multiple locales, and editorial workflow exceeds what most builders express cleanly.
+- **Integration with business systems.** CRM, ERP, inventory, custom authentication, and internal APIs. Builders offer common integrations; anything specific to your operations quickly hits the limits of what the platform permits.
+- **Custom application behavior.** Configurators, calculators, booking with complex availability rules, portals with role-based access. These are software, and a builder that generates pages is not the right tool.
+- **Performance under real conditions.** Generated sites often carry substantial unused code and third-party scripts. This matters for search visibility and for conversion, and control over it is usually limited.
+- **Accessibility to a required standard.** Generated markup frequently falls short of WCAG conformance, and remediation within a builder's constraints is difficult. If you have a legal obligation, verify before committing.
+- **Content model complexity.** Structured content with relationships, multiple locales, and editorial workflow exceeds what most builders express cleanly.
 
 ## Cost over time
 

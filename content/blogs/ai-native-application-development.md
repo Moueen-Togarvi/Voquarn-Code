@@ -8,7 +8,6 @@ readTime: "7 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **AI-native application development** means building software whose core behavior depends on model output rather than software with a model bolted on. The distinction matters because the engineering practices differ, particularly around correctness, testing, and interface design.
 
 The defining constraint is that a central component returns a distribution of plausible outputs rather than a determined answer.
@@ -23,15 +22,11 @@ Features where a confident wrong answer is expensive and undetectable are poor c
 
 ## Interface patterns that work
 
-**Show the source.** Presenting the evidence alongside a generated answer lets users verify without trusting blindly, and it converts an opaque assertion into a checkable one.
-
-**Make correction cheap.** Editing a draft is far better than regenerating it. Users tolerate imperfect output when fixing it is faster than starting over.
-
-**Expose uncertainty honestly** where you can measure it, and decline rather than guess when confidence is low. A system that says it does not know retains more trust than one that fabricates.
-
-**Prefer suggestion over action** for anything consequential, at least until evaluation evidence supports automation.
-
-**Keep an escape hatch** to the deterministic path or a human, always available and obvious.
+- **Show the source.** Presenting the evidence alongside a generated answer lets users verify without trusting blindly, and it converts an opaque assertion into a checkable one.
+- **Make correction cheap.** Editing a draft is far better than regenerating it. Users tolerate imperfect output when fixing it is faster than starting over.
+- **Expose uncertainty honestly** where you can measure it, and decline rather than guess when confidence is low. A system that says it does not know retains more trust than one that fabricates.
+- **Prefer suggestion over action** for anything consequential, at least until evaluation evidence supports automation.
+- **Keep an escape hatch** to the deterministic path or a human, always available and obvious.
 
 ## Evaluation is a build gate, not a QA phase
 

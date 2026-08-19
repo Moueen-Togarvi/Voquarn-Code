@@ -8,32 +8,24 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Legacy code modernization with AI** is frequently pitched as automated translation from an old stack to a new one. That framing overstates what works and understates where models genuinely help, which is comprehension and test coverage rather than wholesale rewriting.
 
 The constraint is that legacy systems encode business rules nobody remembers, and a translation that preserves syntax while losing an undocumented rule is a regression that surfaces months later.
 
 ## Where models genuinely help
 
-**Comprehension.** Explaining what a procedure does, tracing data flow, and mapping dependencies across a large unfamiliar codebase. This is often the largest cost in modernization work and where assistance pays off most.
-
-**Documentation recovery.** Producing draft descriptions of modules, inputs, outputs, and side effects, which engineers then verify. Draft-and-verify is far faster than writing from scratch.
-
-**Test generation for existing behavior.** This is the highest-value application. Before changing legacy code, you need tests that capture what it currently does, including behavior nobody intended. Models are effective at generating broad characterization tests from existing code.
-
-**Mechanical transformation.** Syntax updates, framework version migrations, and consistent refactors across many files, where the change is well-defined and verifiable.
-
-**Dead code identification.** Proposing candidates for removal, subject to verification against production usage data.
+- **Comprehension.** Explaining what a procedure does, tracing data flow, and mapping dependencies across a large unfamiliar codebase. This is often the largest cost in modernization work and where assistance pays off most.
+- **Documentation recovery.** Producing draft descriptions of modules, inputs, outputs, and side effects, which engineers then verify. Draft-and-verify is far faster than writing from scratch.
+- **Test generation for existing behavior.** This is the highest-value application. Before changing legacy code, you need tests that capture what it currently does, including behavior nobody intended. Models are effective at generating broad characterization tests from existing code.
+- **Mechanical transformation.** Syntax updates, framework version migrations, and consistent refactors across many files, where the change is well-defined and verifiable.
+- **Dead code identification.** Proposing candidates for removal, subject to verification against production usage data.
 
 ## Where it fails
 
-**Business rule preservation.** Legacy code contains conditions that exist because of a regulatory requirement or an incident a decade ago. A model sees a strange conditional and may simplify it away, because nothing in the code explains why it exists.
-
-**Architectural redesign.** Translating a monolith into services requires decisions about boundaries, transactions, and consistency that depend on business context the code does not contain.
-
-**Performance-critical paths.** Rewrites that are functionally correct and materially slower are common, particularly where the original contained non-obvious optimizations.
-
-**Systems without tests.** Without a way to verify equivalence, any rewrite is unverifiable. This is why test generation should precede transformation.
+- **Business rule preservation.** Legacy code contains conditions that exist because of a regulatory requirement or an incident a decade ago. A model sees a strange conditional and may simplify it away, because nothing in the code explains why it exists.
+- **Architectural redesign.** Translating a monolith into services requires decisions about boundaries, transactions, and consistency that depend on business context the code does not contain.
+- **Performance-critical paths.** Rewrites that are functionally correct and materially slower are common, particularly where the original contained non-obvious optimizations.
+- **Systems without tests.** Without a way to verify equivalence, any rewrite is unverifiable. This is why test generation should precede transformation.
 
 ## A workable sequence
 

@@ -8,7 +8,6 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Brand authority for AI search** is less about domain metrics than about corroboration: whether what you say about yourself is confirmed by sources you do not control. Generative systems weigh agreement across independent sources, so a claim confined to your own domain reads as unverified.
 
 This is the slowest part of AI visibility work and the hardest for a competitor to copy, which makes it the part worth starting first.
@@ -31,17 +30,12 @@ Inconsistency here is common and costly. A model that cannot confidently determi
 
 Not all mentions are equal. In rough order of value for corroboration:
 
-**Established industry publications** in your sector, especially where you contribute substantive analysis rather than promotional copy.
-
-**Technical documentation and reference material** that other people cite, including open source projects, specifications, and integration guides.
-
-**Recognized directories and review platforms** for your category, kept accurate and current.
-
-**Academic, standards, or government sources** where your work is genuinely relevant.
-
-**Substantive community participation** in the forums where your buyers ask questions, where answers are detailed enough to be quoted.
-
-**Conference and podcast appearances** with transcripts or written summaries that are indexable.
+- **Established industry publications** in your sector, especially where you contribute substantive analysis rather than promotional copy.
+- **Technical documentation and reference material** that other people cite, including open source projects, specifications, and integration guides.
+- **Recognized directories and review platforms** for your category, kept accurate and current.
+- **Academic, standards, or government sources** where your work is genuinely relevant.
+- **Substantive community participation** in the forums where your buyers ask questions, where answers are detailed enough to be quoted.
+- **Conference and podcast appearances** with transcripts or written summaries that are indexable.
 
 Low-value: syndicated press releases, paid listing farms, and guest posts on sites that exist to sell links. These add noise without adding trust.
 

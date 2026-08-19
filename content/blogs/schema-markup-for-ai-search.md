@@ -8,7 +8,6 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Schema markup for AI search** helps machines resolve what your content is about, who published it, and what it asserts. It does not force citation, and treating it as a lever that guarantees inclusion leads to elaborate implementations with no measurable return.
 
 Used correctly it removes ambiguity, which matters because ambiguity is a common reason a model reaches for a competitor it can identify confidently.
@@ -21,19 +20,13 @@ The value concentrates in entity resolution. If a model cannot confidently deter
 
 ## The types worth implementing
 
-**Organization.** Name, URL, logo, description, contact points, social profiles, and identifiers. Keep the description identical to what you use on third-party profiles so the entity resolves consistently.
-
-**WebSite** with search action where a site search exists.
-
-**Article** or **BlogPosting** for editorial content, with author, publisher, datePublished, and dateModified. Accurate modification dates matter for freshness judgments.
-
-**Person** for authors, linked from articles, with credentials that establish subject expertise. Expertise signals carry real weight when a model is choosing between conflicting sources.
-
-**Service** or **Product** for commercial pages, with area served and provider linked to your organization entity.
-
-**FAQPage** for genuine question-answer sections that appear visibly on the page.
-
-**BreadcrumbList** for site structure clarity.
+- **Organization.** Name, URL, logo, description, contact points, social profiles, and identifiers. Keep the description identical to what you use on third-party profiles so the entity resolves consistently.
+- **WebSite** with search action where a site search exists.
+- **Article** or **BlogPosting** for editorial content, with author, publisher, datePublished, and dateModified. Accurate modification dates matter for freshness judgments.
+- **Person** for authors, linked from articles, with credentials that establish subject expertise. Expertise signals carry real weight when a model is choosing between conflicting sources.
+- **Service** or **Product** for commercial pages, with area served and provider linked to your organization entity.
+- **FAQPage** for genuine question-answer sections that appear visibly on the page.
+- **BreadcrumbList** for site structure clarity.
 
 ## Implementation patterns that hold up
 

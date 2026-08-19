@@ -8,22 +8,17 @@ readTime: "7 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Multi-agent system architecture** distributes a task across several specialized agents rather than one general one. It solves real problems at scale and creates a class of failures that single-agent systems never encounter.
 
 The default should be one agent. Move to several only when you can name the specific limitation forcing the change.
 
 ## Legitimate reasons to split
 
-**Context pressure.** When the tools, instructions, and knowledge required exceed what fits usefully in one context, splitting by domain keeps each agent's working set focused.
-
-**Tool selection accuracy.** Selection degrades as the tool surface grows. Partitioning tools across specialists restores accuracy.
-
-**Differing risk profiles.** An agent that only reads and summarizes has different controls from one that moves money. Separating them lets you apply proportionate authorization rather than granting the union of all permissions to one actor.
-
-**Parallelism.** Independent subtasks genuinely running concurrently reduce wall-clock time.
-
-**Independent evolution.** Separate agents can be evaluated and deployed on separate cycles.
+- **Context pressure.** When the tools, instructions, and knowledge required exceed what fits usefully in one context, splitting by domain keeps each agent's working set focused.
+- **Tool selection accuracy.** Selection degrades as the tool surface grows. Partitioning tools across specialists restores accuracy.
+- **Differing risk profiles.** An agent that only reads and summarizes has different controls from one that moves money. Separating them lets you apply proportionate authorization rather than granting the union of all permissions to one actor.
+- **Parallelism.** Independent subtasks genuinely running concurrently reduce wall-clock time.
+- **Independent evolution.** Separate agents can be evaluated and deployed on separate cycles.
 
 ## Bad reasons to split
 
@@ -53,15 +48,11 @@ Whatever you choose, one agent must own each fact. When two agents can write the
 
 ## Failure modes to design against
 
-**Loops.** Agents delegating back and forth. Enforce a depth limit and a maximum total step count across the whole system, not per agent.
-
-**Error amplification.** A wrong conclusion early in a chain gets restated downstream with increasing confidence. Validate factual claims between stages against source data rather than trusting the previous agent.
-
-**Cost explosion.** Each agent adds calls. Set a budget for the whole task and enforce it centrally, not per agent.
-
-**Permission accumulation.** Delegated agents must operate under the original requester's authority. Without this, delegation becomes privilege escalation.
-
-**Diffuse accountability.** When something goes wrong, the trace must show which agent decided what. Log the full chain with agent identity on every step.
+- **Loops.** Agents delegating back and forth. Enforce a depth limit and a maximum total step count across the whole system, not per agent.
+- **Error amplification.** A wrong conclusion early in a chain gets restated downstream with increasing confidence. Validate factual claims between stages against source data rather than trusting the previous agent.
+- **Cost explosion.** Each agent adds calls. Set a budget for the whole task and enforce it centrally, not per agent.
+- **Permission accumulation.** Delegated agents must operate under the original requester's authority. Without this, delegation becomes privilege escalation.
+- **Diffuse accountability.** When something goes wrong, the trace must show which agent decided what. Log the full chain with agent identity on every step.
 
 ## Evaluation
 

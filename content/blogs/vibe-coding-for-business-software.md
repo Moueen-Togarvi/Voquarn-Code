@@ -8,7 +8,6 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Vibe coding for business software** describes building applications by describing intent to an AI coding tool and accepting largely unreviewed output. It has produced genuinely useful results for prototypes and internal tools, and it produces predictable problems when the output becomes something a business depends on.
 
 The useful question is not whether to use it, but where the boundary sits.
@@ -25,15 +24,11 @@ One-off data tasks, migrations, and analysis where the output is verified by ins
 
 ## Where it breaks
 
-**Security.** Generated code frequently omits authorization checks, trusts user input, exposes data across tenant boundaries, and handles secrets carelessly. These faults are not visible from the working behavior of the application, which is why they survive to production.
-
-**Data correctness.** Subtle errors in aggregation, currency, timezone, and null handling produce plausible wrong numbers. Business software that reports wrong figures confidently is worse than software that fails.
-
-**Concurrency and state.** Race conditions and missing idempotency rarely appear in testing and appear reliably under real load.
-
-**Maintainability.** Code assembled without a consistent structure becomes expensive to change. The cost arrives later, which is why it is systematically underestimated at the point of decision.
-
-**Compliance and auditability.** Regulated processes need documented controls, traceable decisions, and evidence. Code nobody reviewed cannot supply that.
+- **Security.** Generated code frequently omits authorization checks, trusts user input, exposes data across tenant boundaries, and handles secrets carelessly. These faults are not visible from the working behavior of the application, which is why they survive to production.
+- **Data correctness.** Subtle errors in aggregation, currency, timezone, and null handling produce plausible wrong numbers. Business software that reports wrong figures confidently is worse than software that fails.
+- **Concurrency and state.** Race conditions and missing idempotency rarely appear in testing and appear reliably under real load.
+- **Maintainability.** Code assembled without a consistent structure becomes expensive to change. The cost arrives later, which is why it is systematically underestimated at the point of decision.
+- **Compliance and auditability.** Regulated processes need documented controls, traceable decisions, and evidence. Code nobody reviewed cannot supply that.
 
 ## A workable boundary
 

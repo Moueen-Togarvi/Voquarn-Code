@@ -58,16 +58,22 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               <Link href="/contact" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Support</Link>
             </div>
 
-            <div className="flex flex-col space-y-4 col-span-2 sm:col-span-1">
+            <div className="flex flex-col space-y-4">
               <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Company</h4>
               <Link href="/about" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About</Link>
               <Link href="/careers" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Careers</Link>
               <Link href="/team" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Team</Link>
               <Link href="/contact" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Contact</Link>
             </div>
+
+            <div className="flex flex-col space-y-4 sm:hidden">
+              <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Contact</h4>
+              <a href={`mailto:${settings.email}`} className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors break-all">{settings.email}</a>
+              <a href={`tel:${settings.phone.replace(/\s+/g, "")}`} className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">{settings.phone}</a>
+            </div>
           </div>
 
-          <div className="lg:col-span-3 flex flex-col space-y-7 pt-2">
+          <div className="hidden sm:flex flex-col space-y-7 pt-2 lg:col-span-3">
             <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Direct Contact</h4>
 
             <div className="space-y-4">

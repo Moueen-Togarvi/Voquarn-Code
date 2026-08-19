@@ -8,7 +8,6 @@ readTime: "7 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **EU AI Act compliance software** obligations depend on two things: what the system does and what role your organization plays in supplying it. Teams frequently assume the regulation applies uniformly, then either over-engineer for low-risk systems or miss obligations on higher-risk ones.
 
 This is an operational overview for engineering and product teams. It is not legal advice, and classification decisions in particular should be confirmed with qualified counsel.
@@ -33,17 +32,12 @@ Transparency obligations apply more broadly, including disclosing that a person 
 
 Rather than treating compliance as a document produced before launch, build the artifacts as part of engineering work.
 
-**System inventory** with purpose, classification, owner, model versions, and data sources, maintained as systems change rather than assembled annually.
-
-**Technical documentation** describing intended purpose, design, training and test data characteristics, performance metrics, known limitations, and the human oversight arrangement. Written during development, this is largely a byproduct of good engineering practice.
-
-**Logging** with sufficient retention to trace how a specific decision was reached, including model version, inputs, and outputs, with personal data handled appropriately.
-
-**Evaluation records** showing accuracy and robustness testing, including performance across relevant subgroups where the use case affects people differently.
-
-**Human oversight design** documented as a mechanism rather than a claim: what a reviewer sees, what they can change, and evidence they can act meaningfully rather than rubber-stamping.
-
-**Incident process** covering detection, assessment, correction, and notification where required.
+- **System inventory** with purpose, classification, owner, model versions, and data sources, maintained as systems change rather than assembled annually.
+- **Technical documentation** describing intended purpose, design, training and test data characteristics, performance metrics, known limitations, and the human oversight arrangement. Written during development, this is largely a byproduct of good engineering practice.
+- **Logging** with sufficient retention to trace how a specific decision was reached, including model version, inputs, and outputs, with personal data handled appropriately.
+- **Evaluation records** showing accuracy and robustness testing, including performance across relevant subgroups where the use case affects people differently.
+- **Human oversight design** documented as a mechanism rather than a claim: what a reviewer sees, what they can change, and evidence they can act meaningfully rather than rubber-stamping.
+- **Incident process** covering detection, assessment, correction, and notification where required.
 
 ## Practical sequencing
 

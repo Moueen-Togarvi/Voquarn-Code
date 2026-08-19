@@ -8,22 +8,17 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **AI code review automation** adds a reviewer that never gets tired and never has context on why the system is built the way it is. Used well it removes mechanical burden from human reviewers. Used badly it floods pull requests with plausible comments that cost more time than they save.
 
 The design question is which categories of review to hand over.
 
 ## What automates well
 
-**Mechanical consistency.** Naming, structure, error handling patterns, and adherence to project conventions. These are objective and tedious, which is exactly the right profile.
-
-**Common defect classes.** Missing null checks, unhandled error paths, resource leaks, off-by-one errors, and incorrect async handling. Models catch many of these reliably.
-
-**Security patterns with known shapes.** Missing authorization on a new endpoint, unvalidated input reaching a query, secrets in source, unsafe deserialization. High value because these are costly and easy to miss under time pressure.
-
-**Test coverage gaps.** Identifying branches and error paths a change leaves untested.
-
-**Documentation drift.** Flagging when a change makes existing documentation or comments wrong.
+- **Mechanical consistency.** Naming, structure, error handling patterns, and adherence to project conventions. These are objective and tedious, which is exactly the right profile.
+- **Common defect classes.** Missing null checks, unhandled error paths, resource leaks, off-by-one errors, and incorrect async handling. Models catch many of these reliably.
+- **Security patterns with known shapes.** Missing authorization on a new endpoint, unvalidated input reaching a query, secrets in source, unsafe deserialization. High value because these are costly and easy to miss under time pressure.
+- **Test coverage gaps.** Identifying branches and error paths a change leaves untested.
+- **Documentation drift.** Flagging when a change makes existing documentation or comments wrong.
 
 ## What does not automate
 

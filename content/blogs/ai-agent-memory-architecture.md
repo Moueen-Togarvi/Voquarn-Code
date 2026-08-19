@@ -8,20 +8,16 @@ readTime: "7 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **AI agent memory architecture** decides what an agent carries between steps, sessions, and users. Memory improves continuity and creates the most common privacy failures in agent systems, usually by remembering something across a boundary it should not have crossed.
 
 Design it as a data system with owners, scopes, and retention, not as a feature that accumulates whatever seems useful.
 
 ## Distinguish the memory types
 
-**Working memory** is the current context: the task, recent steps, and tool results. It exists for one task and is discarded. Most reasoning quality problems trace to this being cluttered rather than to long-term memory being absent.
-
-**Episodic memory** records what happened in past interactions: what a user asked, what was done, what the outcome was. It supports continuity across sessions.
-
-**Semantic memory** holds durable facts: a user's stated preferences, account configuration, established constraints. These are assertions rather than events.
-
-**Procedural memory** captures how to do things well in your environment, such as corrections that improved past outcomes.
+- **Working memory** is the current context: the task, recent steps, and tool results. It exists for one task and is discarded. Most reasoning quality problems trace to this being cluttered rather than to long-term memory being absent.
+- **Episodic memory** records what happened in past interactions: what a user asked, what was done, what the outcome was. It supports continuity across sessions.
+- **Semantic memory** holds durable facts: a user's stated preferences, account configuration, established constraints. These are assertions rather than events.
+- **Procedural memory** captures how to do things well in your environment, such as corrections that improved past outcomes.
 
 Conflating these produces systems that cannot answer basic operational questions, such as which stored item to delete when a user withdraws consent.
 

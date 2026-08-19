@@ -8,18 +8,15 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Open source LLM self hosting** is often proposed as a way to reduce cost or satisfy data constraints. It achieves both under specific conditions and costs considerably more than expected under others.
 
 The deciding variables are utilization, capability requirements, and whether you have the platform engineering capacity to operate it.
 
 ## When it makes sense
 
-**Data constraints that managed services cannot satisfy.** Regulatory or contractual requirements that prohibit sending data to a third party, where regional managed endpoints are insufficient. This is the clearest case and often the deciding one.
-
-**Steady high volume.** Accelerator economics reward high utilization. Consistent heavy traffic can make self-hosting cheaper per token than managed APIs by a meaningful margin.
-
-**Latency requirements** that co-location can meet and a remote API cannot.
+- **Data constraints that managed services cannot satisfy.** Regulatory or contractual requirements that prohibit sending data to a third party, where regional managed endpoints are insufficient. This is the clearest case and often the deciding one.
+- **Steady high volume.** Accelerator economics reward high utilization. Consistent heavy traffic can make self-hosting cheaper per token than managed APIs by a meaningful margin.
+- **Latency requirements** that co-location can meet and a remote API cannot.
 
 **Heavy customization**, where fine-tuned variants are central to the product and you need full control of the serving stack.
 

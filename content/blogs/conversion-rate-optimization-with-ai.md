@@ -8,22 +8,17 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Conversion rate optimization with AI** is frequently sold as automated testing that finds winners without human involvement. The useful applications are narrower and mostly involve accelerating the analysis and generation stages while leaving experimental discipline intact.
 
 The risk is that automation makes it easier to produce statistically meaningless results faster.
 
 ## Where AI genuinely helps
 
-**Analyzing qualitative feedback at scale.** Session recordings, support tickets, survey responses, and reviews contain the reasons people do not convert. Models can categorize and summarize thousands of these, which is otherwise a task nobody has time for.
-
-**Generating test variants.** Producing multiple headline, copy, and layout variations quickly. Generation is not the bottleneck in most programmes, but it removes a real delay.
-
-**Identifying friction patterns** across analytics data, surfacing segments and paths with unusual drop-off that manual analysis misses.
-
-**Prioritizing a backlog** by combining expected impact, effort, and confidence, as an input to human judgment rather than a replacement.
-
-**Personalizing at segment level** where you have enough traffic per segment to measure the effect.
+- **Analyzing qualitative feedback at scale.** Session recordings, support tickets, survey responses, and reviews contain the reasons people do not convert. Models can categorize and summarize thousands of these, which is otherwise a task nobody has time for.
+- **Generating test variants.** Producing multiple headline, copy, and layout variations quickly. Generation is not the bottleneck in most programmes, but it removes a real delay.
+- **Identifying friction patterns** across analytics data, surfacing segments and paths with unusual drop-off that manual analysis misses.
+- **Prioritizing a backlog** by combining expected impact, effort, and confidence, as an input to human judgment rather than a replacement.
+- **Personalizing at segment level** where you have enough traffic per segment to measure the effect.
 
 ## Where it does not replace method
 
@@ -35,13 +30,10 @@ Qualitative understanding still matters. Knowing why a change worked is what all
 
 ## The statistical traps automation creates
 
-**Peeking.** Continuously checking results and stopping when significance appears inflates false positives substantially. Systems that surface real-time results encourage exactly this.
-
-**Multiple comparisons.** Testing twenty variants means several will appear to win by chance. Correction is necessary and often absent.
-
-**Insufficient duration.** Tests must cover full business cycles including weekends and pay periods. A test stopped after three days on a significance threshold captures a weekday effect, not a real one.
-
-**Segment mining.** Automated systems reporting that a variant won for one segment are frequently reporting noise found by searching many segments.
+- **Peeking.** Continuously checking results and stopping when significance appears inflates false positives substantially. Systems that surface real-time results encourage exactly this.
+- **Multiple comparisons.** Testing twenty variants means several will appear to win by chance. Correction is necessary and often absent.
+- **Insufficient duration.** Tests must cover full business cycles including weekends and pay periods. A test stopped after three days on a significance threshold captures a weekday effect, not a real one.
+- **Segment mining.** Automated systems reporting that a variant won for one segment are frequently reporting noise found by searching many segments.
 
 Set your stopping rule and sample size in advance, and hold to it regardless of what the interim numbers show.
 

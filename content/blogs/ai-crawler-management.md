@@ -8,18 +8,15 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **AI crawler management** is the decision about which automated agents may read your site, followed by the configuration that makes that decision real. Most sites have never made the decision explicitly, and are either blocking valuable agents by accident or allowing everything without knowing it.
 
 ## The categories that matter
 
 AI crawlers serve different purposes, and conflating them leads to bad policy.
 
-**Search and answer retrieval agents** fetch pages to answer a user's live question and typically cite sources. Blocking these removes you from consideration in AI answers.
-
-**Training data collectors** gather content to train future models. There is no direct visibility benefit, and the licensing question is genuinely contested.
-
-**User-initiated fetchers** retrieve a specific page because a user pasted a link or asked about it. Blocking these breaks a direct user request involving your content.
+- **Search and answer retrieval agents** fetch pages to answer a user's live question and typically cite sources. Blocking these removes you from consideration in AI answers.
+- **Training data collectors** gather content to train future models. There is no direct visibility benefit, and the licensing question is genuinely contested.
+- **User-initiated fetchers** retrieve a specific page because a user pasted a link or asked about it. Blocking these breaks a direct user request involving your content.
 
 The important asymmetry: blocking retrieval agents has an immediate, measurable visibility cost, while blocking training collectors does not.
 

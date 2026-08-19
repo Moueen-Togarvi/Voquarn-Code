@@ -8,7 +8,6 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 The **GEO vs SEO** comparison is usually framed as a replacement, which misreads the relationship. Generative engine optimization depends on search engine optimization for its inputs. The sensible question is not which to choose but how they differ and where budget should shift.
 
 ## The core difference
@@ -31,15 +30,11 @@ Link and mention building transfers, though the emphasis shifts. For classic SEO
 
 ## What changes
 
-**Unit of optimization.** SEO optimizes pages. GEO optimizes claims. A page can rank well while containing no passage worth quoting.
-
-**Structure.** Burying the conclusion is survivable in classic SEO if the page is comprehensive. In GEO it is fatal, because extraction favors direct, self-contained answers placed early.
-
-**Corroboration.** Classic SEO tolerates unique claims. Generative systems discount claims that appear only on one domain, so off-site confirmation becomes part of content strategy rather than a separate PR activity.
-
-**Measurement.** Rankings are relatively stable and checkable. Citations are non-deterministic and require repeated sampling of a frozen prompt set. Reporting has to carry stated uncertainty.
-
-**Entity clarity.** Ambiguity about who you are costs more in GEO, because the model must resolve you before citing you.
+- **Unit of optimization.** SEO optimizes pages. GEO optimizes claims. A page can rank well while containing no passage worth quoting.
+- **Structure.** Burying the conclusion is survivable in classic SEO if the page is comprehensive. In GEO it is fatal, because extraction favors direct, self-contained answers placed early.
+- **Corroboration.** Classic SEO tolerates unique claims. Generative systems discount claims that appear only on one domain, so off-site confirmation becomes part of content strategy rather than a separate PR activity.
+- **Measurement.** Rankings are relatively stable and checkable. Citations are non-deterministic and require repeated sampling of a frozen prompt set. Reporting has to carry stated uncertainty.
+- **Entity clarity.** Ambiguity about who you are costs more in GEO, because the model must resolve you before citing you.
 
 ## What does not transfer
 

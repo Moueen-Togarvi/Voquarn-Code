@@ -8,32 +8,25 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Sovereign AI deployment** means running AI capability under a jurisdiction's control rather than depending on infrastructure governed elsewhere. The term covers a wide range, from using a regional endpoint of a global provider to operating models entirely on domestic infrastructure.
 
 Choosing a level requires being specific about which risk you are addressing, because the options differ sharply in cost.
 
 ## The drivers
 
-**Regulatory obligation.** Sectors such as government, defence, healthcare, and finance frequently carry explicit constraints on where data is processed and who may access it.
-
-**Continuity risk.** Dependence on a foreign provider carries exposure to export controls, sanctions, and commercial decisions outside your influence. For critical national functions this is a legitimate planning concern rather than a hypothetical.
-
-**Confidentiality.** Some data cannot be sent to a third party under any commercial terms.
-
-**Economic policy.** Some sovereign AI programmes aim at building domestic capability and retaining value locally, which is a different objective from risk mitigation and implies different choices.
+- **Regulatory obligation.** Sectors such as government, defence, healthcare, and finance frequently carry explicit constraints on where data is processed and who may access it.
+- **Continuity risk.** Dependence on a foreign provider carries exposure to export controls, sanctions, and commercial decisions outside your influence. For critical national functions this is a legitimate planning concern rather than a hypothetical.
+- **Confidentiality.** Some data cannot be sent to a third party under any commercial terms.
+- **Economic policy.** Some sovereign AI programmes aim at building domestic capability and retaining value locally, which is a different objective from risk mitigation and implies different choices.
 
 Being clear which driver applies matters, because regional endpoints address residency but not continuity, while full self-hosting addresses both at much higher cost.
 
 ## The levels
 
-**Regional managed endpoints.** A global provider processes in a specified region under contractual commitment. Lowest cost and effort, addresses residency, does not address provider dependence. Suitable for most commercial confidentiality requirements.
-
-**Dedicated managed capacity.** Isolated infrastructure operated by a provider in-region, sometimes within your own cloud tenancy. Stronger isolation, still dependent on the provider commercially.
-
-**Self-hosted open-weight models.** You operate the models on infrastructure you control, domestic or on-premises. Addresses residency and dependence together. Requires serving expertise, hardware access, and ongoing capability management.
-
-**Full domestic stack.** Models, infrastructure, and often training run within the jurisdiction. This is a national or large-institution undertaking rather than an enterprise decision.
+- **Regional managed endpoints.** A global provider processes in a specified region under contractual commitment. Lowest cost and effort, addresses residency, does not address provider dependence. Suitable for most commercial confidentiality requirements.
+- **Dedicated managed capacity.** Isolated infrastructure operated by a provider in-region, sometimes within your own cloud tenancy. Stronger isolation, still dependent on the provider commercially.
+- **Self-hosted open-weight models.** You operate the models on infrastructure you control, domestic or on-premises. Addresses residency and dependence together. Requires serving expertise, hardware access, and ongoing capability management.
+- **Full domestic stack.** Models, infrastructure, and often training run within the jurisdiction. This is a national or large-institution undertaking rather than an enterprise decision.
 
 ## Cost realities
 

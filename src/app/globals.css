@@ -13,6 +13,7 @@
   --background: #ffffff;
   --foreground: #000000;
   --primary: #ff5400;
+  --blog-accent: #c2410c;
   --panel: #ffffff;
   --border: #eaeaea;
   --muted: #666666;
@@ -61,6 +62,7 @@
 .dark {
   --background: #07111a;
   --foreground: #e9eef2;
+  --blog-accent: #ff8a4c;
   --panel: rgba(255, 255, 255, 0.06);
   --border: rgba(255, 255, 255, 0.1);
   --muted: rgba(233, 238, 242, 0.72);

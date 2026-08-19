@@ -8,26 +8,19 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 An **enterprise agent orchestration platform** manages the agents an organization runs: their tools, permissions, execution, observability, and cost. The question most teams face is whether to adopt one, and when.
 
 The answer depends almost entirely on how many agent workflows you actually operate. Adopting a platform for a single workflow adds abstraction without solving a problem you have.
 
 ## The capabilities that matter
 
-**Identity and authorization.** Agents must act on behalf of a user with that user's permissions, across every tool and delegation hop. This is the capability most worth buying, because it is genuinely hard to build correctly.
-
-**Tool registry and governance.** A catalogue of available tools with owners, schemas, risk classifications, and which agents may use which. Without this, tool sprawl becomes ungovernable at around the fifth workflow.
-
-**Execution control.** Step limits, timeouts, budgets, concurrency limits, and safe termination enforced centrally rather than reimplemented per agent.
-
-**Observability.** Complete traces of steps, tool calls, approvals, failures, model versions, latency, and cost, with replay. This is the difference between diagnosing a bad decision and guessing.
-
-**Evaluation infrastructure.** Running test suites against workflows on every change, with regression detection.
-
-**Approval workflow.** Routing consequential actions to the right person with sufficient context, and recording the decision.
-
-**Cost attribution.** Spend broken down by workflow, team, and tenant. Without it, cost control is impossible past a handful of agents.
+- **Identity and authorization.** Agents must act on behalf of a user with that user's permissions, across every tool and delegation hop. This is the capability most worth buying, because it is genuinely hard to build correctly.
+- **Tool registry and governance.** A catalogue of available tools with owners, schemas, risk classifications, and which agents may use which. Without this, tool sprawl becomes ungovernable at around the fifth workflow.
+- **Execution control.** Step limits, timeouts, budgets, concurrency limits, and safe termination enforced centrally rather than reimplemented per agent.
+- **Observability.** Complete traces of steps, tool calls, approvals, failures, model versions, latency, and cost, with replay. This is the difference between diagnosing a bad decision and guessing.
+- **Evaluation infrastructure.** Running test suites against workflows on every change, with regression detection.
+- **Approval workflow.** Routing consequential actions to the right person with sufficient context, and recording the decision.
+- **Cost attribution.** Spend broken down by workflow, team, and tenant. Without it, cost control is impossible past a handful of agents.
 
 ## Build versus buy
 

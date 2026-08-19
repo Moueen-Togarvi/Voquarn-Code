@@ -8,16 +8,13 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Headless commerce AI integration** benefits from the same separation that makes headless attractive: AI capability can be added as a service without rebuilding the storefront. The architectural questions are where inference sits, how latency is managed, and what happens when the AI layer fails.
 
 ## Where inference belongs
 
-**At the edge or in the storefront layer** for anything affecting initial render. Search ranking and category ordering influence what the shopper sees first, and a slow call here damages conversion more than better ranking improves it.
-
-**In a dedicated service** for recommendation and search, called by the storefront with a strict timeout. This keeps model concerns out of the commerce platform and allows independent scaling and deployment.
-
-**Asynchronously** for anything not needed to render: enrichment of product data, generating descriptions, categorization, and updating profiles. Push this out of the request path entirely.
+- **At the edge or in the storefront layer** for anything affecting initial render. Search ranking and category ordering influence what the shopper sees first, and a slow call here damages conversion more than better ranking improves it.
+- **In a dedicated service** for recommendation and search, called by the storefront with a strict timeout. This keeps model concerns out of the commerce platform and allows independent scaling and deployment.
+- **Asynchronously** for anything not needed to render: enrichment of product data, generating descriptions, categorization, and updating profiles. Push this out of the request path entirely.
 
 The rule that matters: nothing in the critical render path should depend on a synchronous model call without a fast fallback.
 

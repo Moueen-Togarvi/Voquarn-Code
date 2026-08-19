@@ -8,22 +8,17 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 An **AI incident response plan** covers failures that conventional incident processes handle poorly. An AI system that is fully available, returning responses quickly, and producing wrong outputs will not trigger any standard alert, and can run for weeks before anyone notices.
 
 The plan has to account for failures that look like normal operation.
 
 ## Incident types specific to AI systems
 
-**Systematic wrong output.** The system produces incorrect results for a category of inputs, often after a model or prompt change. Detection depends on evaluation and sampling rather than availability monitoring.
-
-**Data leakage.** Information appearing in an output where it should not, including cross-tenant leakage through retrieval or memory. This is frequently reported by a customer rather than detected internally.
-
-**Unauthorized action.** An agent performing an action outside its permitted set, whether through a permission gap or prompt injection.
-
-**Cost incident.** Runaway loops or an unexpected usage pattern producing spend far beyond budget, sometimes within hours.
-
-**Harmful or inappropriate output** reaching users, with reputational and in some cases regulatory consequence.
+- **Systematic wrong output.** The system produces incorrect results for a category of inputs, often after a model or prompt change. Detection depends on evaluation and sampling rather than availability monitoring.
+- **Data leakage.** Information appearing in an output where it should not, including cross-tenant leakage through retrieval or memory. This is frequently reported by a customer rather than detected internally.
+- **Unauthorized action.** An agent performing an action outside its permitted set, whether through a permission gap or prompt injection.
+- **Cost incident.** Runaway loops or an unexpected usage pattern producing spend far beyond budget, sometimes within hours.
+- **Harmful or inappropriate output** reaching users, with reputational and in some cases regulatory consequence.
 
 **Provider incident**, where the upstream model is degraded, deprecated, or unavailable.
 

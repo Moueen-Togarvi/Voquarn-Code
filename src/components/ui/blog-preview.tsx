@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Circle, Clock, Grip } from "lucide-react";
+import { categoryBadgeStyle } from "@/lib/category-color";
 
 type PreviewPost = {
   slug: string;
@@ -57,7 +58,7 @@ export function BlogPreview({ posts }: { posts: PreviewPost[] }) {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group flex min-h-[360px] flex-col overflow-hidden rounded-[18px] border border-neutral-200 bg-white text-neutral-950 shadow-[0_14px_35px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#ff5400]/45 hover:shadow-[0_22px_48px_rgba(255,84,0,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2"
+              className="group flex min-h-[330px] flex-col overflow-hidden rounded-[18px] border border-neutral-200 bg-white text-neutral-950 shadow-[0_14px_35px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#ff5400] hover:shadow-[0_22px_48px_rgba(255,84,0,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2"
             >
               <div className="relative aspect-[1.6/1] overflow-hidden bg-neutral-950">
                 <Image
@@ -68,8 +69,11 @@ export function BlogPreview({ posts }: { posts: PreviewPost[] }) {
                   className="object-cover grayscale brightness-[0.48] contrast-125 transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/20" />
-                <span className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/65 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.18em] text-white backdrop-blur-md">
-                  <Circle className="h-1.5 w-1.5 fill-[#ff5400] text-[#ff5400]" />
+                <span
+                  style={categoryBadgeStyle(post.category)}
+                  className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.18em] text-white backdrop-blur-md"
+                >
+                  <Circle className="h-1.5 w-1.5 fill-white text-white" />
                   {post.category}
                 </span>
                 <div className="absolute bottom-4 right-4 inline-flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-black/55 text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)] backdrop-blur-md">
@@ -89,12 +93,9 @@ export function BlogPreview({ posts }: { posts: PreviewPost[] }) {
                   {post.excerpt}
                 </p>
 
-                <div className="flex items-center gap-4">
-                  <span className="text-[10px] font-black uppercase tracking-[0.22em] text-[#d94700]">
-                    Read Article
-                  </span>
-                  <span className="h-px flex-1 bg-[#ff5400]/25 transition-colors group-hover:bg-[#ff5400]/60" />
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#ff5400] text-white shadow-[0_10px_24px_rgba(255,84,0,0.24)] transition-all duration-300 group-hover:translate-x-1 group-hover:bg-[#e04800]">
+                <div className="mt-1 flex min-h-8 items-center gap-3 border-t border-neutral-200 pt-3 transition-colors duration-300 group-hover:border-[#ff5400]/35">
+                  <span className="h-px flex-1 bg-[#ff5400]/20 transition-colors duration-300 group-hover:bg-[#ff5400]/60" />
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#ff5400] text-white shadow-[0_8px_18px_rgba(255,84,0,0.2)] transition-all duration-300 group-hover:translate-x-1 group-hover:bg-[#e04800] motion-reduce:transform-none">
                     <ArrowRight size={16} />
                   </span>
                 </div>

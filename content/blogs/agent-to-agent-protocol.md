@@ -8,7 +8,6 @@ readTime: "6 min read"
 publishedAt: "2026-08-19"
 status: "published"
 ---
-
 **Agent to agent protocol** work addresses a problem that appears once organizations run more than one agent system: agents built by different teams, on different frameworks, sometimes at different companies, need to delegate work to each other without custom integration for every pair.
 
 It is a different problem from connecting an agent to tools, and conflating the two leads to confused architecture.
@@ -23,13 +22,10 @@ That difference drives everything. Tool calls have deterministic contracts. Agen
 
 ## What these protocols provide
 
-**Capability discovery.** A way for one agent to learn what another can do, without a human wiring the integration in advance.
-
-**Task delegation with lifecycle.** Submitting work, receiving acknowledgment, polling or subscribing to progress, and receiving results or failure, since agent tasks often run far longer than a request timeout.
-
-**Structured message exchange** so intermediate clarification is possible when the receiver needs more information.
-
-**Identity and authorization context** so the receiving agent knows on whose behalf it is acting.
+- **Capability discovery.** A way for one agent to learn what another can do, without a human wiring the integration in advance.
+- **Task delegation with lifecycle.** Submitting work, receiving acknowledgment, polling or subscribing to progress, and receiving results or failure, since agent tasks often run far longer than a request timeout.
+- **Structured message exchange** so intermediate clarification is possible when the receiver needs more information.
+- **Identity and authorization context** so the receiving agent knows on whose behalf it is acting.
 
 ## The security question is the hard part
 
