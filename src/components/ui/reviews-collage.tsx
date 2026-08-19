@@ -125,7 +125,7 @@ export function ReviewsCollage({ reviews }: ReviewsCollageProps) {
             Read more reviews
           </a>
           <a
-            href="https://g.page/r/your-google-review-link"
+            href="https://g.page/r/CfyYXmIgeemCEAI/review"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-[#ff5400] px-6 py-3 text-[11px] font-bold uppercase tracking-wider text-white hover:scale-105 transition-all shadow-md"
