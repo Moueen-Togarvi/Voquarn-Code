@@ -4,6 +4,10 @@
     {
       "path": "/api/cron/cleanup-applications",
       "schedule": "17 3 * * *"
+    },
+    {
+      "path": "/api/cron/submit-indexnow",
+      "schedule": "0 4 * * 1"
     }
   ]
 }
