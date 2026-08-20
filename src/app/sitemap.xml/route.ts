@@ -22,7 +22,7 @@ const staticRoutes = [
 // Public pages were refreshed alongside the Markdown blog rollout. Keep this
 // tied to a real content change instead of using the request time, otherwise
 // crawlers would see a false lastmod value on every hourly regeneration.
-const SITE_LAST_MODIFIED = new Date("2026-08-19T00:00:00.000Z");
+const SITE_LAST_MODIFIED = new Date("2026-08-20T00:00:00.000Z");
 
 function escapeXml(value: string) {
   return value

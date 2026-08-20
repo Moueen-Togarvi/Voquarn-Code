@@ -80,6 +80,7 @@ export type BlogPost = {
   category: string;
   publishedAt: string;
   readTime: string;
+  seoKeywords?: string[];
   sections: string[];
   content?: Record<string, unknown>[] | null;
   coverImage?: string | null;

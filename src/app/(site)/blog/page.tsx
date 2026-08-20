@@ -28,7 +28,8 @@ const pageKeywords = [
 // Regenerated hourly so new/edited posts reach the live site without a redeploy.
 export const revalidate = 3600;
 
-const POSTS_PER_PAGE = 12;
+// Kept a multiple of 3 so the card grid always fills complete rows.
+const GRID_PAGE_SIZE = 12;
 
 type BlogPageProps = {
   searchParams: Promise<{
@@ -79,12 +80,25 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     const matchesTopic = !activeTopic || activeTopic.terms.some((term) => text.includes(term));
     return matchesQuery && matchesTopic;
   });
-  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
+  // BlogExplorer pulls post 0 out as a large "featured" card on page 1 (but
+  // only when nothing is filtered — see its own isFiltering check), which
+  // otherwise leaves 11 posts for a 3-column grid and a half-empty last row.
+  // Give that page one extra post so the remaining grid count stays a
+  // multiple of 3; every other page keeps the plain 12-per-page split.
+  const isFiltering = Boolean(query || activeTopic);
+  const firstPageSize = isFiltering ? GRID_PAGE_SIZE : GRID_PAGE_SIZE + 1;
+  const totalPages =
+    filteredPosts.length <= firstPageSize
+      ? 1
+      : 1 + Math.ceil((filteredPosts.length - firstPageSize) / GRID_PAGE_SIZE);
   const currentPage = Number.isFinite(parsedPage) ? Math.min(Math.max(parsedPage, 1), totalPages) : 1;
-  const pagePosts = filteredPosts.slice(
-    (currentPage - 1) * POSTS_PER_PAGE,
-    currentPage * POSTS_PER_PAGE,
-  );
+  const pagePosts =
+    currentPage === 1
+      ? filteredPosts.slice(0, firstPageSize)
+      : filteredPosts.slice(
+          firstPageSize + (currentPage - 2) * GRID_PAGE_SIZE,
+          firstPageSize + (currentPage - 1) * GRID_PAGE_SIZE,
+        );
 
   return (
     <>

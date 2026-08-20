@@ -1,5 +1,6 @@
 import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 const BLOG_DIRECTORY = path.join(process.cwd(), "content", "blogs");
 const PUBLISHED_AT = "2026-08-19";
@@ -258,7 +259,7 @@ const subjects = [
   },
 ];
 
-const angles = [
+export const angles = [
   { title: "Strategy Guide", slug: "strategy-guide", modifier: "strategy", intent: "build a defensible plan before selecting tools or vendors", focus: "sequencing business goals, constraints, ownership, and measurable outcomes" },
   { title: "Implementation Roadmap", slug: "implementation-roadmap", modifier: "implementation roadmap", intent: "move from discovery to a controlled production rollout", focus: "phases, dependencies, acceptance criteria, and rollout gates" },
   { title: "Cost and Budget Guide", slug: "cost-budget-guide", modifier: "cost", intent: "estimate realistic investment without comparing misleading headline prices", focus: "scope drivers, hidden costs, contingency, and total ownership" },
@@ -289,13 +290,23 @@ function sentenceList(items) {
   return items.map((item) => `- ${item[0].toUpperCase()}${item.slice(1)}.`).join("\n");
 }
 
-function renderPost(subject, angle) {
+export function renderPost(
+  subject,
+  angle,
+  { publishedAt = PUBLISHED_AT, trendSeries = "August 2026" } = {},
+) {
   const slug = `${subject.slug}-${angle.slug}-2026`;
-  const title = angle.slug === "trends-priorities"
-    ? `${angle.title}: ${subject.name}`
-    : `${angle.title}: ${subject.name} in 2026`;
+  const title = `${angle.title}: ${subject.name}`;
   const targetKeyword = `${subject.keyword} ${angle.modifier}`;
-  const description = `A practical ${targetKeyword} guide covering priorities, delivery steps, risks, metrics, and the decisions teams should make in 2026.`;
+  const secondaryKeywords = [
+    `${targetKeyword} 2026`,
+    `${subject.keyword} services`,
+    `${subject.keyword} company`,
+    `${subject.keyword} cost`,
+    `${subject.keyword} best practices`,
+    `${subject.keyword} Pakistan`,
+  ];
+  const description = `Learn ${targetKeyword} priorities, costs, risks, implementation steps, and success metrics for 2026.`;
 
   return `---
 title: ${quote(title)}
@@ -303,10 +314,11 @@ slug: ${quote(slug)}
 description: ${quote(description)}
 category: ${quote(subject.category)}
 targetKeyword: ${quote(targetKeyword)}
+secondaryKeywords: ${quote(secondaryKeywords.join(", "))}
 readTime: "8 min read"
-publishedAt: ${quote(PUBLISHED_AT)}
+publishedAt: ${quote(publishedAt)}
 status: "published"
-trendSeries: "August 2026"
+trendSeries: ${quote(trendSeries)}
 ---
 
 Teams searching for **${targetKeyword}** usually need to ${angle.intent}. ${subject.overview}
@@ -407,24 +419,52 @@ Publish information that is original, specific, crawlable, well structured, and 
 `;
 }
 
-async function main() {
-  if (subjects.length * angles.length !== EXPECTED_POSTS) {
-    throw new Error(`Expected ${EXPECTED_POSTS} posts, received ${subjects.length * angles.length}`);
+export async function generateBlogSeries({
+  seriesSubjects,
+  seriesAngles,
+  publishedAt,
+  trendSeries,
+  expectedPosts,
+}) {
+  if (seriesSubjects.length * seriesAngles.length !== expectedPosts) {
+    throw new Error(`Expected ${expectedPosts} posts, received ${seriesSubjects.length * seriesAngles.length}`);
   }
 
   await mkdir(BLOG_DIRECTORY, { recursive: true });
   const currentFiles = new Set((await readdir(BLOG_DIRECTORY)).filter((name) => name.endsWith(".md")));
-  const posts = subjects.flatMap((subject) => angles.map((angle) => ({ subject, angle })));
+  const posts = seriesSubjects.flatMap((subject) =>
+    seriesAngles.map((angle) => ({ subject, angle })),
+  );
   const targetFiles = posts.map(({ subject, angle }) => `${subject.slug}-${angle.slug}-2026.md`);
 
-  if (new Set(targetFiles).size !== EXPECTED_POSTS) {
+  if (new Set(targetFiles).size !== expectedPosts) {
     throw new Error("The trend-blog plan contains duplicate filenames.");
   }
 
   const managedFiles = new Set();
+  const existingTargetKeywords = new Map();
   for (const filename of currentFiles) {
     const source = await readFile(path.join(BLOG_DIRECTORY, filename), "utf8");
-    if (source.includes('trendSeries: "August 2026"')) managedFiles.add(filename);
+    if (source.includes(`trendSeries: ${quote(trendSeries)}`)) {
+      managedFiles.add(filename);
+    } else {
+      const keyword = source.match(/^targetKeyword:\s*"?([^"\n]+)"?$/m)?.[1]?.trim().toLowerCase();
+      if (keyword) existingTargetKeywords.set(keyword, filename);
+    }
+  }
+
+  const plannedKeywords = posts.map(({ subject, angle }) =>
+    `${subject.keyword} ${angle.modifier}`.trim().toLowerCase(),
+  );
+  if (new Set(plannedKeywords).size !== expectedPosts) {
+    throw new Error("The trend-blog plan contains duplicate primary keywords.");
+  }
+  const keywordConflicts = plannedKeywords.filter((keyword) => existingTargetKeywords.has(keyword));
+  if (keywordConflicts.length > 0) {
+    const keyword = keywordConflicts[0];
+    throw new Error(
+      `Refusing duplicate primary keyword "${keyword}" from ${existingTargetKeywords.get(keyword)}.`,
+    );
   }
 
   const conflicts = targetFiles.filter(
@@ -440,10 +480,22 @@ async function main() {
 
   for (const { subject, angle } of posts) {
     const filePath = path.join(BLOG_DIRECTORY, `${subject.slug}-${angle.slug}-2026.md`);
-    await writeFile(filePath, renderPost(subject, angle), "utf8");
+    await writeFile(filePath, renderPost(subject, angle, { publishedAt, trendSeries }), "utf8");
   }
 
-  console.log(`Generated ${EXPECTED_POSTS} published blog posts dated ${PUBLISHED_AT}.`);
+  console.log(`Generated ${expectedPosts} published blog posts dated ${publishedAt}.`);
 }
 
-await main();
+async function main() {
+  await generateBlogSeries({
+    seriesSubjects: subjects,
+    seriesAngles: angles,
+    publishedAt: PUBLISHED_AT,
+    trendSeries: "August 2026",
+    expectedPosts: EXPECTED_POSTS,
+  });
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  await main();
+}

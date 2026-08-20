@@ -330,6 +330,9 @@ export function blogPostJsonLd(post: BlogPost): Record<string, unknown> {
     },
     publisher: { "@id": organizationId() },
     inLanguage: "en",
+    ...(post.seoKeywords && post.seoKeywords.length > 0
+      ? { keywords: post.seoKeywords.join(", ") }
+      : {}),
   };
 }
 

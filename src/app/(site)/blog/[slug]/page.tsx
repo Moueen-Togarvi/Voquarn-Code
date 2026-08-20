@@ -25,6 +25,12 @@ type BlogPostPageProps = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
 
+function seoKeywords(post: { title: string; category: string; seoKeywords?: string[] }) {
+  return Array.from(
+    new Set([...articleKeywordCluster(post.title, post.category), ...(post.seoKeywords ?? [])]),
+  );
+}
+
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
@@ -35,10 +41,10 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   const post = await getBlogPost(slug);
   if (!post) return buildMetadata("Article not found", "The requested article could not be found.", "/blog");
 
-  return buildMetadata(`${post.title} | Voquarn Code`, post.excerpt, `/blog/${post.slug}`, {
+  return buildMetadata(post.title, post.excerpt, `/blog/${post.slug}`, {
     type: "article",
     publishedTime: post.publishedAt,
-    keywords: articleKeywordCluster(post.title, post.category),
+    keywords: seoKeywords(post),
     ...(post.coverImage ? { image: post.coverImage } : {}),
   });
 }
@@ -57,7 +63,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   );
   const hasRichContent = Boolean(post.content?.length);
   const tableOfContents = hasRichContent ? extractTableOfContents(post.content!) : [];
-  const pageKeywords = articleKeywordCluster(post.title, post.category);
+  const pageKeywords = seoKeywords(post);
   const articleUrl = new URL(`/blog/${post.slug}`, getSiteUrl()).toString();
   const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
     month: "long",

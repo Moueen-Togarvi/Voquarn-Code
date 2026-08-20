@@ -12,6 +12,8 @@ type Frontmatter = {
   slug: string;
   description: string;
   category: string;
+  targetKeyword?: string;
+  secondaryKeywords?: string;
   publishedAt?: string;
   readTime: string;
   status: "draft" | "published";
@@ -238,6 +240,10 @@ async function readMarkdownPosts(): Promise<BlogPost[]> {
         category: frontmatter.category,
         publishedAt: frontmatter.publishedAt ?? "",
         readTime: frontmatter.readTime,
+        seoKeywords: [
+          frontmatter.targetKeyword,
+          ...(frontmatter.secondaryKeywords?.split(",").map((keyword) => keyword.trim()) ?? []),
+        ].filter((keyword): keyword is string => Boolean(keyword)),
         sections: [],
         // Listing, sitemap, and static-param consumers only need metadata.
         // The article body is parsed on demand by getMarkdownBlogPost below.
@@ -264,6 +270,7 @@ async function readMarkdownPosts(): Promise<BlogPost[]> {
       category: post.category,
       publishedAt: post.publishedAt,
       readTime: post.readTime,
+      seoKeywords: post.seoKeywords,
       sections: post.sections,
       content: post.content,
       coverImage: post.coverImage,
