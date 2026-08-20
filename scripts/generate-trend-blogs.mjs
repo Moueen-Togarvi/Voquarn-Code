@@ -425,6 +425,7 @@ export async function generateBlogSeries({
   publishedAt,
   trendSeries,
   expectedPosts,
+  render = renderPost,
 }) {
   if (seriesSubjects.length * seriesAngles.length !== expectedPosts) {
     throw new Error(`Expected ${expectedPosts} posts, received ${seriesSubjects.length * seriesAngles.length}`);
@@ -480,7 +481,7 @@ export async function generateBlogSeries({
 
   for (const { subject, angle } of posts) {
     const filePath = path.join(BLOG_DIRECTORY, `${subject.slug}-${angle.slug}-2026.md`);
-    await writeFile(filePath, renderPost(subject, angle, { publishedAt, trendSeries }), "utf8");
+    await writeFile(filePath, render(subject, angle, { publishedAt, trendSeries }), "utf8");
   }
 
   console.log(`Generated ${expectedPosts} published blog posts dated ${publishedAt}.`);

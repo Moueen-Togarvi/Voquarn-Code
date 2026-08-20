@@ -17,6 +17,8 @@
     "blogs:generate:trends": "node scripts/generate-trend-blogs.mjs",
     "blogs:generate:seo-aug20": "node scripts/generate-august-20-seo-blogs.mjs",
     "blogs:generate:non-shopify-1000": "node scripts/generate-1000-non-shopify-blogs.mjs",
+    "blogs:generate:voquarn-comparisons": "node scripts/generate-500-voquarn-comparisons.mjs",
+    "blogs:generate:daily-work-1500": "node scripts/generate-1500-daily-work-blogs.mjs",
     "seed:admin": "npx tsx scripts/seed-admin.ts"
   },
   "dependencies": {
