@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { db } from "@/db";
 import { testimonials } from "@/db/schema";
 import { auth, isAdminSession } from "@/lib/auth";
+import { TESTIMONIALS_CACHE_TAG } from "@/lib/data";
 import { eq } from "drizzle-orm";
 import { AdminValidationError, parsePositiveId, parseTestimonial } from "@/lib/admin-validation";
 
@@ -14,6 +16,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     const body = await req.json();
     const [updated] = await db.update(testimonials).set(parseTestimonial(body)).where(eq(testimonials.id, id)).returning();
     if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    revalidateTag(TESTIMONIALS_CACHE_TAG, "max");
     return NextResponse.json(updated);
   } catch (error) {
     if (error instanceof AdminValidationError) return NextResponse.json({ error: error.message }, { status: 400 });
@@ -30,6 +33,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
     const id = parsePositiveId(rawId);
     const [deleted] = await db.delete(testimonials).where(eq(testimonials.id, id)).returning();
     if (!deleted) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    revalidateTag(TESTIMONIALS_CACHE_TAG, "max");
     return NextResponse.json({ success: true });
   } catch (error) {
     if (error instanceof AdminValidationError) return NextResponse.json({ error: error.message }, { status: 400 });

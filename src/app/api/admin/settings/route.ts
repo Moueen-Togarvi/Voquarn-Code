@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { db } from "@/db";
 import { siteSettings } from "@/db/schema";
 import { auth, isAdminSession } from "@/lib/auth";
+import { SITE_SETTINGS_CACHE_TAG } from "@/lib/data";
 import { eq } from "drizzle-orm";
 import {
   AdminValidationError,
@@ -68,6 +70,10 @@ export async function PUT(req: NextRequest) {
         await db.insert(siteSettings).values({ key, value: normalizedValue });
       }
     }
+
+    // The public layout reads these through a tagged cache, so drop it here
+    // instead of leaving the old values up for the rest of the hour.
+    revalidateTag(SITE_SETTINGS_CACHE_TAG, "max");
 
     return NextResponse.json({ success: true });
   } catch (error) {

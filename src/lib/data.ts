@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
 import { db } from "@/db";
 import {
   services,
@@ -43,6 +44,12 @@ async function withRetry<T>(fn: () => Promise<T>, retries = 3, baseDelayMs = 500
   }
   throw lastError;
 }
+
+// Cache tags for the two layout-level reads below. Admin writes call
+// revalidateTag with these so an edit shows up right away instead of waiting
+// out the hourly window.
+export const SITE_SETTINGS_CACHE_TAG = "site-settings";
+export const TESTIMONIALS_CACHE_TAG = "testimonials";
 
 // Every database getter below is wrapped in React's cache() so multiple calls to the
 // same function within one request (e.g. the root layout and the page it
@@ -152,9 +159,15 @@ export const getTeamMembers = cache(async (): Promise<TeamMember[]> => {
 });
 
 // ── Testimonials ──
-export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
-  try {
-    return await withRetry(async () => {
+// Read by the site layout, so every dynamically rendered page (and every ISR
+// regeneration) used to pay a Neon round-trip for it — a slow one whenever the
+// free-tier compute had suspended. unstable_cache keeps the rows in the Next
+// data cache instead; admin writes push through immediately via revalidateTag.
+// The fetch throws rather than swallowing errors so a failed query is never
+// what gets cached for the next hour.
+const loadTestimonials = unstable_cache(
+  async (): Promise<Testimonial[]> =>
+    withRetry(async () => {
       const items = await db.select().from(testimonials).orderBy(asc(testimonials.order));
       return items.map((t) => ({
         name: t.name,
@@ -164,7 +177,14 @@ export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
         mediaUrl: t.mediaUrl || null,
         mediaType: (t.mediaType as "image" | "video" | null) || null,
       }));
-    });
+    }),
+  ["testimonials"],
+  { tags: [TESTIMONIALS_CACHE_TAG], revalidate: 3600 },
+);
+
+export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
+  try {
+    return await loadTestimonials();
   } catch (error) {
     console.error("getTestimonials DB error:", error);
     return [];
@@ -284,6 +304,14 @@ export const getClientCategories = cache(async (): Promise<ClientCategory[]> => 
 // empty admin table."
 export type SiteSettings = typeof staticSite;
 
+// Cached for the same reason as testimonials above: the layout reads it on
+// every request, and the raw rows are tiny and identical for every visitor.
+const loadSiteSettingRows = unstable_cache(
+  () => withRetry(() => db.select().from(siteSettings)),
+  ["site-settings"],
+  { tags: [SITE_SETTINGS_CACHE_TAG], revalidate: 3600 },
+);
+
 export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
   const settings: SiteSettings = {
     ...staticSite,
@@ -291,7 +319,7 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
   };
 
   try {
-    const rows = await withRetry(() => db.select().from(siteSettings));
+    const rows = await loadSiteSettingRows();
     for (const row of rows) {
       switch (row.key) {
         case "site_name": settings.name = row.value; break;

@@ -50,7 +50,10 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   outputFileTracingIncludes: {
-    "/*": ["./content/blogs/**/*.md"],
+    // Article bodies are read from the Markdown files; every other blog
+    // consumer (listing, sitemap, llms.txt, static params) reads the prebuilt
+    // index instead, so both have to ship with the deployment.
+    "/*": ["./content/blogs/**/*.md", "./content/blog-index.json"],
   },
   allowedDevOrigins: ["127.0.0.1"],
   turbopack: {

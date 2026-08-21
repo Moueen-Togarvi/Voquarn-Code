@@ -65,27 +65,24 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const activeTopic = blogTopics.find((topic) => topic.value === requestedTopic) ?? null;
   const parsedPage = Number.parseInt(firstValue(filters.page) ?? "1", 10);
   const posts = await getBlogPosts();
-  const searchablePosts = posts.map(({ slug, title, excerpt, category, readTime, coverImage }) => ({
-    slug,
-    title,
-    excerpt,
-    category,
-    readTime,
-    coverImage,
-  }));
   const queryTokens = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  const filteredPosts = searchablePosts.filter((post) => {
-    const text = blogSearchText(post);
-    const matchesQuery = queryTokens.every((token) => text.includes(token));
-    const matchesTopic = !activeTopic || activeTopic.terms.some((term) => text.includes(term));
-    return matchesQuery && matchesTopic;
-  });
+  // Thousands of posts are in memory, so the unfiltered page (by far the most
+  // requested one) skips building a search string for every single one of them
+  // and pages straight through the already-sorted list.
+  const isFiltering = Boolean(query || activeTopic);
+  const filteredPosts = isFiltering
+    ? posts.filter((post) => {
+        const text = blogSearchText(post);
+        const matchesQuery = queryTokens.every((token) => text.includes(token));
+        const matchesTopic = !activeTopic || activeTopic.terms.some((term) => text.includes(term));
+        return matchesQuery && matchesTopic;
+      })
+    : posts;
   // BlogExplorer pulls post 0 out as a large "featured" card on page 1 (but
   // only when nothing is filtered — see its own isFiltering check), which
   // otherwise leaves 11 posts for a 3-column grid and a half-empty last row.
   // Give that page one extra post so the remaining grid count stays a
   // multiple of 3; every other page keeps the plain 12-per-page split.
-  const isFiltering = Boolean(query || activeTopic);
   const firstPageSize = isFiltering ? GRID_PAGE_SIZE : GRID_PAGE_SIZE + 1;
   const totalPages =
     filteredPosts.length <= firstPageSize
@@ -99,6 +96,17 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           firstPageSize + (currentPage - 2) * GRID_PAGE_SIZE,
           firstPageSize + (currentPage - 1) * GRID_PAGE_SIZE,
         );
+  // Only the posts actually on screen are narrowed to the card fields.
+  const explorerPosts = pagePosts.map(
+    ({ slug, title, excerpt, category, readTime, coverImage }) => ({
+      slug,
+      title,
+      excerpt,
+      category,
+      readTime,
+      coverImage,
+    }),
+  );
 
   return (
     <>
@@ -109,13 +117,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         type="CollectionPage"
         keywords={pageKeywords}
       />
-      <JsonLd
-        data={blogJsonLd(
-          posts.filter((post) => pagePosts.some((pagePost) => pagePost.slug === post.slug)),
-        )}
-      />
+      <JsonLd data={blogJsonLd(pagePosts)} />
       <BlogExplorer
-        posts={pagePosts}
+        posts={explorerPosts}
         totalPosts={filteredPosts.length}
         currentPage={currentPage}
         totalPages={totalPages}

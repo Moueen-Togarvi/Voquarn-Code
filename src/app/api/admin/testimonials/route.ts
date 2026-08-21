@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { db } from "@/db";
 import { testimonials } from "@/db/schema";
 import { auth, isAdminSession } from "@/lib/auth";
+import { TESTIMONIALS_CACHE_TAG } from "@/lib/data";
 import { desc } from "drizzle-orm";
 import { AdminValidationError, parseTestimonial } from "@/lib/admin-validation";
 
@@ -23,6 +25,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const [item] = await db.insert(testimonials).values(parseTestimonial(body)).returning();
+    revalidateTag(TESTIMONIALS_CACHE_TAG, "max");
     return NextResponse.json(item, { status: 201 });
   } catch (error) {
     if (error instanceof AdminValidationError) return NextResponse.json({ error: error.message }, { status: 400 });
