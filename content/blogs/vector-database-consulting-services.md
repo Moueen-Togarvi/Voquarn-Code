@@ -46,7 +46,7 @@ Separate experimentation from production. The experiment can compare prompts, mo
 
 Build rollback and replay into operations. When a regression appears, operators need to identify affected sessions, restore a known configuration, re-evaluate representative cases, and determine whether any completed actions require correction.
 
-For broader context, read our [AI implementation pillar guide](/blog/ai-integration-services-architecture-guide). It explains how this capability fits into a larger AI delivery and governance program.
+For broader context, read our [AI implementation pillar guide](/blog/ai-native-application-development). It explains how this capability fits into a larger AI delivery and governance program.
 
 ## Security and human control
 

@@ -46,7 +46,7 @@ Begin with the riskiest assumption, not the easiest interface. Use representativ
 
 Treat prompts and retrieval settings as production code. Review changes, link them to test evidence, deploy gradually, monitor comparative outcomes, and preserve the previous configuration. Provider aliases should not change behavior silently behind your release process.
 
-For broader context, read our [AI implementation pillar guide](/blog/ai-automation-for-businesses-use-cases). It explains how this capability fits into a larger AI delivery and governance program.
+For broader context, read our [AI implementation pillar guide](/blog/agentic-workflow-automation). It explains how this capability fits into a larger AI delivery and governance program.
 
 ## Security and human control
 

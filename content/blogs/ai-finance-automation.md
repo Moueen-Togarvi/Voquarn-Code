@@ -46,7 +46,7 @@ Roll out by risk tier. Start with read-only assistance, then recommendations, th
 
 Create an immutable release record joining model and provider versions, prompts, tools, policies, retrieval settings, code, evaluation results, and approval. Production traces should identify that release so regressions can be reproduced and rolled back.
 
-For broader context, read our [AI implementation pillar guide](/blog/ai-workflow-automation-roadmap). It explains how this capability fits into a larger AI delivery and governance program.
+For broader context, read our [AI implementation pillar guide](/blog/ai-workflow-automation-implementation-roadmap-2026). It explains how this capability fits into a larger AI delivery and governance program.
 
 ## Security and human control
 

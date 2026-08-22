@@ -46,7 +46,7 @@ Begin with the riskiest assumption, not the easiest interface. Use representativ
 
 Use staged releases with a small traffic cohort and automatic guardrails. Compare quality, policy, latency, escalation, and cost against the current version. Stop or reverse rollout when any critical slice crosses its threshold.
 
-For broader context, read our [AI implementation pillar guide](/blog/ai-automation-for-businesses-use-cases). It explains how this capability fits into a larger AI delivery and governance program.
+For broader context, read our [AI implementation pillar guide](/blog/agentic-workflow-automation). It explains how this capability fits into a larger AI delivery and governance program.
 
 ## Security and human control
 

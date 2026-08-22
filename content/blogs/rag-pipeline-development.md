@@ -46,7 +46,7 @@ Use short delivery cycles ending in evaluated, deployed behavior. Review task ou
 
 Treat prompts and retrieval settings as production code. Review changes, link them to test evidence, deploy gradually, monitor comparative outcomes, and preserve the previous configuration. Provider aliases should not change behavior silently behind your release process.
 
-For broader context, read our [AI implementation pillar guide](/blog/ai-integration-services-architecture-guide). It explains how this capability fits into a larger AI delivery and governance program.
+For broader context, read our [AI implementation pillar guide](/blog/ai-native-application-development). It explains how this capability fits into a larger AI delivery and governance program.
 
 ## Security and human control
 

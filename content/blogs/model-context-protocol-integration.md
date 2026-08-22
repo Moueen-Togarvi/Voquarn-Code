@@ -46,7 +46,7 @@ Separate experimentation from production. The experiment can compare prompts, mo
 
 Version the complete behavior stack, not only the model name. Tool descriptions, system instructions, indexes, policies, and post-processing can all change outcomes. A decision log should explain why the release was approved and which risk remains.
 
-For broader context, read our [AI implementation pillar guide](/blog/ai-integration-services-architecture-guide). It explains how this capability fits into a larger AI delivery and governance program.
+For broader context, read our [AI implementation pillar guide](/blog/ai-native-application-development). It explains how this capability fits into a larger AI delivery and governance program.
 
 ## Security and human control
 

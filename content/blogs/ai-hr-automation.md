@@ -46,7 +46,7 @@ Use short delivery cycles ending in evaluated, deployed behavior. Review task ou
 
 Version the complete behavior stack, not only the model name. Tool descriptions, system instructions, indexes, policies, and post-processing can all change outcomes. A decision log should explain why the release was approved and which risk remains.
 
-For broader context, read our [AI implementation pillar guide](/blog/ai-workflow-automation-roadmap). It explains how this capability fits into a larger AI delivery and governance program.
+For broader context, read our [AI implementation pillar guide](/blog/ai-workflow-automation-implementation-roadmap-2026). It explains how this capability fits into a larger AI delivery and governance program.
 
 ## Security and human control
 
