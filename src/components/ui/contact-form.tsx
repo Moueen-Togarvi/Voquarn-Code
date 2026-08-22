@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { Clock3, LifeBuoy, LoaderCircle, MessageSquare, Send } from "lucide-react";
 import { trackLead } from "@/lib/pixels";
 import { Button } from "@/components/ui/button";
+import { ConfettiBurst } from "@/components/ui/confetti-burst";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -132,6 +133,8 @@ export function ContactForm() {
 
       {status === "success" ? (
         <div className="flex flex-col items-center px-5 py-12 text-center">
+          {/* Mounted only by this branch, so it fires once per accepted inquiry. */}
+          <ConfettiBurst />
           <span className="flex size-12 items-center justify-center rounded-full bg-[#ff5400]/10 text-[#ff5400]">
             <Send className="size-5" aria-hidden="true" />
           </span>

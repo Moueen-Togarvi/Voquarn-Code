@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { trackLead } from "@/lib/pixels";
 import { Button } from "@/components/ui/button";
+import { ConfettiBurst } from "@/components/ui/confetti-burst";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -262,6 +263,8 @@ export function MeetingBookingForm() {
     return (
       <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--panel)] shadow-sm">
         <div className="flex flex-col items-center px-5 py-12 text-center">
+          {/* Mounted only by this branch, so it fires once per booked slot. */}
+          <ConfettiBurst />
           <span className="flex size-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500">
             <CalendarCheck className="size-5" aria-hidden="true" />
           </span>

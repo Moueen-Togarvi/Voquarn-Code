@@ -6,6 +6,7 @@ import { Sparkles, ArrowRight, Briefcase, MapPin, DollarSign, Clock, Send, Searc
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import type { JobOpening } from "@/lib/site-data";
 import { trackSubmitApplication } from "@/lib/pixels";
+import { ConfettiBurst } from "@/components/ui/confetti-burst";
 
 export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
   const departments = ["All", ...Array.from(new Set(jobs.map((r) => r.department)))];
@@ -395,6 +396,8 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
 
             {submitStatus === "success" ? (
               <div className="flex flex-col items-center justify-center text-center py-6 sm:py-8 animate-in fade-in zoom-in-95 duration-500">
+                {/* Mounted only by this branch, so it fires once per submitted application. */}
+                <ConfettiBurst />
                 {/* Dynamic Illustration (blob, envelope, sliding document, sparkles) */}
                 <div className="relative w-48 h-48 flex items-center justify-center mb-6">
                   
