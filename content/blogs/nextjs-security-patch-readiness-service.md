@@ -80,7 +80,7 @@ A rehearsal sequence is:
 7. Promote to a production-like staging environment.
 8. Practice rollback to the previous known artifact.
 
-The [Next.js 16.3 security governance guide](/blog/nextjs-16-3-security-governance-guide-2026) provides a broader operating framework. If navigation or cache behavior changes during the upgrade, use the [instant navigation audit guide](/blog/nextjs-instant-navigation-audit-service) to diagnose route-level differences.
+The [Next.js instant navigation audit guide](/blog/nextjs-instant-navigation-audit-service) provides a broader operating framework for route behavior and cache changes during the upgrade.
 
 ## Plan a controlled production rollout
 

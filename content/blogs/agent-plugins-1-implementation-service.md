@@ -82,7 +82,7 @@ Create a capability matrix showing:
 
 Use allowlists to restrict servers by known command, URL, or identity. A plugin marketplace approval should not automatically approve every server the package may reference.
 
-The [agent skill supply-chain architecture guide](/blog/agent-skill-supply-chain-security-architecture-guide-2026) provides a deeper review of publisher provenance, permissions, updates, and sandboxing.
+The [code review agent skills guide](/blog/code-review-agent-skills-implementation-service) provides a deeper review of instruction ownership, permissions, updates, and evaluation.
 
 ## Test across compatible clients
 
@@ -118,7 +118,7 @@ A governance plan should define:
 7. Inventory of installations by team and client.
 8. Retirement and replacement procedures.
 
-For broader multi-agent ownership questions, see the [multi-agent systems practices guide](/blog/multi-agent-systems-best-practices-2026).
+For broader multi-agent ownership questions, see the [multi-agent system architecture guide](/blog/multi-agent-system-architecture).
 
 ## Plan migration without breaking current users
 

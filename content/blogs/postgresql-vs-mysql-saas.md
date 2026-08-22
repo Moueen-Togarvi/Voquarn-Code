@@ -61,7 +61,7 @@ Not every difference between **PostgreSQL** and **MySQL for SaaS** deserves equa
 
 ## Questions to ask the delivery team
 
-- Which requirement has the greatest influence on this recommendation?
+- Which data model, query pattern, or operational constraint will shape the database most?
 - What would make you choose the other option?
 - Which costs or operational duties are commonly overlooked?
 - How will you validate performance, security, and maintainability?
@@ -82,4 +82,4 @@ Compare total ownership for the same outcome and risk level. Include implementat
 
 A later move is possible, but undocumented behavior and proprietary data paths make it expensive. Preserve contracts, tests, schemas, decision records, and access from the start.
 
-Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.
+Explore our [SaaS engineering services](/services), or [bring us the data and scaling requirements](/contact) for a PostgreSQL or MySQL decision review.

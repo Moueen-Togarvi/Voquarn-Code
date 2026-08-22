@@ -61,7 +61,7 @@ Write the recommendation in a form a future team can understand. State the busin
 
 ## Questions to ask the delivery team
 
-- Which requirement has the greatest influence on this recommendation?
+- Which existing skills, hosting model, and integration ecosystem reduce delivery risk most?
 - What would make you choose the other option?
 - Which costs or operational duties are commonly overlooked?
 - How will you validate performance, security, and maintainability?
@@ -82,4 +82,4 @@ The economical choice minimizes the combined cost of technology, people, delay, 
 
 A later move is possible, but undocumented behavior and proprietary data paths make it expensive. Preserve contracts, tests, schemas, decision records, and access from the start.
 
-Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.
+See our [web application services](/services), or [outline your team and hosting constraints](/contact) for a balanced Python or PHP recommendation.

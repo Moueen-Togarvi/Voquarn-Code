@@ -129,7 +129,7 @@ Test:
 - Region-specific key requirements.
 - Destruction at contract or retention expiry.
 
-The [private AI deployment guide](/blog/private-ai-deployment-proof-of-concept-2026) offers additional architecture questions for sensitive workloads.
+The [sovereign AI deployment guide](/blog/sovereign-ai-deployment) offers additional architecture questions for sensitive workloads.
 
 ## Validate with a production-shaped pilot
 

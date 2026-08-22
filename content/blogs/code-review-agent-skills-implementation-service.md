@@ -63,7 +63,7 @@ The implementation checklist should cover:
 - A revocation procedure for compromised access.
 - Periodic review of unused systems and tokens.
 
-For deeper supply-chain controls, read the [agent skill security architecture guide](/blog/agent-skill-supply-chain-security-architecture-guide-2026). It covers provenance, permissions, updates, and containment around reusable agent instructions.
+For deeper supply-chain controls, read the [Agent Plugins implementation guide](/blog/agent-plugins-1-implementation-service). It covers provenance, permissions, updates, and containment around reusable agent instructions.
 
 ## Build an evaluation set before rollout
 
@@ -117,7 +117,7 @@ Use a balanced scorecard:
 - Regressions after skill or connector changes.
 - Repositories still using the current approved version.
 
-Connect agent review with existing [DevSecOps architecture practices](/blog/devsecops-automation-architecture-patterns-2026). Deterministic formatters, type checks, tests, and scanners should continue handling rules they can enforce reliably.
+Connect agent review with the [prompt-injection defense guide](/blog/prompt-injection-defense). Deterministic formatters, type checks, tests, and scanners should continue handling rules they can enforce reliably.
 
 ## Ownership and maintenance
 

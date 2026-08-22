@@ -96,7 +96,7 @@ For each pull request, reviewers should be able to answer:
 - Does the description match the actual diff?
 - Is the next layer still feasible after this design choice?
 
-Use the [code review culture manager guide](/blog/code-review-culture-software-teams-manager-guide-2026) to align ownership and feedback norms. For agent coordination risks beyond pull requests, see the [multi-agent systems practices guide](/blog/multi-agent-systems-best-practices-2026).
+Use the [code review agent skills guide](/blog/code-review-agent-skills-implementation-service) to align ownership and feedback norms. For coordination risks beyond pull requests, see the [multi-agent system architecture guide](/blog/multi-agent-system-architecture).
 
 ## Handle updates without destroying review context
 

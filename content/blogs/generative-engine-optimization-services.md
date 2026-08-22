@@ -52,11 +52,11 @@ Track citation share for your prompt set, the sentiment and accuracy of how you 
 
 Be direct about the limits. Assistant outputs are non-deterministic, so a single check proves little; measurement needs repeated sampling across phrasings and dates. Referral data is incomplete because many assistants do not pass a referrer. Treat trend direction over weeks as the signal and any single snapshot as noise.
 
-## How GEO sits alongside existing SEO
+## How GEO sits alongside existing search optimization
 
 This is not a replacement. The same content quality, site health, and authority signals feed both systems, and conventional search still sends meaningful traffic. Run GEO as an extension of an existing program: shared content pipeline, shared technical foundation, separate measurement.
 
-Cutting classic SEO to fund GEO usually costs more than it gains, because the corroboration that generative engines rely on is largely built by the same authority work.
+Cutting conventional search work to fund GEO usually costs more than it gains, because the corroboration that generative engines rely on is largely built by the same authority work.
 
 ## Frequently asked questions
 

@@ -203,6 +203,7 @@ async function audit() {
     published: published.length,
     drafts: drafts.length,
     uniqueTargetKeywords: keywordFiles.size,
+    pagesMissingTargetKeyword: missingKeyword.length,
     duplicateKeywordGroups: duplicateKeywords.length,
     duplicateKeywordPages: duplicateKeywords.reduce((sum, [, files]) => sum + files.length, 0),
     thinPagesUnder700Words: thin.length,
@@ -231,6 +232,7 @@ ${markdownTable(
   [
     ["Published pages", summary.published, "100%"],
     ["Unique target keywords", summary.uniqueTargetKeywords, "—"],
+    ["Missing target keyword", summary.pagesMissingTargetKeyword, `${percent(summary.pagesMissingTargetKeyword, summary.published)}%`],
     ["Duplicate target-keyword pages", summary.duplicateKeywordPages, `${percent(summary.duplicateKeywordPages, summary.published)}%`],
     ["Under 700 words", summary.thinPagesUnder700Words, `${percent(summary.thinPagesUnder700Words, summary.published)}%`],
     ["Under 400 words", summary.veryThinPagesUnder400Words, `${percent(summary.veryThinPagesUnder400Words, summary.published)}%`],
@@ -322,6 +324,7 @@ ${markdownTable(
     details: {
       parseErrors,
       duplicateKeywords: duplicateKeywords.map(([keyword, files]) => ({ keyword, files })),
+      missingTargetKeyword: missingKeyword.map(({ filename, slug }) => ({ filename, slug })),
       thinPages: thin.map(({ filename, slug, wordCount, targetKeyword }) => ({ filename, slug, wordCount, targetKeyword })),
       repetitivePages: repetitive.map(({ filename, slug, repeatedLongParagraphRatio }) => ({
         filename,

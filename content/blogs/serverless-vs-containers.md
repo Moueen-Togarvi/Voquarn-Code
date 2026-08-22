@@ -61,7 +61,7 @@ Happy-path prototypes make **serverless** and **containers** look simpler than p
 
 ## Questions to ask the delivery team
 
-- Which requirement has the greatest influence on this recommendation?
+- Are burst traffic, long-running workloads, portability, or operational control decisive?
 - What would make you choose the other option?
 - Which costs or operational duties are commonly overlooked?
 - How will you validate performance, security, and maintainability?
@@ -84,4 +84,4 @@ A later move is possible, but undocumented behavior and proprietary data paths m
 
 Model cold starts, long-running work, burst patterns, concurrency limits, network boundaries, deployment rollback, and local debugging with the intended cloud services. Containers and serverless functions can coexist; the decision can be made per workload when shared observability and ownership remain clear.
 
-Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.
+Explore our [cloud application services](/services), or [send your runtime and traffic profile](/contact) for a serverless or container architecture recommendation.

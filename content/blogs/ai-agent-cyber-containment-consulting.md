@@ -83,7 +83,7 @@ Useful signals include:
 - Sessions that exceed time, cost, or action budgets.
 - Manual corrections and emergency stops.
 
-The [AI agent monitoring and observability guide](/blog/ai-agent-monitoring-observability) explains how to connect model, retrieval, tool, policy, and outcome events without turning logs into an uncontrolled store of sensitive data.
+The [AI incident response guide](/blog/ai-incident-response-plan) explains how to connect detection, containment, recovery, and accountable ownership without turning logs into an uncontrolled store of sensitive data.
 
 ## Design the emergency stop before launch
 
@@ -134,7 +134,7 @@ Expected deliverables are:
 7. Adversarial, recovery, and regression test suite.
 8. Residual-risk record with owners and review dates.
 
-The [AI red-team testing architecture guide](/blog/ai-red-team-testing-architecture-patterns-2026) provides additional context for structuring adversarial work around system boundaries rather than isolated prompt tricks.
+The [prompt-injection defense guide](/blog/prompt-injection-defense) provides additional context for structuring adversarial work around system boundaries rather than isolated prompt tricks.
 
 ## Questions to ask a provider
 

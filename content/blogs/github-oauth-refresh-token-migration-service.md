@@ -106,7 +106,7 @@ Token expiry and revocation are normal lifecycle events. Users need a clear mess
 
 Support tooling should show connection state, last successful refresh, granted scopes, recent provider error category, and the correct reconnection owner. It should never reveal credential values.
 
-The [system integration services guide](/blog/system-integration-services-company) covers broader ownership and failure-boundary questions. For incident containment around privileged integrations, use the [agent cyber containment guide](/blog/ai-agent-cyber-containment-consulting).
+The [software integration services overview](/services) covers broader ownership and delivery questions. For incident containment around privileged integrations, use the [agent cyber containment guide](/blog/ai-agent-cyber-containment-consulting).
 
 ## Test cases that should block release
 

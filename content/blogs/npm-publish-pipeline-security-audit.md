@@ -100,7 +100,7 @@ Prefer trusted publishing with workload identity over stored long-lived registry
 
 Audit workflow inputs for command injection and untrusted branch or tag names. A secure registry credential cannot compensate for a release script that executes attacker-controlled text.
 
-Use the [DevSecOps automation architecture guide](/blog/devsecops-automation-architecture-patterns-2026) to connect publishing controls with repository and deployment governance. The [agent skill supply-chain guide](/blog/agent-skill-supply-chain-security-architecture-guide-2026) adds review questions when agent-created packages or automation are involved.
+Use the [AI incident response guide](/blog/ai-incident-response-plan) to connect publishing controls with repository and recovery governance. The [Agent Plugins implementation guide](/blog/agent-plugins-1-implementation-service) adds review questions when agent-created packages or automation are involved.
 
 ## Build an emergency response plan
 

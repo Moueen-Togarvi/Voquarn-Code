@@ -61,7 +61,7 @@ Happy-path prototypes make **native app** and **progressive web app** look simpl
 
 ## Questions to ask the delivery team
 
-- Which requirement has the greatest influence on this recommendation?
+- Which device capability, offline need, or distribution rule is decisive for the product?
 - What would make you choose the other option?
 - Which costs or operational duties are commonly overlooked?
 - How will you validate performance, security, and maintainability?
@@ -82,4 +82,4 @@ Use a range rather than one headline figure. Identify which assumptions about us
 
 A later move is possible, but undocumented behavior and proprietary data paths make it expensive. Preserve contracts, tests, schemas, decision records, and access from the start.
 
-Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.
+Explore our [product development capabilities](/services), or [describe your users and device needs](/contact) for a native-app or progressive-web-app recommendation.

@@ -61,7 +61,7 @@ The technology choice changes daily work. Compare how developers set up environm
 
 ## Questions to ask the delivery team
 
-- Which requirement has the greatest influence on this recommendation?
+- Which workflow rule is least likely to fit safely inside a platform constraint?
 - What would make you choose the other option?
 - Which costs or operational duties are commonly overlooked?
 - How will you validate performance, security, and maintainability?
@@ -84,4 +84,4 @@ Yes, although switching cost varies. Portable data, stable interfaces, documente
 
 Before deciding, prototype the most unusual business rule and the hardest integration in the low-code option. Compare that evidence with a small custom implementation, including permissions, auditability, testing, deployment, and export. This shows whether configuration remains an advantage when the workflow reaches its real complexity.
 
-Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.
+Review the available [software delivery services](/services), or [share the workflow you need to automate](/contact) before committing to custom software or low-code.

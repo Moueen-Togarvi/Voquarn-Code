@@ -77,7 +77,7 @@ The audit should investigate:
 - Missing loading and error boundaries around slow regions.
 - Prefetching that downloads too much or exposes sensitive destinations.
 
-For a broader remediation sequence, use the [Next.js performance action plan](/blog/nextjs-performance-optimization-30-day-action-plan-2026) and the [Core Web Vitals architecture guide](/blog/core-web-vitals-optimization-architecture-patterns-2026). Those articles cover page-load and runtime concerns that often sit beside transition latency.
+For a broader remediation sequence, explore [Voquarn's development services](/services) and the [Next.js security patch guide](/blog/nextjs-security-patch-readiness-service). Those resources cover delivery and runtime concerns that often sit beside transition latency.
 
 ## Security and release timing belong in the audit
 

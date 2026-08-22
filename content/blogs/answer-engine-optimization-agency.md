@@ -27,7 +27,7 @@ Ask these in the first call and listen for specifics.
 
 **"How will you measure where we stand today?"** A qualified answer describes a prompt set, repeated sampling across assistants and phrasings, and a baseline citation rate. A weak answer talks about keyword rankings.
 
-**"Which crawlers do you check for, and how?"** They should name the specific AI crawler user agents, describe how they verify access at the CDN and robots level, and mention rendering. If the answer is generic "technical SEO", press further.
+**"Which crawlers do you check for, and how?"** They should name the specific AI crawler user agents, describe how they verify access at the CDN and robots level, and mention rendering. If the answer is generic "technical search optimization", press further.
 
 **"What happens when we are cited inaccurately?"** Misdescription is a real and common outcome. A provider who has done this work has a correction playbook: fix the source claim, strengthen corroboration, address contradictory third-party content.
 
@@ -51,9 +51,9 @@ Performance pricing tied to citations is uncommon and worth scrutinizing, becaus
 
 ## Warning signs
 
-Treat these as reasons to keep looking: guaranteed placement in a named assistant; a claim to have a "direct relationship" that influences model output; refusal to disclose the tracking method; a proposal identical to a standard SEO retainer with terminology substituted; and pricing built around volume of articles rather than claims owned.
+Treat these as reasons to keep looking: guaranteed placement in a named assistant; a claim to have a "direct relationship" that influences model output; refusal to disclose the tracking method; a proposal identical to a standard search-optimization retainer with terminology substituted; and pricing built around volume of articles rather than claims owned.
 
-Also be cautious of providers who advise abandoning conventional SEO. The authority signals that generative engines depend on are largely produced by that work.
+Also be cautious of providers who advise abandoning conventional search optimization. The authority signals that generative engines depend on are largely produced by that work.
 
 ## Frequently asked questions
 

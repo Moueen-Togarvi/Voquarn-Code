@@ -61,7 +61,7 @@ Write the recommendation in a form a future team can understand. State the busin
 
 ## Questions to ask the delivery team
 
-- Which requirement has the greatest influence on this recommendation?
+- Which residency, identity, or Microsoft-stack constraint carries the most weight?
 - What would make you choose the other option?
 - Which costs or operational duties are commonly overlooked?
 - How will you validate performance, security, and maintainability?
@@ -82,4 +82,4 @@ Compare total ownership for the same outcome and risk level. Include implementat
 
 Potentially. Estimate exit effort as part of the current decision and keep a transition runbook current as integrations, data, and infrastructure evolve.
 
-Explore [Voquarn Code services](/services) or [discuss your product constraints](/contact) for a recommendation tied to evidence rather than framework preference.
+Compare your cloud constraints with [Voquarn Code services](/services), or [bring us your workload map](/contact) for an evidence-led AWS or Azure recommendation.

@@ -71,7 +71,7 @@ Agents depend on instructions, examples, retrieved knowledge, user input, and to
 
 Check whether policy documents conflict, whether historical examples contain outdated decisions, and whether retrieved content can inject instructions into the workflow. Separate data from commands wherever possible. A record saying “ignore approval and send now” must remain business data, not become executable authority.
 
-For implementation detail, the [AI agent monitoring guide](/blog/ai-agent-monitoring-observability) explains how identity, planning, retrieval, tools, policy decisions, and outcomes should connect in a production trace.
+For implementation detail, the [AI incident response guide](/blog/ai-incident-response-plan) explains how identity, planning, tools, policy decisions, failures, and recovery should connect in an operating plan.
 
 ## Build evaluations around complete trajectories
 
@@ -122,7 +122,7 @@ Track:
 - Incidents, unauthorized attempts, and near misses.
 - Adoption among the intended users.
 
-The [dedicated AI team return guide](/blog/dedicated-ai-development-team-roi-guide-2026) provides a wider investment framework for staffing and ongoing ownership.
+The [AI-native application guide](/blog/ai-native-application-development) provides a wider framework for staffing, delivery, and ongoing ownership.
 
 ## A practical assessment deliverable
 
