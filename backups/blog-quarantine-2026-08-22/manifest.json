@@ -1,6 +1,9 @@
 {
   "createdAt": "2026-08-22T10:30:25.818Z",
   "applied": true,
+  "restored": true,
+  "restoredAt": "2026-08-22T15:56:23+05:00",
+  "restoredCount": 4502,
   "sourceDirectory": "content/blogs",
   "archiveDirectory": "backups/blog-quarantine-2026-08-22",
   "thresholds": {

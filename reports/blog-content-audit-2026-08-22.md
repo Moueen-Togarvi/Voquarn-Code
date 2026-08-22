@@ -15,7 +15,7 @@ This report audits the current Markdown corpus. It does not delete, redirect, un
 | Weak headings/lists/internal links | 35 | 0.8% |
 | No external evidence link | 4382 | 99.7% |
 | At least half of long paragraphs reused | 4287 | 97.5% |
-| Broken contextual blog-link pages | 37 | 0.8% |
+| Broken contextual blog-link pages | 0 | 0% |
 | Contains excluded term: shopify | 126 | 2.9% |
 | Contains excluded term: seo | 3201 | 72.8% |
 
@@ -143,45 +143,7 @@ None found.
 
 ## Broken contextual blog links
 
-| File | Broken links |
-| --- | --- |
-| agentic-ai-development-company.md | /blog/ai-agent-development-company-guide |
-| ai-agent-consulting-services.md | /blog/ai-agent-development-company-guide |
-| ai-agent-cost-optimization.md | /blog/ai-agent-development-company-guide |
-| ai-agent-evaluation-framework.md | /blog/ai-agent-development-company-guide |
-| ai-agent-governance-framework.md | /blog/ai-agent-development-company-guide |
-| ai-agent-monitoring-observability.md | /blog/ai-agent-development-company-guide |
-| ai-agent-orchestration-services.md | /blog/ai-agent-development-company-guide |
-| ai-agent-security-guide.md | /blog/ai-agent-development-company-guide |
-| ai-construction-project-management.md | /blog/ai-automation-for-businesses-use-cases |
-| ai-customer-service-agent-development.md | /blog/ai-workflow-automation-roadmap |
-| ai-ecommerce-automation.md | /blog/ai-automation-for-businesses-use-cases |
-| ai-education-software-development.md | /blog/ai-automation-for-businesses-use-cases |
-| ai-email-automation.md | /blog/ai-workflow-automation-roadmap |
-| ai-finance-automation.md | /blog/ai-workflow-automation-roadmap |
-| ai-healthcare-automation.md | /blog/ai-automation-for-businesses-use-cases |
-| ai-hr-automation.md | /blog/ai-workflow-automation-roadmap |
-| ai-legal-workflow-automation.md | /blog/ai-automation-for-businesses-use-cases |
-| ai-logistics-optimization-software.md | /blog/ai-automation-for-businesses-use-cases |
-| ai-manufacturing-automation.md | /blog/ai-automation-for-businesses-use-cases |
-| ai-meeting-assistant-development.md | /blog/ai-workflow-automation-roadmap |
-| ai-real-estate-automation.md | /blog/ai-automation-for-businesses-use-cases |
-| ai-recruitment-automation.md | /blog/ai-workflow-automation-roadmap |
-| ai-sales-agent-development.md | /blog/ai-workflow-automation-roadmap |
-| ai-supply-chain-automation.md | /blog/ai-automation-for-businesses-use-cases |
-| contract-review-ai-software.md | /blog/ai-workflow-automation-roadmap |
-| document-ai-development-company.md | /blog/ai-workflow-automation-roadmap |
-| enterprise-ai-agent-development-services.md | /blog/ai-agent-development-company-guide |
-| invoice-processing-ai-automation.md | /blog/ai-workflow-automation-roadmap |
-| knowledge-graph-rag.md | /blog/ai-integration-services-architecture-guide |
-| mcp-development-services.md | /blog/ai-integration-services-architecture-guide |
-| model-context-protocol-integration.md | /blog/ai-integration-services-architecture-guide |
-| multi-agent-system-development.md | /blog/ai-agent-development-company-guide |
-| private-ai-chatbot-development.md | /blog/ai-integration-services-architecture-guide |
-| rag-implementation-services.md | /blog/ai-integration-services-architecture-guide |
-| rag-pipeline-development.md | /blog/ai-integration-services-architecture-guide |
-| secure-enterprise-ai-chatbot.md | /blog/ai-integration-services-architecture-guide |
-| vector-database-consulting-services.md | /blog/ai-integration-services-architecture-guide |
+None found.
 
 ## Category distribution
 

@@ -1,5 +1,7 @@
 # Blog quarantine report — 2026-08-22
 
+> Restored: all 4,502 files from this broad quarantine were returned to `content/blogs` on 2026-08-22. This report is retained only as cleanup history and is no longer the active publication state.
+
 This cleanup is recoverable. Quarantined Markdown files are moved out of the published blog directory and can be restored with the JSON manifest.
 
 ## Result
