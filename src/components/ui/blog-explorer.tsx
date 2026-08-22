@@ -116,7 +116,7 @@ export function BlogExplorer({ posts, totalPosts, currentPage, totalPages, query
 
   return (
     <div>
-      <section className="mx-auto mt-24 w-full max-w-7xl px-5 pb-8 pt-14 sm:pt-20 lg:mt-28 lg:px-8">
+      <section className="mx-auto mt-14 w-full max-w-7xl px-5 pb-8 pt-14 sm:pt-20 lg:mt-16 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#ff5400]/20 bg-[#ff5400]/8 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-[#ff5400]"><BookOpenText className="h-4 w-4" aria-hidden="true" />Insights & field notes</span>
           <h1 className="mt-6 font-display text-4xl font-black tracking-tight text-[var(--foreground)] sm:text-6xl">Ideas you can put to work.</h1>

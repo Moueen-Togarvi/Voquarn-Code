@@ -45,7 +45,7 @@ export default async function CeoPage() {
           path: "/ceo",
         })}
       />
-      <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
+      <section className="page-section mt-14 lg:mt-16">
         <SectionHeading
           eyebrow="Our CEO"
           title="Engineering Leadership & Strategic Vision"

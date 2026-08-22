@@ -200,7 +200,7 @@ export function CareersClient({ jobs }: { jobs: JobOpening[] }) {
 
   return (
     <>
-      <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56">
+      <section className="page-section mt-14 lg:mt-16">
         <GSAPReveal direction="up">
           <SectionHeading
             eyebrow="Careers"

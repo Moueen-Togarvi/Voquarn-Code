@@ -4,9 +4,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { ArrowRight, CalendarDays, Mail } from "lucide-react";
 import { navItems } from "@/lib/site-data";
 
+// Contact is the standalone call to action on the right, so it is not repeated
+// inside the centre group.
 const navbarNavItems = navItems.filter((item) => item.href !== "/contact");
+
+// The hash is read by ContactPanel to open the matching tab.
+const quickActions = [
+  { href: "/contact#meeting", label: "Book a meeting", Icon: CalendarDays, dot: false },
+  { href: "/contact#inquiry", label: "Send an inquiry", Icon: Mail, dot: true },
+];
 
 export function Navbar() {
   const pathname = usePathname();
@@ -36,57 +45,81 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-6 left-1/2 z-50 w-[92%] max-w-5xl -translate-x-1/2">
-      <div className="bg-[var(--nav-bg)] backdrop-blur-md border border-[var(--border)] rounded-full px-4 md:px-6 py-1.5 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.12)] relative">
+    <header className="fixed top-5 left-1/2 z-50 w-[94%] max-w-6xl -translate-x-1/2">
+      <div className="relative flex items-center justify-between gap-3 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--nav-bg)] px-3 py-2 shadow-[0_18px_44px_rgba(0,0,0,0.12)] backdrop-blur-md">
         <div
           ref={progressRef}
-          className="absolute left-0 top-0 h-[2px] w-full origin-left scale-x-0 rounded-full bg-[#ff5400]"
+          className="absolute left-0 top-0 h-[2px] w-full origin-left scale-x-0 bg-[#ff5400]"
         />
 
-        <Link href="/" className="flex items-center group" onClick={() => setIsOpen(false)}>
+        <Link href="/" className="group shrink-0" onClick={() => setIsOpen(false)}>
+          {/* nav-logo.png is final-logo.png with its ~31% dead padding trimmed, so
+              the wordmark stays readable at navbar size. Black line-art, so it
+              needs inverting on dark backgrounds. */}
           <Image
-            src="/final-logo.png"
-            alt="Voquarn Logo"
-            width={200}
-            height={200}
+            src="/nav-logo.png"
+            alt="Voquarn Code"
+            width={356}
+            height={204}
             priority
-            className="h-14 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105 md:h-10 dark:brightness-0 dark:invert"
           />
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {navbarNavItems.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
-                  active
-                    ? "bg-[var(--foreground)] text-[var(--background)] shadow-md"
-                    : "text-[var(--muted)] hover:bg-[var(--surface)] hover:text-[var(--foreground)]"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <div className="hidden items-center gap-1 rounded-xl bg-[var(--surface)] p-1.5 lg:flex">
+          <nav aria-label="Main menu" className="flex items-center gap-0.5">
+            {navbarNavItems.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`rounded-lg px-3.5 py-2 text-[13px] font-semibold text-[var(--foreground)] transition-all duration-200 ${
+                    active
+                      ? "bg-[var(--panel)] shadow-sm"
+                      : "hover:bg-[var(--surface-hover)]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-        <div className="flex items-center gap-2">
+          <span className="mx-1 h-6 w-px bg-[var(--border)]" aria-hidden="true" />
+
+          {quickActions.map(({ href, label, Icon, dot }) => (
+            <Link
+              key={href}
+              href={href}
+              aria-label={label}
+              title={label}
+              className="relative flex size-9 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--panel)] text-[var(--foreground)] transition-colors hover:border-[#ff5400]/40 hover:text-[#ff5400]"
+            >
+              <Icon className="size-4" aria-hidden="true" />
+              {dot ? (
+                <span className="absolute -right-0.5 -top-0.5 size-2 rounded-full bg-red-500 ring-2 ring-[var(--panel)]" />
+              ) : null}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex shrink-0 items-center gap-2">
           <Link
             href="/contact"
-            className="hidden items-center justify-center rounded-full bg-[#ff5400] px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-white shadow-md transition-all duration-300 hover:scale-105 active:scale-95 md:inline-flex"
+            className="hidden items-center gap-2 rounded-xl bg-[#ff5400] px-4 py-2.5 text-[13px] font-bold text-white shadow-[0_6px_16px_rgba(255,84,0,0.28)] transition-all duration-300 hover:bg-[#e64c00] active:scale-95 lg:inline-flex"
             onClick={() => setIsOpen(false)}
           >
-            Contact Us
+            Start a Project
+            <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
 
           <button
             type="button"
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isOpen}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] text-[var(--foreground)] transition-colors hover:bg-[var(--surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] md:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-xl border border-[var(--border)] text-[var(--foreground)] transition-colors hover:bg-[var(--surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] lg:hidden"
             onClick={() => setIsOpen((open) => !open)}
           >
             <span className="space-y-1.5">
@@ -99,18 +132,17 @@ export function Navbar() {
       </div>
 
       {isOpen ? (
-        <div className="mt-3 rounded-3xl border border-[var(--border)] bg-[var(--nav-bg)] p-6 shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-top-4 md:hidden">
-          <nav className="flex flex-col gap-2" aria-label="Mobile menu">
+        <div className="mt-2.5 rounded-2xl border border-[var(--border)] bg-[var(--nav-bg)] p-3 shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-top-4 lg:hidden">
+          <nav className="flex flex-col gap-1" aria-label="Mobile menu">
             {navbarNavItems.map((item) => {
               const active = pathname === item.href;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`rounded-2xl px-4 py-3 text-sm font-bold uppercase tracking-wider transition-colors ${
-                    active
-                      ? "bg-[var(--foreground)] text-[var(--background)] shadow-md"
-                      : "text-[var(--muted)] hover:bg-[var(--surface)] hover:text-[var(--foreground)]"
+                  aria-current={active ? "page" : undefined}
+                  className={`rounded-xl px-4 py-2.5 text-sm font-semibold text-[var(--foreground)] transition-colors ${
+                    active ? "bg-[var(--surface)]" : "hover:bg-[var(--surface)]"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -118,12 +150,33 @@ export function Navbar() {
                 </Link>
               );
             })}
+
+            <span className="my-1 h-px bg-[var(--border)]" aria-hidden="true" />
+
+            {quickActions.map(({ href, label, Icon, dot }) => (
+              <Link
+                key={href}
+                href={href}
+                className="flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold text-[var(--foreground)] transition-colors hover:bg-[var(--surface)]"
+                onClick={() => setIsOpen(false)}
+              >
+                <span className="relative flex size-8 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--panel)]">
+                  <Icon className="size-4" aria-hidden="true" />
+                  {dot ? (
+                    <span className="absolute -right-0.5 -top-0.5 size-2 rounded-full bg-red-500 ring-2 ring-[var(--panel)]" />
+                  ) : null}
+                </span>
+                {label}
+              </Link>
+            ))}
+
             <Link
               href="/contact"
-              className="mt-2 inline-flex items-center justify-center rounded-2xl bg-[#ff5400] px-4 py-3 text-sm font-black uppercase tracking-wider text-white shadow-md transition-transform active:scale-[0.98]"
+              className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl bg-[#ff5400] px-4 py-3 text-sm font-bold text-white shadow-md transition-transform active:scale-[0.98]"
               onClick={() => setIsOpen(false)}
             >
-              Contact Us
+              Start a Project
+              <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </nav>
         </div>

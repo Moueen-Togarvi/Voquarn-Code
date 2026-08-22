@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* next-themes drives the theme with a `.dark` class on <html>, but Tailwind v4
+   defaults the `dark:` variant to the OS `prefers-color-scheme` media query.
+   Without this the two disagree: colour tokens follow the site toggle while
+   `dark:` utilities follow the OS, so e.g. `dark:invert` whitened the navbar
+   logo on a still-light navbar. Bind the variant to the class instead. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-display: "Inter", "Arial Narrow", "Avenir Next Condensed", "Trebuchet MS", sans-serif;

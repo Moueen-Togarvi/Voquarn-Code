@@ -71,13 +71,14 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
 
   return (
     <div className="space-y-12 w-full">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-center px-2 pb-2 sm:px-4">
-        <div className="relative grid w-full grid-cols-4 items-center gap-0.5 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-0.5 shadow-[0_10px_28px_rgba(255,84,0,0.08)] lg:w-1/2">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-2 pb-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-4">
+        <div className="relative grid w-full grid-cols-4 items-center gap-0.5 rounded-full border border-[#ff5400]/15 bg-[var(--surface)] p-0.5 shadow-[0_10px_28px_rgba(255,84,0,0.08)] sm:max-w-[760px] sm:flex-1">
           {orderedServices.map((service) => (
             <button
               key={service.id}
               type="button"
               onClick={() => setActiveServiceId(service.id)}
+              aria-pressed={activeServiceId === service.id}
               className={`relative z-10 inline-flex h-11 w-full min-w-0 items-center justify-center gap-0.5 whitespace-nowrap rounded-full px-0.5 text-center text-[7px] font-semibold uppercase leading-none tracking-[0.01em] transition-colors duration-300 sm:gap-1 sm:px-1.5 sm:text-[9px] sm:tracking-wide lg:text-[10px] ${
                 activeServiceId === service.id ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
@@ -95,15 +96,14 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
             </button>
           ))}
         </div>
-      </div>
 
-      <div className="flex justify-center">
-        <div className="inline-flex rounded-full border border-[var(--border)] bg-[var(--surface)] p-1.5 shadow-sm relative">
+        <div className="relative inline-flex shrink-0 self-end rounded-full border border-[var(--border)] bg-[var(--surface)] p-1.5 shadow-sm sm:self-auto">
           {(["PKR", "USD"] as const).map((option) => (
             <button
               key={option}
               type="button"
               onClick={() => setCurrency(option)}
+              aria-pressed={currency === option}
               className={`relative rounded-full px-5 py-2 text-xs font-medium uppercase tracking-wider transition-colors duration-300 z-10 ${
                 currency === option ? "text-white" : "text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}

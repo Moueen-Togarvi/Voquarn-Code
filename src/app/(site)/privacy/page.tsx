@@ -22,7 +22,7 @@ export default async function PrivacyPage() {
   const site = await getSiteSettings();
 
   return (
-    <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56 max-w-4xl mx-auto">
+    <section className="page-section mt-14 lg:mt-16 max-w-4xl mx-auto">
       <PageStructuredData path="/privacy" name={pageTitle} description={pageDescription} />
       <SectionHeading
         eyebrow="Legal"

@@ -1,7 +1,7 @@
 type SectionHeadingProps = {
   eyebrow: string;
   title: string;
-  description: string;
+  description?: string;
   centered?: boolean;
   headingLevel?: "h1" | "h2";
 };
@@ -26,13 +26,16 @@ export function SectionHeading({
       </Heading>
 
       {/* data-speakable marks this as the page's canonical summary for voice
-          assistants and answer engines — see speakable in webPageJsonLd. */}
-      <p
-        {...(headingLevel === "h1" ? { "data-speakable": "" } : {})}
-        className="mt-3 text-sm sm:text-base font-medium text-[var(--muted)] leading-relaxed max-w-2xl"
-      >
-        {description}
-      </p>
+          assistants and answer engines — see speakable in webPageJsonLd. The
+          selector also matches h1, so omitting this keeps speakable valid. */}
+      {description ? (
+        <p
+          {...(headingLevel === "h1" ? { "data-speakable": "" } : {})}
+          className="mt-3 text-sm sm:text-base font-medium text-[var(--muted)] leading-relaxed max-w-2xl"
+        >
+          {description}
+        </p>
+      ) : null}
     </div>
   );
 }

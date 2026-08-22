@@ -73,7 +73,7 @@ export default async function ServicesPage() {
           ...services.map(serviceJsonLd),
         ]}
       />
-      <section className="page-section mt-24 lg:mt-32 pt-40 lg:pt-56 relative overflow-hidden">
+      <section className="page-section mt-14 lg:mt-16 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full pointer-events-none opacity-[0.06] z-0 blur-[120px]"
           style={{ background: "radial-gradient(circle, #ff5400 0%, transparent 70%)" }}
         />

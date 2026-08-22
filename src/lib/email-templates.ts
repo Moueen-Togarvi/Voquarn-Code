@@ -224,19 +224,23 @@ export function contactAdminEmail(
     name: string;
     email: string;
     service: string;
+    priority: string;
+    subject: string;
     message: string;
   },
 ) {
   const rows = [
     detailRow("Name", escapeHtml(input.name)),
     detailRow("Email", `<a href="mailto:${escapeHtml(input.email)}" style="color:${BRAND_COLOR};text-decoration:none;">${escapeHtml(input.email)}</a>`),
+    detailRow("Subject", escapeHtml(input.subject)),
     detailRow("Service", escapeHtml(input.service)),
+    detailRow("Priority", escapeHtml(input.priority)),
     detailRow("Message", escapeHtml(input.message).replace(/\n/g, "<br />")),
   ].join("");
 
   return emailShell({
     site,
-    preheader: `New inquiry from ${input.name} — ${input.service}`,
+    preheader: `New inquiry from ${input.name} — ${input.subject}`,
     eyebrow: "New Inquiry",
     heading: "You've got a new project inquiry",
     intro: `${escapeHtml(input.name)} just submitted the contact form on the website. Reply directly to this email to reach them.`,

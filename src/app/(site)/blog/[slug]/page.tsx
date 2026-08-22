@@ -87,7 +87,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
       <JsonLd data={blogPostJsonLd(post)} />
 
-      <main className="mx-auto mt-24 w-full max-w-7xl px-5 pb-24 pt-12 sm:pt-16 lg:mt-28 lg:px-8">
+      <main className="mx-auto mt-14 w-full max-w-7xl px-5 pb-24 pt-12 sm:pt-16 lg:mt-16 lg:px-8">
         <nav aria-label="Breadcrumb" className="mx-auto max-w-5xl">
           <ol className="flex flex-wrap items-center gap-1.5 text-sm text-[var(--muted)]">
             <li><Link href="/" className="rounded-sm hover:text-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]">Home</Link></li>

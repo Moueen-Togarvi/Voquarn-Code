@@ -116,7 +116,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         ]}
       />
       <JsonLd data={serviceJsonLd(service)} />
-      <section className="page-section relative overflow-hidden mt-24 lg:mt-32 pt-40 lg:pt-56">
+      <section className="page-section relative overflow-hidden mt-14 lg:mt-16">
         {/* Ambient signature orange gradient glow in background */}
         <div 
           className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full pointer-events-none opacity-[0.05] z-0 blur-[140px]" 

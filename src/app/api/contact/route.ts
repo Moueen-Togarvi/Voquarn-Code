@@ -15,9 +15,14 @@ type ContactPayload = {
   name?: string;
   email?: string;
   service?: string;
+  priority?: string;
+  subject?: string;
   message?: string;
   companyWebsite?: string;
 };
+
+// Must stay in sync with `priorityOptions` in src/components/ui/contact-form.tsx.
+const priorities = new Set(["Normal", "High", "Urgent"]);
 
 export async function POST(request: Request) {
   try {
@@ -37,6 +42,11 @@ export async function POST(request: Request) {
     const name = cleanText(body.name, 120);
     const email = cleanText(body.email, 254).toLowerCase();
     const service = cleanText(body.service, 120);
+    const subject = cleanText(body.subject, 150);
+    // Priority is an optional convenience field; anything unrecognised falls back
+    // to Normal rather than rejecting an otherwise valid inquiry.
+    const requestedPriority = cleanText(body.priority, 20);
+    const priority = priorities.has(requestedPriority) ? requestedPriority : "Normal";
     const message = cleanText(body.message, 5000);
 
     // Hidden honeypot field: normal users never fill it, basic form bots do.
@@ -44,7 +54,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Inquiry sent successfully." });
     }
 
-    if (!name || !email || !service || !message || !isValidEmail(email)) {
+    if (!name || !email || !service || !subject || !message || !isValidEmail(email)) {
       return NextResponse.json({ message: "Please enter valid details in every field." }, { status: 400 });
     }
 
@@ -64,8 +74,8 @@ export async function POST(request: Request) {
       from: fromAddress,
       to: contactEmail,
       replyTo: email,
-      subject: `New inquiry from ${name}`,
-      html: contactAdminEmail(site, { name, email, service, message }),
+      subject: `[${priority}] ${subject} — inquiry from ${name}`,
+      html: contactAdminEmail(site, { name, email, service, priority, subject, message }),
     });
 
     if (!adminResult.ok) {
