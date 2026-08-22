@@ -74,8 +74,8 @@ export function EnterpriseSuites() {
   const activeTab = SUITES_DATA.find((s) => s.id === activeTabId) || SUITES_DATA[0];
 
   return (
-    <section className="relative w-full py-12 md:py-14 bg-[var(--background)] text-[var(--foreground)] border-b border-[var(--section-border)] overflow-hidden select-none">
-      <div className="max-w-7xl mx-auto px-6 mb-8">
+    <section className="relative w-full py-10 md:py-12 bg-[var(--background)] text-[var(--foreground)] border-b border-[var(--section-border)] overflow-hidden select-none">
+      <div className="max-w-7xl mx-auto px-6 mb-6">
         <div className="flex items-center gap-3 mb-2">
           <span className="w-2 h-2 rounded-full bg-[#ff5400] animate-pulse" />
           <span className="text-[11px] font-black uppercase tracking-[0.3em] text-[#ff5400]">
@@ -97,7 +97,7 @@ export function EnterpriseSuites() {
                   key={suite.id}
                   onClick={() => setActiveTabId(suite.id)}
                   onMouseEnter={() => setActiveTabId(suite.id)}
-                  className={`w-full py-3 flex items-center justify-between border-b border-[var(--border)] text-left transition-all duration-300 group relative ${
+                  className={`w-full py-2.5 flex items-center justify-between border-b border-[var(--border)] text-left transition-all duration-300 group relative ${
                     isActive ? "pl-4 md:pl-6 bg-[var(--surface)]" : "hover:pl-2"
                   }`}
                 >
@@ -113,7 +113,7 @@ export function EnterpriseSuites() {
                     <span className={`text-xs md:text-sm font-mono font-bold transition-colors ${isActive ? "text-[#ff5400]" : "text-[var(--muted)]"}`}>
                       {suite.num}
                     </span>
-                    <span className={`text-base md:text-lg lg:text-xl font-display font-medium tracking-tight truncate transition-colors ${
+                    <span className={`text-sm md:text-base lg:text-lg font-display font-medium tracking-tight truncate transition-colors ${
                       isActive ? "text-[var(--foreground)] font-semibold" : "text-[var(--muted)] group-hover:text-[var(--foreground)]"
                     }`}>
                       {suite.title}
@@ -139,7 +139,7 @@ export function EnterpriseSuites() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96, y: -15 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full max-w-[520px] p-4 md:p-5 rounded-3xl bg-[var(--panel)] border border-[var(--border)] shadow-lg relative overflow-hidden group flex flex-col justify-between h-[360px]"
+                className="w-full max-w-[520px] p-4 md:p-5 rounded-3xl bg-[var(--panel)] border border-[var(--border)] shadow-lg relative overflow-hidden group flex flex-col justify-between h-[300px]"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(255,84,0,0.08)_0%,transparent_70%)] pointer-events-none" />
 
@@ -158,7 +158,7 @@ export function EnterpriseSuites() {
                     {activeTab.title}
                   </h3>
 
-                  <div className="relative w-full flex-1 min-h-[170px] max-h-[220px] rounded-xl overflow-hidden mb-3 border border-[var(--border)] shadow-inner bg-[var(--surface)] group/img flex-shrink">
+                  <div className="relative w-full flex-1 min-h-[130px] max-h-[180px] rounded-xl overflow-hidden mb-3 border border-[var(--border)] shadow-inner bg-[var(--surface)] group/img flex-shrink">
                     <Image
                       src={activeTab.image}
                       alt={activeTab.title}
