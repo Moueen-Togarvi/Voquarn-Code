@@ -1,0 +1,1491 @@
+{
+  "createdAt": "2026-08-22T10:47:52.581Z",
+  "applied": true,
+  "policy": "Only objectively broken pages: missing target keyword, under 400 words, or weaker exact-keyword duplicate.",
+  "publishedBefore": 4543,
+  "retainedPublished": 4397,
+  "quarantinedCount": 146,
+  "reasonCounts": {
+    "extremely-thin-under-400-words": 145,
+    "missing-target-keyword": 7,
+    "weaker-exact-keyword-duplicate": 10
+  },
+  "quarantined": [
+    {
+      "originalPath": "content/blogs/accessible-website-agency.md",
+      "archivePath": "backups/blog-problems-2026-08-22/accessible-website-agency.md",
+      "checksum": "f447ef33f53c314c1327d17905e8778a4341df1ecbf6dce28fe6164ec9ddbac5",
+      "keyword": "accessible website agency",
+      "wordCount": 271,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-agent-development-company-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-agent-development-company-guide.md",
+      "checksum": "f8bfe578b470bae2c4b3ad0079aac750924c63966503b210cd07f93e444b7006",
+      "keyword": "ai agent development company",
+      "wordCount": 331,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-agent-development-production-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-agent-development-production-guide.md",
+      "checksum": "4d116b390a8f44bc841946f6f7dad591969f29f06c719bfec2f73cf6eeccb261",
+      "keyword": "ai agent development",
+      "wordCount": 352,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-agents-for-business-practical-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-agents-for-business-practical-guide.md",
+      "checksum": "b59add6ead487a5d3d865845ada9c9d5d944ebb760323b856a708bd8cda04754",
+      "keyword": "ai agents for business",
+      "wordCount": 339,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-app-development-company-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-app-development-company-guide.md",
+      "checksum": "9ad5551488113465a7b953f31d1595042c198e5109cc2935ee5d8937aa5cc69e",
+      "keyword": "ai app development company",
+      "wordCount": 313,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-automation-agency-selection-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-automation-agency-selection-guide.md",
+      "checksum": "6f7a8778875ea18786591ed03872d5caf0125d301319ca42600c79383b639c35",
+      "keyword": "ai automation agency",
+      "wordCount": 317,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-automation-for-businesses-use-cases.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-automation-for-businesses-use-cases.md",
+      "checksum": "d926c643871d479485a6b1018b9bcaa10e37213804f414b42d2aff3be91941c8",
+      "keyword": "ai automation for businesses",
+      "wordCount": 334,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-automation-services-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-automation-services-buyers-guide.md",
+      "checksum": "0b9b67f55a2177e01812d07c04690b3417d87d38ec54025ed94588e5914141b3",
+      "keyword": "ai automation services",
+      "wordCount": 302,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-automation-small-business-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-automation-small-business-guide.md",
+      "checksum": "ba5757ccac0a8f382caebfe01ff19518a713f94f99c592f88253e57f400f305c",
+      "keyword": "",
+      "wordCount": 347,
+      "reasons": [
+        "missing-target-keyword",
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-chatbot-development-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-chatbot-development-guide.md",
+      "checksum": "ea0a1c73fa3aa86558f9d18242c6d8e224fdb2fdfc539469915650a2bf1b871b",
+      "keyword": "ai chatbot development",
+      "wordCount": 314,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-consulting-services-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-consulting-services-buyers-guide.md",
+      "checksum": "4b811c13916c52a211b1ce5ad57e193fd7279a73018a7de0cd47db73f2dfce75",
+      "keyword": "ai consulting services",
+      "wordCount": 316,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-crm-development-product-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-crm-development-product-guide.md",
+      "checksum": "c1ee3f76a1d84f7db0643a8419766d6a4e57586c8d2363562b61b7461d7fd4eb",
+      "keyword": "ai crm development",
+      "wordCount": 302,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-customer-service-automation-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-customer-service-automation-guide.md",
+      "checksum": "b20b2eeab702508173c6454c020dcebda5f4a64fa3522ddb8425415b827740da",
+      "keyword": "ai customer service automation",
+      "wordCount": 307,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-development-company-selection-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-development-company-selection-guide.md",
+      "checksum": "3f2ad7072259424c895e9003466417ed6e248bfea5b260cfe4477520439fa5b4",
+      "keyword": "ai development company",
+      "wordCount": 335,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-development-services-scope-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-development-services-scope-guide.md",
+      "checksum": "90135e727fb0f5ec36a164048008f36906c1009d69bfb5f5d0929ba1aefb39f8",
+      "keyword": "ai development services",
+      "wordCount": 328,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-integration-services-architecture-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-integration-services-architecture-guide.md",
+      "checksum": "6d60323d6a57f3d27a6659160101d705b0fb3e03ecc07c06c8533382075b3b49",
+      "keyword": "ai integration services",
+      "wordCount": 311,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-lead-generation-automation-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-lead-generation-automation-guide.md",
+      "checksum": "51ee886d91c4cc6cd364eaecebe7f9dee7e827dbfee0c610080a973e40d35357",
+      "keyword": "ai lead generation automation",
+      "wordCount": 353,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-marketing-automation-strategy.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-marketing-automation-strategy.md",
+      "checksum": "d0ed433f3619be1197e974ffb2f100139a7fb53ce1d30e7bb827dbe2a8819801",
+      "keyword": "ai marketing automation",
+      "wordCount": 300,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-saas-development-product-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-saas-development-product-guide.md",
+      "checksum": "07863ae581ce4405a919d5619c11648c508f5d627e1beca8c738bbbd4614aa83",
+      "keyword": "ai saas development",
+      "wordCount": 313,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-sales-automation-revenue-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-sales-automation-revenue-guide.md",
+      "checksum": "46ee3530d2f6259c7bcf729461f94258f40892a00d98a0d2a188d03323ac2928",
+      "keyword": "ai sales automation",
+      "wordCount": 307,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-software-development-company-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-software-development-company-buyers-guide.md",
+      "checksum": "880b87f1e1984ea32bbb14107e34372a548f2b3d4687438267d69004c93b2822",
+      "keyword": "ai software development company",
+      "wordCount": 321,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-software-development-product-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-software-development-product-guide.md",
+      "checksum": "f88b9999806a8ff97a18a1b69e5b22e6d04dca80b4ca425df6138824f68bec73",
+      "keyword": "ai software development",
+      "wordCount": 320,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ai-workflow-automation-roadmap.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ai-workflow-automation-roadmap.md",
+      "checksum": "2eb6127eb6e654b19c96dbb597d4c09a5fcecf7aabef3c90478afb1fcf90ce21",
+      "keyword": "ai workflow automation",
+      "wordCount": 300,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/api-development-services-architecture-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/api-development-services-architecture-guide.md",
+      "checksum": "bda7d747bdd55d9c62c470ba444b47aaf843acd37efd7d93c1bd236f966bd0af",
+      "keyword": "api development services",
+      "wordCount": 328,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/api-integration-services-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/api-integration-services-buyers-guide.md",
+      "checksum": "df3418f8090d5963d3598519695f97015eeb291e4566c196ba990dfc9251c41a",
+      "keyword": "api integration services",
+      "wordCount": 338,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/api-integration-services-cost-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/api-integration-services-cost-guide.md",
+      "checksum": "39febdec6ee43bd4cd8dd5906532f6b8905e74cdd3b390a661ccb40d2566b109",
+      "keyword": "api integration services",
+      "wordCount": 300,
+      "reasons": [
+        "extremely-thin-under-400-words",
+        "weaker-exact-keyword-duplicate"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/artificial-intelligence-development-services-scope.md",
+      "archivePath": "backups/blog-problems-2026-08-22/artificial-intelligence-development-services-scope.md",
+      "checksum": "1b641490dbacd2e7cbb22a6f74f59a041a07998e9637d850390c0e4f46196b01",
+      "keyword": "artificial intelligence development services",
+      "wordCount": 339,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/aws-consulting-services-checklist.md",
+      "archivePath": "backups/blog-problems-2026-08-22/aws-consulting-services-checklist.md",
+      "checksum": "8712ba552bb157efe2a4b06a9651f6c6d837eb5304ccff9641dcd211d4d75287",
+      "keyword": "aws consulting services",
+      "wordCount": 316,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/b2b-web-development-agency.md",
+      "archivePath": "backups/blog-problems-2026-08-22/b2b-web-development-agency.md",
+      "checksum": "f4d969bb4272654a5a0a9394b78912dfe1f26d2438224733fb316e9db58a5fac",
+      "keyword": "b2b web development agency",
+      "wordCount": 307,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/business-automation-services-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/business-automation-services-buyers-guide.md",
+      "checksum": "fc5873d42076e369c7cbb84dde528451b65a7ea423d5f54b5a2c32f4122f2024",
+      "keyword": "business automation services",
+      "wordCount": 300,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/business-process-automation-with-ai-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/business-process-automation-with-ai-guide.md",
+      "checksum": "2c32cba08debd7ff3cce178acf5e60168aa7e6a7cf9015b146c4751a1c2a41e7",
+      "keyword": "business process automation with ai",
+      "wordCount": 315,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/cloud-application-development-strategy.md",
+      "archivePath": "backups/blog-problems-2026-08-22/cloud-application-development-strategy.md",
+      "checksum": "f49f90a71ceac5777bd29c3227298929776bbb31ada726befcd6d475edc4f041",
+      "keyword": "cloud application development",
+      "wordCount": 326,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/cloud-consulting-services-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/cloud-consulting-services-buyers-guide.md",
+      "checksum": "ddfc54f1eda0ca40fb54033bb90ef9e5877fb59b15f4681df10c15044fc7c4c5",
+      "keyword": "cloud consulting services",
+      "wordCount": 339,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/cloud-migration-services-roadmap.md",
+      "archivePath": "backups/blog-problems-2026-08-22/cloud-migration-services-roadmap.md",
+      "checksum": "9c2a982c0613e3ebc0c16df09efb025854f7c7bc6d76f5b29c8b07e1c02abac0",
+      "keyword": "cloud migration services",
+      "wordCount": 330,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/cms-selection-with-website-agency.md",
+      "archivePath": "backups/blog-problems-2026-08-22/cms-selection-with-website-agency.md",
+      "checksum": "c90c76d841b5c07fc3074fa0ad88f3f9a7ea0ed34adba51e9bf7a1c30fbcc51e",
+      "keyword": "website agency cms",
+      "wordCount": 274,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/conversion-focused-website-agency.md",
+      "archivePath": "backups/blog-problems-2026-08-22/conversion-focused-website-agency.md",
+      "checksum": "4dd31664b1ab4a5354f3a194080fcce74ce02295e7c182abab193a8642352fe7",
+      "keyword": "conversion focused website agency",
+      "wordCount": 290,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/crm-development-services-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/crm-development-services-buyers-guide.md",
+      "checksum": "7cf143336aa1051c8a278db1368cf6d27b56e1cd0884aa22700cb89804000476",
+      "keyword": "crm development services",
+      "wordCount": 297,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/custom-ai-agent-development-roadmap.md",
+      "archivePath": "backups/blog-problems-2026-08-22/custom-ai-agent-development-roadmap.md",
+      "checksum": "10a2bc00b80a3a9bbff92d58bbd212d32fa9d0c3e00312dae532692fad18cd5b",
+      "keyword": "custom ai agent development",
+      "wordCount": 300,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/custom-ai-solutions-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/custom-ai-solutions-buyers-guide.md",
+      "checksum": "1fd4be52e34ee7f3021dd5a3c54f6a77fb1ca2d219cf6834d6409a02e241b7d4",
+      "keyword": "custom ai solutions",
+      "wordCount": 334,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/custom-mobile-app-development-roadmap.md",
+      "archivePath": "backups/blog-problems-2026-08-22/custom-mobile-app-development-roadmap.md",
+      "checksum": "a535495a378869fcd6b8e8d7b33db01c7732da813ef1371627e18d670b84d6b5",
+      "keyword": "custom mobile app development",
+      "wordCount": 316,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/custom-saas-development-roadmap.md",
+      "archivePath": "backups/blog-problems-2026-08-22/custom-saas-development-roadmap.md",
+      "checksum": "8e95075c452825ec8d6a113e550ebaf73678de426a3360ae3e7978dcc8a81702",
+      "keyword": "custom saas development",
+      "wordCount": 302,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/custom-software-development-company-delivery-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/custom-software-development-company-delivery-guide.md",
+      "checksum": "626ec05d8593e9f5644a7387f258d1435d9a3d2ec415b739634ec88f9a2806fb",
+      "keyword": "custom software development company",
+      "wordCount": 331,
+      "reasons": [
+        "extremely-thin-under-400-words",
+        "weaker-exact-keyword-duplicate"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/custom-software-development-services-project-governance.md",
+      "archivePath": "backups/blog-problems-2026-08-22/custom-software-development-services-project-governance.md",
+      "checksum": "ebb31045c4be9b34e884cb45ae38369836e678e903dd4e6f21c1f787bcc1263f",
+      "keyword": "custom software development services",
+      "wordCount": 336,
+      "reasons": [
+        "extremely-thin-under-400-words",
+        "weaker-exact-keyword-duplicate"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/custom-web-application-development-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/custom-web-application-development-guide.md",
+      "checksum": "9ff06f3416069862bf70fb13fd2cd6a89938c906da6a2f12bbe5606e27b4c166",
+      "keyword": "custom web application development",
+      "wordCount": 308,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/custom-website-development-value-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/custom-website-development-value-guide.md",
+      "checksum": "3af503e9699a65ec3e4cc4da9686ed3e8ed269a8c628554d10a6cc7025d0fc8d",
+      "keyword": "custom website development",
+      "wordCount": 318,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/cybersecurity-software-development-services-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/cybersecurity-software-development-services-guide.md",
+      "checksum": "5f66a4ff84f4b8cef5bff04d0fa4e154c7a8778d942711242bd5a147a586c3bb",
+      "keyword": "cybersecurity software development services",
+      "wordCount": 330,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/data-analytics-software-development-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/data-analytics-software-development-guide.md",
+      "checksum": "912ac794347f92709fb6b76e1adf7416d24fc997b3087532085a9d13279cc1d1",
+      "keyword": "data analytics software development",
+      "wordCount": 306,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/dedicated-development-team-operating-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/dedicated-development-team-operating-guide.md",
+      "checksum": "1ee9efad7bc7f0af076387e89903cd6cc35ac8ab776481fa64953700cdf223dc",
+      "keyword": "dedicated development team",
+      "wordCount": 361,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/devops-consulting-services-value-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/devops-consulting-services-value-guide.md",
+      "checksum": "688578a038cf847621586879d00fa159829c68f93510668da06d2287bf8f9c40",
+      "keyword": "devops consulting services",
+      "wordCount": 319,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/digital-agency-roi-measurement.md",
+      "archivePath": "backups/blog-problems-2026-08-22/digital-agency-roi-measurement.md",
+      "checksum": "06cc7eba4d288508c958ea0c68a20f09c28db0d3352ff40d366d18050583c53d",
+      "keyword": "digital agency roi",
+      "wordCount": 289,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/digital-agency-seo-web-development.md",
+      "archivePath": "backups/blog-problems-2026-08-22/digital-agency-seo-web-development.md",
+      "checksum": "e31f4f1fc330a6e11efa0a8043b633ac494e0af3c44054fe162769e0faaa603c",
+      "keyword": "digital agency seo and web development",
+      "wordCount": 253,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/digital-agency-vs-software-agency.md",
+      "archivePath": "backups/blog-problems-2026-08-22/digital-agency-vs-software-agency.md",
+      "checksum": "95d486e17d9a490badd20937d12f921647fbbec2e92d7b2a774eead38ae51ef8",
+      "keyword": "digital agency vs software agency",
+      "wordCount": 279,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/digital-transformation-services-strategy.md",
+      "archivePath": "backups/blog-problems-2026-08-22/digital-transformation-services-strategy.md",
+      "checksum": "29a0cc6e8b4ca000134382dd40e6502cf3512dfbd7a33696ef4f63520049188b",
+      "keyword": "digital transformation services",
+      "wordCount": 319,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/django-development-agency-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/django-development-agency-guide.md",
+      "checksum": "e769164a2731d876ac23bd0d4ea19a2b28fbd444c10e8b3a332162be9e93feea",
+      "keyword": "django development agency",
+      "wordCount": 250,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/django-development-cost-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/django-development-cost-guide.md",
+      "checksum": "e5a63ca1cd2157118ae6974adb1a1d7f94b73e56c8d0e7fef432645a04c95e0f",
+      "keyword": "django development cost",
+      "wordCount": 295,
+      "reasons": [
+        "extremely-thin-under-400-words",
+        "weaker-exact-keyword-duplicate"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/django-rest-framework-api-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/django-rest-framework-api-guide.md",
+      "checksum": "9bebc4dd435ad103654cf6403194f9d02ceb9a9a7dc2eca629e8370587e2e4ff",
+      "keyword": "django rest framework api",
+      "wordCount": 300,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/django-vs-nodejs-backend.md",
+      "archivePath": "backups/blog-problems-2026-08-22/django-vs-nodejs-backend.md",
+      "checksum": "7a15c1bbdbf0e4a7fc301d309779ac79a6984434aea3dbbf5686bd1427aa962e",
+      "keyword": "django vs node.js",
+      "wordCount": 292,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ecommerce-software-development-company-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ecommerce-software-development-company-guide.md",
+      "checksum": "f7cdf225a5da389526e5ebb966ab109ba7c430960cdb9d415f39b24a329dc1ca",
+      "keyword": "ecommerce software development company",
+      "wordCount": 321,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/ecommerce-website-development-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/ecommerce-website-development-guide.md",
+      "checksum": "60add8e6feaadc3ef75d749815970e992879d9736c8b6a03320a8764706d9aa8",
+      "keyword": "ecommerce website development",
+      "wordCount": 299,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/enterprise-ai-agents-governance-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/enterprise-ai-agents-governance-guide.md",
+      "checksum": "a9081b1cfc83d5d4fdc9a5f0a6f9f4b1ed7484d05284237205936269d09dca41",
+      "keyword": "enterprise ai agents",
+      "wordCount": 316,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/fintech-software-development-company-risk-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/fintech-software-development-company-risk-guide.md",
+      "checksum": "0c4c81de81b3301a3a05da6dbdab813462d79fd014615f4ca50cd5d498cdb67e",
+      "keyword": "fintech software development company",
+      "wordCount": 327,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/flutter-app-development-company-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/flutter-app-development-company-guide.md",
+      "checksum": "44b39c9856728db56b77bc249b2c0124cafd96150edea7b6bbe48845d1917028",
+      "keyword": "flutter app development company",
+      "wordCount": 313,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/freelancer-vs-agency-comparison.md",
+      "archivePath": "backups/blog-problems-2026-08-22/freelancer-vs-agency-comparison.md",
+      "checksum": "44633a57d65bb6241d7eb1329ae67dafdcd09e0a0e93f0dea427f2527cc9faa9",
+      "keyword": "",
+      "wordCount": 345,
+      "reasons": [
+        "missing-target-keyword",
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/full-service-vs-specialist-digital-agency.md",
+      "archivePath": "backups/blog-problems-2026-08-22/full-service-vs-specialist-digital-agency.md",
+      "checksum": "9507271415cc1d93e2d6ebd911aaa9fec6e515284dbedb982edaf0c23168742e",
+      "keyword": "digital agency",
+      "wordCount": 260,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/full-stack-development-services-architecture.md",
+      "archivePath": "backups/blog-problems-2026-08-22/full-stack-development-services-architecture.md",
+      "checksum": "4821baa34ef2367c08246bab985904a877e79401f41c78601b03309bc1db1e50",
+      "keyword": "full stack development services",
+      "wordCount": 307,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/generative-ai-development-services-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/generative-ai-development-services-guide.md",
+      "checksum": "37a04eb481a2ecb7cb05c5142dda62838efa6cf68d9e8c2c53c26136b4b8e25a",
+      "keyword": "generative ai development services",
+      "wordCount": 336,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/headless-shopify-vs-traditional-shopify.md",
+      "archivePath": "backups/blog-problems-2026-08-22/headless-shopify-vs-traditional-shopify.md",
+      "checksum": "3663b663db3ae4a321ba34f73b068bf9a375abfe350352905f6e2287e8e6086c",
+      "keyword": "headless shopify vs traditional shopify",
+      "wordCount": 273,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/healthcare-software-development-company-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/healthcare-software-development-company-guide.md",
+      "checksum": "5382e8c270c748fd67deaac663d1c2a66848c567658d1a16336eeca3c8a38ea7",
+      "keyword": "healthcare software development company",
+      "wordCount": 309,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/hire-django-developer.md",
+      "archivePath": "backups/blog-problems-2026-08-22/hire-django-developer.md",
+      "checksum": "830e6276375829f5112f408b8fbe12e42ed6f10cb99afc55b64007b94a75528d",
+      "keyword": "hire django developer",
+      "wordCount": 268,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/hire-nextjs-developer-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/hire-nextjs-developer-guide.md",
+      "checksum": "b07b351de8fb05bef9c2e81a7fab93da54177538dbc779b49d39fd9541a9421d",
+      "keyword": "hire next.js developer",
+      "wordCount": 260,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/hire-python-developer-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/hire-python-developer-guide.md",
+      "checksum": "75388e314d364154d91f37e204f23cb2190b3c4b4e3a00d43a32d36aed209a24",
+      "keyword": "hire python developer",
+      "wordCount": 280,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/how-to-hire-web-development-agency.md",
+      "archivePath": "backups/blog-problems-2026-08-22/how-to-hire-web-development-agency.md",
+      "checksum": "0a0f884afc739792a88b7cb38d301a3715b6bbebbe82cb63b251117aa8a87c18",
+      "keyword": "hire web development agency",
+      "wordCount": 308,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/it-consulting-services-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/it-consulting-services-buyers-guide.md",
+      "checksum": "e4316d5051a9a3272e2e2b1821f3a986c6fa3c03be5e3f298d43bd4f994afd71",
+      "keyword": "it consulting services",
+      "wordCount": 331,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/kubernetes-consulting-services-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/kubernetes-consulting-services-buyers-guide.md",
+      "checksum": "5a2c47f4943d8955e4145c2300f8871337eec8d6470f2f4c124dea4ec4b1c967",
+      "keyword": "kubernetes consulting services",
+      "wordCount": 303,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/legacy-software-modernization-services-roadmap.md",
+      "archivePath": "backups/blog-problems-2026-08-22/legacy-software-modernization-services-roadmap.md",
+      "checksum": "88474600ecca07893345c0b71188ff095104e5ebed7eb361891a8663b0779da7",
+      "keyword": "legacy software modernization services",
+      "wordCount": 328,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/local-vs-remote-web-agency.md",
+      "archivePath": "backups/blog-problems-2026-08-22/local-vs-remote-web-agency.md",
+      "checksum": "69e53c40bd464a31adf5f5c80dd3b914209e0e272b2abbcfd56ce397d432b0cc",
+      "keyword": "local vs remote web agency",
+      "wordCount": 289,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/logistics-software-development-company-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/logistics-software-development-company-guide.md",
+      "checksum": "004e22c70885226b996813f831cadf564b7ed7d0dc19337f54ab5787398ac480",
+      "keyword": "logistics software development company",
+      "wordCount": 319,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/machine-learning-development-company-checklist.md",
+      "archivePath": "backups/blog-problems-2026-08-22/machine-learning-development-company-checklist.md",
+      "checksum": "45c8f5718a4dc673a5df1b7843cf136babd44512745735c5e89a9b576671960b",
+      "keyword": "machine learning development company",
+      "wordCount": 306,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/manufacturing-software-development-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/manufacturing-software-development-guide.md",
+      "checksum": "36c50bcb51dd5322094e853f8c46def3945fb60d87897a1fb19f3434941305ef",
+      "keyword": "manufacturing software development",
+      "wordCount": 318,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/microservices-architecture-consulting-decision-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/microservices-architecture-consulting-decision-guide.md",
+      "checksum": "f65cfc3a5ac1cfdab0ff2017ef31e82cfe1d42e159e66d1417598802b476497f",
+      "keyword": "microservices architecture consulting",
+      "wordCount": 308,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/migrate-custom-ecommerce-to-shopify.md",
+      "archivePath": "backups/blog-problems-2026-08-22/migrate-custom-ecommerce-to-shopify.md",
+      "checksum": "a2eee26caf8a2a89a17be81ffabb8f3d863e84b4654e55ff74c42c732b54a7dc",
+      "keyword": "migrate custom ecommerce to shopify",
+      "wordCount": 271,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/mobile-app-development-company-checklist.md",
+      "archivePath": "backups/blog-problems-2026-08-22/mobile-app-development-company-checklist.md",
+      "checksum": "38c40e6f1d1223772305062a1e3afa259d3640ee44355b4aa65fe18af3ea1e94",
+      "keyword": "mobile app development company",
+      "wordCount": 386,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/mobile-app-development-company-cost-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/mobile-app-development-company-cost-guide.md",
+      "checksum": "b59d5d3bf9a9c8046fa08d7c70cc2181c0552a164a92684194080c0321511a37",
+      "keyword": "mobile app development company",
+      "wordCount": 297,
+      "reasons": [
+        "extremely-thin-under-400-words",
+        "weaker-exact-keyword-duplicate"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/mobile-app-development-native-vs-cross-platform.md",
+      "archivePath": "backups/blog-problems-2026-08-22/mobile-app-development-native-vs-cross-platform.md",
+      "checksum": "dc8f1feedb88f076b8db90c4e641a93bf27a158b343c15e7b747d4e1f91d88a1",
+      "keyword": "",
+      "wordCount": 346,
+      "reasons": [
+        "missing-target-keyword",
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/mobile-app-development-services-cost-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/mobile-app-development-services-cost-guide.md",
+      "checksum": "53e42df9f0b7952a9656bb109b0fc0a09a6814ea368992ec465973594e7d241e",
+      "keyword": "mobile app development services",
+      "wordCount": 362,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/mvp-development-company-founders-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/mvp-development-company-founders-guide.md",
+      "checksum": "05e82e092f88aa61f652656c611478315387382742a73a95bfc3c7b5be26d4ef",
+      "keyword": "mvp development company",
+      "wordCount": 367,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/nextjs-developer-cost-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/nextjs-developer-cost-guide.md",
+      "checksum": "4662c6e1f4cb16d6e9eafb02f19e8b7f4036736b435e1ee3caf7e31ef8d6dcf9",
+      "keyword": "next.js developer cost",
+      "wordCount": 264,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/nextjs-development-company-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/nextjs-development-company-buyers-guide.md",
+      "checksum": "33f180b95a4dfca6a884cb0bc39df3ee145a74bd07fb54713bb229b166d1a9da",
+      "keyword": "next.js development company",
+      "wordCount": 307,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/nextjs-vs-react-developer.md",
+      "archivePath": "backups/blog-problems-2026-08-22/nextjs-vs-react-developer.md",
+      "checksum": "51dc5b9c6202d7957f149f5bd5439c1e21fb04b4677c583bc423d690848cff64",
+      "keyword": "next.js developer vs react developer",
+      "wordCount": 297,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/nodejs-development-services-architecture-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/nodejs-development-services-architecture-guide.md",
+      "checksum": "0938a98cc868529584208550997a42a10900998d31e7b17a44a54e96f5ad35ec",
+      "keyword": "node.js development services",
+      "wordCount": 334,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/offshore-software-development-company-risk-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/offshore-software-development-company-risk-guide.md",
+      "checksum": "6ac885a841efade8c3311d2f5645c62c2975f0559124e0ad76faf26e2e39f27c",
+      "keyword": "offshore software development company",
+      "wordCount": 365,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/professional-website-development-services-checklist.md",
+      "archivePath": "backups/blog-problems-2026-08-22/professional-website-development-services-checklist.md",
+      "checksum": "bbf179d8d3b54c4ffee7ca197e91e756cc63221c1335c587dea94d724fa7c3ea",
+      "keyword": "professional website development services",
+      "wordCount": 328,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/python-developer-agency-selection.md",
+      "archivePath": "backups/blog-problems-2026-08-22/python-developer-agency-selection.md",
+      "checksum": "7c6abf4a5446cac3b2186b3cd4c301e2f0065673b3ea209db138f2b006b4efd7",
+      "keyword": "python developer agency",
+      "wordCount": 272,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/python-developer-for-ai-project.md",
+      "archivePath": "backups/blog-problems-2026-08-22/python-developer-for-ai-project.md",
+      "checksum": "d0aa89a0671b844dbbbabc69b3f28c40bbca86be3a31decbc39129c2a8b183bc",
+      "keyword": "python developer for ai project",
+      "wordCount": 299,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/python-developer-for-automation.md",
+      "archivePath": "backups/blog-problems-2026-08-22/python-developer-for-automation.md",
+      "checksum": "90e9ec08fe2241812c579f77a5b124a0ce6d91865d160cb79e13555bd03a8953",
+      "keyword": "python developer for automation",
+      "wordCount": 262,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/python-development-company-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/python-development-company-buyers-guide.md",
+      "checksum": "d3cbcd08674707468d5902a8496649027d2dfb516cffbe203fce59a1c76ebc6e",
+      "keyword": "python development company",
+      "wordCount": 323,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/react-development-company-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/react-development-company-buyers-guide.md",
+      "checksum": "bbc31866c934d039674fce876c7fe74b613cbc130333b4697f238ce25db0721b",
+      "keyword": "react development company",
+      "wordCount": 317,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/react-development-company-cost-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/react-development-company-cost-guide.md",
+      "checksum": "183c21bd1d59d24f314bed94e4a87319b556937c20b67300cc2e792e7fd8c949",
+      "keyword": "react development company",
+      "wordCount": 298,
+      "reasons": [
+        "extremely-thin-under-400-words",
+        "weaker-exact-keyword-duplicate"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/react-native-app-development-company-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/react-native-app-development-company-guide.md",
+      "checksum": "69d8b885a8d416bc9cef02f7bf2f141787ae5be17eee9099c4e8e7242dfdf628",
+      "keyword": "react native app development company",
+      "wordCount": 313,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/real-estate-software-solutions-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/real-estate-software-solutions-guide.md",
+      "checksum": "a8a3aa10f3d32eac6821db1a727c9f87f8f8947cab651d2dbee16c8fd678b201",
+      "keyword": "real estate software solutions",
+      "wordCount": 306,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/saas-application-development-company-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/saas-application-development-company-guide.md",
+      "checksum": "2e9bc2f9008d7cef214b9e0c69d673d89d10f576ca959c3c4eccdefbd4cd8c76",
+      "keyword": "saas application development company",
+      "wordCount": 362,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/saas-development-company-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/saas-development-company-buyers-guide.md",
+      "checksum": "d16d5d258407848b46b299a753c179a1b855537eeb4a86e9059961204b0c1ce6",
+      "keyword": "saas development company",
+      "wordCount": 297,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/saas-development-services-cost-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/saas-development-services-cost-guide.md",
+      "checksum": "f1e289270515501baefb80a57db6058cf234277d1a3aaf579d5520ecf424dc3a",
+      "keyword": "saas development services",
+      "wordCount": 318,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/saas-mvp-development-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/saas-mvp-development-guide.md",
+      "checksum": "37f94e1caba05fee5df2fc33dd523f77b8b9418c55eaeb607a6d2ed0e091a756",
+      "keyword": "",
+      "wordCount": 368,
+      "reasons": [
+        "missing-target-keyword",
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/saas-product-development-services-roadmap.md",
+      "archivePath": "backups/blog-problems-2026-08-22/saas-product-development-services-roadmap.md",
+      "checksum": "c386c22983386d46b622e4d3bae20f1ad077464fa8c8df6454a868aaf8651408",
+      "keyword": "saas product development services",
+      "wordCount": 367,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/shopify-development-services-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/shopify-development-services-buyers-guide.md",
+      "checksum": "007f63a79769b97075ebf828059d6c8bd90dc9a16a539128fb06c30c5630159a",
+      "keyword": "shopify development services",
+      "wordCount": 298,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/shopify-vs-custom-ecommerce-scaling.md",
+      "archivePath": "backups/blog-problems-2026-08-22/shopify-vs-custom-ecommerce-scaling.md",
+      "checksum": "0591219a475b5be826fb449a960d9fc8ed48a206ae068d453adf1c9cf7215224",
+      "keyword": "shopify vs custom ecommerce scaling",
+      "wordCount": 276,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/shopify-vs-custom-ecommerce-website.md",
+      "archivePath": "backups/blog-problems-2026-08-22/shopify-vs-custom-ecommerce-website.md",
+      "checksum": "3e4100108e2dcc4556ba85367830b3301b6280ae9f9aa45fff095a2cf6183313",
+      "keyword": "shopify vs custom ecommerce website",
+      "wordCount": 280,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/shopify-vs-ecommerce-website-cost.md",
+      "archivePath": "backups/blog-problems-2026-08-22/shopify-vs-ecommerce-website-cost.md",
+      "checksum": "fcb2fac82b75e52bd0dc5b3c44bc5887a054366f46e6d8e6f2f753ef5db899c5",
+      "keyword": "shopify vs ecommerce website cost",
+      "wordCount": 283,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/shopify-vs-woocommerce.md",
+      "archivePath": "backups/blog-problems-2026-08-22/shopify-vs-woocommerce.md",
+      "checksum": "78103b8b2f564e2055d308d971981d10cf01441b66fc2bbb56b619a7dd8f3684",
+      "keyword": "shopify vs woocommerce",
+      "wordCount": 274,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/small-business-web-development-agency.md",
+      "archivePath": "backups/blog-problems-2026-08-22/small-business-web-development-agency.md",
+      "checksum": "5d7b856db070fd9a2db7e706c739f6097b46baa0a9c654cfb1fcac2c71f9e1e5",
+      "keyword": "web development agency for small business",
+      "wordCount": 304,
+      "reasons": [
+        "extremely-thin-under-400-words",
+        "weaker-exact-keyword-duplicate"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-agency-cost-planning.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-agency-cost-planning.md",
+      "checksum": "a96a193b5e06e7a2799d76f76e74a473f293078d384a1365b8cabb6bfee822d9",
+      "keyword": "software agency cost",
+      "wordCount": 351,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-agency-for-startups.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-agency-for-startups.md",
+      "checksum": "93c9ecdc48331410ed24236a9e2ed6833ab6a7dd5e0a245fff514283cca03b89",
+      "keyword": "software agency for startups",
+      "wordCount": 341,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-agency-retainer-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-agency-retainer-guide.md",
+      "checksum": "f8063ab2ce33f3bcbe6751df9c69eda3cf3bbb3682805f041ca0c8e0e063aeb9",
+      "keyword": "software agency retainer",
+      "wordCount": 317,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-agency-rfp-template.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-agency-rfp-template.md",
+      "checksum": "a0e125002daad759a7b426c0edf72628d92b095e8fe5085cc5b503fe5773adf2",
+      "keyword": "software agency rfp",
+      "wordCount": 362,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-company-development-process.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-company-development-process.md",
+      "checksum": "4b8f006456ef49a72eec0a3a4d4645300644ed9567bb4fa039da58dc40f11661",
+      "keyword": "software company development process",
+      "wordCount": 292,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-company-in-pakistan-selection.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-company-in-pakistan-selection.md",
+      "checksum": "bf4de4ca3dd2e0b1f5df953a5fbbbc56a923ca74abb35168e8a12d6d7f4c4538",
+      "keyword": "software company in pakistan",
+      "wordCount": 319,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-company-maintenance-support.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-company-maintenance-support.md",
+      "checksum": "b6844c52ddce4563fa4e79477491be9d306d294478c50e0aee1bf99ad464a206",
+      "keyword": "software company maintenance and support",
+      "wordCount": 290,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-company-red-flags.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-company-red-flags.md",
+      "checksum": "16f435a679b9d381956ccf2e4caa4037b436af7502e0d4c7103027206d1e37a4",
+      "keyword": "software company red flags",
+      "wordCount": 347,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-consulting-services-value.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-consulting-services-value.md",
+      "checksum": "3811e2ed45155dc697b74f5c0ae430beae93f8dd71aa12211eb9ba316328aafe",
+      "keyword": "software consulting services",
+      "wordCount": 379,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-development-company-technical-due-diligence.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-development-company-technical-due-diligence.md",
+      "checksum": "ad6fc8551590be2fcea86da98546faf3e2113dcffd6fb8ebff3b3eab04e17010",
+      "keyword": "software development company",
+      "wordCount": 310,
+      "reasons": [
+        "extremely-thin-under-400-words",
+        "weaker-exact-keyword-duplicate"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-outsourcing-company-selection.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-outsourcing-company-selection.md",
+      "checksum": "b3e760071f9c8531eba6746420ea33dcacc04989d30b5cdb74219294a8763403",
+      "keyword": "software outsourcing company",
+      "wordCount": 353,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-product-company-vs-service-company.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-product-company-vs-service-company.md",
+      "checksum": "72a8693b6d939b69d321cce96b9e95b8b7f1a1df569d945b8d1e42c9e6d329cf",
+      "keyword": "software product company vs service company",
+      "wordCount": 307,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/software-testing-quality-assurance-services-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/software-testing-quality-assurance-services-guide.md",
+      "checksum": "898ae32d24def69c53366641fe7f2ba51b77e1af2e12895f6097bccb70f654f3",
+      "keyword": "software testing and quality assurance services",
+      "wordCount": 332,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/staff-augmentation-services-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/staff-augmentation-services-guide.md",
+      "checksum": "b043c9babf148375f94f55d881fcba81a8e736ded170298979d98e30a41eeb8f",
+      "keyword": "staff augmentation services",
+      "wordCount": 351,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/startup-software-development-services-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/startup-software-development-services-guide.md",
+      "checksum": "362195fcc275685ee51ce6c99165e6e86863527fe688f7f6bb39eee65daabfa7",
+      "keyword": "startup software development services",
+      "wordCount": 344,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/third-party-api-integration-risk-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/third-party-api-integration-risk-guide.md",
+      "checksum": "6bde67b7b77f5fdc3d1d50e9c8b27238305a97e9d479b467da2e2c80a3b78d82",
+      "keyword": "third party api integration",
+      "wordCount": 336,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/using-ai-without-breaking-operations.md",
+      "archivePath": "backups/blog-problems-2026-08-22/using-ai-without-breaking-operations.md",
+      "checksum": "9a7aa85b5bd7be6a063bb2a3772db875d2592bd29988199e6e46f20b3bd79169",
+      "keyword": "",
+      "wordCount": 72,
+      "reasons": [
+        "missing-target-keyword",
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/voquarn-vs-code-crafters.md",
+      "archivePath": "backups/blog-problems-2026-08-22/voquarn-vs-code-crafters.md",
+      "checksum": "c6ab85306cfa9563243d2b12d0479d58f38fd43f95826b865c59d4e0b8daa7ad",
+      "keyword": "voquarn vs code crafters",
+      "wordCount": 294,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/voquarn-vs-codebuilder.md",
+      "archivePath": "backups/blog-problems-2026-08-22/voquarn-vs-codebuilder.md",
+      "checksum": "4b49680022f08b4895a6e475aa0299f59a1590d890e49e27d091c305c66f276b",
+      "keyword": "voquarn vs codebuilder",
+      "wordCount": 247,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/voquarn-vs-coded-clouds.md",
+      "archivePath": "backups/blog-problems-2026-08-22/voquarn-vs-coded-clouds.md",
+      "checksum": "7e791f0ee745a88faf00d62daf2cb060ad88dec475681b184947c82e6573898d",
+      "keyword": "voquarn vs coded clouds",
+      "wordCount": 243,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/voquarn-vs-hm-technologies.md",
+      "archivePath": "backups/blog-problems-2026-08-22/voquarn-vs-hm-technologies.md",
+      "checksum": "5e850a41f9c686c77d0e5f2274a220ad98348a66a5c83f88ca978b13006de5c1",
+      "keyword": "voquarn vs hm technologies",
+      "wordCount": 278,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/voquarn-vs-xeven-solutions.md",
+      "archivePath": "backups/blog-problems-2026-08-22/voquarn-vs-xeven-solutions.md",
+      "checksum": "07e4f35d66f4d4cf3a86b5ddeed8f59d94e2467a0734485038f73480ce4387f3",
+      "keyword": "voquarn vs xeven solutions",
+      "wordCount": 262,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/web-agency-audit-checklist.md",
+      "archivePath": "backups/blog-problems-2026-08-22/web-agency-audit-checklist.md",
+      "checksum": "a2784cc3de1b6e44f93876d873889cc9d8b3dcb4c18830ed0f83b6cd40e00fa2",
+      "keyword": "web agency audit",
+      "wordCount": 268,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/web-agency-retainer-vs-project.md",
+      "archivePath": "backups/blog-problems-2026-08-22/web-agency-retainer-vs-project.md",
+      "checksum": "1a891122837f13885eb1c0b344baa3cfdbd6f90824575116f97141e76620365e",
+      "keyword": "web agency retainer",
+      "wordCount": 264,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/web-application-development-company-cost-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/web-application-development-company-cost-guide.md",
+      "checksum": "a5cc3e849219ee13869678e696d4daee716e0636a587eb07f360ee3ca6825a63",
+      "keyword": "web application development company",
+      "wordCount": 299,
+      "reasons": [
+        "extremely-thin-under-400-words",
+        "weaker-exact-keyword-duplicate"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/web-application-development-services-scope.md",
+      "archivePath": "backups/blog-problems-2026-08-22/web-application-development-services-scope.md",
+      "checksum": "b763099f8400359a5b1cbab5f81a8ef66d1e3b61b13afa331b7a4b25714605e8",
+      "keyword": "web application development services",
+      "wordCount": 299,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/web-development-agency-cost.md",
+      "archivePath": "backups/blog-problems-2026-08-22/web-development-agency-cost.md",
+      "checksum": "cd432792461d51bfb08bbecfa006ddb2fadc77493b3d9651ab4e8a7262ad726b",
+      "keyword": "web development agency cost",
+      "wordCount": 317,
+      "reasons": [
+        "extremely-thin-under-400-words",
+        "weaker-exact-keyword-duplicate"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/web-development-agency-for-website-redesign.md",
+      "archivePath": "backups/blog-problems-2026-08-22/web-development-agency-for-website-redesign.md",
+      "checksum": "321c4150ce5f732c8abf8842edbd8a703682c0ae5909d7b60dce26b15d969f5f",
+      "keyword": "web development agency for website redesign",
+      "wordCount": 288,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/web-development-agency-selection-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/web-development-agency-selection-guide.md",
+      "checksum": "d2997419bb410e2ed5dd11b2ad864098f50deaea8158f1515678c1f6c1817e5e",
+      "keyword": "web development agency",
+      "wordCount": 312,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/web-development-company-pakistan-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/web-development-company-pakistan-guide.md",
+      "checksum": "7acf8ef4b85298f9f7324847c9c8f399ecfb760445d9fd740a530c78603fba32",
+      "keyword": "",
+      "wordCount": 411,
+      "reasons": [
+        "missing-target-keyword"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/website-agency-project-brief.md",
+      "archivePath": "backups/blog-problems-2026-08-22/website-agency-project-brief.md",
+      "checksum": "648f98568b2bd106fe77bd5715061cb617cf6ec4fac3bcb65e25973bf0eaca88",
+      "keyword": "website agency brief",
+      "wordCount": 287,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/website-agency-vs-website-builder.md",
+      "archivePath": "backups/blog-problems-2026-08-22/website-agency-vs-website-builder.md",
+      "checksum": "02970162e676f417420c4d9c129b7d1ba5680de3191a7aa52384e3b8592a545a",
+      "keyword": "website agency vs website builder",
+      "wordCount": 277,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/website-development-company-buyers-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/website-development-company-buyers-guide.md",
+      "checksum": "2299d54554040e1e3d9fcb14949c524a7390aa6f176bacc80b30d13889711610",
+      "keyword": "website development company",
+      "wordCount": 301,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/when-to-build-a-client-portal.md",
+      "archivePath": "backups/blog-problems-2026-08-22/when-to-build-a-client-portal.md",
+      "checksum": "62b35d5daf25d53e45ad8f07cfca0f1c310b6a06a1f712a51002965abac8bcb3",
+      "keyword": "",
+      "wordCount": 67,
+      "reasons": [
+        "missing-target-keyword",
+        "extremely-thin-under-400-words"
+      ]
+    },
+    {
+      "originalPath": "content/blogs/workflow-automation-services-planning-guide.md",
+      "archivePath": "backups/blog-problems-2026-08-22/workflow-automation-services-planning-guide.md",
+      "checksum": "d4476eee01f597dd89118360efd333ab4ff92b6636505988cd277f0bbac7c582",
+      "keyword": "workflow automation services",
+      "wordCount": 299,
+      "reasons": [
+        "extremely-thin-under-400-words"
+      ]
+    }
+  ]
+}
