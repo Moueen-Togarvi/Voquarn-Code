@@ -22,7 +22,7 @@ const categoryOptions = [
   "Web Development",
   "App Development",
   "SaaS Applications",
-  "AI Workflows",
+  "CRM & Management Systems",
   "SEO & Growth",
   "Graphic Design",
   "Something else",

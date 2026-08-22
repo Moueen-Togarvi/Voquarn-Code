@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, CalendarDays, Mail } from "lucide-react";
+import { ArrowRight, CalendarDays } from "lucide-react";
 import { navItems } from "@/lib/site-data";
 
 // Contact is the standalone call to action on the right, so it is not repeated
@@ -13,8 +13,7 @@ const navbarNavItems = navItems.filter((item) => item.href !== "/contact");
 
 // The hash is read by ContactPanel to open the matching tab.
 const quickActions = [
-  { href: "/contact#meeting", label: "Book a meeting", Icon: CalendarDays, dot: false },
-  { href: "/contact#inquiry", label: "Send an inquiry", Icon: Mail, dot: true },
+  { href: "/contact#meeting", label: "Book a meeting", Icon: CalendarDays, dot: true },
 ];
 
 export function Navbar() {

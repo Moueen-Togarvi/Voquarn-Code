@@ -8,13 +8,11 @@ import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { ReviewsCollage } from "@/components/ui/reviews-collage";
 import { StatsSection } from "@/components/ui/stats-section";
 import { FaqSection } from "@/components/ui/faq-section";
-import { BlogPreview } from "@/components/ui/blog-preview";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { JsonLd } from "@/components/seo/json-ld";
 import { faqJsonLd } from "@/lib/schema";
 import { buildMetadata } from "@/lib/metadata";
 import {
-  getBlogPosts,
   getFaqItems,
   getPortfolioItems,
   getServices,
@@ -60,13 +58,12 @@ export const metadata = buildMetadata(
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  const [services, portfolioItems, testimonials, faqItems, settings, blogPosts, stats, clientLogos, clientCategories] = await Promise.all([
+  const [services, portfolioItems, testimonials, faqItems, settings, stats, clientLogos, clientCategories] = await Promise.all([
     getServices(),
     getPortfolioItems(),
     getTestimonials(),
     getFaqItems(),
     getSiteSettings(),
-    getBlogPosts(),
     getStats(),
     getClientLogos(),
     getClientCategories(),
@@ -126,10 +123,6 @@ export default async function HomePage() {
 
       <GSAPReveal direction="up" delay={0.05}>
         <HomeLazySections items={portfolioItems} />
-      </GSAPReveal>
-
-      <GSAPReveal direction="up" delay={0.05}>
-        <BlogPreview posts={blogPosts.slice(0, 3)} />
       </GSAPReveal>
 
       <GSAPReveal direction="up" delay={0.05}>

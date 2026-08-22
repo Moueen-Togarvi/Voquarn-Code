@@ -1,0 +1,53 @@
+{
+  "service": {
+    "id": 4,
+    "slug": "ai-workflows",
+    "title": "AI Workflows",
+    "description": "Automate your daily manual work with smart AI bots that can read documents, chat, and fill forms.",
+    "deliverables": [
+      "AI integration",
+      "Automatic data entry",
+      "Custom support chatbots",
+      "Smart workflow agents"
+    ],
+    "icon": null,
+    "createdAt": "2026-08-02T20:17:24.251Z",
+    "updatedAt": "2026-08-02T20:17:24.251Z"
+  },
+  "subServices": [
+    {
+      "id": 11,
+      "serviceId": 4,
+      "slug": "ai-chatbot",
+      "name": "AI Chatbots & Assistants",
+      "description": "A chatbot that talks to your customers like a real human and answers questions based on your files.",
+      "pricePkr": 25000,
+      "priceUsd": 90,
+      "features": [
+        "Learns from your business files",
+        "Works on website or WhatsApp",
+        "Saves all chat histories",
+        "Works 24 hours non-stop",
+        "Quick 2-week setup"
+      ],
+      "order": 0
+    },
+    {
+      "id": 12,
+      "serviceId": 4,
+      "slug": "ai-agents",
+      "name": "Intelligent Agents & RAG",
+      "description": "Advanced AI bots that do real work for you, like sending emails, reading reports, and updates.",
+      "pricePkr": 80000,
+      "priceUsd": 285,
+      "features": [
+        "Searches your database files",
+        "Sends emails automatically",
+        "Takes logical steps on its own",
+        "Saves history of what it did",
+        "Easy to monitor and adjust"
+      ],
+      "order": 1
+    }
+  ]
+}

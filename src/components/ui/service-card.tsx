@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { Service } from "@/lib/site-data";
-import { Code2, Smartphone, Sparkles, Globe, Bot } from "lucide-react";
+import { Code2, Smartphone, Sparkles, Globe, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 type ServiceCardProps = {
@@ -12,20 +12,23 @@ type ServiceCardProps = {
 
 const getPriceEstimate = (id: string) => {
   switch (id) {
-    case "web-dev": return "$35";
-    case "app-dev": return "$175";
-    case "saas-apps": return "$250";
-    case "ai-workflows": return "$90";
-    default: return "$35";
+    case "web-dev": return "35";
+    case "app-dev": return "175";
+    case "saas-apps": return "250";
+    case "crm-systems": return "125";
+    default: return "35";
   }
 };
+
+// CRM systems are billed monthly, unlike the one-off project prices.
+const getPriceSuffix = (id: string) => (id === "crm-systems" ? "/mo" : "");
 
 const getServiceIcon = (id: string) => {
   switch (id) {
     case "web-dev": return <Globe className="w-5 h-5 text-white" />;
     case "app-dev": return <Smartphone className="w-5 h-5 text-white" />;
     case "saas-apps": return <Code2 className="w-5 h-5 text-white" />;
-    case "ai-workflows": return <Bot className="w-5 h-5 text-white" />;
+    case "crm-systems": return <Building2 className="w-5 h-5 text-white" />;
     default: return <Sparkles className="w-5 h-5 text-white" />;
   }
 };
@@ -76,7 +79,7 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
           <div className="flex items-baseline justify-between px-0.5">
             <div className="flex items-baseline">
               <span className="text-[18px] font-bold text-[var(--foreground)] tracking-tight">
-                from ${getPriceEstimate(service.id)}
+                from ${getPriceEstimate(service.id)}{getPriceSuffix(service.id)}
               </span>
             </div>
           </div>

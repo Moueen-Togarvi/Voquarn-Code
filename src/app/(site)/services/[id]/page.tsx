@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, ArrowRight, Globe, Smartphone, Bot, Code2, Layers, MessageCircle, Star } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ArrowRight, Globe, Smartphone, Building2, Code2, Layers, MessageCircle, Star } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -20,8 +20,8 @@ const getPricingIcon = (categoryName: string, id: string) => {
   if (categoryName.toLowerCase().includes("web")) {
     return <Globe className="w-5 h-5 text-white" />;
   }
-  if (categoryName.toLowerCase().includes("ai")) {
-    return <Bot className="w-5 h-5 text-white" />;
+  if (categoryName.toLowerCase().includes("crm") || categoryName.toLowerCase().includes("management")) {
+    return <Building2 className="w-5 h-5 text-white" />;
   }
   if (id.toLowerCase().includes("saas")) {
     return <Code2 className="w-5 h-5 text-white" />;
@@ -33,7 +33,17 @@ const getPricingIcon = (categoryName: string, id: string) => {
 };
 
 // Matches the "Best for SaaS" / "Most Popular" badges used in services-toggle.tsx.
-const featuredSubServiceIds = new Set(["ecommerce-web", "saas-web", "saas-app", "full-saas", "ai-agents"]);
+const featuredSubServiceIds = new Set(["ecommerce-web", "saas-web", "saas-app", "full-saas", "business-crm"]);
+
+// Mirrors servicePlans in services-toggle.tsx: for subscription services the
+// listed price is the monthly entry point, so the card must say so and show
+// the other ways to buy.
+const servicePlans: Record<string, { unit: string; alternatives: string[] }> = {
+  "crm-systems": {
+    unit: "/mo",
+    alternatives: ["PKR 20,000 per year", "PKR 30,000 one-time"],
+  },
+};
 
 // Regenerated hourly so edits reach the live page without a redeploy, and new
 // service ids added after the last build still render on first request.
@@ -171,6 +181,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {service.subServices.map((sub) => {
                     const featured = featuredSubServiceIds.has(sub.id);
+                    const plan = servicePlans[service.id] ?? null;
                     return (
                     <article
                       key={sub.id}
@@ -195,6 +206,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                             <p className="text-[9px] font-semibold uppercase tracking-wide text-neutral-400">from</p>
                             <p className="text-sm font-bold text-neutral-900">
                               PKR <span className="text-[#ff5400]">{sub.pricePkr.toLocaleString()}</span>
+                              {plan ? <span className="text-[11px] text-neutral-400">{plan.unit}</span> : null}
                             </p>
                           </div>
                         </div>
@@ -206,9 +218,15 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                             <span className="text-[11px] text-neutral-400">• {service.title}</span>
                           </div>
 
-                          <h3 className="mt-1.5 text-base sm:text-[18px] font-bold text-neutral-900 tracking-tight leading-tight truncate">
+                          <h3 className="mt-1.5 text-base sm:text-[18px] font-bold text-neutral-900 tracking-tight leading-tight line-clamp-2">
                             {sub.name}
                           </h3>
+
+                          {plan ? (
+                            <p className="mt-3 rounded-lg bg-neutral-100 px-3 py-2 text-[11px] font-semibold text-neutral-500">
+                              <span className="text-neutral-900">Or</span> {plan.alternatives.join("  ·  ")}
+                            </p>
+                          ) : null}
 
                           <div className="my-4 border-t border-neutral-200/80" />
 

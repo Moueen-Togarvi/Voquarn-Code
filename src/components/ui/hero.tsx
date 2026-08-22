@@ -193,6 +193,11 @@ export function Hero() {
               </p>
             </div>
 
+            <p className="hero-pitch">
+              <span className="hero-pitch-dot" aria-hidden="true" />
+              Premium technology, priced for everyone.
+            </p>
+
             <p className="hero-answer" data-speakable>
               Voquarn Code is a Pakistan-based web development, SEO, mobile app, SaaS, and AI
               automation agency serving businesses locally and worldwide.
@@ -354,11 +359,11 @@ export function Hero() {
             .hero-promise {
               display: flex;
               flex-direction: column;
-              gap: 16px;
-              margin-top: 48px;
+              gap: 14px;
+              margin-top: 16px;
               max-width: 510px;
               position: relative;
-              padding: 22px 0 0;
+              padding: 10px 0 0;
               overflow: hidden;
             }
             .hero-promise-mark {
@@ -384,9 +389,33 @@ export function Hero() {
               color: #ff5400;
               text-shadow: 0 10px 26px rgba(255, 84, 0, 0.22);
             }
+            .hero-pitch {
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              align-self: flex-start;
+              margin: 14px 0 0;
+              padding: 7px 14px 7px 10px;
+              border-radius: 999px;
+              border: 1px solid rgba(255, 84, 0, 0.28);
+              background: rgba(255, 84, 0, 0.08);
+              color: var(--foreground);
+              font-size: 12.5px;
+              font-weight: 800;
+              letter-spacing: -0.01em;
+              line-height: 1.2;
+            }
+            .hero-pitch-dot {
+              width: 7px;
+              height: 7px;
+              border-radius: 50%;
+              background: #ff5400;
+              box-shadow: 0 0 0 3px rgba(255, 84, 0, 0.18);
+              flex-shrink: 0;
+            }
             .hero-answer {
               max-width: 560px;
-              margin: 18px 0 0;
+              margin: 14px 0 0;
               color: var(--muted);
               font-size: 14px;
               font-weight: 600;
