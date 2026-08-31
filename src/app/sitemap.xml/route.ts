@@ -66,8 +66,17 @@ export async function GET() {
     entry(new URL(`/services/${service.id}`, siteUrl).toString(), SITE_LAST_MODIFIED, "monthly", 0.8),
   );
 
+  // Every post previously shared priority 0.70, which tells crawlers nothing
+  // about which pages deserve the crawl budget. `cornerstone` is set explicitly
+  // in frontmatter rather than inferred from readTime, because the bulk-
+  // generated posts all self-report an inflated reading time.
   const blogEntries = blogPosts.map((post) =>
-    entry(new URL(`/blog/${post.slug}`, siteUrl).toString(), new Date(post.publishedAt), "monthly", 0.7),
+    entry(
+      new URL(`/blog/${post.slug}`, siteUrl).toString(),
+      new Date(post.publishedAt),
+      post.cornerstone ? "weekly" : "yearly",
+      post.cornerstone ? 0.9 : 0.5,
+    ),
   );
 
   const body = [

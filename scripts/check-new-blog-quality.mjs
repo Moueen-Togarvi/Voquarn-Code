@@ -3,6 +3,10 @@ import path from "node:path";
 import process from "node:process";
 
 const BLOG_DIRECTORY = path.join(process.cwd(), "content", "blogs");
+// These terms were banned to stop the bulk generators mass-producing thin
+// Shopify/SEO pages. Hand-written posts on those topics are wanted -- they are
+// among the site's strongest demand clusters -- so the ban is opt-out per file
+// via `allowExcludedTerms: true` in frontmatter, which the generators never set.
 const EXCLUDED_TERMS = ["shopify", "seo"];
 const MINIMUM_WORDS = 900;
 const MINIMUM_HEADINGS = 6;
@@ -135,8 +139,10 @@ for (const absolutePath of newFiles) {
   if (keyword && seenNewKeywords.has(keyword)) errors.push(`${relativePath}: targetKeyword duplicates new file ${seenNewKeywords.get(keyword)}`);
   if (keyword) seenNewKeywords.set(keyword, relativePath);
 
-  for (const term of EXCLUDED_TERMS) {
-    if (containsTerm(source, term)) errors.push(`${relativePath}: contains excluded term "${term}"`);
+  if (String(frontmatter.allowExcludedTerms) !== "true") {
+    for (const term of EXCLUDED_TERMS) {
+      if (containsTerm(source, term)) errors.push(`${relativePath}: contains excluded term "${term}"`);
+    }
   }
 
   if ((frontmatter.title?.length ?? 0) < 30 || frontmatter.title.length > 70) errors.push(`${relativePath}: title must be 30–70 characters`);

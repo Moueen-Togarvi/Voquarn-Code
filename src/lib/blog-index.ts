@@ -26,6 +26,13 @@ export type BlogIndexEntry = {
   publishedAt: string;
   readTime: string;
   coverImage: string | null;
+  /**
+   * Marks a deliberately written, in-depth post. Set explicitly in frontmatter
+   * rather than derived from readTime, because the bulk-generated posts all
+   * self-report an inflated reading time and would otherwise rank alongside
+   * hand-written work in the sitemap.
+   */
+  cornerstone?: boolean;
 };
 
 function isBlogIndexEntry(value: unknown): value is BlogIndexEntry {
@@ -38,6 +45,7 @@ function isBlogIndexEntry(value: unknown): value is BlogIndexEntry {
     typeof entry.category === "string" &&
     typeof entry.publishedAt === "string" &&
     typeof entry.readTime === "string" &&
+    (entry.cornerstone === undefined || typeof entry.cornerstone === "boolean") &&
     (entry.coverImage === null || typeof entry.coverImage === "string")
   );
 }
@@ -66,6 +74,7 @@ export async function buildBlogIndexFromMarkdown(): Promise<BlogIndexEntry[]> {
         publishedAt: frontmatter.publishedAt ?? "",
         readTime: frontmatter.readTime,
         coverImage: frontmatter.coverImage ?? null,
+        ...(String(frontmatter.cornerstone) === "true" ? { cornerstone: true } : {}),
       };
 
       return { status: frontmatter.status, entry };

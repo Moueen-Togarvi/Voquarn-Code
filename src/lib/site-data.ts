@@ -80,6 +80,8 @@ export type BlogPost = {
   category: string;
   publishedAt: string;
   readTime: string;
+  /** Deliberately written in-depth post; see BlogIndexEntry.cornerstone. */
+  cornerstone?: boolean;
   seoKeywords?: string[];
   sections: string[];
   content?: Record<string, unknown>[] | null;

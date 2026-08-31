@@ -15,6 +15,14 @@ export type Frontmatter = {
   readTime: string;
   status: "draft" | "published";
   coverImage?: string;
+  /**
+   * Marks a deliberately written, in-depth post so the sitemap can rank it
+   * above bulk-generated content. Parsed as a string like every other value
+   * here, so consumers compare against "true".
+   */
+  cornerstone?: string;
+  /** Exempts a hand-written post from the new-post excluded-term check. */
+  allowExcludedTerms?: string;
 };
 
 export type RichTextNode = Record<string, unknown>;

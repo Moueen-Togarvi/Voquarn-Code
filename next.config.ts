@@ -73,7 +73,10 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         has: [{ type: "host", value: "voquarn.com" }],
         destination: "https://www.voquarn.com/:path*",
-        permanent: true,
+        // `permanent: true` was emitting a 307 here, which tells Google to keep
+        // both hostnames indexed and consolidates no authority between them.
+        // `statusCode` forces the 308 that actually merges apex into www.
+        statusCode: 308,
       },
     ];
   },
