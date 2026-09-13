@@ -73,18 +73,46 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         has: [{ type: "host", value: "voquarn.com" }],
         destination: "https://www.voquarn.com/:path*",
-        // `permanent: true` was emitting a 307 here, which tells Google to keep
-        // both hostnames indexed and consolidates no authority between them.
-        // `statusCode` forces the 308 that actually merges apex into www.
-        statusCode: 308,
+        // `permanent: true` emits 308, which Google needs to merge apex
+        // authority into www. `statusCode: 308` was set here previously
+        // alongside `permanent`, but Next explicitly rejects using both
+        // (see node_modules/next/dist/docs/.../redirects.md) — silently
+        // falling back to 307, which is temporary and left the two hostnames
+        // indexed as separate sites.
+        permanent: true,
       },
     ];
   },
   async headers() {
+    // Cloudflare (proxied in front of the apex) was caching robots.txt and
+    // sitemap.xml for days, even after the origin started returning a redirect
+    // — leaving Googlebot pointed at a stale copy. `no-cache` still allows a
+    // 304 revalidation and `must-revalidate` blocks stale-if-error fallbacks,
+    // so a fresh response is fetched every time without giving up conditional
+    // requests entirely. `CDN-Cache-Control` is honoured by Cloudflare and
+    // Vercel independently of the browser directive.
+    const seoNoCache = [
+      { key: "Cache-Control", value: "public, max-age=0, must-revalidate, no-cache" },
+      { key: "CDN-Cache-Control", value: "no-store" },
+      { key: "Cloudflare-CDN-Cache-Control", value: "no-store" },
+    ];
+
     return [
       {
         source: "/:path*",
         headers: securityHeaders,
+      },
+      {
+        source: "/robots.txt",
+        headers: seoNoCache,
+      },
+      {
+        source: "/sitemap.xml",
+        headers: seoNoCache,
+      },
+      {
+        source: "/llms.txt",
+        headers: seoNoCache,
       },
       {
         source: "/admin/:path*",

@@ -46,6 +46,12 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     publishedTime: post.publishedAt,
     keywords: seoKeywords(post),
     ...(post.coverImage ? { image: post.coverImage } : {}),
+    // Only cornerstone articles are advertised for indexing. The bulk-generated
+    // long-tail posts stay reachable through /blog and internal navigation, but
+    // they are marked noindex so Google can drop them without waiting for a
+    // manual removal — see reports/blog-content-audit-*.md for the audit that
+    // flagged 4,000+ near-duplicate pages as a site-wide quality risk.
+    noIndex: !post.cornerstone,
   });
 }
 

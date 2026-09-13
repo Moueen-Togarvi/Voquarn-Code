@@ -33,6 +33,19 @@ type BuildMetadataOptions = {
   modifiedTime?: string;
 };
 
+/**
+ * Google treats `/foo` and `/foo/` as separate canonicals when both respond,
+ * so every non-root canonical is normalised to no trailing slash. Query
+ * strings and fragments are dropped because a canonical URL should be the
+ * shareable, parameter-free version of the page.
+ */
+function canonicalPath(path: string): string {
+  if (!path) return "/";
+  const withoutQuery = path.split(/[?#]/)[0] || "/";
+  if (withoutQuery === "/") return "/";
+  return withoutQuery.endsWith("/") ? withoutQuery.slice(0, -1) : withoutQuery;
+}
+
 export function buildMetadata(
   title: string,
   description: string,
@@ -40,7 +53,8 @@ export function buildMetadata(
   options: BuildMetadataOptions = {},
 ): Metadata {
   const siteUrl = getSiteUrl();
-  const url = new URL(path, siteUrl).toString();
+  const normalisedPath = canonicalPath(path);
+  const url = new URL(normalisedPath, siteUrl).toString();
   const imageUrl = new URL(options.image || "/og-default.jpg", siteUrl).toString();
   const images = [
     {
@@ -92,7 +106,7 @@ export function buildMetadata(
     keywords: Array.from(new Set([...defaultKeywords, ...(options.keywords || [])])),
     metadataBase: siteUrl,
     alternates: {
-      canonical: path,
+      canonical: normalisedPath,
     },
     ...(Object.keys(verification).length > 0 ? { verification } : {}),
     category: "Technology",
@@ -108,13 +122,14 @@ export function buildMetadata(
       "geo.placename": "Bahawalnagar, Punjab, Pakistan",
       ICBM: "29.9955, 73.2713",
     },
+    // `src/app/icon.png` and `src/app/apple-icon.png` are auto-injected by
+    // Next.js at the correct sizes, so only the ICO fallback needs an explicit
+    // declaration. Previously the same 500×500 logo was emitted twice, once as
+    // "icon" and once as "apple", which prevented browsers from choosing a
+    // properly sized tab icon.
     icons: {
-      icon: [
-        { url: site.logoPath, type: "image/png", sizes: "500x500" },
-        { url: "/favicon.ico", sizes: "any" },
-      ],
+      icon: [{ url: "/favicon.ico", sizes: "any" }],
       shortcut: "/favicon.ico",
-      apple: [{ url: site.iconPath, sizes: "500x500", type: "image/png" }],
     },
     robots: {
       index: !options.noIndex,

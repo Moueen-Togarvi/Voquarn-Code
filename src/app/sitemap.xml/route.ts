@@ -19,10 +19,15 @@ const staticRoutes = [
   { path: "/terms", changeFrequency: "yearly", priority: 0.2 },
 ] as const;
 
-// Public pages were refreshed alongside the Markdown blog rollout. Keep this
-// tied to a real content change instead of using the request time, otherwise
-// crawlers would see a false lastmod value on every hourly regeneration.
-const SITE_LAST_MODIFIED = new Date("2026-08-21T00:00:00.000Z");
+// Baseline lastmod for pages whose static markup last changed on this date.
+// Pages that fold in fresh data at request time (home, /blog, /services) are
+// bumped forward to the newest underlying data timestamp below, so the
+// sitemap does not lie about freshness or freeze on a stale date.
+const SITE_LAST_MODIFIED = new Date("2026-09-13T00:00:00.000Z");
+
+function newest(...dates: Date[]): Date {
+  return dates.reduce((a, b) => (a.getTime() >= b.getTime() ? a : b));
+}
 
 function escapeXml(value: string) {
   return value
@@ -53,10 +58,22 @@ export async function GET() {
   const siteUrl = getSiteUrl();
   const [services, blogPosts] = await Promise.all([getServices(), getBlogPosts()]);
 
+  const cornerstoneDates = blogPosts
+    .filter((post) => post.cornerstone)
+    .map((post) => new Date(post.publishedAt))
+    .filter((date) => !Number.isNaN(date.getTime()));
+  const latestBlogDate = cornerstoneDates.length
+    ? newest(...cornerstoneDates)
+    : SITE_LAST_MODIFIED;
+
+  // Pages that surface blog and service data get bumped to whichever
+  // dependency last changed. Purely static routes (privacy, terms, contact)
+  // stay pinned to SITE_LAST_MODIFIED so their lastmod is not fake.
+  const dynamicPaths = new Set(["", "/blog", "/services", "/portfolio"]);
   const staticEntries = staticRoutes.map((route) =>
     entry(
       new URL(route.path || "/", siteUrl).toString(),
-      SITE_LAST_MODIFIED,
+      dynamicPaths.has(route.path) ? newest(SITE_LAST_MODIFIED, latestBlogDate) : SITE_LAST_MODIFIED,
       route.changeFrequency,
       route.priority,
     ),
@@ -66,18 +83,22 @@ export async function GET() {
     entry(new URL(`/services/${service.id}`, siteUrl).toString(), SITE_LAST_MODIFIED, "monthly", 0.8),
   );
 
-  // Every post previously shared priority 0.70, which tells crawlers nothing
-  // about which pages deserve the crawl budget. `cornerstone` is set explicitly
-  // in frontmatter rather than inferred from readTime, because the bulk-
-  // generated posts all self-report an inflated reading time.
-  const blogEntries = blogPosts.map((post) =>
-    entry(
-      new URL(`/blog/${post.slug}`, siteUrl).toString(),
-      new Date(post.publishedAt),
-      post.cornerstone ? "weekly" : "yearly",
-      post.cornerstone ? 0.9 : 0.5,
-    ),
-  );
+  // Only cornerstone posts are submitted. The corpus contains thousands of
+  // bulk-generated pages that share most of their paragraphs across each other
+  // (see reports/blog-content-audit-*), and submitting them wastes crawl budget
+  // while dragging the site-wide quality signal down. Non-cornerstone posts
+  // stay reachable through /blog and internal links, but they are noindexed at
+  // the page level so Google can drop them from the index.
+  const blogEntries = blogPosts
+    .filter((post) => post.cornerstone)
+    .map((post) =>
+      entry(
+        new URL(`/blog/${post.slug}`, siteUrl).toString(),
+        new Date(post.publishedAt),
+        "weekly",
+        0.9,
+      ),
+    );
 
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
@@ -89,9 +110,9 @@ export async function GET() {
     "",
   ].join("\n");
 
+  // Cache-Control is centralised in next.config.ts:headers().
   return new Response(body, {
     headers: {
-      "Cache-Control": "public, max-age=3600",
       "Content-Type": "application/xml; charset=utf-8",
     },
   });

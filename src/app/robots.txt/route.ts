@@ -2,12 +2,16 @@ import { getSiteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-static";
 
+// `$` anchors the pattern to the end of the URL so `/sample` does not also
+// block a future `/samples-*` path. Google, Bing, and Yandex all support the
+// `$` end-of-string marker in robots.txt.
 const disallowPaths = [
   "/api/",
   "/admin",
-  "/sample",
-  "/sample-rocket",
-  "/sample-suites",
+  "/admin/",
+  "/sample$",
+  "/sample-rocket$",
+  "/sample-suites$",
 ];
 
 // AI / answer-engine crawlers. These are allowed on purpose: being crawled is
@@ -55,9 +59,10 @@ export function GET() {
     "",
   ].join("\n");
 
+  // Cache-Control is centralised in next.config.ts:headers() so browsers,
+  // Vercel's edge, and Cloudflare all see the same directive.
   return new Response(body, {
     headers: {
-      "Cache-Control": "public, max-age=3600",
       "Content-Type": "text/plain; charset=utf-8",
     },
   });

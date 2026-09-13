@@ -133,9 +133,9 @@ export async function GET() {
     lines.push("");
   }
 
+  // Cache-Control is centralised in next.config.ts:headers().
   return new Response(lines.join("\n"), {
     headers: {
-      "Cache-Control": "public, max-age=3600, s-maxage=3600",
       "Content-Type": "text/plain; charset=utf-8",
     },
   });
