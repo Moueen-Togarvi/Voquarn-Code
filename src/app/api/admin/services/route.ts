@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
+import { SERVICES_CACHE_TAG } from "@/lib/data";
 import { db } from "@/db";
 import { services, subServices } from "@/db/schema";
 import { auth, isAdminSession } from "@/lib/auth";
@@ -67,6 +69,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    revalidateTag(SERVICES_CACHE_TAG, "max");
     return NextResponse.json(service, { status: 201 });
   } catch (error) {
     if (error instanceof AdminValidationError) return NextResponse.json({ error: error.message }, { status: 400 });

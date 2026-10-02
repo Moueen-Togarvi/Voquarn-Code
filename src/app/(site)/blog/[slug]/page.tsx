@@ -23,8 +23,10 @@ import { getSiteUrl } from "@/lib/site-url";
 
 type BlogPostPageProps = { params: Promise<{ slug: string }> };
 
-// Keep historical URLs available on demand without prebuilding the bulk corpus.
+// Prebuild the cornerstone articles; all other published URLs render on their
+// first visit and share the same hourly ISR cache.
 export const dynamicParams = true;
+export const revalidate = 3600;
 
 function seoKeywords(post: { title: string; category: string; seoKeywords?: string[] }) {
   return Array.from(
@@ -48,12 +50,6 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     modifiedTime: post.modifiedAt,
     keywords: seoKeywords(post),
     ...(post.coverImage ? { image: post.coverImage } : {}),
-    // Only cornerstone articles are advertised for indexing. The bulk-generated
-    // long-tail posts stay reachable through /blog and internal navigation, but
-    // they are marked noindex so Google can drop them without waiting for a
-    // manual removal — see reports/blog-content-audit-*.md for the audit that
-    // flagged 4,000+ near-duplicate pages as a site-wide quality risk.
-    noIndex: !post.cornerstone,
   });
 }
 
@@ -62,9 +58,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const [post, posts] = await Promise.all([getBlogPost(slug), getBlogPosts()]);
   if (!post) notFound();
 
-  const reviewedPosts = posts.filter((candidate) => candidate.cornerstone && candidate.slug !== post.slug);
-  const categoryPosts = reviewedPosts.filter((candidate) => candidate.category === post.category);
-  const relatedPosts = [...categoryPosts, ...reviewedPosts.filter((candidate) => candidate.category !== post.category)].slice(0, 3);
+  const otherPosts = posts.filter((candidate) => candidate.slug !== post.slug);
+  const categoryPosts = otherPosts.filter((candidate) => candidate.category === post.category);
+  const relatedPosts = [...categoryPosts, ...otherPosts.filter((candidate) => candidate.category !== post.category)].slice(0, 3);
   const hasRichContent = Boolean(post.content?.length);
   const tableOfContents = hasRichContent ? extractTableOfContents(post.content!) : [];
   const pageKeywords = seoKeywords(post);

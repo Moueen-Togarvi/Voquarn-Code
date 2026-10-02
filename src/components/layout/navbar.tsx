@@ -60,6 +60,7 @@ export function Navbar() {
             alt="Voquarn Code"
             width={356}
             height={204}
+            sizes="(min-width: 768px) 70px, 63px"
             priority
             className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105 md:h-10 dark:brightness-0 dark:invert"
           />

@@ -40,6 +40,7 @@ function BlogCard({ post }: { post: BlogExplorerPost }) {
     <article className="h-full">
       <Link
         href={`/blog/${post.slug}`}
+        prefetch={false}
         aria-label={`Read ${post.title}`}
         className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--panel)] shadow-[0_12px_35px_rgba(0,0,0,0.04)] transition duration-300 hover:-translate-y-1 hover:border-[#ff5400] hover:shadow-[0_18px_45px_rgba(255,84,0,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2 motion-reduce:transform-none"
       >
@@ -88,17 +89,17 @@ function BlogPagination({ currentPage, totalPages, query, topic }: { currentPage
       <p className="text-sm text-[var(--muted)]">Page <span className="font-bold text-[var(--foreground)]">{currentPage}</span> of {totalPages}</p>
       <div className="flex flex-wrap items-center justify-center gap-2">
         {currentPage > 1 && (
-          <Link href={blogHref(currentPage - 1, query, topic)} rel="prev" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--panel)] px-4 text-sm font-bold text-[var(--foreground)] hover:border-[#ff5400]/50 hover:text-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]">
+          <Link prefetch={false} href={blogHref(currentPage - 1, query, topic)} rel="prev" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--panel)] px-4 text-sm font-bold text-[var(--foreground)] hover:border-[#ff5400]/50 hover:text-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]">
             <ArrowLeft className="h-4 w-4" aria-hidden="true" /><span className="hidden sm:inline">Previous</span>
           </Link>
         )}
         {paginationItems(currentPage, totalPages).map((item, index) => item === "ellipsis" ? (
           <span key={`ellipsis-${index}`} className="flex h-11 w-8 items-center justify-center text-[var(--muted)]" aria-hidden="true">…</span>
         ) : (
-          <Link key={item} href={blogHref(item, query, topic)} aria-current={item === currentPage ? "page" : undefined} aria-label={`Page ${item}`} className={`flex h-11 min-w-11 items-center justify-center rounded-full border px-3 text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] ${item === currentPage ? "border-[#ff5400] bg-[#ff5400] text-white" : "border-[var(--border)] bg-[var(--panel)] text-[var(--foreground)] hover:border-[#ff5400]/50 hover:text-[#ff5400]"}`}>{item}</Link>
+          <Link key={item} prefetch={false} href={blogHref(item, query, topic)} aria-current={item === currentPage ? "page" : undefined} aria-label={`Page ${item}`} className={`flex h-11 min-w-11 items-center justify-center rounded-full border px-3 text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] ${item === currentPage ? "border-[#ff5400] bg-[#ff5400] text-white" : "border-[var(--border)] bg-[var(--panel)] text-[var(--foreground)] hover:border-[#ff5400]/50 hover:text-[#ff5400]"}`}>{item}</Link>
         ))}
         {currentPage < totalPages && (
-          <Link href={blogHref(currentPage + 1, query, topic)} rel="next" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--panel)] px-4 text-sm font-bold text-[var(--foreground)] hover:border-[#ff5400]/50 hover:text-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]">
+          <Link prefetch={false} href={blogHref(currentPage + 1, query, topic)} rel="next" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--panel)] px-4 text-sm font-bold text-[var(--foreground)] hover:border-[#ff5400]/50 hover:text-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]">
             <span className="hidden sm:inline">Next</span><ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         )}
@@ -134,7 +135,7 @@ export function BlogExplorer({ posts, totalPosts, currentPage, totalPages, query
         <div className="mt-5 flex flex-wrap justify-center gap-2" aria-label="Popular blog topics">
           {blogTopics.map((topic) => {
             const isActive = activeTopic === topic.value;
-            return <Link key={topic.value} href={blogHref(1, query, isActive ? null : topic.value)} aria-current={isActive ? "true" : undefined} className={`inline-flex min-h-11 items-center rounded-full border px-4 text-xs font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] ${isActive ? "border-[#ff5400] bg-[#ff5400] text-white" : "border-[var(--border)] bg-[var(--panel)] text-[var(--muted)] hover:border-[#ff5400]/50 hover:text-[#ff5400]"}`}>{topic.label}</Link>;
+            return <Link key={topic.value} prefetch={false} href={blogHref(1, query, isActive ? null : topic.value)} aria-current={isActive ? "true" : undefined} className={`inline-flex min-h-11 items-center rounded-full border px-4 text-xs font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] ${isActive ? "border-[#ff5400] bg-[#ff5400] text-white" : "border-[var(--border)] bg-[var(--panel)] text-[var(--muted)] hover:border-[#ff5400]/50 hover:text-[#ff5400]"}`}>{topic.label}</Link>;
           })}
           {isFiltering && <Link href="/blog" className="inline-flex min-h-11 items-center rounded-full px-4 text-xs font-black uppercase tracking-wider text-[#ff5400] hover:bg-[#ff5400]/8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]">Clear filters</Link>}
         </div>
@@ -142,7 +143,7 @@ export function BlogExplorer({ posts, totalPosts, currentPage, totalPages, query
 
         {featured && (
           <article className="mt-10">
-            <Link href={`/blog/${featured.slug}`} aria-label={`Read ${featured.title}`} className="group relative flex min-h-[360px] flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-950 shadow-[0_25px_70px_rgba(0,0,0,0.16)] transition-colors duration-300 hover:border-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2 sm:min-h-[430px]">
+            <Link prefetch={false} href={`/blog/${featured.slug}`} aria-label={`Read ${featured.title}`} className="group relative flex min-h-[360px] flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-950 shadow-[0_25px_70px_rgba(0,0,0,0.16)] transition-colors duration-300 hover:border-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400] focus-visible:ring-offset-2 sm:min-h-[430px]">
             <div className="absolute inset-0">
               {featured.coverImage ? <Image src={featured.coverImage} alt="" fill priority sizes="(min-width: 1024px) 1200px, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.02] motion-reduce:transform-none" /> : <div className="h-full w-full bg-[radial-gradient(circle_at_80%_20%,rgba(255,84,0,0.35),transparent_30%),linear-gradient(135deg,#18181b,#09090b)]" />}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/65 to-black/10 transition-colors duration-300 group-hover:from-black group-hover:via-black/55" />

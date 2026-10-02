@@ -26,6 +26,8 @@ const staticPaths = [
   "/team",
   "/ceo",
   "/careers",
+  "/privacy",
+  "/terms",
 ];
 
 export async function GET(request: Request) {
@@ -36,16 +38,11 @@ export async function GET(request: Request) {
   const siteUrl = getSiteUrl();
   const [services, blogPosts] = await Promise.all([getServices(), getBlogPosts()]);
 
-  // Only cornerstone posts are submitted, matching the sitemap. Pushing the
-  // full 4,000-post corpus to IndexNow every week signalled Bing/Yandex to
-  // repeatedly crawl near-duplicate pages that are already noindexed, wasting
-  // their crawl budget and ours.
+  // Include every published blog, matching the full publication sitemap.
   const urls = [
     ...staticPaths.map((path) => new URL(path || "/", siteUrl).toString()),
     ...services.map((service) => new URL(`/services/${service.id}`, siteUrl).toString()),
-    ...blogPosts
-      .filter((post) => post.cornerstone)
-      .map((post) => new URL(`/blog/${post.slug}`, siteUrl).toString()),
+    ...blogPosts.map((post) => new URL(`/blog/${post.slug}`, siteUrl).toString()),
   ];
 
   try {

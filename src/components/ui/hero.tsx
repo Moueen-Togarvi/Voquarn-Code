@@ -101,6 +101,7 @@ export function Hero() {
                 alt="Voquarn Code brand emblem"
                 width={317}
                 height={317}
+                sizes="56px"
                 style={{
                   width: "100%",
                   height: "100%",

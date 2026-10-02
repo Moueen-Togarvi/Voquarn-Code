@@ -2,6 +2,8 @@
 
 Audience: Pakistan and international clients. Publication language: English.
 
+**Subsequent owner-directed change on 3 October:** The 24-article discovery restriction described in this initial snapshot was superseded. All 4,418 published articles are now intended for the sitemap, blog listing and indexing; cornerstone remains an editorial review and prebuilding marker. See the full-publication and performance follow-up for deployed counts and measurements. The body-quality findings below remain valid.
+
 ## Delivered scope
 
 - Reviewed the keyword fields of all **4,412 pre-existing articles**; all 4,412 files changed. Removed redundant year-only variants, unsupported leading “best” claims in keyword fields, awkward repeated audience wording, and duplicate secondary terms. Preserved slugs and original publication dates.

@@ -15,7 +15,7 @@ import {
   clientLogos,
   clientCategories,
 } from "@/db/schema";
-import { eq, desc, asc } from "drizzle-orm";
+import { desc, asc } from "drizzle-orm";
 import { site as staticSite } from "@/lib/site-data";
 import type { Service, PortfolioItem, TeamMember, Testimonial, FaqItem, PricingPlan, JobOpening, Stat, ClientLogo, ClientCategory } from "@/lib/site-data";
 import { getMarkdownBlogPost, getMarkdownBlogPosts } from "@/lib/markdown-blogs";
@@ -28,8 +28,8 @@ import { getMarkdownBlogPost, getMarkdownBlogPosts } from "@/lib/markdown-blogs"
 // 4+ seconds on this project, not a quick blip. withRetry backs off
 // exponentially (500ms, 1s, 2s) so a cold start survives instead of failing
 // three times in under a second. Only after retries are exhausted do we log
-// and return an empty result — still no fake data, just resilience against
-// cold starts and genuine network noise.
+// and propagate the error, preserving the distinction between a real empty
+// table and unavailable content.
 async function withRetry<T>(fn: () => Promise<T>, retries = 3, baseDelayMs = 500): Promise<T> {
   let lastError: unknown;
   for (let attempt = 0; attempt <= retries; attempt++) {
@@ -50,6 +50,7 @@ async function withRetry<T>(fn: () => Promise<T>, retries = 3, baseDelayMs = 500
 // out the hourly window.
 export const SITE_SETTINGS_CACHE_TAG = "site-settings";
 export const TESTIMONIALS_CACHE_TAG = "testimonials";
+export const SERVICES_CACHE_TAG = "services";
 
 // Every database getter below is wrapped in React's cache() so multiple calls to the
 // same function within one request (e.g. the root layout and the page it
@@ -62,7 +63,7 @@ export const getBlogPosts = getMarkdownBlogPosts;
 export const getBlogPost = getMarkdownBlogPost;
 
 // ── Services ──
-export const getServices = cache(async (): Promise<Service[]> => {
+const loadServices = unstable_cache(async (): Promise<Service[]> => {
   try {
     return await withRetry(async () => {
       const allServices = await db.select().from(services).orderBy(desc(services.createdAt));
@@ -87,33 +88,12 @@ export const getServices = cache(async (): Promise<Service[]> => {
     console.error("getServices DB error:", error);
     throw error;
   }
-});
+}, ["services"], { tags: [SERVICES_CACHE_TAG], revalidate: 3600 });
+
+export const getServices = cache(loadServices);
 
 export const getService = cache(async (slug: string): Promise<Service | undefined> => {
-  try {
-    return await withRetry(async () => {
-      const [s] = await db.select().from(services).where(eq(services.slug, slug)).limit(1);
-      if (!s) return undefined;
-      const subs = await db.select().from(subServices).where(eq(subServices.serviceId, s.id)).orderBy(asc(subServices.order));
-      return {
-        id: s.slug,
-        title: s.title,
-        description: s.description,
-        deliverables: (s.deliverables as string[]) || [],
-        subServices: subs.map((ss) => ({
-          id: ss.slug || ss.name.toLowerCase().replace(/\s+/g, "-"),
-          name: ss.name,
-          description: ss.description || "",
-          pricePkr: ss.pricePkr ?? 0,
-          priceUsd: ss.priceUsd ?? 0,
-          features: (ss.features as string[]) || [],
-        })),
-      };
-    });
-  } catch (error) {
-    console.error("getService DB error:", error);
-    throw error;
-  }
+  return (await getServices()).find((service) => service.id === slug);
 });
 
 // ── Portfolio ──

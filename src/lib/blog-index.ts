@@ -29,8 +29,8 @@ export type BlogIndexEntry = {
   /**
    * Marks a deliberately written, in-depth post. Set explicitly in frontmatter
    * rather than derived from readTime, because the bulk-generated posts all
-   * self-report an inflated reading time and would otherwise rank alongside
-   * hand-written work in the sitemap.
+   * self-report an inflated reading time. Used for editorial checks and
+   * prebuilding, while all published posts participate in discovery.
    */
   cornerstone?: boolean;
 };

@@ -71,15 +71,9 @@ export async function GET() {
     entry(new URL(`/services/${service.id}`, siteUrl).toString(), undefined, "monthly", 0.8),
   );
 
-  // Only cornerstone posts are submitted. The corpus contains thousands of
-  // bulk-generated pages that share most of their paragraphs across each other
-  // (see reports/blog-content-audit-*), and submitting them wastes crawl budget
-  // while dragging the site-wide quality signal down. Non-cornerstone posts
-  // remain available at their existing URLs, but they are noindexed at
-  // the page level so Google can drop them from the index.
-  const blogEntries = blogPosts
-    .filter((post) => post.cornerstone)
-    .map((post) =>
+  // The index contains published posts only. Editorial cornerstone status
+  // does not restrict the owner's requested full publication sitemap.
+  const blogEntries = blogPosts.map((post) =>
       entry(
         new URL(`/blog/${post.slug}`, siteUrl).toString(),
         new Date(post.modifiedAt || post.publishedAt),

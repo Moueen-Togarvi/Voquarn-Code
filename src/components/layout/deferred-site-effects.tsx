@@ -17,6 +17,10 @@ export function DeferredSiteEffects() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    // These decorative effects are hidden on small/touch screens anyway;
+    // avoid downloading their modules and attaching listeners there.
+    if (!window.matchMedia("(min-width: 640px) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches) return;
+
     const win = window as Window & {
       requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
       cancelIdleCallback?: (id: number) => void;

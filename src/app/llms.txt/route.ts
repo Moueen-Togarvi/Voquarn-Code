@@ -119,12 +119,13 @@ export async function GET() {
   lines.push(`- [About](${abs("/about")}): How the agency works and what it optimises for.`);
   lines.push(`- [Team](${abs("/team")}): The people delivering the work.`);
   lines.push(`- [Blog](${abs("/blog")}): Articles on SEO, web performance, and AI workflows.`);
+  lines.push(`- [Full publication sitemap](${abs("/sitemap.xml")}): All published articles and public pages.`);
   lines.push(`- [Contact](${abs("/contact")}): Project enquiries and quotes.`);
   lines.push("");
 
   // ── Articles ──
   if (posts.length > 0) {
-    lines.push("## Articles");
+    lines.push("## Selected articles");
     lines.push("");
     for (const post of posts.filter((post) => post.cornerstone).slice(0, 25)) {
       lines.push(`- [${post.title}](${abs(`/blog/${post.slug}`)}): ${post.excerpt}`);

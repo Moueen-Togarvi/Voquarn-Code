@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Activity } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -102,10 +101,8 @@ export function EnterpriseSuites() {
                   }`}
                 >
                   {isActive && (
-                    <motion.div
-                      layoutId="activeSuiteIndicator"
+                    <div
                       className="absolute left-0 top-0 bottom-0 w-1 bg-[#ff5400]"
-                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
                     />
                   )}
 
@@ -132,13 +129,8 @@ export function EnterpriseSuites() {
           </div>
 
           <div className="lg:col-span-6 flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
+              <div
                 key={activeTab.id}
-                initial={{ opacity: 0, scale: 0.96, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: -15 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full max-w-[520px] p-4 md:p-5 rounded-3xl bg-[var(--panel)] border border-[var(--border)] shadow-lg relative overflow-hidden group flex flex-col justify-between h-[300px]"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(255,84,0,0.08)_0%,transparent_70%)] pointer-events-none" />
@@ -187,8 +179,7 @@ export function EnterpriseSuites() {
                   <span>Request Architecture Demo</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
-              </motion.div>
-            </AnimatePresence>
+              </div>
           </div>
         </div>
       </div>

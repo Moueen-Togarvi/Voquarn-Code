@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
+import { SERVICES_CACHE_TAG } from "@/lib/data";
 import { db } from "@/db";
 import { services, subServices } from "@/db/schema";
 import { auth, isAdminSession } from "@/lib/auth";
@@ -87,6 +89,7 @@ export async function PUT(
       }
     }
 
+    revalidateTag(SERVICES_CACHE_TAG, "max");
     return NextResponse.json(updated);
   } catch (error) {
     if (error instanceof AdminValidationError) return NextResponse.json({ error: error.message }, { status: 400 });
@@ -121,6 +124,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Service not found" }, { status: 404 });
     }
 
+    revalidateTag(SERVICES_CACHE_TAG, "max");
     return NextResponse.json({ success: true });
   } catch (error) {
     if (error instanceof AdminValidationError) return NextResponse.json({ error: error.message }, { status: 400 });
