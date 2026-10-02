@@ -45,7 +45,7 @@ function entry(
 
 export async function GET() {
   const siteUrl = getSiteUrl();
-  const sources = await Promise.all([getServices(true), getBlogPosts()]).catch((error) => {
+  const sources = await Promise.all([getServices(), getBlogPosts()]).catch((error) => {
     console.error("Sitemap sources unavailable:", error);
     return null;
   });

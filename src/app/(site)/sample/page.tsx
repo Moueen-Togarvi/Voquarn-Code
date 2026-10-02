@@ -4,10 +4,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Terminal, Sparkles, TrendingUp, Users, ArrowRight, 
-  CheckCircle2, AlertCircle, ShieldCheck, Zap, Rocket,
-  Laptop, Check, ChevronRight, Sliders
+  CheckCircle2, AlertCircle, ShieldCheck, Zap, Laptop, Check, ChevronRight, Sliders
 } from "lucide-react";
-import Image from "next/image";
 
 export default function SamplePage() {
   // State for Idea 5 (AI Terminal Prompt Simulator)
@@ -81,7 +79,7 @@ export default function SamplePage() {
               Concept 01
             </div>
             <h2 className="text-3xl sm:text-4xl font-display font-extrabold uppercase tracking-tight mb-4">
-              Interactive <span className="text-[#ff5400]">"Prompt to Reality"</span> AI Simulator
+              Interactive <span className="text-[#ff5400]">&quot;Prompt to Reality&quot;</span> AI Simulator
             </h2>
             <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
               Showcases your agency&apos;s AI expertise by allowing visitors to select different business goals. Watch the terminal instantly simulate typing the prompt and deploying the exact high-fidelity architecture and code.
@@ -427,7 +425,7 @@ export default function SamplePage() {
               Concept 04
             </div>
             <h2 className="text-3xl sm:text-4xl font-display font-extrabold uppercase tracking-tight mb-4">
-              Interactive <span className="text-[#ff5400]">"Before & After"</span> Transformation Mirror
+              Interactive <span className="text-[#ff5400]">&quot;Before & After&quot;</span> Transformation Mirror
             </h2>
             <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
               Allows visitors to drag the slider back and forth across the preview window to instantly compare a cluttered, low-converting legacy website against Voquarn&apos;s breathtaking, high-fidelity AI-driven masterpiece.

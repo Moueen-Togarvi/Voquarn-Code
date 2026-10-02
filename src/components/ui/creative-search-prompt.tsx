@@ -5,15 +5,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Paperclip, Globe, ArrowRight, CornerDownLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-// Floating micro-particles inside the light cone
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  duration: number;
-  delay: number;
-}
+// Stable positions avoid hydration differences and regenerating dust on every keystroke.
+const PARTICLES = Array.from({ length: 8 }, (_, i) => ({
+  id: i,
+  x: 20 + (i * 47) % 140,
+  y: (i * 17) % 40 - 20,
+  size: 1.5 + (i * 13) % 25 / 10,
+  duration: 2 + (i * 11) % 25 / 10,
+  delay: (i * 7) % 20 / 10,
+}));
 
 const SUGGESTIONS = [
   "miracle",
@@ -32,21 +32,7 @@ export function CreativeSearchPrompt() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayedWord, setDisplayedWord] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const [particles, setParticles] = useState<Particle[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  // Generate floating dust particles in the light beam zone
-  useEffect(() => {
-    const newParticles = Array.from({ length: 8 }).map((_, i) => ({
-      id: i,
-      x: Math.random() * 140 + 20, // Spread within the light beam width
-      y: Math.random() * 40 - 20,  // Vertically spread around the center
-      size: Math.random() * 2.5 + 1.5,
-      duration: Math.random() * 2.5 + 2,
-      delay: Math.random() * 2,
-    }));
-    setParticles(newParticles);
-  }, [value, displayedWord]);
 
   // Typewriter effect for when the input is empty and not focused
   useEffect(() => {
@@ -157,7 +143,7 @@ export function CreativeSearchPrompt() {
 
             {/* Micro floating particles inside the light beam */}
             <AnimatePresence>
-              {particles.map((p) => (
+              {PARTICLES.map((p) => (
                 <motion.div
                   key={p.id}
                   initial={{ opacity: 0, scale: 0.2, x: 0, y: p.y }}

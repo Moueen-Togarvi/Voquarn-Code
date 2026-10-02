@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { buildMetadata } from "../src/lib/metadata";
 import { parseFrontmatter } from "../src/lib/blog-frontmatter";
-import { buildBlogIndexFromMarkdown } from "../src/lib/blog-index";
+import { buildBlogIndexFromMarkdown } from "../src/lib/blog-index-builder";
 import { blogPostJsonLd, siteIdentityJsonLd } from "../src/lib/schema";
 import { site } from "../src/lib/site-data";
 import { GET as robots } from "../src/app/robots.txt/route";

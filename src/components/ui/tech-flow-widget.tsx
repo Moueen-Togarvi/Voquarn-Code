@@ -99,7 +99,7 @@ export function TechFlowWidget() {
       setActiveIndex((prev) => (prev + 1) % TECH_NODES.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [TECH_NODES.length]);
 
   const activeNode = TECH_NODES[activeIndex];
 

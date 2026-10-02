@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Loader2, Save, Plus, X, ChevronUp, ChevronDown } from "lucide-react";
 import Link from "next/link";
-import { ImageUpload } from "@/components/admin/image-upload";
 
 type SubService = {
   id?: number;
@@ -61,43 +60,40 @@ export function ServiceForm({ serviceId }: { serviceId?: number }) {
     subServices: [],
   });
 
-  const fetchService = useCallback(async () => {
+  useEffect(() => {
     if (!serviceId) return;
-    try {
-      const res = await fetch(`/api/admin/services/${serviceId}`);
-      if (!res.ok) throw new Error("Failed to fetch");
-      const data = await res.json();
-      setForm({
-        id: data.id,
-        title: data.title || "",
-        slug: data.slug || "",
-        description: data.description || "",
-        deliverables: data.deliverables || [],
-        icon: data.icon || "",
-        subServices: (data.subServices || []).map((ss: SubService) => ({
-          ...ss,
-          pricePkr: ss.pricePkr ?? "",
-          priceUsd: ss.priceUsd ?? "",
-          features: ss.features || [],
-        })),
+    const controller = new AbortController();
+    fetch(`/api/admin/services/${serviceId}`, { signal: controller.signal })
+      .then(async (res) => {
+        if (!res.ok) throw new Error("Failed to fetch");
+        return res.json();
+      })
+      .then((data) => {
+        if (controller.signal.aborted) return;
+        setForm({
+          id: data.id,
+          title: data.title || "",
+          slug: data.slug || slugify(data.title || ""),
+          description: data.description || "",
+          deliverables: data.deliverables || [],
+          icon: data.icon || "",
+          subServices: (data.subServices || []).map((ss: SubService) => ({
+            ...ss,
+            pricePkr: ss.pricePkr ?? "",
+            priceUsd: ss.priceUsd ?? "",
+            features: ss.features || [],
+          })),
+        });
+        setSlugEdited(Boolean(data.slug));
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) toast.error("Failed to load service");
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setFetching(false);
       });
-      if (data.slug) setSlugEdited(true);
-    } catch {
-      toast.error("Failed to load service");
-    } finally {
-      setFetching(false);
-    }
+    return () => controller.abort();
   }, [serviceId]);
-
-  useEffect(() => {
-    fetchService();
-  }, [fetchService]);
-
-  useEffect(() => {
-    if (!slugEdited) {
-      setForm((f) => ({ ...f, slug: slugify(f.title) }));
-    }
-  }, [slugEdited]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -197,7 +193,7 @@ export function ServiceForm({ serviceId }: { serviceId?: number }) {
             <input
               type="text"
               value={form.title}
-              onChange={(e) => setForm({ ...form, title: e.target.value })}
+              onChange={(e) => setForm({ ...form, title: e.target.value, ...(!slugEdited ? { slug: slugify(e.target.value) } : {}) })}
               placeholder="Web Development"
               required
               className="w-full rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-base font-medium text-[var(--foreground)] focus:border-[#ff5400] focus:outline-none focus:ring-2 focus:ring-[#ff5400]/20"

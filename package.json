@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run blogs:index",
+    "prebuild": "npm run blogs:index && npm run blogs:check-indexable && npm run seo:check",
     "build": "next build",
     "blogs:index": "node --import tsx scripts/build-blog-index.ts",
     "blogs:audit": "node scripts/audit-blog-content.mjs --write",
@@ -32,7 +32,8 @@
     "blogs:generate:daily-work-1500": "node scripts/generate-1500-daily-work-blogs.mjs",
     "blogs:generate:premium-keywords": "node scripts/generate-160-premium-keyword-blogs.mjs",
     "seed:admin": "npx tsx scripts/seed-admin.ts",
-    "seo:check": "node --import tsx tests/seo.ts"
+    "seo:check": "node --import tsx tests/seo.ts && NODE_PATH=./node_modules/next/dist/compiled node --conditions=react-server --import tsx tests/seo-data-errors.ts",
+    "blogs:check-indexable": "node scripts/check-indexable-blogs.mjs"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.11.2",

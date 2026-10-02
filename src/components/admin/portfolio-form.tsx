@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Loader2, Save, Plus, X } from "lucide-react";
@@ -55,40 +55,37 @@ export function PortfolioForm({ itemId }: { itemId?: number }) {
     imageUrl: "",
   });
 
-  const fetchItem = useCallback(async () => {
+  useEffect(() => {
     if (!itemId) return;
-    try {
-      const res = await fetch(`/api/admin/portfolio/${itemId}`);
-      if (!res.ok) throw new Error("Failed to fetch");
-      const data = await res.json();
-      setForm({
-        id: data.id,
-        title: data.title || "",
-        slug: data.slug || "",
-        category: data.category || "Web Development",
-        summary: data.summary || "",
-        outcome: data.outcome || "",
-        stack: data.stack || [],
-        liveUrl: data.liveUrl || "",
-        imageUrl: data.imageUrl || "",
+    const controller = new AbortController();
+    fetch(`/api/admin/portfolio/${itemId}`, { signal: controller.signal })
+      .then(async (res) => {
+        if (!res.ok) throw new Error("Failed to fetch");
+        return res.json();
+      })
+      .then((data) => {
+        if (controller.signal.aborted) return;
+        setForm({
+          id: data.id,
+          title: data.title || "",
+          slug: data.slug || slugify(data.title || ""),
+          category: data.category || "Web Development",
+          summary: data.summary || "",
+          outcome: data.outcome || "",
+          stack: data.stack || [],
+          liveUrl: data.liveUrl || "",
+          imageUrl: data.imageUrl || "",
+        });
+        setSlugEdited(Boolean(data.slug));
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) toast.error("Failed to load portfolio item");
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setFetching(false);
       });
-      if (data.slug) setSlugEdited(true);
-    } catch {
-      toast.error("Failed to load portfolio item");
-    } finally {
-      setFetching(false);
-    }
+    return () => controller.abort();
   }, [itemId]);
-
-  useEffect(() => {
-    fetchItem();
-  }, [fetchItem]);
-
-  useEffect(() => {
-    if (!slugEdited) {
-      setForm((f) => ({ ...f, slug: slugify(f.title) }));
-    }
-  }, [slugEdited]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -144,7 +141,7 @@ export function PortfolioForm({ itemId }: { itemId?: number }) {
             <input
               type="text"
               value={form.title}
-              onChange={(e) => setForm({ ...form, title: e.target.value })}
+              onChange={(e) => setForm({ ...form, title: e.target.value, ...(!slugEdited ? { slug: slugify(e.target.value) } : {}) })}
               placeholder="Project title"
               required
               className="w-full rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-base font-medium text-[var(--foreground)] focus:border-[#ff5400] focus:outline-none focus:ring-2 focus:ring-[#ff5400]/20"

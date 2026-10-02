@@ -4,7 +4,8 @@
 
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
-import { BLOG_INDEX_FILE, buildBlogIndexFromMarkdown } from "@/lib/blog-index";
+import { BLOG_INDEX_FILE } from "@/lib/blog-index";
+import { buildBlogIndexFromMarkdown } from "@/lib/blog-index-builder";
 
 async function main() {
   const started = Date.now();

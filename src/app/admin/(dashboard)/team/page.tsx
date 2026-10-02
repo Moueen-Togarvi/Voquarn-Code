@@ -2,10 +2,9 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { toast } from "sonner";
-import { Loader2, Plus, Users, Pencil, X, Star, Link2, Mail, Globe } from "lucide-react";
+import { Loader2, Plus, Users, Pencil, X, Link2, Mail, Globe } from "lucide-react";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { DeleteDialog } from "@/components/admin/delete-dialog";
-import { ImageUpload } from "@/components/admin/image-upload";
 
 type Member = {
   id?: number;

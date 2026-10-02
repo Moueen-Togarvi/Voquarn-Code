@@ -4,9 +4,9 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
-  ArrowUpRight, CheckCircle2, ShieldCheck, Activity, Cpu, Sparkles,
-  Target, Layers, Globe, Moon, Laptop, Server, Database, Code,
-  Workflow, Zap, Terminal, Rocket, Compass, Radio, Disc
+  Cpu, Sparkles,
+  Layers, Globe, Moon, Laptop, Server, Database, Code,
+  Disc
 } from "lucide-react";
 
 // Helper component for Rocket Image
@@ -88,7 +88,7 @@ export default function SampleRocketPage() {
       {/* ── Page Intro ── */}
       <div className="max-w-7xl mx-auto px-6 py-12 border-b border-neutral-200 bg-white">
         <p className="text-lg md:text-xl text-neutral-600 max-w-4xl font-light leading-relaxed">
-          Based on your feedback, we have designed **15 completely unique, storytelling-rich, and premium concepts**. Explore the dynamic Earth-to-Moon trajectory lines, the Mini-Astronaut tech series, quantum launchpads, and glassmorphism mission controls below. Click **"Select Concept"** on your favorite to integrate it into the homepage!
+          Based on your feedback, we have designed **15 completely unique, storytelling-rich, and premium concepts**. Explore the dynamic Earth-to-Moon trajectory lines, the Mini-Astronaut tech series, quantum launchpads, and glassmorphism mission controls below. Click **&quot;Select Concept&quot;** on your favorite to integrate it into the homepage!
         </p>
       </div>
 
@@ -131,7 +131,7 @@ export default function SampleRocketPage() {
               <div className="w-20 h-20 rounded-full bg-blue-600/30 border border-blue-400 flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.5)] animate-pulse">
                 <Globe className="w-10 h-10 text-blue-400" />
               </div>
-              <span className="text-xs font-mono font-bold tracking-widest text-blue-300">// EARTH_ORIGIN</span>
+              <span className="text-xs font-mono font-bold tracking-widest text-blue-300">{"// EARTH_ORIGIN"}</span>
             </div>
 
             {/* Moon Graphic (Top Right) */}
@@ -139,7 +139,7 @@ export default function SampleRocketPage() {
               <div className="w-20 h-20 rounded-full bg-neutral-100/20 border border-white flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.5)]">
                 <Moon className="w-10 h-10 text-white animate-spin" style={{ animationDuration: '20s' }} />
               </div>
-              <span className="text-xs font-mono font-bold tracking-widest text-neutral-300">// LUNAR_DESTINATION</span>
+              <span className="text-xs font-mono font-bold tracking-widest text-neutral-300">{"// LUNAR_DESTINATION"}</span>
             </div>
 
             {/* Animated Dashed Trajectory Line */}
@@ -293,17 +293,17 @@ export default function SampleRocketPage() {
                   key={i}
                   className="absolute w-[2px] bg-gradient-to-b from-white via-[#ff5400] to-transparent opacity-80"
                   style={{
-                    left: `${Math.random() * 100}%`,
-                    height: `${50 + Math.random() * 150}px`,
+                    left: `${(i * 37) % 100}%`,
+                    height: `${50 + (i * 53) % 150}px`,
                   }}
                   animate={{
                     y: [-200, 700],
                   }}
                   transition={{
-                    duration: 0.5 + Math.random() * 0.5,
+                    duration: 0.5 + ((i * 17) % 50) / 100,
                     repeat: Infinity,
                     ease: "linear",
-                    delay: Math.random() * 1,
+                    delay: ((i * 23) % 100) / 100,
                   }}
                 />
               ))}
@@ -362,7 +362,7 @@ export default function SampleRocketPage() {
               </motion.div>
               <div className="px-6 py-2.5 rounded-full bg-black text-white text-xs font-mono font-bold flex items-center gap-2 shadow-lg">
                 <Code className="w-4 h-4 text-[#ff5400]" />
-                <span>git commit -m "Deploying Enterprise Architecture"</span>
+                <span>git commit -m &quot;Deploying Enterprise Architecture&quot;</span>
               </div>
             </div>
 
@@ -411,7 +411,7 @@ export default function SampleRocketPage() {
 
               <div className="flex flex-col gap-4 bg-neutral-800/80 p-6 rounded-2xl border border-neutral-700 w-72 backdrop-blur-md">
                 <div className="flex items-center justify-between border-b border-neutral-700 pb-3">
-                  <span className="text-xs font-mono font-bold text-neutral-300">// CLOUD_CLUSTER_01</span>
+                  <span className="text-xs font-mono font-bold text-neutral-300">{"// CLOUD_CLUSTER_01"}</span>
                   <Server className="w-5 h-5 text-[#ff5400]" />
                 </div>
                 <div className="space-y-2">
@@ -458,7 +458,7 @@ export default function SampleRocketPage() {
               </motion.div>
               <div className="px-6 py-3 rounded-2xl bg-neutral-900 text-white text-xs font-mono flex items-center gap-3 shadow-xl max-w-md text-center">
                 <Sparkles className="w-5 h-5 text-[#ff5400] flex-shrink-0" />
-                <span>"System prompt: Architect a flawless, zero-latency enterprise SaaS application."</span>
+                <span>&quot;System prompt: Architect a flawless, zero-latency enterprise SaaS application.&quot;</span>
               </div>
             </div>
 
@@ -498,7 +498,7 @@ export default function SampleRocketPage() {
               </motion.div>
               <div className="flex flex-col gap-4 bg-neutral-800 p-6 rounded-2xl border border-neutral-700 w-72">
                 <div className="flex items-center justify-between border-b border-neutral-700 pb-3">
-                  <span className="text-xs font-mono font-bold text-neutral-300">// ETH_SMART_CONTRACT</span>
+                  <span className="text-xs font-mono font-bold text-neutral-300">{"// ETH_SMART_CONTRACT"}</span>
                   <Disc className="w-5 h-5 text-[#ff5400]" />
                 </div>
                 <div className="space-y-2 text-xs font-mono">
@@ -596,7 +596,7 @@ export default function SampleRocketPage() {
               </motion.div>
               {/* Levitation Pad */}
               <div className="w-72 h-12 rounded-full bg-[#ff5400]/20 border border-[#ff5400]/50 shadow-[0_0_40px_rgba(255,84,0,0.6)] flex items-center justify-center mt-4">
-                <span className="text-[10px] font-mono font-bold tracking-widest text-[#ff5400]">// MAG-LEV_ACTIVE</span>
+                <span className="text-[10px] font-mono font-bold tracking-widest text-[#ff5400]">{"// MAG-LEV_ACTIVE"}</span>
               </div>
             </div>
 
@@ -828,7 +828,7 @@ export default function SampleRocketPage() {
             Ready for Main Homepage Integration?
           </h3>
           <p className="text-sm md:text-base text-neutral-600 font-light mb-8 max-w-2xl mx-auto leading-relaxed">
-            Click on any of the "Select Concept" buttons above to test the interactive alert, then let us know which concept number you would like integrated directly into the main homepage Hero section.
+            Click on any of the &quot;Select Concept&quot; buttons above to test the interactive alert, then let us know which concept number you would like integrated directly into the main homepage Hero section.
           </p>
           {selectedConcept && (
             <div className="p-4 rounded-2xl bg-[#ff5400]/10 border border-[#ff5400]/30 text-[#ff5400] font-mono text-sm max-w-md mx-auto mb-6">

@@ -62,7 +62,7 @@ export const getBlogPosts = getMarkdownBlogPosts;
 export const getBlogPost = getMarkdownBlogPost;
 
 // ── Services ──
-export const getServices = cache(async (strict = false): Promise<Service[]> => {
+export const getServices = cache(async (): Promise<Service[]> => {
   try {
     return await withRetry(async () => {
       const allServices = await db.select().from(services).orderBy(desc(services.createdAt));
@@ -85,8 +85,7 @@ export const getServices = cache(async (strict = false): Promise<Service[]> => {
     });
   } catch (error) {
     console.error("getServices DB error:", error);
-    if (strict) throw error;
-    return [];
+    throw error;
   }
 });
 
@@ -113,7 +112,7 @@ export const getService = cache(async (slug: string): Promise<Service | undefine
     });
   } catch (error) {
     console.error("getService DB error:", error);
-    return undefined;
+    throw error;
   }
 });
 
@@ -135,7 +134,7 @@ export const getPortfolioItems = cache(async (): Promise<PortfolioItem[]> => {
     });
   } catch (error) {
     console.error("getPortfolioItems DB error:", error);
-    return [];
+    throw error;
   }
 });
 
@@ -155,7 +154,7 @@ export const getTeamMembers = cache(async (): Promise<TeamMember[]> => {
     });
   } catch (error) {
     console.error("getTeamMembers DB error:", error);
-    return [];
+    throw error;
   }
 });
 
@@ -188,7 +187,7 @@ export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
     return await loadTestimonials();
   } catch (error) {
     console.error("getTestimonials DB error:", error);
-    return [];
+    throw error;
   }
 });
 
@@ -204,7 +203,7 @@ export const getFaqItems = cache(async (): Promise<FaqItem[]> => {
     });
   } catch (error) {
     console.error("getFaqItems DB error:", error);
-    return [];
+    throw error;
   }
 });
 
@@ -224,7 +223,7 @@ export const getPricingPlans = cache(async (): Promise<PricingPlan[]> => {
     });
   } catch (error) {
     console.error("getPricingPlans DB error:", error);
-    return [];
+    throw error;
   }
 });
 
@@ -246,7 +245,7 @@ export const getJobOpenings = cache(async (): Promise<JobOpening[]> => {
     });
   } catch (error) {
     console.error("getJobOpenings DB error:", error);
-    return [];
+    throw error;
   }
 });
 
@@ -263,7 +262,7 @@ export const getStats = cache(async (): Promise<Stat[]> => {
     });
   } catch (error) {
     console.error("getStats DB error:", error);
-    return [];
+    throw error;
   }
 });
 
@@ -279,7 +278,7 @@ export const getClientLogos = cache(async (): Promise<ClientLogo[]> => {
     });
   } catch (error) {
     console.error("getClientLogos DB error:", error);
-    return [];
+    throw error;
   }
 });
 
@@ -294,7 +293,7 @@ export const getClientCategories = cache(async (): Promise<ClientCategory[]> => 
     });
   } catch (error) {
     console.error("getClientCategories DB error:", error);
-    return [];
+    throw error;
   }
 });
 

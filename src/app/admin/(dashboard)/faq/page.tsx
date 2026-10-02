@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { toast } from "sonner";
-import { Loader2, Plus, HelpCircle, Pencil, X, GripVertical } from "lucide-react";
+import { Loader2, Plus, HelpCircle, Pencil, X, } from "lucide-react";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { DeleteDialog } from "@/components/admin/delete-dialog";
 

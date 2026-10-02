@@ -6,7 +6,6 @@ import { cache } from "react";
 import { markdownToRichContent, parseFrontmatter } from "@/lib/blog-frontmatter";
 import {
   BLOG_DIRECTORY,
-  buildBlogIndexFromMarkdown,
   readBlogIndexFile,
   type BlogIndexEntry,
 } from "@/lib/blog-index";
@@ -22,11 +21,11 @@ async function loadListingPosts(): Promise<BlogPost[]> {
   if (process.env.NODE_ENV === "production") {
     const indexed = await readBlogIndexFile();
     if (indexed) return indexed.map(toListingPost);
-    console.warn(
-      "content/blog-index.json is missing or unusable — falling back to a full Markdown scan. Run `npm run blogs:index`.",
-    );
+    throw new Error("Missing or unusable content/blog-index.json; run npm run blogs:index before deployment.");
   }
 
+  // Next.js removes this development-only import from production bundles.
+  const { buildBlogIndexFromMarkdown } = await import("@/lib/blog-index-builder");
   return (await buildBlogIndexFromMarkdown()).map(toListingPost);
 }
 

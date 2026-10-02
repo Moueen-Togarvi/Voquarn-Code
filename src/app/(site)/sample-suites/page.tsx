@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, CheckCircle2, ChevronRight, Plus, Minus, Server, Activity, ShieldCheck, Database, Cpu } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Plus, Minus, Activity, ShieldCheck, } from "lucide-react";
 import Link from "next/link";
 
 // Shared Enterprise Data
@@ -198,7 +198,7 @@ export default function SampleSuitesPage() {
                   {/* Capabilities List */}
                   <div className="border-t border-neutral-200/80 pt-6 mb-8">
                     <p className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4 font-mono">
-                      // Core Architecture Capabilities
+                      {"// Core Architecture Capabilities"}
                     </p>
                     <ul className="space-y-3.5">
                       {activeTab.capabilities.map((cap, i) => (
@@ -260,7 +260,7 @@ export default function SampleSuitesPage() {
                   {/* Top Bar */}
                   <div className="flex items-center justify-between gap-4 mb-6">
                     <span className="text-xs font-mono font-bold text-neutral-400 group-hover:text-[#ff5400] transition-colors">
-                      {suite.num} // {suite.tag}
+                      {suite.num} {"//"} {suite.tag}
                     </span>
                     <span className="w-2 h-2 rounded-full bg-neutral-300 group-hover:bg-[#ff5400] transition-colors" />
                   </div>
@@ -389,7 +389,7 @@ export default function SampleSuitesPage() {
                           <div className="lg:col-span-6 bg-neutral-50 p-6 md:p-8 rounded-3xl border border-neutral-200 flex flex-col justify-between space-y-6">
                             <div>
                               <p className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4 font-mono">
-                                // Core System Specifications
+                                {"// Core System Specifications"}
                               </p>
                               <ul className="space-y-3">
                                 {suite.capabilities.map((cap, i) => (
