@@ -7,16 +7,16 @@ export const dynamic = "force-static";
 // `$` end-of-string marker in robots.txt.
 const disallowPaths = [
   "/api/",
-  "/admin",
+  "/admin$",
   "/admin/",
+  "/api$",
   "/sample$",
   "/sample-rocket$",
   "/sample-suites$",
 ];
 
-// AI / answer-engine crawlers. These are allowed on purpose: being crawled is
-// what makes Voquarn Code eligible to be cited in ChatGPT, Claude, Perplexity,
-// Gemini, and Copilot answers. Each one needs its own group because a matching
+// Search, user-fetch, and training agents are allowed by the site policy.
+// Access does not guarantee indexing, ranking, or citations. A matching
 // user-agent group makes a crawler ignore the "*" group entirely — so the
 // disallow list has to be repeated rather than inherited.
 const aiCrawlers = [
@@ -40,6 +40,9 @@ function group(userAgent: string) {
   return [
     `User-agent: ${userAgent}`,
     "Allow: /",
+    // Let crawlers see the login page noindex directive. Authentication still
+    // protects private pages; robots rules are not access control.
+    "Allow: /admin/login$",
     ...disallowPaths.map((path) => `Disallow: ${path}`),
     "",
   ].join("\n");

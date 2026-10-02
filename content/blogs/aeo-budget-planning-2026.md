@@ -6,6 +6,7 @@ category: "AEO & GEO"
 targetKeyword: "aeo budget"
 secondaryKeywords: "aeo budget 2026, answer engine optimization cost, aeo pricing, geo budget planning"
 readTime: "6 min read"
+modifiedAt: "2026-10-03"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
@@ -26,7 +27,7 @@ Most of what makes content citable by answer engines is what already made it ran
 
 **Machine-readable context.** Structured data covering organisation, products, FAQs, and articles. This was always worthwhile; it matters more when the consumer is a model assembling an answer rather than a person scanning results.
 
-**Crawl access for AI agents.** Check `robots.txt` explicitly. Blocking `GPTBot`, `ClaudeBot`, `PerplexityBot`, or `Google-Extended` removes you from those systems. This is a genuine decision — some publishers block deliberately — but it should be a decision, not an accident inherited from a template.
+**Crawl access for AI agents.** Check `robots.txt` explicitly and distinguish search indexing from model training. OpenAI uses OAI-SearchBot for search and GPTBot for training; Google Search uses Googlebot, while Google-Extended controls separate AI uses. Blocking a training agent does not automatically remove a site from search answers. Set an intentional policy for each agent, then verify access in server logs.
 
 **Consistency across sources.** Models cross-reference. Contradictory pricing, addresses, or service descriptions between your site, directories, and profiles reduce confidence in all of them.
 
@@ -118,9 +119,12 @@ Partially. Referral traffic and AI Overview presence are observable. Citation fr
 Not at volume. Large quantities of thin generated pages trigger scaled-content-abuse handling and can depress the whole domain. A small number of genuinely deep pieces outperforms hundreds of templated ones, and carries no downside risk.
 
 **Should we block AI crawlers?**
-A real strategic choice with defensible answers both ways. Blocking removes you from those systems entirely. Whichever you choose, verify `robots.txt` reflects an intentional decision rather than an inherited default.
+Decide separately for search crawlers, training crawlers, and user-requested fetchers. Their purposes differ, and allowing access never guarantees a citation. Verify `robots.txt` reflects your policy and test the relevant user agents.
 
 ## Further reading
+
+- [OpenAI crawler purposes](https://platform.openai.com/docs/bots)
+- [Google AI features and crawler controls](https://developers.google.com/search/docs/appearance/ai-features)
 
 - [Google scaled content abuse policy](https://developers.google.com/search/docs/essentials/spam-policies)
 - [Google structured data guidelines](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)

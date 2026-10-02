@@ -33,17 +33,14 @@ type BuildMetadataOptions = {
   modifiedTime?: string;
 };
 
-/**
- * Google treats `/foo` and `/foo/` as separate canonicals when both respond,
- * so every non-root canonical is normalised to no trailing slash. Query
- * strings and fragments are dropped because a canonical URL should be the
- * shareable, parameter-free version of the page.
- */
+/** Keep only the meaningful blog pagination parameter; discard tracking and filters. */
 function canonicalPath(path: string): string {
-  if (!path) return "/";
-  const withoutQuery = path.split(/[?#]/)[0] || "/";
-  if (withoutQuery === "/") return "/";
-  return withoutQuery.endsWith("/") ? withoutQuery.slice(0, -1) : withoutQuery;
+  const url = new URL(path || "/", getSiteUrl());
+  const pathname = url.pathname.replace(/\/+$/, "") || "/";
+  const page = url.searchParams.get("page");
+  return pathname === "/blog" && page && /^[1-9]\d*$/.test(page) && Number(page) > 1
+    ? `${pathname}?page=${Number(page)}`
+    : pathname;
 }
 
 export function buildMetadata(

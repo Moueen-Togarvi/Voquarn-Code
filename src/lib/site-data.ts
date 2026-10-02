@@ -79,6 +79,7 @@ export type BlogPost = {
   excerpt: string;
   category: string;
   publishedAt: string;
+  modifiedAt?: string;
   readTime: string;
   /** Deliberately written in-depth post; see BlogIndexEntry.cornerstone. */
   cornerstone?: boolean;

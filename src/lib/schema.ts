@@ -1,4 +1,4 @@
-import type { BlogPost, FaqItem, Service, SubService, TeamMember, Testimonial } from "@/lib/site-data";
+import type { BlogPost, FaqItem, Service, SubService, TeamMember } from "@/lib/site-data";
 import type { SiteSettings } from "@/lib/data";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -23,11 +23,7 @@ function websiteId() {
   return absoluteUrl("/#website");
 }
 
-export function siteIdentityJsonLd(site: SiteSettings, testimonials: Testimonial[]): JsonLdData {
-  const ratingCount = testimonials.length;
-  const ratingValue = ratingCount
-    ? Number((testimonials.reduce((sum, t) => sum + t.stars, 0) / ratingCount).toFixed(1))
-    : null;
+export function siteIdentityJsonLd(site: SiteSettings): JsonLdData {
   const socialProfiles = Object.values(site.socials).filter((url) => /^https?:\/\//.test(url));
   const serviceAreas = [
     { "@type": "Country", name: "Pakistan" },
@@ -101,28 +97,6 @@ export function siteIdentityJsonLd(site: SiteSettings, testimonials: Testimonial
             availableLanguage: ["English", "Urdu"],
           },
         ],
-        ...(ratingCount > 0 && ratingValue
-          ? {
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue,
-                reviewCount: ratingCount,
-                bestRating: 5,
-                worstRating: 1,
-              },
-              review: testimonials.map((t) => ({
-                "@type": "Review",
-                author: { "@type": "Person", name: t.name },
-                reviewBody: t.review,
-                reviewRating: {
-                  "@type": "Rating",
-                  ratingValue: t.stars,
-                  bestRating: 5,
-                  worstRating: 1,
-                },
-              })),
-            }
-          : {}),
         ...(socialProfiles.length > 0 ? { sameAs: socialProfiles } : {}),
         knowsAbout: [
           "Web development",
@@ -304,7 +278,7 @@ export function blogJsonLd(posts: BlogPost[]): Record<string, unknown> {
       headline: post.title,
       url: absoluteUrl(`/blog/${post.slug}`),
       datePublished: post.publishedAt,
-      dateModified: post.publishedAt,
+      dateModified: post.modifiedAt || post.publishedAt,
     })),
   };
 }
@@ -322,7 +296,7 @@ export function blogPostJsonLd(post: BlogPost): Record<string, unknown> {
     description: post.excerpt,
     image: absoluteUrl(post.coverImage || "/og-default.jpg"),
     datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    dateModified: post.modifiedAt || post.publishedAt,
     author: {
       "@type": "Person",
       name: "Moueen Togarvi",
@@ -372,71 +346,6 @@ export function teamMemberJsonLd(member: TeamMember): Record<string, unknown> {
     url: absoluteUrl("/team"),
     worksFor: { "@id": organizationId() },
     sameAs: member.linkedinUrl ? [member.linkedinUrl] : undefined,
-  };
-}
-
-export function jobPostingJsonLd(job: {
-  id: number;
-  title: string;
-  department: string;
-  location: string;
-  type: string;
-  salary: string;
-  description: string;
-  tags: string[];
-}): Record<string, unknown> {
-  // Employment type must map to schema.org's enum, not the free-text label
-  // shown in the UI (e.g. "Full-time" -> FULL_TIME), or Google Jobs drops the field.
-  const employmentTypeMap: Record<string, string> = {
-    "full-time": "FULL_TIME",
-    "part-time": "PART_TIME",
-    contract: "CONTRACTOR",
-    freelance: "CONTRACTOR",
-    internship: "INTERN",
-    remote: "OTHER",
-  };
-  const normalizedType = job.type.toLowerCase().replace(/[^a-z]/g, "-");
-  const employmentType =
-    Object.entries(employmentTypeMap).find(([key]) => normalizedType.includes(key))?.[1] || "OTHER";
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "JobPosting",
-    "@id": `${absoluteUrl("/careers")}#job-${job.id}`,
-    title: job.title,
-    description: job.description,
-    identifier: {
-      "@type": "PropertyValue",
-      name: "Voquarn Code",
-      value: String(job.id),
-    },
-    datePosted: new Date().toISOString().slice(0, 10),
-    employmentType,
-    hiringOrganization: { "@id": organizationId() },
-    jobLocationType: normalizedType.includes("remote") ? "TELECOMMUTE" : undefined,
-    jobLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: job.location,
-        addressCountry: "PK",
-      },
-    },
-    industry: job.department,
-    skills: job.tags.join(", "),
-    baseSalary: job.salary
-      ? {
-          "@type": "MonetaryAmount",
-          currency: "PKR",
-          value: {
-            "@type": "QuantitativeValue",
-            value: job.salary,
-            unitText: "MONTH",
-          },
-        }
-      : undefined,
-    directApply: true,
-    url: absoluteUrl("/careers"),
   };
 }
 

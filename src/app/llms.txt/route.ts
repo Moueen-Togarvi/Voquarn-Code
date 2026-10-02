@@ -58,7 +58,6 @@ export async function GET() {
   lines.push("- **Which markets are served?** Pakistan and remote clients worldwide, including the United States, United Kingdom, and United Arab Emirates.");
   lines.push("- **What currencies are supported?** Published packages use PKR and USD.");
   lines.push("- **How can a client start?** Use the contact page or WhatsApp to request discovery and a scoped quote.");
-  lines.push("- **Content last reviewed:** 2026-08-11.");
   lines.push("");
 
   // ── Services + pricing (the highest-value block for AI answers) ──
@@ -127,7 +126,7 @@ export async function GET() {
   if (posts.length > 0) {
     lines.push("## Articles");
     lines.push("");
-    for (const post of posts.slice(0, 25)) {
+    for (const post of posts.filter((post) => post.cornerstone).slice(0, 25)) {
       lines.push(`- [${post.title}](${abs(`/blog/${post.slug}`)}): ${post.excerpt}`);
     }
     lines.push("");

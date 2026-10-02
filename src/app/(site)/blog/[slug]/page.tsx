@@ -23,7 +23,8 @@ import { getSiteUrl } from "@/lib/site-url";
 
 type BlogPostPageProps = { params: Promise<{ slug: string }> };
 
-export const dynamicParams = false;
+// Keep historical URLs available on demand without prebuilding the bulk corpus.
+export const dynamicParams = true;
 
 function seoKeywords(post: { title: string; category: string; seoKeywords?: string[] }) {
   return Array.from(
@@ -33,7 +34,7 @@ function seoKeywords(post: { title: string; category: string; seoKeywords?: stri
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts.filter((post) => post.cornerstone).map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
@@ -44,6 +45,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   return buildMetadata(post.title, post.excerpt, `/blog/${post.slug}`, {
     type: "article",
     publishedTime: post.publishedAt,
+    modifiedTime: post.modifiedAt,
     keywords: seoKeywords(post),
     ...(post.coverImage ? { image: post.coverImage } : {}),
     // Only cornerstone articles are advertised for indexing. The bulk-generated
@@ -60,13 +62,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const [post, posts] = await Promise.all([getBlogPost(slug), getBlogPosts()]);
   if (!post) notFound();
 
-  const categoryPosts = posts.filter((candidate) => candidate.category === post.category);
-  const relatedCandidates = categoryPosts.length > 1 ? categoryPosts : posts;
-  const currentIndex = relatedCandidates.findIndex((candidate) => candidate.slug === post.slug);
-  const relatedPosts = Array.from(
-    { length: Math.min(3, Math.max(0, relatedCandidates.length - 1)) },
-    (_, offset) => relatedCandidates[(currentIndex + offset + 1) % relatedCandidates.length],
-  );
+  const reviewedPosts = posts.filter((candidate) => candidate.cornerstone && candidate.slug !== post.slug);
+  const categoryPosts = reviewedPosts.filter((candidate) => candidate.category === post.category);
+  const relatedPosts = [...categoryPosts, ...reviewedPosts.filter((candidate) => candidate.category !== post.category)].slice(0, 3);
   const hasRichContent = Boolean(post.content?.length);
   const tableOfContents = hasRichContent ? extractTableOfContents(post.content!) : [];
   const pageKeywords = seoKeywords(post);
@@ -93,7 +91,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
       <JsonLd data={blogPostJsonLd(post)} />
 
-      <main className="mx-auto mt-14 w-full max-w-7xl px-5 pb-24 pt-12 sm:pt-16 lg:mt-16 lg:px-8">
+      <div className="mx-auto mt-14 w-full max-w-7xl px-5 pb-24 pt-12 sm:pt-16 lg:mt-16 lg:px-8">
         <nav aria-label="Breadcrumb" className="mx-auto max-w-5xl">
           <ol className="flex flex-wrap items-center gap-1.5 text-sm text-[var(--muted)]">
             <li><Link href="/" className="rounded-sm hover:text-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]">Home</Link></li>
@@ -140,6 +138,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <article className="min-w-0 rounded-[2rem] border border-[var(--border)] bg-[var(--panel)] px-6 py-8 shadow-[0_18px_50px_rgba(0,0,0,0.05)] sm:px-10 sm:py-11 lg:px-12">
             <div className="rounded-2xl border border-[#ff5400]/15 bg-[#ff5400]/6 p-5 sm:p-6">
               <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--blog-accent)]"><Sparkles className="h-4 w-4" aria-hidden="true" />Quick overview</div>
+              {post.modifiedAt && <p className="mt-3 text-sm text-[var(--muted)]">Updated <time dateTime={post.modifiedAt}>{new Date(post.modifiedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</time></p>}
               <p data-speakable className="mt-3 text-base leading-7 text-[var(--foreground)]">{post.excerpt}</p>
             </div>
             <div className="mt-7">
@@ -201,7 +200,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </aside>
         )}
-      </main>
+      </div>
     </>
   );
 }

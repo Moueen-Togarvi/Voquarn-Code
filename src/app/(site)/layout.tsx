@@ -2,7 +2,7 @@ import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 import { siteIdentityJsonLd } from "@/lib/schema";
-import { getSiteSettings, getTestimonials } from "@/lib/data";
+import { getSiteSettings } from "@/lib/data";
 import { DeferredSiteEffects } from "@/components/layout/deferred-site-effects";
 import { MetaPixel } from "@/components/analytics/meta-pixel";
 import { TikTokPixel } from "@/components/analytics/tiktok-pixel";
@@ -20,11 +20,8 @@ export default async function SiteLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [settings, testimonials] = await Promise.all([
-    getSiteSettings(),
-    getTestimonials(),
-  ]);
-  const structuredData = siteIdentityJsonLd(settings, testimonials);
+  const settings = await getSiteSettings();
+  const structuredData = siteIdentityJsonLd(settings);
 
   return (
     <>

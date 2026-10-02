@@ -24,6 +24,7 @@ export type BlogIndexEntry = {
   excerpt: string;
   category: string;
   publishedAt: string;
+  modifiedAt?: string;
   readTime: string;
   coverImage: string | null;
   /**
@@ -44,6 +45,7 @@ function isBlogIndexEntry(value: unknown): value is BlogIndexEntry {
     typeof entry.excerpt === "string" &&
     typeof entry.category === "string" &&
     typeof entry.publishedAt === "string" &&
+    (entry.modifiedAt === undefined || typeof entry.modifiedAt === "string") &&
     typeof entry.readTime === "string" &&
     (entry.cornerstone === undefined || typeof entry.cornerstone === "boolean") &&
     (entry.coverImage === null || typeof entry.coverImage === "string")
@@ -60,7 +62,12 @@ export async function buildBlogIndexFromMarkdown(): Promise<BlogIndexEntry[]> {
   const entries = await Promise.all(
     filenames.map(async (filename) => {
       const source = await readFile(path.join(BLOG_DIRECTORY, filename), "utf8");
-      const { frontmatter } = parseFrontmatter(source, filename);
+      const { frontmatter, markdown } = parseFrontmatter(source, filename);
+
+      if (String(frontmatter.cornerstone) === "true" && frontmatter.status === "published") {
+        const evidence = new Set([...markdown.matchAll(/\[[^\]]+\]\((https?:\/\/[^)\s]+)\)/g)].map((match) => match[1]));
+        if (evidence.size < 2) throw new Error(`Cornerstone post ${filename} needs at least two evidence links`);
+      }
 
       if (`${frontmatter.slug}.md` !== filename) {
         throw new Error(`Slug and filename do not match in ${filename}`);
@@ -72,6 +79,7 @@ export async function buildBlogIndexFromMarkdown(): Promise<BlogIndexEntry[]> {
         excerpt: frontmatter.description,
         category: frontmatter.category,
         publishedAt: frontmatter.publishedAt ?? "",
+        ...(frontmatter.modifiedAt ? { modifiedAt: frontmatter.modifiedAt } : {}),
         readTime: frontmatter.readTime,
         coverImage: frontmatter.coverImage ?? null,
         ...(String(frontmatter.cornerstone) === "true" ? { cornerstone: true } : {}),

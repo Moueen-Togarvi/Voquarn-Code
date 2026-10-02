@@ -1,8 +1,7 @@
 import { getBlogPosts, getServices } from "@/lib/data";
 import { getSiteUrl } from "@/lib/site-url";
 
-// Regenerated hourly so newly published services and posts get indexed
-// without waiting for a redeploy.
+// Regenerated hourly for CMS services. Markdown publication requires a deployment.
 export const revalidate = 3600;
 
 const staticRoutes = [
@@ -19,16 +18,6 @@ const staticRoutes = [
   { path: "/terms", changeFrequency: "yearly", priority: 0.2 },
 ] as const;
 
-// Baseline lastmod for pages whose static markup last changed on this date.
-// Pages that fold in fresh data at request time (home, /blog, /services) are
-// bumped forward to the newest underlying data timestamp below, so the
-// sitemap does not lie about freshness or freeze on a stale date.
-const SITE_LAST_MODIFIED = new Date("2026-09-13T00:00:00.000Z");
-
-function newest(...dates: Date[]): Date {
-  return dates.reduce((a, b) => (a.getTime() >= b.getTime() ? a : b));
-}
-
 function escapeXml(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -40,14 +29,14 @@ function escapeXml(value: string) {
 
 function entry(
   url: string,
-  lastModified: Date,
+  lastModified: Date | undefined,
   changeFrequency: "weekly" | "monthly" | "yearly",
   priority: number,
 ) {
   return [
     "<url>",
     `<loc>${escapeXml(url)}</loc>`,
-    `<lastmod>${lastModified.toISOString()}</lastmod>`,
+    ...(lastModified ? [`<lastmod>${lastModified.toISOString()}</lastmod>`] : []),
     `<changefreq>${changeFrequency}</changefreq>`,
     `<priority>${priority.toFixed(2)}</priority>`,
     "</url>",
@@ -56,45 +45,44 @@ function entry(
 
 export async function GET() {
   const siteUrl = getSiteUrl();
-  const [services, blogPosts] = await Promise.all([getServices(), getBlogPosts()]);
+  const sources = await Promise.all([getServices(true), getBlogPosts()]).catch((error) => {
+    console.error("Sitemap sources unavailable:", error);
+    return null;
+  });
+  // Never cache a successful but incomplete sitemap during a database outage.
+  if (!sources) return new Response("Sitemap temporarily unavailable", {
+    status: 503,
+    headers: { "Retry-After": "300", "Cache-Control": "no-store" },
+  });
+  const [services, blogPosts] = sources;
 
-  const cornerstoneDates = blogPosts
-    .filter((post) => post.cornerstone)
-    .map((post) => new Date(post.publishedAt))
-    .filter((date) => !Number.isNaN(date.getTime()));
-  const latestBlogDate = cornerstoneDates.length
-    ? newest(...cornerstoneDates)
-    : SITE_LAST_MODIFIED;
-
-  // Pages that surface blog and service data get bumped to whichever
-  // dependency last changed. Purely static routes (privacy, terms, contact)
-  // stay pinned to SITE_LAST_MODIFIED so their lastmod is not fake.
-  const dynamicPaths = new Set(["", "/blog", "/services", "/portfolio"]);
+  // Omit lastmod when the source does not track all changes. Blog publication
+  // dates are not evidence that service, portfolio, or static markup changed.
   const staticEntries = staticRoutes.map((route) =>
     entry(
       new URL(route.path || "/", siteUrl).toString(),
-      dynamicPaths.has(route.path) ? newest(SITE_LAST_MODIFIED, latestBlogDate) : SITE_LAST_MODIFIED,
+      undefined,
       route.changeFrequency,
       route.priority,
     ),
   );
 
   const serviceEntries = services.map((service) =>
-    entry(new URL(`/services/${service.id}`, siteUrl).toString(), SITE_LAST_MODIFIED, "monthly", 0.8),
+    entry(new URL(`/services/${service.id}`, siteUrl).toString(), undefined, "monthly", 0.8),
   );
 
   // Only cornerstone posts are submitted. The corpus contains thousands of
   // bulk-generated pages that share most of their paragraphs across each other
   // (see reports/blog-content-audit-*), and submitting them wastes crawl budget
   // while dragging the site-wide quality signal down. Non-cornerstone posts
-  // stay reachable through /blog and internal links, but they are noindexed at
+  // remain available at their existing URLs, but they are noindexed at
   // the page level so Google can drop them from the index.
   const blogEntries = blogPosts
     .filter((post) => post.cornerstone)
     .map((post) =>
       entry(
         new URL(`/blog/${post.slug}`, siteUrl).toString(),
-        new Date(post.publishedAt),
+        new Date(post.modifiedAt || post.publishedAt),
         "weekly",
         0.9,
       ),

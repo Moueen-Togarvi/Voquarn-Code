@@ -12,6 +12,7 @@ export type Frontmatter = {
   targetKeyword?: string;
   secondaryKeywords?: string;
   publishedAt?: string;
+  modifiedAt?: string;
   readTime: string;
   status: "draft" | "published";
   coverImage?: string;
@@ -75,6 +76,10 @@ export function parseFrontmatter(source: string, filename: string) {
     if (!values.publishedAt || Number.isNaN(Date.parse(values.publishedAt))) {
       throw new Error(`Published post ${filename} needs a valid publishedAt date`);
     }
+  }
+
+  if (values.modifiedAt && (Number.isNaN(Date.parse(values.modifiedAt)) || Date.parse(values.modifiedAt) < Date.parse(values.publishedAt || ""))) {
+    throw new Error(`Invalid modifiedAt date in ${filename}`);
   }
 
   return {

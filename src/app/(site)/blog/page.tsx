@@ -47,7 +47,9 @@ export async function generateMetadata({ searchParams }: BlogPageProps) {
   const filters = await searchParams;
   const hasFilters = Boolean(firstValue(filters.q)?.trim() || firstValue(filters.topic));
   const parsedPage = Number.parseInt(firstValue(filters.page) ?? "1", 10);
-  const page = Number.isFinite(parsedPage) && parsedPage > 1 ? parsedPage : 1;
+  const posts = (await getBlogPosts()).filter((post) => post.cornerstone);
+  const totalPages = Math.max(1, 1 + Math.ceil((posts.length - GRID_PAGE_SIZE - 1) / GRID_PAGE_SIZE));
+  const page = Number.isFinite(parsedPage) ? Math.min(Math.max(parsedPage, 1), totalPages) : 1;
   const title = page > 1 ? `${pageTitle} — Page ${page}` : pageTitle;
 
   return buildMetadata(
@@ -64,7 +66,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const requestedTopic = firstValue(filters.topic) ?? "";
   const activeTopic = blogTopics.find((topic) => topic.value === requestedTopic) ?? null;
   const parsedPage = Number.parseInt(firstValue(filters.page) ?? "1", 10);
-  const posts = await getBlogPosts();
+  const posts = (await getBlogPosts()).filter((post) => post.cornerstone);
   const queryTokens = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
   // Thousands of posts are in memory, so the unfiltered page (by far the most
   // requested one) skips building a search string for every single one of them

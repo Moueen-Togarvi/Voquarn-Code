@@ -62,7 +62,7 @@ export const getBlogPosts = getMarkdownBlogPosts;
 export const getBlogPost = getMarkdownBlogPost;
 
 // ── Services ──
-export const getServices = cache(async (): Promise<Service[]> => {
+export const getServices = cache(async (strict = false): Promise<Service[]> => {
   try {
     return await withRetry(async () => {
       const allServices = await db.select().from(services).orderBy(desc(services.createdAt));
@@ -85,6 +85,7 @@ export const getServices = cache(async (): Promise<Service[]> => {
     });
   } catch (error) {
     console.error("getServices DB error:", error);
+    if (strict) throw error;
     return [];
   }
 });
