@@ -4,9 +4,10 @@ slug: "ai-model-routing-strategy"
 description: "Design an AI model routing strategy: routing signals, cascade patterns, measuring router effectiveness, fallback handling, and avoiding complexity that costs more than it saves."
 category: "AI Infrastructure"
 targetKeyword: "AI model routing strategy"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai model routing strategy: matching requests to models"
 ---
 An **AI model routing strategy** sends each request to the model best suited to it rather than using one model for everything. Done well it reduces cost and latency while maintaining quality. Done carelessly it adds a component that fails in ways that are hard to diagnose.
 

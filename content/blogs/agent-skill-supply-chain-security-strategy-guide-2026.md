@@ -4,10 +4,11 @@ slug: "agent-skill-supply-chain-security-strategy-guide-2026"
 description: "A practical AI agent skill security strategy guide covering priorities, delivery steps, risks, metrics, and the decisions teams should make in 2026."
 category: "AI & Automation"
 targetKeyword: "AI agent skill security strategy"
-readTime: "8 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-19"
 status: "published"
 trendSeries: "August 2026"
+secondaryKeywords: "strategy guide: agent skill supply chain security"
 ---
 
 Teams searching for **AI agent skill security strategy** usually need to build a defensible plan before selecting tools or vendors. Agent skill supply chain security verifies who published a skill, what it can execute, which files and networks it can reach, and how updates are reviewed.

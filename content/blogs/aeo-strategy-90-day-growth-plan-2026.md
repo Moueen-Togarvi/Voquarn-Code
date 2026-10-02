@@ -4,10 +4,11 @@ slug: "aeo-strategy-90-day-growth-plan-2026"
 description: "A practical AEO strategy 90 day plan guide covering priorities, delivery steps, risks, metrics, and the decisions teams should make in 2026."
 category: "AEO & GEO"
 targetKeyword: "AEO strategy 90 day plan"
-readTime: "8 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-19"
 status: "published"
 trendSeries: "August 2026"
+secondaryKeywords: "90-day growth plan: aeo strategy"
 ---
 
 Teams searching for **AEO strategy 90 day plan** usually need to turn an initial capability into a measured operating system. An AEO strategy makes important questions easy to find and answer with clear entities, direct explanations, supporting evidence, and crawlable technical foundations.

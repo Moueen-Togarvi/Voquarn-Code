@@ -4,9 +4,10 @@ slug: "ai-agent-security-guide"
 description: "A practical AI agent security guide covering scope, architecture, security, evaluation, cost, delivery, and provider selection for production use."
 category: "Agentic AI"
 targetKeyword: "AI agent security"
-readTime: "7 min read"
+readTime: "6 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "ai agent security: threats and practical controls"
 ---
 
 Good **AI agent security** work is operational design supported by AI. Its purpose is to reduce the additional risk created when models can retrieve data and take actions. That requires product discovery, data and integration engineering, evaluations, security controls, and a team prepared to own behavior after launch.

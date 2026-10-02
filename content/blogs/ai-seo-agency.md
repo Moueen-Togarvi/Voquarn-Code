@@ -4,9 +4,10 @@ slug: "ai-seo-agency"
 description: "What an AI SEO agency should deliver in 2026: AI-assisted production, AI search visibility, technical foundations, and how to avoid paying for automated content volume."
 category: "AI Search Optimization"
 targetKeyword: "AI SEO agency"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai seo agency: what the category means now"
 ---
 
 The term **AI SEO agency** now covers two very different services, and conflating them causes most of the disappointment in this market.

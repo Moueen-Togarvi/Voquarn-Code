@@ -4,9 +4,10 @@ slug: "how-to-rank-in-chatgpt-search"
 description: "Understand how to rank in ChatGPT search: how sources are selected, what makes a passage quotable, and the technical and authority work that earns citations."
 category: "AI Search Optimization"
 targetKeyword: "how to rank in ChatGPT search"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "how to rank in chatgpt search: what actually influences citations"
 ---
 
 Asking **how to rank in ChatGPT search** is reasonable but slightly misframed. There is no ranked list to climb. The system retrieves candidate sources, decides which ones support the answer it is writing, and cites a small number of them. You are either selected or you are not.

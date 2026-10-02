@@ -93,22 +93,7 @@ export function serviceKeywordCluster(title: string, id = "") {
 }
 
 export function articleKeywordCluster(title: string, category: string) {
-  const meaningfulTitleWords = title
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .split(/\s+/)
-    .filter((word) => word.length > 3)
-    .slice(0, 8);
-
-  return Array.from(
-    new Set([
-      title,
-      category,
-      `${category} guide`,
-      `${category} for businesses`,
-      meaningfulTitleWords.join(" "),
-      "digital growth Pakistan",
-      "Voquarn Code insights",
-    ]),
-  ).filter(Boolean);
+  // Article-specific research belongs in frontmatter; avoid unrelated generic
+  // location and service phrases on every post.
+  return Array.from(new Set([title, category])).filter(Boolean);
 }

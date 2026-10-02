@@ -4,9 +4,10 @@ slug: "ai-readiness-assessment"
 description: "Run an AI readiness assessment covering data, systems, skills, governance, and process maturity, and turn the findings into a sequenced plan rather than a score."
 category: "AI Governance"
 targetKeyword: "AI readiness assessment"
-readTime: "7 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai readiness assessment: a practical framework"
 ---
 
 An **AI readiness assessment** determines whether an organization can deploy AI successfully before it commits budget to doing so. Its value is in identifying the specific blockers that would otherwise be discovered mid-project, usually at the point where they are most expensive.

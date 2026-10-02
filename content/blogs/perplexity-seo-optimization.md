@@ -4,9 +4,10 @@ slug: "perplexity-seo-optimization"
 description: "Optimize for Perplexity and similar answer engines: how sources are retrieved and cited, content structure that earns inclusion, and realistic traffic expectations."
 category: "AI Search Optimization"
 targetKeyword: "Perplexity SEO optimization"
-readTime: "5 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "perplexity seo optimization: earning citations in answer engines"
 ---
 **Perplexity SEO optimization** targets answer engines that retrieve live sources, synthesize a response, and display citations prominently alongside it. Compared with assistants that cite sparingly, these engines surface sources visibly, which makes them a meaningful referral channel rather than only a visibility one.
 

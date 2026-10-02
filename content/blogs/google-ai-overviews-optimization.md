@@ -4,9 +4,10 @@ slug: "google-ai-overviews-optimization"
 description: "Optimize for Google AI Overviews: how sources are chosen, the content structure that earns inclusion, and how to handle the traffic impact on existing pages."
 category: "AI Search Optimization"
 targetKeyword: "Google AI Overviews optimization"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "google ai overviews optimization: practical steps"
 ---
 
 **Google AI Overviews optimization** addresses the summary block that now appears above conventional results for a large share of informational queries. It changes the economics of ranking: a page can hold position one and still lose most of its clicks to a summary that answers the question first.

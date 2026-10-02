@@ -33,13 +33,18 @@ type BuildMetadataOptions = {
   modifiedTime?: string;
 };
 
+export function parseBlogPage(value?: string | null): number {
+  const page = value && /^[1-9]\d*$/.test(value) ? Number(value) : 1;
+  return Number.isSafeInteger(page) ? page : 1;
+}
+
 /** Keep only the meaningful blog pagination parameter; discard tracking and filters. */
 function canonicalPath(path: string): string {
   const url = new URL(path || "/", getSiteUrl());
   const pathname = url.pathname.replace(/\/+$/, "") || "/";
-  const page = url.searchParams.get("page");
-  return pathname === "/blog" && page && /^[1-9]\d*$/.test(page) && Number(page) > 1
-    ? `${pathname}?page=${Number(page)}`
+  const page = parseBlogPage(url.searchParams.get("page"));
+  return pathname === "/blog" && page > 1
+    ? `${pathname}?page=${page}`
     : pathname;
 }
 
@@ -100,7 +105,7 @@ export function buildMetadata(
     authors: [{ name: site.name, url: siteUrl.toString() }],
     creator: site.name,
     publisher: site.name,
-    keywords: Array.from(new Set([...defaultKeywords, ...(options.keywords || [])])),
+    keywords: Array.from(new Set([site.name, ...(options.keywords ?? defaultKeywords)])),
     metadataBase: siteUrl,
     alternates: {
       canonical: normalisedPath,

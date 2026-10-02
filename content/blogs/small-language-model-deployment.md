@@ -4,9 +4,10 @@ slug: "small-language-model-deployment"
 description: "Deploy small language models where they outperform on cost and latency: suitable task types, evaluation against larger models, serving architecture, and hybrid routing."
 category: "AI Infrastructure"
 targetKeyword: "small language model deployment"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "small language model deployment: when smaller wins"
 ---
 **Small language model deployment** is often the correct answer for production workloads that default to the largest available model out of habit. Many production tasks are classification, extraction, routing, and formatting, where a smaller model matches a larger one at a fraction of the cost and latency.
 

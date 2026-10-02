@@ -4,10 +4,11 @@ slug: "react-server-components-audit-checklist-2026"
 description: "A practical React Server Components audit checklist guide covering priorities, delivery steps, risks, metrics, and the decisions teams should make in 2026."
 category: "Next.js Development"
 targetKeyword: "React Server Components audit checklist"
-readTime: "8 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-19"
 status: "published"
 trendSeries: "August 2026"
+secondaryKeywords: "audit checklist: react server components"
 ---
 
 Teams searching for **React Server Components audit checklist** usually need to find the highest-impact gaps in an existing setup. React Server Components reduce browser work when teams keep data access on the server and add client boundaries only where interaction requires them.

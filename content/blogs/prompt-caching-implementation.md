@@ -4,9 +4,10 @@ slug: "prompt-caching-implementation"
 description: "Implement prompt caching correctly: how prefix caching works, structuring prompts for cache hits, measuring hit rate, invalidation, and the mistakes that defeat it."
 category: "AI Infrastructure"
 targetKeyword: "prompt caching implementation"
-readTime: "5 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "prompt caching implementation: structure and savings"
 ---
 
 **Prompt caching implementation** reduces the cost and latency of repeated prompt content by reusing processed context across requests. The saving can be substantial for systems with large stable prompts, and it is frequently left on the table because prompts are structured in a way that prevents cache hits.

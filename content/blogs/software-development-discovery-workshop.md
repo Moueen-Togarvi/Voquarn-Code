@@ -4,9 +4,10 @@ slug: "software-development-discovery-workshop"
 description: "A practical software development discovery workshop guide covering selection, scope, delivery, cost, risks, ownership, and questions to ask before you commit."
 category: "Software Development"
 targetKeyword: "software development discovery workshop"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "software development discovery workshop: what it should produce"
 ---
 
 The practical reason to research **software development discovery workshop** is turning assumptions into a testable scope, risk register, and delivery decision. That requires more than implementation capacity. It requires a partner that can challenge assumptions, expose risk early, and leave the business with a system it can understand and operate.

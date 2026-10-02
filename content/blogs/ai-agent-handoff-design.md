@@ -4,9 +4,10 @@ slug: "ai-agent-handoff-design"
 description: "Design AI agent handoffs that preserve context: escalation triggers, state transfer, human takeover, agent-to-agent delegation, and measuring handoff quality."
 category: "Agentic AI"
 targetKeyword: "AI agent handoff design"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai agent handoff design: passing work to people and other agents"
 ---
 
 **AI agent handoff design** determines what happens when an agent reaches the edge of what it should do. Handoffs are where most production agent systems lose trust, because a badly designed one destroys context and forces the receiver to start over.

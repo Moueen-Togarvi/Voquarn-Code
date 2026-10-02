@@ -4,10 +4,11 @@ slug: "llm-citation-optimization-agency-selection-guide-2026"
 description: "A practical LLM citation optimization agency selection guide covering priorities, delivery steps, risks, metrics, and the decisions teams should make in 2026."
 category: "AEO & GEO"
 targetKeyword: "LLM citation optimization agency selection"
-readTime: "8 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-19"
 status: "published"
 trendSeries: "August 2026"
+secondaryKeywords: "agency selection guide: llm citation optimization"
 ---
 
 Teams searching for **LLM citation optimization agency selection** usually need to choose a capable delivery partner with evidence rather than sales claims. LLM citation optimization improves retrievability and trust by publishing specific claims, transparent sources, stable URLs, expert context, and information worth citing.

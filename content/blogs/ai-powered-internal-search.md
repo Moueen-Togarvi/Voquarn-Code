@@ -4,9 +4,10 @@ slug: "ai-powered-internal-search"
 description: "Deploy AI powered internal search successfully: permission-aware retrieval, content quality, handling stale documents, evaluation, and adoption inside the organization."
 category: "Enterprise AI"
 targetKeyword: "AI powered internal search"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai powered internal search: making company knowledge findable"
 ---
 
 **AI powered internal search** promises that employees can ask a question and receive an answer drawn from company knowledge. The technology works. Most implementations underperform for reasons that have little to do with models: permissions, content quality, and stale documents.

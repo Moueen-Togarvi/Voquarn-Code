@@ -4,11 +4,12 @@ slug: "shopify-speed-optimization-checklist-2026"
 description: "A diagnostic-first approach to store speed: which apps cost most, how to fix LCP and INP on themes you cannot control, and what scores hide."
 category: "Ecommerce Development"
 targetKeyword: "shopify speed optimization checklist"
-secondaryKeywords: "shopify speed optimization, shopify core web vitals, shopify page speed, improve shopify site speed"
+secondaryKeywords: "Shopify Core Web Vitals optimization, Shopify INP diagnosis, Shopify web performance report, mobile product page speed, Shopify app script audit"
 readTime: "6 min read"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
+modifiedAt: "2026-10-03"
 allowExcludedTerms: true
 ---
 
@@ -16,11 +17,11 @@ Most **Shopify speed optimization services** begin by compressing images and min
 
 This is a diagnostic sequence rather than a checklist, because the order in which you look determines whether you find the real cost.
 
-## Ignore the Shopify speed score
+## Use the current Shopify web performance report
 
-The score in your Shopify admin is a Lighthouse composite run on a synthetic mobile profile against a handful of pages. It is directionally useful and routinely misleading.
+Shopify provides [web performance reporting](https://help.shopify.com/en/manual/online-store/web-performance) around Core Web Vitals. Older guidance focused on a single Lighthouse store score; use the current report and distinguish real-user measurements from lab diagnostics.
 
-What Google actually uses for ranking is **Core Web Vitals from the Chrome User Experience Report** — field data from real visitors on real devices and connections. A store can score 70 in the admin and fail CWV, or score 45 and pass, depending entirely on who visits and on what.
+For page-experience diagnostics, inspect **Core Web Vitals from real users**, including the Chrome User Experience Report — field data from real visitors on real devices and connections. A store can score 70 in the admin and fail CWV, or score 45 and pass, depending entirely on who visits and on what.
 
 Work from field data. In Search Console, the Core Web Vitals report shows real-user LCP, INP, and CLS. That is the measurement that matters. Lab tools are for diagnosis; field data is for judgement.
 
@@ -113,7 +114,7 @@ Migrating themes is disruptive and sometimes correct. An Online Store 2.0 theme 
 
 ## What to expect
 
-Realistic outcomes on a typical mid-size store with 15–25 apps:
+Illustrative changes to investigate, not measured results or guaranteed improvements for your store:
 
 ```
 App audit and removal            -800ms to -2,000ms  LCP
@@ -125,10 +126,21 @@ Image format/compression         -100ms to -300ms    LCP
 
 The ordering is deliberate. App auditing is unglamorous, requires merchant conversations about which features justify their cost, and delivers most of the available gain. Image compression is easy, satisfying, and usually the smallest line.
 
+## Measure product journeys beyond the landing page
+
+A quick homepage does not establish a quick shopping journey. Sample collection filtering, variant selection, add-to-cart, and account or checkout transitions on real mobile conditions. Record which app or theme change was deployed so changes in the field report can be interpreted against release history.
+
+For stores serving Pakistan and overseas customers, compare device and network segments where enough data exists. A single global average can hide a problematic market. When field data is sparse, use a repeatable lab profile for diagnosis and state that it is a synthetic test rather than a user-population result.
+
+- Record the slow interaction and its long tasks.
+- Check the LCP element on each template.
+- Keep consent behavior consistent between tests.
+- Verify analytics and cart behavior after script removal.
+
 ## Frequently asked questions
 
 **Why is my Shopify store slow despite a good speed score?**
-The admin score is a synthetic lab measurement on a few pages. Google ranks on field data from real visitors at the 75th percentile. Check Core Web Vitals in Search Console instead.
+A lab score and real-user measurements answer different questions. Inspect the current Shopify web performance report and Search Console data by page type and device; a good score does not guarantee rankings or conversions.
 
 **Which apps hurt performance most?**
 Anything injecting scripts on every page regardless of use — popups, currency converters, review widgets, personalisation tools, and live chat. Audit with Chrome DevTools Coverage to see what proportion of each script actually executes.

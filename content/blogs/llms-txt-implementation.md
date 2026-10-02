@@ -4,9 +4,10 @@ slug: "llms-txt-implementation"
 description: "A practical look at llms.txt implementation: what the file proposes, current adoption reality, how to write one, and where effort is better spent first."
 category: "AI Search Optimization"
 targetKeyword: "llms.txt implementation"
-readTime: "5 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "llms.txt implementation: what it is and whether you need it"
 ---
 
 **llms.txt implementation** has become a common item on AI visibility checklists. Before adding it, it is worth being clear about what the file is, what it is not, and how much of its promise is currently realized.

@@ -4,9 +4,10 @@ slug: "schema-markup-for-ai-search"
 description: "Use schema markup for AI search: which types genuinely help models resolve entities and claims, implementation patterns, and common mistakes that waste effort."
 category: "AI Search Optimization"
 targetKeyword: "schema markup for AI search"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "schema markup for ai search: what helps and what does not"
 ---
 **Schema markup for AI search** helps machines resolve what your content is about, who published it, and what it asserts. It does not force citation, and treating it as a lever that guarantees inclusion leads to elaborate implementations with no measurable return.
 

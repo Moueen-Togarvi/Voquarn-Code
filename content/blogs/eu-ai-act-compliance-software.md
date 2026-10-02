@@ -4,9 +4,10 @@ slug: "eu-ai-act-compliance-software"
 description: "What EU AI Act compliance means for software teams: risk classification, obligations by role, documentation to maintain, and how to build compliance into delivery."
 category: "AI Governance"
 targetKeyword: "EU AI Act compliance software"
-readTime: "7 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "eu ai act compliance for software teams"
 ---
 **EU AI Act compliance software** obligations depend on two things: what the system does and what role your organization plays in supplying it. Teams frequently assume the regulation applies uniformly, then either over-engineer for low-risk systems or miss obligations on higher-risk ones.
 

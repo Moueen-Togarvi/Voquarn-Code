@@ -4,9 +4,10 @@ slug: "geo-vs-seo"
 description: "Compare GEO vs SEO: how selection differs, which practices transfer, which do not, and how to run both without duplicating budget or fragmenting your content program."
 category: "AI Search Optimization"
 targetKeyword: "GEO vs SEO"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "geo vs seo: what changes and what stays the same"
 ---
 The **GEO vs SEO** comparison is usually framed as a replacement, which misreads the relationship. Generative engine optimization depends on search engine optimization for its inputs. The sensible question is not which to choose but how they differ and where budget should shift.
 

@@ -4,9 +4,10 @@ slug: "ai-code-review-automation"
 description: "Apply AI code review automation effectively: which review categories suit automation, how to avoid noise, integration patterns, and measuring whether it helps."
 category: "Software Development"
 targetKeyword: "AI code review automation"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai code review automation: what to automate and what to keep"
 ---
 **AI code review automation** adds a reviewer that never gets tired and never has context on why the system is built the way it is. Used well it removes mechanical burden from human reviewers. Used badly it floods pull requests with plausible comments that cost more time than they save.
 

@@ -4,9 +4,10 @@ slug: "ai-agent-memory-architecture"
 description: "Design AI agent memory architecture: memory types, retention and scoping rules, permission handling, retrieval quality, and the privacy obligations memory creates."
 category: "Agentic AI"
 targetKeyword: "AI agent memory architecture"
-readTime: "7 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai agent memory architecture: what to store and what to forget"
 ---
 **AI agent memory architecture** decides what an agent carries between steps, sessions, and users. Memory improves continuity and creates the most common privacy failures in agent systems, usually by remembering something across a boundary it should not have crossed.
 

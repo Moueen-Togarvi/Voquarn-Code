@@ -4,9 +4,10 @@ slug: "vibe-coding-for-business-software"
 description: "An honest assessment of vibe coding for business software: what it does well, where it breaks under production requirements, and how to use it without accruing risk."
 category: "Software Development"
 targetKeyword: "vibe coding for business software"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "vibe coding for business software: where the limits are"
 ---
 **Vibe coding for business software** describes building applications by describing intent to an AI coding tool and accepting largely unreviewed output. It has produced genuinely useful results for prototypes and internal tools, and it produces predictable problems when the output becomes something a business depends on.
 

@@ -4,11 +4,13 @@ slug: "ai-search-product-data-optimization-2026"
 description: "How to structure a catalogue for AI assistants: attribute completeness, schema requirements, feed consistency, and what causes omission."
 category: "Ecommerce Development"
 targetKeyword: "product data for ai search"
-secondaryKeywords: "ai shopping assistant optimization, product schema ai search, ecommerce ai search optimization, product feed ai"
-readTime: "5 min read"
+secondaryKeywords: "product data for AI search, agentic commerce catalog readiness, product variant data quality, AI shopping product feed, ecommerce structured data validation"
+readTime: "6 min read"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
+modifiedAt: "2026-10-03"
+allowExcludedTerms: true
 ---
 
 When a shopper asks an assistant for "a waterproof hiking boot under £150 with a wide toe box," the system must determine which products satisfy three constraints. Products whose data does not express waterproofing, price, and fit as retrievable attributes are not compared and rejected — they are never considered.
@@ -34,13 +36,13 @@ Apparel:      fabric composition, care instructions, fit descriptor,
 
 The common gap is not missing products but sparse attributes. A catalogue where 30% of products lack a populated `material` field will see those products systematically excluded from any material-constrained query, without any error appearing anywhere.
 
-**Audit for sparseness.** For every attribute, calculate the fill rate across the catalogue. Anything below 90% on a filterable attribute is costing you consideration.
+**Audit for sparseness.** For every attribute, calculate the fill rate across the catalogue. Prioritise gaps in the attributes shoppers actually need. No universal fill-rate threshold establishes recommendation eligibility.
 
 ## Schema that carries real information
 
 `Product` structured data is well-supported and usually implemented shallowly — name, image, price, availability, and nothing else.
 
-The fields that affect retrieval:
+The following illustrates fields a catalogue may expose. Names, identifiers, price, and ratings are fictional; do not publish them as a real product. Empty shipping and return-policy objects need complete, valid properties before use:
 
 ```json
 {
@@ -80,7 +82,7 @@ Three points that matter more than the rest:
 
 **`additionalProperty` is where category-specific attributes belong.** Schema.org cannot enumerate every attribute for every category. This is the escape hatch and it is heavily underused.
 
-**GTIN is the identity anchor.** It lets systems reconcile your product with the same product elsewhere — reviews, specifications, price comparisons. Products without GTIN exist in isolation and are harder to verify, which reduces the confidence a system has in citing them.
+**GTIN can be an identity anchor when the product has an assigned, valid identifier.** It lets systems reconcile your product with the same product elsewhere — reviews, specifications, price comparisons. Do not invent identifiers for custom products or products without a manufacturer-assigned GTIN. Follow the destination feed’s identifier requirements rather than treating a GTIN as a universal AI citation requirement.
 
 **Returns and shipping affect selection.** Assistants increasingly surface total cost and return terms. Products without this data are compared unfavourably against products that state it explicitly.
 
@@ -105,7 +107,7 @@ Products fail to appear in assistant answers for identifiable reasons:
 
 **Client-side rendering without server-side output.** If product data is injected by JavaScript after load, crawlers that do not execute JavaScript see nothing. Server-render structured data.
 
-**Blocked crawlers.** Check `robots.txt` for `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`. Blocking removes you from those systems entirely.
+**Blocked crawlers.** Review each crawler’s documented purpose. Googlebot handles Google Search; Google-Extended is a separate control. OpenAI distinguishes OAI-SearchBot from training via GPTBot. A training exclusion is not a blanket search exclusion, and access does not guarantee that an assistant will cite or recommend a product.
 
 **Thin variant pages.** Twenty near-identical colour variants as separate indexed URLs dilutes rather than multiplies. Use a canonical product page with variants expressed through structured data.
 
@@ -131,10 +133,21 @@ Attribution is limited, so measure inputs alongside outputs:
 - **Referral traffic** from AI assistants, undercounted but directionally useful.
 - **Manual citation sampling** — a fixed set of representative buying queries, checked periodically across assistants.
 
+## Prepare catalogue data for agentic commerce
+
+Shopify’s [2026 agentic-commerce release](https://www.shopify.com/news/spring-26-edition-merchant) connects Catalog and UCP to shopping channels. Discovery and transaction are separate stages: an accurate listing can still fail when a variant is unavailable, a shipping region is unsupported, or checkout requires buyer review.
+
+Define one source of truth for variant IDs, price, inventory, dimensions, and fulfilment restrictions. Test the buyer constraints your catalogue can actually support rather than presenting an arbitrary attribute-fill threshold as a ranking rule. The [Google product-data guidance](https://developers.google.com/search/docs/appearance/structured-data/product) covers supported search markup; it does not guarantee recommendations in other assistants.
+
+- Audit variant IDs across page and feed.
+- Check stale stock and expired offers.
+- Publish accurate delivery and return terms.
+- Sample discovery and completed checkout separately.
+
 ## Frequently asked questions
 
 **What matters most for AI shopping visibility?**
-Attribute completeness. Products missing the attributes a query constrains on are never considered. Audit fill rates before anything else.
+Attribute completeness. Missing attributes can make relevant products harder to match, but exact retrieval and recommendation rules differ across systems. Audit fill rates before anything else.
 
 **Is Product schema enough?**
 Basic implementation is not. Use `additionalProperty` for category-specific attributes, include GTIN for identity reconciliation, and add shipping and returns data — assistants increasingly surface total cost and return terms in comparisons.

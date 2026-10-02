@@ -4,11 +4,13 @@ slug: "self-hosted-llm-cost-calculator-2026"
 description: "Work out whether self-hosting an LLM beats API pricing: GPU economics, the utilisation break-even, and the operating costs teams leave out."
 category: "AI Infrastructure"
 targetKeyword: "self hosted llm"
-secondaryKeywords: "self hosted llm cost, self hosting llm vs api, open source llm hosting cost, run llm on own server"
+secondaryKeywords: "self hosted LLM cost calculator, LLM hosting vs API total cost, GPU inference utilization, cost per accepted AI task, private LLM capacity planning"
 readTime: "8 min read"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
+modifiedAt: "2026-10-03"
+allowExcludedTerms: true
 ---
 
 Most teams that ask about **self hosted LLM** deployments have already decided they want one. The reasons are usually some mix of cost, data residency, and a dislike of per-token billing. What they want from an engineer is confirmation.
@@ -23,7 +25,7 @@ A GPU costs the same whether it serves one request an hour or saturates. API pri
 
 Take a concrete setup. One NVIDIA L40S on a major cloud runs roughly $1.00–1.30/hour on demand, call it $1.10. That is about **$800/month** if you leave it running, which you must if you want response times measured in milliseconds rather than cold-start minutes.
 
-An L40S serving a quantised 8B-class model with continuous batching handles somewhere around 800–2,500 output tokens/second depending on batch depth, sequence length, and how aggressively you quantise. Take 1,200 tok/s as a defensible mid-point.
+For this arithmetic example, assume a serving setup produces 1,200 output tokens/second at the required quality. This is a hypothetical aggregate throughput input, not a measured L40S benchmark. Obtain your own load-test result at the chosen batch, context length, and quantisation.
 
 Fully saturated for a month, that is:
 
@@ -33,7 +35,7 @@ Fully saturated for a month, that is:
 
 At $800/month, saturated, your cost is roughly **$0.25 per million output tokens**. That is dramatically cheaper than any hosted frontier model, and cheaper than most hosted open-weight endpoints too.
 
-Now apply reality. Few internal workloads run at anything close to saturation. A typical internal tool with business-hours traffic and bursty usage lands at 3–8% utilisation. At 5%:
+Now apply reality. Business-hours and bursty workloads may leave capacity idle. For an illustrative 5% utilisation assumption:
 
 ```
 3.15B x 0.05 = ~157 million output tokens/month
@@ -57,7 +59,7 @@ monthly output tokens
 
 A support-triage tool handling 4,000 requests/day at 400 output tokens each produces 48 million tokens/month. Against frontier pricing that is $480/month, below the $800 hardware floor. Against a cheap hosted endpoint it is under $10. Self-hosting loses both times.
 
-An internal documentation assistant serving 40,000 requests/day at 700 tokens produces 840 million/month — $8,400 at frontier pricing. Here self-hosting is straightforwardly correct, and one card handles it at ~27% utilisation.
+An internal documentation assistant serving 40,000 requests/day at 700 tokens produces 840 million/month — $8,400 at frontier pricing. Under these illustrative throughput and price assumptions, a hardware-only comparison favors self-hosting. Include staffing, resilience, input-token cost, and equivalent model quality before making the actual decision.
 
 Between those two poles is where careful work pays off. Below roughly 100 million output tokens/month, self-hosting is a data-control decision that you should expect to cost more, and you should say so out loud when you propose it.
 
@@ -105,7 +107,7 @@ Hardware is the line everyone models. These are the ones that arrive later:
 
 **Evaluation.** Hosted providers absorb regression testing across model updates. Self-hosting makes that yours. You need an eval suite before you need a GPU.
 
-A defensible total cost looks closer to:
+The following is an illustrative budget, not a current vendor quote or regional salary benchmark:
 
 ```
 GPU (x2 for HA)        $1,600/mo
@@ -140,10 +142,21 @@ The failure mode is buying hardware, then discovering utilisation is 4%.
 
 The migration is genuinely low-friction — same weights, an OpenAI-compatible endpoint either way — which is exactly why there is no reason to skip the measurement phase.
 
+## A calculator needs measured quality and dated inputs
+
+The GPU and throughput numbers in the arithmetic above are illustrative assumptions, not an October 2026 price survey or a benchmark of your workload. Replace them with a dated provider quote and a load test at the required context length, concurrency, and output quality. API input tokens, cached input, retries, and tool calls also belong in the comparison.
+
+Compare cost per accepted task rather than output-token cost alone. If the smaller self-hosted model needs more retries or human correction, nominally cheap generation can create expensive work. Quantisation and hardware sizing must pass the same task-specific evaluation as the hosted alternative.
+
+- Save the model and serving configuration.
+- Include standby capacity and operational ownership.
+- Test peak traffic and recovery from failure.
+- Refresh both prices before approving a purchase.
+
 ## Frequently asked questions
 
 **Is self-hosting cheaper than API pricing?**
-Above roughly 25–30% GPU utilisation, yes, and often by a wide margin. Below about 10%, no — you pay for idle silicon. Most internal tools sit under 10% until deliberately consolidated across several workloads onto shared hardware.
+It depends on measured throughput, quality, current API prices, and the complete operating cost. There is no universal utilisation percentage that establishes break-even across models and tasks. Use the same accepted-task criteria for both options.
 
 **What hardware should we start with?**
 A single 48 GB card such as an L40S handles most 7–13B production workloads with room for real concurrency. It is the smallest configuration that does not immediately constrain you on context length or batch depth.

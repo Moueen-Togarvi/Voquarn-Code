@@ -4,9 +4,10 @@ slug: "open-source-llm-self-hosting"
 description: "Decide whether open source LLM self hosting fits: honest cost modelling, hardware and serving requirements, capability trade-offs, and the operating burden teams underestimate."
 category: "AI Infrastructure"
 targetKeyword: "open source LLM self hosting"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "open source llm self hosting: cost, capability, and effort"
 ---
 **Open source LLM self hosting** is often proposed as a way to reduce cost or satisfy data constraints. It achieves both under specific conditions and costs considerably more than expected under others.
 

@@ -4,9 +4,10 @@ slug: "generative-ai-security-testing"
 description: "generative AI security testing: a practical guide to production scope, architecture, controls, evaluation, cost, delivery, and provider selection."
 category: "Conversational AI"
 targetKeyword: "generative AI security testing"
-readTime: "7 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "generative ai security testing: scope and checklist"
 ---
 
 Good **generative AI security testing** work is operational design supported by AI. Its purpose is to test how an AI application fails under hostile, misleading, and privacy-sensitive inputs. That requires product discovery, data and integration engineering, evaluations, security controls, and a team prepared to own behavior after launch.

@@ -4,9 +4,10 @@ slug: "ai-meeting-assistant-development"
 description: "AI meeting assistant development: a practical guide to production scope, architecture, controls, evaluation, cost, delivery, and provider selection."
 category: "AI Automation"
 targetKeyword: "AI meeting assistant development"
-readTime: "7 min read"
+readTime: "6 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "ai meeting assistant development: product guide"
 ---
 
 Good **AI meeting assistant development** work is operational design supported by AI. Its purpose is to turn authorized conversations into accurate notes, decisions, actions, and searchable context. That requires product discovery, data and integration engineering, evaluations, security controls, and a team prepared to own behavior after launch.

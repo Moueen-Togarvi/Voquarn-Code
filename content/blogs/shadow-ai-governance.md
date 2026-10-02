@@ -4,9 +4,10 @@ slug: "shadow-ai-governance"
 description: "Address shadow AI in the organization: discovering unsanctioned use, assessing the real exposure, providing sanctioned alternatives, and policy that people follow."
 category: "AI Governance"
 targetKeyword: "shadow AI governance"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "shadow ai governance: managing unapproved tool use"
 ---
 
 **Shadow AI governance** addresses the AI tools employees already use without approval. In most organizations this has been happening for some time, which makes discovery the first task rather than policy.

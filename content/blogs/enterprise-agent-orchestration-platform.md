@@ -4,9 +4,10 @@ slug: "enterprise-agent-orchestration-platform"
 description: "Evaluate an enterprise agent orchestration platform: the capabilities that matter, build versus buy trade-offs, lock-in risks, and a staged adoption path."
 category: "Agentic AI"
 targetKeyword: "enterprise agent orchestration platform"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "enterprise agent orchestration platform: build or buy"
 ---
 An **enterprise agent orchestration platform** manages the agents an organization runs: their tools, permissions, execution, observability, and cost. The question most teams face is whether to adopt one, and when.
 

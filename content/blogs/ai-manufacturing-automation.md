@@ -4,9 +4,10 @@ slug: "ai-manufacturing-automation"
 description: "A practical AI manufacturing automation guide covering scope, architecture, security, evaluation, cost, delivery, and provider selection for production use."
 category: "Industry AI"
 targetKeyword: "AI manufacturing automation"
-readTime: "7 min read"
+readTime: "6 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "ai manufacturing automation: implementation roadmap"
 ---
 
 A business searching for **AI manufacturing automation** usually has a concrete ambition: improve quality, maintenance, planning, and knowledge access around production operations. The hard part is not producing an impressive demonstration. It is designing a workflow that remains useful, authorized, measurable, and recoverable when inputs are incomplete and connected systems fail.

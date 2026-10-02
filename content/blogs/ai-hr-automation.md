@@ -4,9 +4,10 @@ slug: "ai-hr-automation"
 description: "A practical AI HR automation guide covering scope, architecture, security, evaluation, cost, delivery, and provider selection for production use."
 category: "AI Automation"
 targetKeyword: "AI HR automation"
-readTime: "7 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "ai hr automation: use cases, controls, and rollout"
 ---
 
 There is a large gap between experimenting with **AI HR automation** and operating it responsibly. A useful implementation must reduce repetitive HR coordination while protecting employee privacy and accountable decisions, while making uncertainty, authority, failure, and cost visible to the people accountable for the process.

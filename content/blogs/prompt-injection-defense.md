@@ -4,9 +4,10 @@ slug: "prompt-injection-defense"
 description: "Build prompt injection defense into AI systems: why filtering fails, architectural controls that hold, authorization design, testing methods, and incident response."
 category: "Agentic AI"
 targetKeyword: "prompt injection defense"
-readTime: "7 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "prompt injection defense: practical controls that work"
 ---
 **Prompt injection defense** is an architecture problem, not a filtering problem. Any system where a model reads content it did not author and can then take actions is exposed, and no amount of instruction hardening closes the gap reliably.
 

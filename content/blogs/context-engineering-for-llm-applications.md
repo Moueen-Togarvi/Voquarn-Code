@@ -4,9 +4,10 @@ slug: "context-engineering-for-llm-applications"
 description: "Practical context engineering for LLM applications: budgeting context, selecting what to include, ordering, compaction, and diagnosing quality loss from context bloat."
 category: "AI Development"
 targetKeyword: "context engineering for LLM applications"
-readTime: "7 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "context engineering for llm applications"
 ---
 
 **Context engineering for LLM applications** is the discipline of deciding what a model sees on each call. It has largely displaced prompt wording as the main lever on quality, because in production systems the failure is usually what was included or omitted, not how the instruction was phrased.

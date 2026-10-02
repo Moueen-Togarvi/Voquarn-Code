@@ -4,9 +4,10 @@ slug: "ai-data-residency-requirements"
 description: "Meet AI data residency requirements in practice: mapping data flows through model providers, regional deployment options, logging and retention, and vendor verification."
 category: "AI Governance"
 targetKeyword: "AI data residency requirements"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai data residency requirements: designing around them"
 ---
 
 **AI data residency requirements** constrain where data is processed and stored, and AI systems make them harder to satisfy because a single request can move data through more places than a conventional application.

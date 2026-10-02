@@ -4,9 +4,10 @@ slug: "ai-incident-response-plan"
 description: "Build an AI incident response plan: incident types unique to AI systems, detection, containment including kill switches, investigation with traces, and remediation."
 category: "AI Governance"
 targetKeyword: "AI incident response plan"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai incident response plan: preparing for model failures"
 ---
 An **AI incident response plan** covers failures that conventional incident processes handle poorly. An AI system that is fully available, returning responses quickly, and producing wrong outputs will not trigger any standard alert, and can run for weeks before anyone notices.
 

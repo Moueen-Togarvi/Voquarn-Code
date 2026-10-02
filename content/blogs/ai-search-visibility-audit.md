@@ -4,9 +4,10 @@ slug: "ai-search-visibility-audit"
 description: "Run an AI search visibility audit: build a prompt set, sample assistant answers, check crawler access and rendering, and turn findings into a prioritized fix list."
 category: "AI Search Optimization"
 targetKeyword: "AI search visibility audit"
-readTime: "7 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai search visibility audit: a practical method"
 ---
 
 An **AI search visibility audit** establishes whether assistants can reach your content, whether they cite it, and whether they describe you accurately. Without that baseline, any optimization work is guesswork and any reported improvement is unverifiable.

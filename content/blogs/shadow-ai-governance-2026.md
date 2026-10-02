@@ -4,11 +4,13 @@ slug: "shadow-ai-governance-2026"
 description: "How to discover unsanctioned AI use, assess the actual risk rather than the imagined one, and build policy people follow instead of circumvent."
 category: "AI & Automation"
 targetKeyword: "shadow ai governance programme"
-secondaryKeywords: "shadow ai, unsanctioned ai use, ai governance policy, enterprise ai risk management"
+secondaryKeywords: "shadow AI governance policy, AI connector permissions, enterprise AI tool inventory, AI agent access review, approved AI workflow controls"
 readTime: "6 min read"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
+modifiedAt: "2026-10-03"
+allowExcludedTerms: true
 ---
 
 **Shadow AI** is employees using AI tools your organisation has not approved. It is nearly universal, it is mostly benign, and the response it usually receives makes it worse.
@@ -59,7 +61,7 @@ Separating genuine concerns from imagined ones:
 
 **Output quality without review.** Confident, wrong output entering work products unchecked. This is a competence and process problem rather than a tooling one, and it does not disappear by choosing an approved tool.
 
-**Over-stated: intellectual property.** The concern that using AI assistance contaminates ownership of output is largely unfounded for typical business use, though positions vary by jurisdiction and specific circumstances. Do not let this dominate a policy discussion at the expense of retention and regulatory concerns, which are concrete.
+**Over-stated: intellectual property.** Review ownership, licence restrictions, confidentiality, and provenance for the specific tool, inputs, and jurisdiction. AI assistance does not establish that output is original or safe to reuse; these checks belong beside retention and security review.
 
 ## Policy that gets followed
 
@@ -94,6 +96,17 @@ An organisation with mature shadow AI governance is not one with zero unsanction
 - Reviews regularly rather than annually.
 
 Zero shadow AI usually indicates poor visibility rather than good control.
+
+## Review connected tools as well as chat prompts
+
+AI access increasingly includes connectors and agents that can search files or change records. An approved chat subscription does not automatically approve every integration that can be attached to it. Inventory scopes, reachable data, tool permissions, and the person responsible for revoking access.
+
+Run a practical review with one realistic workflow: which documents can the agent read, which actions require approval, and what happens after an employee changes role? Governance should follow those permissions, including retained tokens and service accounts, rather than relying only on domain blocking. Use [NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework) as a risk-management reference, then document controls for the actual organisation.
+
+- Revoke stale integrations and identities.
+- Separate read access from write authority.
+- Provide an incident-reporting route staff can use.
+- Check provider terms when enabling a new capability.
 
 ## Frequently asked questions
 

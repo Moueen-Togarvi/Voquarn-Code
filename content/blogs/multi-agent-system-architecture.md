@@ -4,9 +4,10 @@ slug: "multi-agent-system-architecture"
 description: "Design multi-agent system architecture deliberately: coordination patterns, shared state, failure modes, cost control, and when a single agent is the better answer."
 category: "Agentic AI"
 targetKeyword: "multi-agent system architecture"
-readTime: "7 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "multi-agent system architecture: when multiple agents help"
 ---
 **Multi-agent system architecture** distributes a task across several specialized agents rather than one general one. It solves real problems at scale and creates a class of failures that single-agent systems never encounter.
 

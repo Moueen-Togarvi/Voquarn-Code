@@ -4,9 +4,10 @@ slug: "retrieval-evaluation-metrics"
 description: "Choose and apply retrieval evaluation metrics: recall and precision at k, ranking measures, faithfulness, building a test set, and diagnosing whether retrieval or generation failed."
 category: "AI Infrastructure"
 targetKeyword: "retrieval evaluation metrics"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "retrieval evaluation metrics for rag systems"
 ---
 **Retrieval evaluation metrics** tell you whether a RAG system fails because it did not find the right information or because it mishandled information it did find. Without separating these, teams tune prompts to fix retrieval problems and change models to fix ranking problems, neither of which works.
 

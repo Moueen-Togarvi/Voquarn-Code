@@ -4,10 +4,11 @@ slug: "agent-skill-supply-chain-security-architecture-guide-2026"
 description: "A practical AI agent skill security architecture guide covering priorities, delivery steps, risks, metrics, and the decisions teams should make in 2026."
 category: "AI & Automation"
 targetKeyword: "AI agent skill security architecture"
-readTime: "8 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-19"
 status: "published"
 trendSeries: "August 2026"
+secondaryKeywords: "architecture guide: agent skill supply chain security"
 ---
 
 Teams searching for **AI agent skill security architecture** usually need to select boundaries that stay maintainable as usage grows. Agent skill supply chain security verifies who published a skill, what it can execute, which files and networks it can reach, and how updates are reviewed.

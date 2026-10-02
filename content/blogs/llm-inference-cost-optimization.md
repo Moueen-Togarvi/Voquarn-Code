@@ -4,9 +4,10 @@ slug: "llm-inference-cost-optimization"
 description: "Reduce LLM inference cost systematically: measuring cost per outcome, context reduction, caching, model routing, output limits, and the trade-offs each involves."
 category: "AI Infrastructure"
 targetKeyword: "LLM inference cost optimization"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "llm inference cost optimization: where the money goes"
 ---
 
 **LLM inference cost optimization** usually starts after a bill arrives that nobody predicted. The cost drivers are consistent across systems, and most can be addressed without reducing quality, sometimes while improving it.

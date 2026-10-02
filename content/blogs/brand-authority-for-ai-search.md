@@ -4,9 +4,10 @@ slug: "brand-authority-for-ai-search"
 description: "Build brand authority for AI search: why corroboration across independent sources drives citation, which sources carry weight, and how to sequence the work."
 category: "AI Search Optimization"
 targetKeyword: "brand authority for AI search"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "brand authority for ai search: building corroboration"
 ---
 **Brand authority for AI search** is less about domain metrics than about corroboration: whether what you say about yourself is confirmed by sources you do not control. Generative systems weigh agreement across independent sources, so a claim confined to your own domain reads as unverified.
 

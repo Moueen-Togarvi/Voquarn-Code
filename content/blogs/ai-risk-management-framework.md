@@ -4,9 +4,10 @@ slug: "ai-risk-management-framework"
 description: "Turn an AI risk management framework into practice: risk identification, controls proportionate to consequence, ownership, monitoring, and review that survives delivery pressure."
 category: "AI Governance"
 targetKeyword: "AI risk management framework"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai risk management framework: making it operational"
 ---
 
 An **AI risk management framework** is only useful if it changes what gets built. Many organizations adopt one, produce a register, and continue shipping exactly as before, because the framework was never connected to delivery decisions.

@@ -4,9 +4,10 @@ slug: "on-device-ai-development"
 description: "Build on-device AI features: when local inference makes sense, model size and memory constraints, battery and thermal limits, hybrid architectures, and privacy gains."
 category: "Mobile App Development"
 targetKeyword: "on-device AI development"
-readTime: "6 min read"
+readTime: "3 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "on-device ai development: constraints and opportunities"
 ---
 **On-device AI development** runs models on the user's phone, laptop, or embedded hardware rather than in a data centre. The appeal is privacy, latency, offline capability, and zero marginal inference cost. The constraints are memory, battery, thermal limits, and device fragmentation.
 

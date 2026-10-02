@@ -5,7 +5,7 @@ import {
   blogSearchText,
   blogTopics,
 } from "@/components/ui/blog-explorer";
-import { buildMetadata } from "@/lib/metadata";
+import { buildMetadata, parseBlogPage } from "@/lib/metadata";
 import { blogJsonLd } from "@/lib/schema";
 import { getBlogPosts } from "@/lib/data";
 
@@ -46,10 +46,10 @@ function firstValue(value: string | string[] | undefined) {
 export async function generateMetadata({ searchParams }: BlogPageProps) {
   const filters = await searchParams;
   const hasFilters = Boolean(firstValue(filters.q)?.trim() || firstValue(filters.topic));
-  const parsedPage = Number.parseInt(firstValue(filters.page) ?? "1", 10);
+  const parsedPage = parseBlogPage(firstValue(filters.page));
   const posts = (await getBlogPosts()).filter((post) => post.cornerstone);
   const totalPages = Math.max(1, 1 + Math.ceil((posts.length - GRID_PAGE_SIZE - 1) / GRID_PAGE_SIZE));
-  const page = Number.isFinite(parsedPage) ? Math.min(Math.max(parsedPage, 1), totalPages) : 1;
+  const page = Math.min(parsedPage, totalPages);
   const title = page > 1 ? `${pageTitle} — Page ${page}` : pageTitle;
 
   return buildMetadata(
@@ -65,7 +65,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const query = (firstValue(filters.q) ?? "").trim().slice(0, 120);
   const requestedTopic = firstValue(filters.topic) ?? "";
   const activeTopic = blogTopics.find((topic) => topic.value === requestedTopic) ?? null;
-  const parsedPage = Number.parseInt(firstValue(filters.page) ?? "1", 10);
+  const parsedPage = parseBlogPage(firstValue(filters.page));
   const posts = (await getBlogPosts()).filter((post) => post.cornerstone);
   const queryTokens = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
   // Thousands of posts are in memory, so the unfiltered page (by far the most
@@ -90,7 +90,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     filteredPosts.length <= firstPageSize
       ? 1
       : 1 + Math.ceil((filteredPosts.length - firstPageSize) / GRID_PAGE_SIZE);
-  const currentPage = Number.isFinite(parsedPage) ? Math.min(Math.max(parsedPage, 1), totalPages) : 1;
+  const currentPage = Math.min(parsedPage, totalPages);
   const pagePosts =
     currentPage === 1
       ? filteredPosts.slice(0, firstPageSize)
@@ -113,7 +113,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   return (
     <>
       <PageStructuredData
-        path="/blog"
+        path={query || requestedTopic || currentPage === 1 ? "/blog" : `/blog?page=${currentPage}`}
         name={pageTitle}
         description={pageDescription}
         type="CollectionPage"

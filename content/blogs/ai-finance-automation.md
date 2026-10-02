@@ -4,9 +4,10 @@ slug: "ai-finance-automation"
 description: "A practical AI finance automation guide covering scope, architecture, security, evaluation, cost, delivery, and provider selection for production use."
 category: "AI Automation"
 targetKeyword: "AI finance automation"
-readTime: "7 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "ai finance automation: implementation and control guide"
 ---
 
 Good **AI finance automation** work is operational design supported by AI. Its purpose is to accelerate finance analysis and operations without weakening reconciliation or approval. That requires product discovery, data and integration engineering, evaluations, security controls, and a team prepared to own behavior after launch.

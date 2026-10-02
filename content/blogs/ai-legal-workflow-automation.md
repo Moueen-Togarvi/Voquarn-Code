@@ -4,9 +4,10 @@ slug: "ai-legal-workflow-automation"
 description: "A practical AI legal workflow automation guide covering scope, architecture, security, evaluation, cost, delivery, and provider selection for production use."
 category: "Industry AI"
 targetKeyword: "AI legal workflow automation"
-readTime: "7 min read"
+readTime: "6 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "ai legal workflow automation: governance guide"
 ---
 
 Treat **AI legal workflow automation** as a business capability rather than a model feature. The target is to support intake, research, document review, and matter coordination with verifiable evidence. Success depends on how well the surrounding system supplies context, limits authority, verifies results, and learns from real outcomes.

@@ -4,9 +4,10 @@ slug: "llm-citation-tracking"
 description: "Set up LLM citation tracking: prompt set design, sampling method, metrics that survive non-determinism, and how to report AI visibility without overstating precision."
 category: "AI Search Optimization"
 targetKeyword: "LLM citation tracking"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "llm citation tracking: measuring brand presence in ai answers"
 ---
 
 **LLM citation tracking** measures how often assistants reference your brand when answering questions in your category, and how accurately they describe you. It is the reporting layer underneath any AI search program, and it is easy to do badly.

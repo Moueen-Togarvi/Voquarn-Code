@@ -4,9 +4,10 @@ slug: "ai-supply-chain-automation"
 description: "A practical AI supply chain automation guide covering scope, architecture, security, evaluation, cost, delivery, and provider selection for production use."
 category: "Industry AI"
 targetKeyword: "AI supply chain automation"
-readTime: "7 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "ai supply chain automation: architecture and risk guide"
 ---
 
 Good **AI supply chain automation** work is operational design supported by AI. Its purpose is to support demand, inventory, procurement, and exception management across connected partners. That requires product discovery, data and integration engineering, evaluations, security controls, and a team prepared to own behavior after launch.

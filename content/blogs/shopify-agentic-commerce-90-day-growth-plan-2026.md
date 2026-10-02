@@ -4,10 +4,11 @@ slug: "shopify-agentic-commerce-90-day-growth-plan-2026"
 description: "A practical Shopify agentic commerce 90 day plan guide covering priorities, delivery steps, risks, metrics, and the decisions teams should make in 2026."
 category: "Ecommerce Development"
 targetKeyword: "Shopify agentic commerce 90 day plan"
-readTime: "8 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-19"
 status: "published"
 trendSeries: "August 2026"
+secondaryKeywords: "90-day growth plan: shopify agentic commerce"
 ---
 
 Teams searching for **Shopify agentic commerce 90 day plan** usually need to turn an initial capability into a measured operating system. Shopify agentic commerce prepares accurate product, policy, inventory, identity, and checkout data for discovery and purchasing inside AI-assisted experiences.

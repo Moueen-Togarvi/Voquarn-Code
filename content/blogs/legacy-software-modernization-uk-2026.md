@@ -3,15 +3,17 @@ title: "Legacy Software Modernization in the UK: Approaches and Real Costs"
 slug: "legacy-software-modernization-uk-2026"
 description: "How UK organisations approach legacy modernisation: strangler fig versus rewrite, cost drivers, procurement realities, and failure patterns."
 category: "Software Development"
-targetKeyword: "legacy software development uk"
-secondaryKeywords: "legacy software modernization uk, legacy system migration uk, application modernisation uk, legacy modernisation cost"
+targetKeyword: "legacy software modernization UK"
+secondaryKeywords: "legacy software modernization UK, incremental application migration, legacy migration acceptance criteria, strangler fig delivery, legacy system discovery"
 readTime: "7 min read"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
+modifiedAt: "2026-10-03"
+allowExcludedTerms: true
 ---
 
-Legacy modernisation fails more often than it succeeds, and it fails in a recognisable way: an eighteen-month programme reaches month twenty-four with the new system incomplete, the old system still running, and both requiring maintenance.
+Legacy modernisation can fail despite a successful technical prototype, and it fails in a recognisable way: an eighteen-month programme reaches month twenty-four with the new system incomplete, the old system still running, and both requiring maintenance.
 
 The organisations that succeed generally chose a different shape of programme at the outset. This covers what those choices are, in a UK context where procurement rules and skills availability shape the options.
 
@@ -49,14 +51,7 @@ Usually wrong for large systems, for a well-documented reason. The existing syst
 
 ## Cost drivers
 
-Realistic UK budget ranges for a mid-size business-critical system:
-
-```
-Assessment and discovery          £40,000-120,000
-Strangler fig (2-3 years)         £800,000-4,000,000
-Full rewrite (comparable scope)   £1,500,000-8,000,000+
-Rehost only                       £150,000-600,000
-```
+A current estimate needs a dependency inventory, data sample, target operating model, and migration rehearsal. Obtain separate prices for discovery, implementation, reconciliation, parallel running, and decommissioning. A generic UK market range cannot establish the cost of an undocumented system.
 
 Wide ranges, because these dominate:
 
@@ -78,7 +73,7 @@ Wide ranges, because these dominate:
 
 **Skills market.** COBOL, mainframe, and older .NET and Java stacks have a thin and expensive contractor market. This cuts both ways: it raises modernisation urgency and raises the cost of the people who can safely do it. Retaining incumbent knowledge through the programme is usually cheaper than replacing it, even at uncomfortable rates.
 
-**Accessibility obligations.** Public sector bodies must meet WCAG 2.2 AA. Building accessibility in is markedly cheaper than retrofitting, and a modernisation programme that ignores it will need remediation before it can go live.
+**Accessibility obligations.** Confirm the applicable accessibility requirements with the buyer. The [UK government accessibility guidance](https://www.gov.uk/guidance/guidance-and-tools-for-digital-accessibility) is the reference for covered public-sector services. Building accessibility in is markedly cheaper than retrofitting, and a modernisation programme that ignores it will need remediation before it can go live.
 
 ## How these programmes fail
 
@@ -103,13 +98,24 @@ Wide ranges, because these dominate:
 
 The characteristic that distinguishes successful programmes is not technology selection. It is that value arrives continuously rather than at the end, which keeps sponsorship intact through the inevitable difficult periods.
 
+## Use a migration acceptance ledger
+
+Before replacing a component, list the behaviour that must remain, the consumers that rely on it, and the data totals that must reconcile. Give every acceptance item an owner. A successful new screen is weak evidence if the nightly export or month-end report has changed unnoticed.
+
+Rehearse the cutover with a production-like snapshot under agreed data-handling controls. Record how writes are frozen or replayed, how long reconciliation takes, and what condition triggers rollback. The [strangler fig pattern](https://martinfowler.com/bliki/StranglerFigApplication.html) is a delivery approach, not a guarantee that these operational decisions disappear.
+
+- Inventory scheduled jobs and hidden integrations.
+- Define reconciliation before copying data.
+- Confirm the fallback can still accept writes.
+- Include retirement of the old component in acceptance.
+
 ## Frequently asked questions
 
 **Rewrite or incremental modernisation?**
 Incremental for anything large or business-critical. Rewrites fail because undocumented edge-case handling is discovered in production rather than in analysis. Rewrites suit small systems or domains that have fundamentally changed.
 
 **What does it cost in the UK?**
-A mid-size business-critical system typically runs £800,000–4,000,000 over two to three years incrementally. Rehosting alone is £150,000–600,000 but does not improve maintainability.
+Budget from discovered interfaces, retained behaviour, data reconciliation, and parallel operation. Rehosting and behavioural replacement have different scopes, so a single market price range would be misleading.
 
 **What is most underestimated?**
 Data migration, at 20–35% of effort, and the integration layer for coexistence at 15–25%. Both are consistently under-scoped because neither produces visible features.

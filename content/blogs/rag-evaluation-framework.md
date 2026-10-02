@@ -4,9 +4,10 @@ slug: "rag-evaluation-framework"
 description: "A practical RAG evaluation framework guide covering scope, architecture, security, evaluation, cost, delivery, and provider selection for production use."
 category: "AI Infrastructure"
 targetKeyword: "RAG evaluation framework"
-readTime: "7 min read"
+readTime: "6 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "rag evaluation framework: retrieval and answer quality"
 ---
 
 The commercial case for **RAG evaluation framework** should begin with one outcome: separate retrieval failures from generation failures and improve both systematically. Model choice comes later. First define the user, decision boundary, available evidence, permitted actions, and the conditions that require a person to take control.

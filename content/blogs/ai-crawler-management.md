@@ -4,9 +4,10 @@ slug: "ai-crawler-management"
 description: "Manage AI crawlers deliberately: identify the agents, decide what to allow, configure robots and CDN rules correctly, and understand the visibility cost of blocking."
 category: "AI Search Optimization"
 targetKeyword: "AI crawler management"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai crawler management: access, blocking, and the trade-offs"
 ---
 **AI crawler management** is the decision about which automated agents may read your site, followed by the configuration that makes that decision real. Most sites have never made the decision explicitly, and are either blocking valuable agents by accident or allowing everything without knowing it.
 

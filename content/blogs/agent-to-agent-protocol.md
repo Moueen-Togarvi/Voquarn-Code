@@ -4,9 +4,10 @@ slug: "agent-to-agent-protocol"
 description: "Understand agent to agent protocol work: what interoperability standards solve, how they differ from tool protocols, security implications, and adoption decisions."
 category: "Agentic AI"
 targetKeyword: "agent to agent protocol"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "agent to agent protocol: interoperability between ai systems"
 ---
 **Agent to agent protocol** work addresses a problem that appears once organizations run more than one agent system: agents built by different teams, on different frameworks, sometimes at different companies, need to delegate work to each other without custom integration for every pair.
 

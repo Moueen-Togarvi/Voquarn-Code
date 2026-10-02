@@ -4,9 +4,10 @@ slug: "rag-pipeline-development"
 description: "A practical RAG pipeline development guide covering scope, architecture, security, evaluation, cost, delivery, and provider selection for production use."
 category: "AI Infrastructure"
 targetKeyword: "RAG pipeline development"
-readTime: "7 min read"
+readTime: "6 min read"
 publishedAt: "2026-08-18"
 status: "published"
+secondaryKeywords: "rag pipeline development: production architecture"
 ---
 
 Good **RAG pipeline development** work is operational design supported by AI. Its purpose is to turn changing source content into searchable, permission-aware evidence for AI applications. That requires product discovery, data and integration engineering, evaluations, security controls, and a team prepared to own behavior after launch.

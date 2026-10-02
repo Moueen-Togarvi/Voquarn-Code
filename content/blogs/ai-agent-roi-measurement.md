@@ -4,9 +4,10 @@ slug: "ai-agent-roi-measurement"
 description: "Measure AI agent ROI honestly: the cost lines teams omit, baseline design, attribution methods, quality-adjusted savings, and when to stop a project."
 category: "Agentic AI"
 targetKeyword: "AI agent ROI measurement"
-readTime: "6 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "ai agent roi measurement: counting the real costs"
 ---
 **AI agent ROI measurement** goes wrong in a predictable way: token cost is counted, human review time is not, and the resulting figure shows savings that never appear in a budget.
 

@@ -4,7 +4,8 @@ import process from "node:process";
 
 const BLOG_DIRECTORY = path.join(process.cwd(), "content", "blogs");
 const REPORT_DIRECTORY = path.join(process.cwd(), "reports");
-const AUDIT_DATE = new Date().toISOString().slice(0, 10);
+// Publication dates follow the Pakistan-based editorial calendar.
+const AUDIT_DATE = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Karachi", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 const EXCLUDED_TERMS = ["shopify", "seo"];
 const LONG_PARAGRAPH_LENGTH = 120;
 const REPEATED_PARAGRAPH_PAGE_FLOOR = 10;

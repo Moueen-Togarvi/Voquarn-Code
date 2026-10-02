@@ -4,9 +4,10 @@ slug: "agentic-workflow-automation"
 description: "Apply agentic workflow automation to real operations: choosing suitable processes, bounding autonomy, designing approvals, and measuring outcomes against cost."
 category: "Agentic AI"
 targetKeyword: "agentic workflow automation"
-readTime: "7 min read"
+readTime: "4 min read"
 publishedAt: "2026-08-19"
 status: "published"
+secondaryKeywords: "agentic workflow automation: where it fits and where it fails"
 ---
 
 **Agentic workflow automation** puts a model in charge of sequencing steps rather than following a fixed script. It suits processes with variability that rules handle badly, and it fails expensively when applied to processes that were fine as deterministic pipelines.

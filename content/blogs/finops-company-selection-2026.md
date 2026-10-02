@@ -4,11 +4,13 @@ slug: "finops-company-selection-2026"
 description: "How FinOps providers are structured and priced, the difference between tooling resellers and practitioners, and the terms that decide real savings."
 category: "AI Infrastructure"
 targetKeyword: "finops company"
-secondaryKeywords: "finops services, cloud cost optimization company, finops consulting, cloud financial management"
-readTime: "5 min read"
+secondaryKeywords: "FinOps consulting services, AI cost optimization, cloud unit economics, cloud cost allocation, FinOps vendor selection"
+readTime: "6 min read"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
+modifiedAt: "2026-10-03"
+allowExcludedTerms: true
 ---
 
 A **FinOps company** sells cloud cost reduction. The category contains three quite different businesses, and the pricing model tells you which one you are speaking to.
@@ -21,9 +23,9 @@ Distinguishing them matters, because the cheapest engagement structure is freque
 
 Genuinely valuable if you have engineers who will act on the data. Worthless if the dashboard becomes something nobody opens. The most common failure in this category is buying visibility without assigning ownership.
 
-Typical pricing: percentage of monitored cloud spend, often 1–3%, or tiered subscription.
+Pricing can be a percentage of monitored spend or a subscription. Ask for the actual fee schedule, minimum term, covered accounts, and additional implementation charges.
 
-**Percentage-of-savings consultancies.** They find and implement reductions, taking a share of the savings — commonly 20–35% for one to three years.
+**Percentage-of-savings consultancies.** They find and implement reductions, taking a contractual share of attributed savings. Compare the proposed percentage, fee cap, baseline, and duration directly.
 
 Attractive because it appears risk-free. The problems are structural. Savings must be measured against a counterfactual baseline that becomes progressively more disputable as your workloads change. And the incentive rewards fast, visible wins — buying reserved capacity, rightsizing instances — over architectural improvements whose savings are harder to attribute.
 
@@ -33,7 +35,7 @@ Also examine what happens to the fee when *your* team finds a saving. Some contr
 
 Slower and less immediately gratifying. It is the only model that produces durable results, because cloud cost is generated continuously by engineering decisions and cannot be fixed once.
 
-Typical pricing: $15,000–60,000 for an assessment and setup, $8,000–30,000/month for ongoing practice support.
+Request a current assessment quote and a separate support quote tied to cloud accounts, allocation complexity, and engineering involvement.
 
 ## Where savings actually come from
 
@@ -87,16 +89,27 @@ Much of the initial return does not require a vendor. Before engaging one:
 
 Doing this first means a vendor engages with the hard, high-value problems rather than billing you a percentage of the easy wins you could have taken yourself.
 
+## Include AI unit economics in the FinOps brief
+
+The [FinOps Framework](https://www.finops.org/framework/) provides a shared operating framework, but your commercial baseline still needs to be defined. When AI features are part of the product, add model usage, retries, retrieval infrastructure, trace storage, and human review to the cost view. Token totals alone do not explain whether the feature creates value.
+
+Use cost per accepted output or completed workflow alongside reliability. A smaller model may reduce inference charges while increasing corrections; a cached answer may cost less but be stale. Assign an owner who can decide whether that trade is acceptable for the specific task.
+
+- Separate production usage from experiments.
+- Attribute shared infrastructure with a documented rule.
+- Track commitment coverage without hiding unused capacity.
+- Review savings against service quality and workload growth.
+
 ## Frequently asked questions
 
 **How much does a FinOps company cost?**
-Tooling runs 1–3% of monitored spend. Percentage-of-savings consultancies take 20–35% of realised savings for one to three years. Practice-building engagements run $15,000–60,000 for setup plus $8,000–30,000 monthly.
+There is no verified universal rate in this guide. Compare subscriptions, savings-share contracts, and fixed-scope assessments using the same account coverage and change responsibilities.
 
 **Is percentage-of-savings a good deal?**
 It appears risk-free but incentivises fast attributable wins over architectural improvement, and the baseline becomes disputable as workloads change. Negotiate the baseline methodology explicitly and cap the term.
 
 **What savings are realistic?**
-An organisation that has never optimised typically finds 25–40% within six months. One with existing practice finds 5–15%. Any proposal promising a large number without examining your environment is quoting an average.
+Savings depend on measured waste, commitments, workload growth, and implementation constraints. Require a baseline and an itemised recommendation register before accepting a percentage target.
 
 **Can we do this without a vendor?**
 The first tranche, yes — tagging, waste elimination, commitment coverage, storage lifecycle. Vendors add most value on allocation for shared infrastructure and on embedding cost awareness into engineering process.
