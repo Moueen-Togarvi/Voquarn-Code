@@ -1,0 +1,155 @@
+{
+  "checked_at": "2026-10-03T07:58:07.829238+00:00",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "canonical": "https://www.voquarn.com",
+      "noindex": false
+    },
+    {
+      "path": "/blog",
+      "status": 200,
+      "canonical": "https://www.voquarn.com/blog",
+      "noindex": false
+    },
+    {
+      "path": "/blog?page=2",
+      "status": 200,
+      "canonical": "https://www.voquarn.com/blog?page=2",
+      "noindex": false
+    },
+    {
+      "path": "/blog?page=999",
+      "status": 200,
+      "canonical": "https://www.voquarn.com/blog?page=369",
+      "noindex": false
+    },
+    {
+      "path": "/blog?page=2junk",
+      "status": 200,
+      "canonical": "https://www.voquarn.com/blog",
+      "noindex": false
+    },
+    {
+      "path": "/blog?q=nextjs",
+      "status": 200,
+      "canonical": "https://www.voquarn.com/blog",
+      "noindex": true
+    },
+    {
+      "path": "/services",
+      "status": 200,
+      "canonical": "https://www.voquarn.com/services",
+      "noindex": false
+    },
+    {
+      "path": "/services/web-dev",
+      "status": 200,
+      "canonical": "https://www.voquarn.com/services/web-dev",
+      "noindex": false
+    },
+    {
+      "path": "/blog/agentic-commerce-readiness-catalog-checkout-2026",
+      "status": 200,
+      "canonical": "https://www.voquarn.com/blog/agentic-commerce-readiness-catalog-checkout-2026",
+      "noindex": false
+    },
+    {
+      "path": "/blog/agent-plugins-1-implementation-service",
+      "status": 200,
+      "canonical": "https://www.voquarn.com/blog/agent-plugins-1-implementation-service",
+      "noindex": false
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "sitemap_reference": true
+    },
+    {
+      "path": "/llms.txt",
+      "status": 200,
+      "sitemap_reference": true
+    }
+  ],
+  "sitemap": {
+    "total_urls": 4433,
+    "blog_urls": 4418,
+    "bytes": 915857,
+    "exact_published_match": true
+  },
+  "homepage_fixes": {
+    "optimized_review_images": true,
+    "descriptive_service_links": true,
+    "review_star_role": true,
+    "footer_h2": true,
+    "analytics_collect_allowed": true
+  },
+  "initial_same_origin_javascript": {
+    "script_count": 10,
+    "gzip_transfer_bytes": 203614,
+    "assets": [
+      "/_next/static/immutable/chunks/1j5b0_4t8nvbr.js",
+      "/_next/static/immutable/chunks/1gnith2gc0yk1.js",
+      "/_next/static/immutable/chunks/0uyr6-xzo2nlb.js",
+      "/_next/static/immutable/chunks/turbopack-39vnal864yv27.js",
+      "/_next/static/immutable/chunks/3tnefjgqh90jc.js",
+      "/_next/static/immutable/chunks/0nlxu432t4fow.js",
+      "/_next/static/immutable/chunks/1dmw8hmo7e89z.js",
+      "/_next/static/immutable/chunks/0e2pve7u-p3l4.js",
+      "/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+      "/_next/static/immutable/chunks/2belr3pe9fbiz.js"
+    ],
+    "baseline_transfer_bytes": 244914,
+    "baseline_commit": "d152a93",
+    "reduction_percent": 16.9
+  },
+  "review_images": [
+    {
+      "file": "/uploads/review-mubashir-mukhtar-abayiza.jpg",
+      "original_bytes": 125392,
+      "optimized_640px_webp_bytes": 24994
+    },
+    {
+      "file": "/uploads/review-ayesha-khan-abayiza.jpg",
+      "original_bytes": 114486,
+      "optimized_640px_webp_bytes": 23456
+    },
+    {
+      "file": "/uploads/review-abdullah-sheikh-zylowalls.jpg",
+      "original_bytes": 96863,
+      "optimized_640px_webp_bytes": 16298
+    }
+  ],
+  "production_code_commit": "3ae4381",
+  "mobile_lighthouse": {
+    "report_url": "https://pagespeed.web.dev/analysis/https-www-voquarn-com/dh4byafzdz?form_factor=mobile",
+    "captured_at_local": "2026-10-03 12:56 GMT+5",
+    "performance": 99,
+    "accessibility": 100,
+    "best_practices": 100,
+    "seo": 100,
+    "agentic_browsing": "3/3",
+    "fcp_seconds": 1.2,
+    "lcp_seconds": 2.0,
+    "tbt_ms": 40,
+    "cls": 0,
+    "speed_index_seconds": 1.4,
+    "device": "Emulated Moto G Power",
+    "throttling": "Slow 4G",
+    "lighthouse_version": "13.5.0",
+    "field_data_available": false
+  },
+  "mobile_layout": {
+    "client_width_px": 375,
+    "document_scroll_width_px": 375,
+    "service_link_overflow": false,
+    "review_image_loading": "lazy",
+    "source": "CUA rendered DOM observation"
+  },
+  "review_image_totals": {
+    "original_bytes": 336741,
+    "optimized_640px_webp_bytes": 64748,
+    "reduction_percent": 80.8
+  }
+}
