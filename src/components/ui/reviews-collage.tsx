@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import Image from "next/image";
 import type { Testimonial } from "@/lib/site-data";
 
 type ReviewsCollageProps = {
@@ -7,7 +8,7 @@ type ReviewsCollageProps = {
 
 function Stars({ count }: { count: number }) {
   return (
-    <div className="flex items-center gap-0.5 text-[#ff5400]" aria-label={`${count} star review`}>
+    <div className="flex items-center gap-0.5 text-[#ff5400]" role="img" aria-label={`${count} star review`}>
       {Array.from({ length: count }).map((_, index) => (
         <Star key={index} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
       ))}
@@ -48,11 +49,13 @@ function ReviewCard({ review }: { review: Testimonial }) {
                 aria-label={`Video testimonial from ${review.name}`}
               />
             ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <Image
                 src={review.mediaUrl}
                 alt={`Photo from ${review.name}`}
-                className="h-full w-full object-cover"
+                fill
+                sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 268px"
+                unoptimized={!review.mediaUrl.startsWith("/")}
+                className="object-cover"
               />
             )}
           </div>

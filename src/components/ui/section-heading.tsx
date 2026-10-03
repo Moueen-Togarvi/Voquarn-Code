@@ -17,7 +17,7 @@ export function SectionHeading({
 
   return (
     <div className={centered ? "mx-auto max-w-3xl text-center flex flex-col items-center" : "max-w-3xl flex flex-col items-start"}>
-      <span className="text-[11px] font-black uppercase tracking-[0.35em] text-[#ff5400]">
+      <span className="text-[11px] font-black uppercase tracking-[0.35em] text-[var(--blog-accent)]">
         {eyebrow}
       </span>
 

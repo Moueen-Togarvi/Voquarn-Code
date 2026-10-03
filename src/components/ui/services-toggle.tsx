@@ -246,7 +246,8 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
                   href={`/services/${item.parentServiceId}`}
                   className="inline-flex h-11 flex-1 items-center justify-center gap-1 rounded-xl bg-gradient-to-b from-[#ff6b21] to-[#e04800] text-[12px] font-bold tracking-wide text-white shadow-[0_8px_20px_-8px_rgba(255,84,0,0.8)] transition-all duration-300 hover:from-[#ff7c3b] hover:to-[#f05000] active:scale-[0.98]"
                 >
-                  Learn more <ArrowRight size={14} aria-hidden="true" />
+                  <span className="px-1 text-center leading-tight">View {item.name}</span>
+                  <ArrowRight size={14} className="shrink-0" aria-hidden="true" />
                 </Link>
                 <WhatsAppLink
                   href={`https://wa.me/${whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(item.categoryName + " - " + item.name)}%20package.`}

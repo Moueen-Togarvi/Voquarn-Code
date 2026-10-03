@@ -44,14 +44,14 @@ export function Footer({ settings }: { settings: SiteSettings }) {
 
           <div className="lg:col-span-4 grid grid-cols-2 sm:grid-cols-3 gap-10 pt-2 lg:pl-4">
             <div className="flex flex-col space-y-4">
-              <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Services</h4>
+              <h2 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Services</h2>
               <Link href="/services" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Web Development</Link>
               <Link href="/portfolio" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Portfolio</Link>
               <Link href="/services" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">All Services</Link>
             </div>
 
             <div className="flex flex-col space-y-4">
-              <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Resources</h4>
+              <h2 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Resources</h2>
               <Link href="/about" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About Us</Link>
               <Link href="/team" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Our Team</Link>
               <Link href="/blog" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Blog</Link>
@@ -59,7 +59,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             </div>
 
             <div className="flex flex-col space-y-4">
-              <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Company</h4>
+              <h2 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Company</h2>
               <Link href="/about" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About</Link>
               <Link href="/careers" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Careers</Link>
               <Link href="/team" className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Team</Link>
@@ -67,14 +67,14 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             </div>
 
             <div className="flex flex-col space-y-4 sm:hidden">
-              <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Contact</h4>
+              <h2 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Contact</h2>
               <a href={`mailto:${settings.email}`} className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors break-all">{settings.email}</a>
               <a href={`tel:${settings.phone.replace(/\s+/g, "")}`} className="text-[13px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">{settings.phone}</a>
             </div>
           </div>
 
           <div className="hidden sm:flex flex-col space-y-7 pt-2 lg:col-span-3">
-            <h4 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Direct Contact</h4>
+            <h2 className="text-[13px] font-bold text-[var(--foreground)] uppercase tracking-widest">Direct Contact</h2>
 
             <div className="space-y-4">
               <a href={`mailto:${settings.email}`} className="flex items-center gap-3 group w-fit">

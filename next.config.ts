@@ -12,7 +12,7 @@ const contentSecurityPolicy = [
   `img-src 'self' data: blob: ${imageHosts.map((host) => `https://${host}`).join(" ")} https://www.facebook.com https://www.googletagmanager.com https://*.google-analytics.com https://*.public.blob.vercel-storage.com`,
   "font-src 'self' data:",
   "media-src 'self' blob: https://*.public.blob.vercel-storage.com",
-  "connect-src 'self' https://www.facebook.com https://analytics.tiktok.com https://*.ingest.sentry.io https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://vercel.com https://*.public.blob.vercel-storage.com",
+  "connect-src 'self' https://www.facebook.com https://analytics.tiktok.com https://*.ingest.sentry.io https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com/g/collect https://stats.g.doubleclick.net/g/collect https://www.google.com https://vercel.com https://*.public.blob.vercel-storage.com",
   "frame-src 'self' https://www.google.com https://www.openstreetmap.org",
   "worker-src 'self' blob:",
   "manifest-src 'self'",

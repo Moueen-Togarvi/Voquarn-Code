@@ -113,7 +113,7 @@ export function Hero() {
             </div>
           </div>
 
-          <p className="hero-label" style={{ color: "var(--muted)" }}>
+          <p className="hero-label" style={{ color: "var(--background)" }}>
             VOQUARN CODE
           </p>
 
@@ -209,7 +209,7 @@ export function Hero() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  background: '#ff5400',
+                  background: '#c2410c',
                   color: '#fff',
                   padding: '14px 28px',
                   borderRadius: '999px',
