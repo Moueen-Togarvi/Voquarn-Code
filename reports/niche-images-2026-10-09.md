@@ -1,5 +1,7 @@
 # Niche image refresh — 9 October 2026
 
+The About illustrations in this initial refresh were subsequently replaced with photography at the owner's request; see `about-photos-2026-10-09.md` for the final About assets and prompts. The suite illustrations remain published.
+
 Generated with the built-in Imagegen tool. Nine original assets replace six Enterprise Domain Suites stock images and three About collage stock images. Existing layouts are retained. Images are conceptual illustrations, not screenshots of deployed client products or photographs of company staff.
 
 Final assets live in `public/images/suites/` and `public/images/about/`. Sources remain in the Imagegen output directory; published files are resized to a maximum width of 1,100 pixels and encoded as WebP at quality 82 using the existing Sharp dependency. Next.js responsive image optimization and default lazy loading remain enabled. Descriptive alt text is included.

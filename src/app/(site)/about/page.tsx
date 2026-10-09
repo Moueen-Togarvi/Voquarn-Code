@@ -67,11 +67,11 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 gap-3 h-[400px] lg:h-[480px]">
               <div className="flex flex-col gap-3 pt-6">
                 <div className="relative h-[60%] rounded-3xl overflow-hidden shadow-md group">
-                  <Image src="/images/about/software-engineering.webp" alt="Custom web and SaaS engineering illustration with code and responsive application screens" fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover hover:scale-110 transition-transform duration-1000 ease-out" />
+                  <Image src="/images/about/agency-collaboration.webp" alt="Software professionals collaborating on code and website layouts in a bright studio" fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover object-top hover:scale-110 transition-transform duration-1000 ease-out" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
                 <div className="relative h-[40%] rounded-3xl overflow-hidden shadow-md group">
-                  <Image src="/images/about/search-analytics.webp" alt="SEO and website performance illustration with search visibility charts and audit checklist" fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover hover:scale-110 transition-transform duration-1000 ease-out" />
+                  <Image src="/images/about/digital-analytics-photo.webp" alt="Laptop displaying website analytics charts on a natural workspace desk" fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover hover:scale-110 transition-transform duration-1000 ease-out" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function AboutPage() {
                   <h3 className="text-white font-display text-2xl font-extrabold uppercase tracking-tight leading-tight relative z-10">Crafting<br/>Digital<br/>Excellence</h3>
                 </div>
                 <div className="relative h-[60%] rounded-3xl overflow-hidden shadow-md group">
-                  <Image src="/images/about/ai-automation.webp" alt="AI automation illustration with connected document processing and approval workflows" fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover hover:scale-110 transition-transform duration-1000 ease-out" />
+                  <Image src="/images/about/project-planning.webp" alt="Creative professionals discussing a website project around laptops and paper wireframes" fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover object-top hover:scale-110 transition-transform duration-1000 ease-out" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </div>
