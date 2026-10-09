@@ -47,7 +47,7 @@ Use short delivery cycles ending in evaluated, deployed behavior. Review task ou
 
 Use staged releases with a small traffic cohort and automatic guardrails. Compare quality, policy, latency, escalation, and cost against the current version. Stop or reverse rollout when any critical slice crosses its threshold.
 
-For broader context, read our [AI implementation pillar guide](/blog/ai-workflow-automation-implementation-roadmap-2026). It explains how this capability fits into a larger AI delivery and governance program.
+For broader context, read our [AI automation budgeting guide](/blog/ai-automation-cost-pakistan-workflow-budget-2026). It explains how to scope integrations, evaluation, and ongoing support before commissioning a workflow.
 
 ## Security and human control
 

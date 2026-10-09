@@ -22,13 +22,27 @@ export async function GET() {
   const siteUrl = getSiteUrl();
   const abs = (path: string) => new URL(path, siteUrl).toString();
 
-  const [site, services, faqItems, portfolio, posts] = await Promise.all([
+  const [siteSource, servicesSource, faqSource, portfolioSource, postsSource] = await Promise.allSettled([
     getSiteSettings(),
     getServices(),
     getFaqItems(),
     getPortfolioItems(),
     getBlogPosts(),
   ]);
+  if (siteSource.status === "rejected" || servicesSource.status === "rejected" ||
+      faqSource.status === "rejected" || portfolioSource.status === "rejected" ||
+      postsSource.status === "rejected") {
+    console.error("LLM summary sources unavailable");
+    return new Response("Site summary temporarily unavailable", {
+      status: 503,
+      headers: { "Retry-After": "300", "Cache-Control": "no-store" },
+    });
+  }
+  const site = siteSource.value;
+  const services = servicesSource.value;
+  const faqItems = faqSource.value;
+  const portfolio = portfolioSource.value;
+  const posts = postsSource.value;
 
   const lines: string[] = [];
 

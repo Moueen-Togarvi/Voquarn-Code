@@ -31,6 +31,7 @@ type BuildMetadataOptions = {
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
+  author?: { name: string; url: string };
 };
 
 export function parseBlogPage(value?: string | null): number {
@@ -79,6 +80,7 @@ export function buildMetadata(
           images,
           publishedTime: options.publishedTime,
           modifiedTime: options.modifiedTime || options.publishedTime,
+          ...(options.author ? { authors: [new URL(options.author.url, siteUrl).toString()] } : {}),
         }
       : {
           title,
@@ -102,7 +104,7 @@ export function buildMetadata(
     title,
     description,
     applicationName: site.name,
-    authors: [{ name: site.name, url: siteUrl.toString() }],
+    authors: [options.author ? { ...options.author, url: new URL(options.author.url, siteUrl).toString() } : { name: site.name, url: siteUrl.toString() }],
     creator: site.name,
     publisher: site.name,
     keywords: Array.from(new Set([site.name, ...(options.keywords ?? defaultKeywords)])),

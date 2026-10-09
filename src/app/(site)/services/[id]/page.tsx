@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/metadata";
-import { serviceJsonLd } from "@/lib/schema";
+import { faqJsonLd, serviceJsonLd } from "@/lib/schema";
 import { getServices, getService, getPortfolioItems, getSiteSettings } from "@/lib/data";
 import type { PortfolioItem } from "@/lib/site-data";
 import { WhatsAppLink } from "@/components/ui/whatsapp-link";
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
   const service = await getService(id);
 
   if (!service) {
-    return buildMetadata("Service not found", "The requested service could not be found.", "/services");
+    notFound();
   }
 
   return buildMetadata(
@@ -110,6 +110,11 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
   const relatedWork = getRelatedWork(service.title, portfolioItems);
   const pageKeywords = serviceKeywordCluster(service.title, service.id);
+  const serviceFaqs = [
+    { question: `Can international clients hire Voquarn Code for ${service.title.toLowerCase()}?`, answer: `Yes. Voquarn Code is based in ${site.location} and works with clients in Pakistan and internationally. Use the contact page to discuss your market, project requirements, and preferred communication schedule.` },
+    { question: `How is ${service.title.toLowerCase()} priced?`, answer: "Review the package scope and available PKR or USD prices on this page. The final quote depends on deliverables, integrations, revisions, and support requirements. Confirm the agreed scope before the project starts." },
+    { question: "What should I include in a project enquiry?", answer: "Share your business goal, current website or system, required deliverables, integrations, target market, budget, and deadline. We can then discuss a suitable scope and next step." },
+  ];
 
   return (
     <div className="relative bg-white text-black min-h-screen pt-40 lg:pt-48">
@@ -126,6 +131,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         ]}
       />
       <JsonLd data={serviceJsonLd(service)} />
+      <JsonLd data={faqJsonLd(serviceFaqs)} />
       <section className="page-section relative overflow-hidden mt-14 lg:mt-16">
         {/* Ambient signature orange gradient glow in background */}
         <div 
@@ -148,9 +154,19 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
             <h1 className="mt-4 font-display text-4xl font-black tracking-tight text-neutral-900 sm:text-6xl uppercase leading-none">
               {service.title}
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-neutral-600 max-w-3xl font-medium">
+            <p data-speakable className="mt-6 text-lg leading-relaxed text-neutral-600 max-w-3xl font-medium">
               {service.description}
             </p>
+            <section className="mt-10 space-y-5 border-t border-neutral-200 pt-8" aria-labelledby="service-questions">
+              <h2 id="service-questions" className="font-display text-2xl font-bold text-neutral-900">Before you start</h2>
+              {serviceFaqs.map((item) => (
+                <div key={item.question}>
+                  <h3 className="font-semibold text-neutral-900">{item.question}</h3>
+                  <p className="mt-2 leading-relaxed text-neutral-600">{item.answer}</p>
+                </div>
+              ))}
+              <Link href="/contact" className="inline-flex min-h-11 items-center font-semibold text-[#c83f00] underline underline-offset-4">Discuss the scope of your project</Link>
+            </section>
 
             {/* Deliverables */}
             <div className="mt-12 pt-12 border-t border-neutral-200">

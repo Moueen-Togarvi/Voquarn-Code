@@ -23,8 +23,8 @@ import { getSiteUrl } from "@/lib/site-url";
 
 type BlogPostPageProps = { params: Promise<{ slug: string }> };
 
-// Prebuild the cornerstone articles; all other published URLs render on their
-// first visit and share the same hourly ISR cache.
+// Prebuild the curated publication set so readers and crawlers get cached HTML
+// on their first visit. New published URLs share the same hourly ISR cache.
 export const dynamicParams = true;
 export const revalidate = 3600;
 
@@ -36,19 +36,20 @@ function seoKeywords(post: { title: string; category: string; seoKeywords?: stri
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
-  return posts.filter((post) => post.cornerstone).map((post) => ({ slug: post.slug }));
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = await getBlogPost(slug);
-  if (!post) return buildMetadata("Article not found", "The requested article could not be found.", "/blog");
+  if (!post) notFound();
 
   return buildMetadata(post.title, post.excerpt, `/blog/${post.slug}`, {
     type: "article",
     publishedTime: post.publishedAt,
     modifiedTime: post.modifiedAt,
     keywords: seoKeywords(post),
+    author: { name: "Moueen Togarvi", url: "/ceo" },
     ...(post.coverImage ? { image: post.coverImage } : {}),
   });
 }
@@ -98,7 +99,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </ol>
         </nav>
 
-        <header className="mx-auto mt-10 hidden max-w-5xl text-center sm:block">
+        <header className="mx-auto mt-10 max-w-5xl text-center">
           <span style={categoryBadgeStyle(post.category, "soft")} className="hidden rounded-full border px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] sm:inline-flex">{post.category}</span>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-[var(--muted)]">
             <Link href="/ceo" className="inline-flex min-h-11 items-center gap-2 rounded-full hover:text-[#ff5400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff5400]">

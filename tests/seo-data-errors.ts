@@ -34,6 +34,10 @@ async function main() {
     const unavailable = await sitemap();
     assert.equal(unavailable.status, 503);
     assert.equal(unavailable.headers.get("Cache-Control"), "no-store");
+    const { GET: llms } = await import("../src/app/llms.txt/route");
+    const unavailableSummary = await llms();
+    assert.equal(unavailableSummary.status, 503);
+    assert.equal(unavailableSummary.headers.get("Cache-Control"), "no-store");
 
     // A legitimate empty service list isolates the real Markdown publication
     // inventory without database credentials or a network connection.

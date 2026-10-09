@@ -299,6 +299,7 @@ export function blogPostJsonLd(post: BlogPost): Record<string, unknown> {
     dateModified: post.modifiedAt || post.publishedAt,
     author: {
       "@type": "Person",
+      "@id": `${absoluteUrl("/ceo")}#person`,
       name: "Moueen Togarvi",
       url: absoluteUrl("/ceo"),
     },

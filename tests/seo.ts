@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import blogRedirects from "../content/blog-redirects.json";
+import nextConfig from "../next.config";
 import { buildMetadata, parseBlogPage } from "../src/lib/metadata";
 import { parseFrontmatter } from "../src/lib/blog-frontmatter";
 import { buildBlogIndexFromMarkdown } from "../src/lib/blog-index-builder";
@@ -22,6 +25,8 @@ async function main() {
   const articleMetadata = buildMetadata("RAG", "Guide", "/blog/rag-vs-fine-tuning", { keywords: ["RAG vs fine tuning"] });
   assert.ok((articleMetadata.keywords as string[]).includes("RAG vs fine tuning"));
   assert.ok(!(articleMetadata.keywords as string[]).includes("website design Pakistan"));
+  const authored = buildMetadata("RAG", "Guide", "/blog/rag-vs-fine-tuning", { type: "article", author: { name: "Moueen Togarvi", url: "/ceo" } });
+  assert.deepEqual(authored.authors, [{ name: "Moueen Togarvi", url: "https://www.voquarn.com/ceo" }]);
   const source = '---\ntitle: Test\nslug: test\ndescription: Test\ncategory: Test\nreadTime: 1 min\nstatus: published\npublishedAt: 2026-09-01\nmodifiedAt: 2026-09-02\n---\nText';
   assert.equal(parseFrontmatter(source, "test.md").frontmatter.modifiedAt, "2026-09-02");
   assert.throws(() => parseFrontmatter(source.replace("modifiedAt: 2026-09-02", "modifiedAt: invalid"), "test.md"));
@@ -30,8 +35,23 @@ async function main() {
   const posts = await buildBlogIndexFromMarkdown();
   const reviewed = posts.filter((post) => post.cornerstone);
   assert.ok(reviewed.length > 0);
+  const slugs = new Set(posts.map((post) => post.slug));
+  const redirects = await nextConfig.redirects!();
+  for (const [source, destination] of Object.entries(blogRedirects)) {
+    assert.ok(!slugs.has(source), `Redirect must not hide a published article: ${source}`);
+    assert.ok(slugs.has(destination), `Redirect must resolve to a published article: ${destination}`);
+    assert.ok(!(destination in blogRedirects), `Redirect chains are not allowed: ${source}`);
+    assert.ok(redirects.some((rule) => rule.source === `/blog/${source}` && rule.destination === `/blog/${destination}` && rule.permanent));
+  }
+  for (const post of posts) {
+    const markdown = await readFile(`content/blogs/${post.slug}.md`, "utf8");
+    for (const match of markdown.matchAll(/\]\(\/blog\/([^)#?\s]+)/g)) {
+      assert.ok(slugs.has(match[1]), `Broken blog link in ${post.slug}: ${match[1]}`);
+    }
+  }
   const post = { ...reviewed[0], modifiedAt: "2026-10-03", sections: [] };
   assert.equal(blogPostJsonLd(post).dateModified, "2026-10-03");
+  assert.equal((blogPostJsonLd(post).author as Record<string, unknown>)["@id"], "https://www.voquarn.com/ceo#person");
   assert.ok(!JSON.stringify(siteIdentityJsonLd(site)).includes('"aggregateRating"'));
   const rules = await robots().text();
   const groups = rules.split("User-agent: ").slice(1);

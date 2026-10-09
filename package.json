@@ -11,7 +11,7 @@
     "blogs:check-new": "node scripts/check-new-blog-quality.mjs",
     "blogs:cleanup:plan": "node scripts/quarantine-unsafe-blogs.mjs",
     "blogs:cleanup:apply": "node scripts/quarantine-unsafe-blogs.mjs --apply",
-    "blogs:cleanup:restore": "node scripts/quarantine-unsafe-blogs.mjs --restore reports/blog-quarantine-2026-08-22.json",
+    "blogs:cleanup:restore": "node scripts/quarantine-unsafe-blogs.mjs --restore reports/blog-quarantine-2026-10-09.json",
     "blogs:problems:plan": "node scripts/quarantine-broken-blogs.mjs",
     "blogs:problems:apply": "node scripts/quarantine-broken-blogs.mjs --apply",
     "blogs:problems:restore": "node scripts/quarantine-broken-blogs.mjs --restore reports/blog-problems-2026-08-22.json",

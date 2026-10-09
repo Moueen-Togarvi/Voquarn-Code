@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import blogRedirects from "./content/blog-redirects.json";
 
 const imageHosts = (process.env.IMAGE_REMOTE_HOSTS || "images.unsplash.com,api.dicebear.com")
   .split(",")
@@ -81,6 +82,13 @@ const nextConfig: NextConfig = {
         // indexed as separate sites.
         permanent: true,
       },
+      // Consolidate matching retired articles into substantive guides. Other
+      // retired URLs return 404 instead of redirecting to an unrelated page.
+      ...Object.entries(blogRedirects).map(([source, destination]) => ({
+        source: `/blog/${source}`,
+        destination: `/blog/${destination}`,
+        permanent: true,
+      })),
     ];
   },
   async headers() {

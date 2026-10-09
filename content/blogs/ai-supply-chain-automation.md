@@ -47,7 +47,7 @@ Separate experimentation from production. The experiment can compare prompts, mo
 
 Use staged releases with a small traffic cohort and automatic guardrails. Compare quality, policy, latency, escalation, and cost against the current version. Stop or reverse rollout when any critical slice crosses its threshold.
 
-For broader context, read our [AI implementation pillar guide](/blog/agentic-workflow-automation). It explains how this capability fits into a larger AI delivery and governance program.
+For broader context, read our [AI automation budgeting guide](/blog/ai-automation-cost-pakistan-workflow-budget-2026). It explains how to scope the workflow, integration work, acceptance criteria, and ongoing support.
 
 ## Security and human control
 
