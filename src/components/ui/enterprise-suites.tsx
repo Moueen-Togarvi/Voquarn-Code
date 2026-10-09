@@ -14,7 +14,8 @@ const SUITES_DATA = [
     description: "End-to-end hospital administration architecture designed for zero-latency patient care and resource optimization.",
     capabilities: ["Automated Patient Records (EHR)", "Smart Bed & OT Allocation", "Integrated Billing & Pharmacy Sync"],
     metrics: "99.99% Uptime · HIPAA Compliant",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+    image: "/images/suites/hospital-management.webp",
+    imageAlt: "Hospital management illustration with patient scheduling, bed allocation and pharmacy tools",
   },
   {
     id: "pos",
@@ -24,7 +25,8 @@ const SUITES_DATA = [
     description: "High-speed point of sale architectures engineered for multi-store cloud synchronization and real-time checkout.",
     capabilities: ["Multi-store Cloud Synchronization", "Real-time Inventory Tracking", "Barcode & RFID Hardware Integration"],
     metrics: "<12ms Checkout Latency",
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=800",
+    image: "/images/suites/retail-pos.webp",
+    imageAlt: "Retail point of sale illustration with checkout terminal, barcode scanner and receipt printer",
   },
   {
     id: "lab",
@@ -34,7 +36,8 @@ const SUITES_DATA = [
     description: "Advanced pathology and diagnostic workflow automation ensuring absolute sample traceability and rapid reporting.",
     capabilities: ["Automated Sample Barcoding", "Smart Diagnostic Report Generation", "Pathology & Equipment Interfacing"],
     metrics: "100% Sample Traceability",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800",
+    image: "/images/suites/lab-management.webp",
+    imageAlt: "Diagnostic laboratory illustration with sample tracking dashboard, tubes and microscope",
   },
   {
     id: "clinic",
@@ -44,7 +47,8 @@ const SUITES_DATA = [
     description: "Intelligent practitioner platforms tailored for seamless appointment scheduling and digital prescription management.",
     capabilities: ["Doctor Appointment Scheduling", "Electronic Health Records (EHR)", "Digital Prescription & Follow-ups"],
     metrics: "Zero Queue Waiting Workflows",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800",
+    image: "/images/suites/clinic-management.webp",
+    imageAlt: "Clinic management illustration with appointment calendar, medical record panels and stethoscope",
   },
   {
     id: "hotel",
@@ -54,7 +58,8 @@ const SUITES_DATA = [
     description: "Next-generation hospitality suites powering flawless guest experiences, room reservation engines, and dispatch.",
     capabilities: ["Room Reservation & Booking Engine", "Housekeeping & Dispatch Automation", "Guest Experience & Billing Portal"],
     metrics: "Omnichannel Guest Portal",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800",
+    image: "/images/suites/hotel-management.webp",
+    imageAlt: "Hotel management illustration with room booking calendar, reception bell and key cards",
   },
   {
     id: "dairy",
@@ -64,7 +69,8 @@ const SUITES_DATA = [
     description: "Precision agritech architectures tracking cattle health, milk yield analytics, and automated feed inventories.",
     capabilities: ["Cattle Health & Breeding Tracking", "IoT Milk Yield Analytics", "Feed & Inventory Automation"],
     metrics: "IoT Sensor Integration Ready",
-    image: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&q=80&w=800",
+    image: "/images/suites/dairy-management.webp",
+    imageAlt: "Dairy farm management illustration with herd dashboard, milk production chart and dairy cows",
   },
 ];
 
@@ -153,7 +159,7 @@ export function EnterpriseSuites() {
                   <div className="relative w-full flex-1 min-h-[130px] max-h-[180px] rounded-xl overflow-hidden mb-3 border border-[var(--border)] shadow-inner bg-[var(--surface)] group/img flex-shrink">
                     <Image
                       src={activeTab.image}
-                      alt={activeTab.title}
+                      alt={activeTab.imageAlt}
                       fill
                       sizes="(min-width: 1024px) 500px, 100vw"
                       className="object-cover transition-transform duration-700 group-hover/img:scale-105"
