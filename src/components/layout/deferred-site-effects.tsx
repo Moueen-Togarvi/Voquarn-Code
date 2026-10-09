@@ -3,11 +3,6 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-const CustomCursor = dynamic(
-  () => import("@/components/ui/custom-cursor").then((mod) => mod.CustomCursor),
-  { ssr: false },
-);
-
 const HangingAstronaut = dynamic(
   () => import("@/components/ui/hanging-astronaut").then((mod) => mod.HangingAstronaut),
   { ssr: false },
@@ -17,8 +12,8 @@ export function DeferredSiteEffects() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // These decorative effects are hidden on small/touch screens anyway;
-    // avoid downloading their modules and attaching listeners there.
+    // The decorative astronaut is hidden on small/touch screens anyway;
+    // avoid downloading its module and attaching listeners there.
     if (!window.matchMedia("(min-width: 640px) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches) return;
 
     const win = window as Window & {
@@ -37,10 +32,5 @@ export function DeferredSiteEffects() {
 
   if (!ready) return null;
 
-  return (
-    <>
-      <HangingAstronaut />
-      <CustomCursor />
-    </>
-  );
+  return <HangingAstronaut />;
 }

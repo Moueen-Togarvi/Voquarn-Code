@@ -244,14 +244,15 @@ export function ServicesToggle({ services, whatsapp, limit }: ServicesToggleProp
               <div className="mt-auto flex gap-2 border-t border-[var(--border)] pt-5">
                 <Link
                   href={`/services/${item.parentServiceId}`}
-                  className="inline-flex h-11 flex-1 items-center justify-center gap-1 rounded-xl bg-gradient-to-b from-[#ff6b21] to-[#e04800] text-[12px] font-bold tracking-wide text-white shadow-[0_8px_20px_-8px_rgba(255,84,0,0.8)] transition-all duration-300 hover:from-[#ff7c3b] hover:to-[#f05000] active:scale-[0.98]"
+                  aria-label={`View ${item.name}`}
+                  className="inline-flex h-11 min-w-0 flex-1 items-center justify-center gap-1 rounded-xl bg-gradient-to-b from-[#ff6b21] to-[#e04800] px-2 text-[11px] font-bold tracking-normal text-white shadow-[0_8px_20px_-8px_rgba(255,84,0,0.8)] transition-all duration-300 hover:from-[#ff7c3b] hover:to-[#f05000] active:scale-[0.98] sm:h-10"
                 >
-                  <span className="px-1 text-center leading-tight">View {item.name}</span>
+                  <span className="min-w-0 truncate text-center leading-none">View {item.name}</span>
                   <ArrowRight size={14} className="shrink-0" aria-hidden="true" />
                 </Link>
                 <WhatsAppLink
                   href={`https://wa.me/${whatsapp}?text=Hi%20Voquarn%20Code,%20I%20want%20to%20discuss%20the%20${encodeURIComponent(item.categoryName + " - " + item.name)}%20package.`}
-                  className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-b from-[#2c2c2e] to-[#151516] text-white transition-all duration-300 hover:from-[#3a3a3c] hover:to-[#1c1c1e] active:scale-[0.98]"
+                  className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-b from-[#2c2c2e] to-[#151516] text-white transition-all duration-300 hover:from-[#3a3a3c] hover:to-[#1c1c1e] active:scale-[0.98] sm:size-10"
                   aria-label={`Discuss ${item.name} on WhatsApp`}
                 >
                   <MessageCircle className="size-4" aria-hidden="true" />
