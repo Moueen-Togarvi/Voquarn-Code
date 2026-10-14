@@ -52,7 +52,7 @@ export async function GET() {
   lines.push(`> ${site.description}`);
   lines.push("");
   lines.push(
-    `${site.name} is a digital agency based in ${site.location}, serving clients in Pakistan and internationally. We build websites, mobile apps, SaaS products, SEO systems, and AI automation workflows. Pricing is fixed-package and published openly, in both PKR and USD.`,
+    `${site.name} is a digital agency based in ${site.location}, serving clients in Pakistan and internationally. We build websites, mobile apps, SaaS products, SEO systems, and AI automation workflows. Published starting prices use PKR and USD; billing terms and final scope depend on the service.`,
   );
   lines.push("");
   lines.push(`- Website: ${abs("/")}`);
@@ -79,11 +79,15 @@ export async function GET() {
     lines.push("## Services and pricing");
     lines.push("");
     for (const service of services) {
+      const isMonthly = service.id === "crm-systems";
       lines.push(`### ${service.title}`);
       lines.push("");
       lines.push(service.description);
       lines.push("");
       lines.push(`Page: ${abs(`/services/${service.id}`)}`);
+      if (isMonthly) {
+        lines.push("Billing: the starting prices below are per month. Annual and one-time purchase options are shown on the service page.");
+      }
       if (service.deliverables.length > 0) {
         lines.push(`Deliverables: ${service.deliverables.join(", ")}`);
       }
@@ -91,7 +95,7 @@ export async function GET() {
       for (const sub of service.subServices || []) {
         const price = formatPrice(sub.pricePkr, sub.priceUsd);
         lines.push(
-          `- **${sub.name}**${price ? ` — starting at ${price}` : ""}: ${sub.description}`,
+          `- **${sub.name}**${price ? ` — starting at ${price}${isMonthly ? " per month" : ""}` : ""}: ${sub.description}`,
         );
         if (sub.features.length > 0) {
           lines.push(`  - Includes: ${sub.features.join("; ")}`);

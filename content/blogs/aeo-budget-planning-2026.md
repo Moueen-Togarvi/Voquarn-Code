@@ -6,7 +6,7 @@ category: "AEO & GEO"
 targetKeyword: "aeo budget"
 secondaryKeywords: "answer engine optimization cost, AEO services scope, GEO pricing, AI search visibility measurement, AEO agency Pakistan"
 readTime: "7 min read"
-modifiedAt: "2026-10-03"
+modifiedAt: "2026-10-14"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
@@ -80,7 +80,7 @@ The variance is large because the market is immature and the label is unregulate
 
 ## Where AEO budgets get wasted
 
-**Volume content.** The most expensive error available. Publishing large quantities of thin, templated pages to "cover more queries" now triggers scaled-content-abuse handling and can depress an entire domain — including the pages that were performing. The policy concerns content produced primarily to manipulate rankings without helping users; it does not make every large library or AI-assisted article abusive. If a proposal involves hundreds of pages, that is the risk you are buying.
+**Volume content.** Publishing many near-identical pages primarily to manipulate rankings may violate Google's scaled content abuse policy. Page count and use of AI alone do not establish a violation or prove that a traffic drop is a penalty. Evaluate whether each proposed article answers a distinct need with useful evidence; investigate indexing and Search Console reports before assigning a cause to lost visibility.
 
 **Schema without substance.** Structured data describes content; it does not improve it. Marking up a thin page tells the model precisely what it is.
 
@@ -127,7 +127,7 @@ Set a scope-based budget from actual quotes. The example above is arithmetic for
 Partially. Referral traffic and AI Overview presence are observable. Citation frequency across assistants is sampleable but inconsistent. Influence without a click is currently unattributable — plan around that rather than buying tools that claim otherwise.
 
 **Does publishing more content help?**
-Not at volume. Large quantities of thin generated pages trigger scaled-content-abuse handling and can depress the whole domain. Prioritise useful, original topic coverage over near-identical keyword pages. A smaller publication programme is not itself a ranking guarantee; quality, relevance and technical discovery still need review.
+More pages help readers only when they add useful, distinct coverage. Generating pages primarily to manipulate rankings may violate Google's spam policies, but quantity alone does not diagnose abuse or a ranking decline. Prioritise accurate answers, original evidence and clear discovery; neither a large nor a small publication programme guarantees rankings.
 
 **Should we block AI crawlers?**
 Decide separately for search crawlers, training crawlers, and user-requested fetchers. Their purposes differ, and allowing access never guarantees a citation. Verify `robots.txt` reflects your policy and test the relevant user agents.

@@ -7,7 +7,7 @@ targetKeyword: "Next.js 16.3 architecture"
 secondaryKeywords: "Next.js App Router architecture, Next.js Cache Components planning, server component data boundaries, Next.js production release checklist"
 readTime: "6 min read"
 publishedAt: "2026-08-19"
-modifiedAt: "2026-10-03"
+modifiedAt: "2026-10-14"
 status: "published"
 cornerstone: true
 allowExcludedTerms: true
@@ -24,6 +24,12 @@ Record the exact Next.js, React, runtime, and build-tool versions in the project
 The [Next.js 16.3 release](https://nextjs.org/blog/next-16-3) introduced additional navigation and development improvements. A feature release number is not a security baseline: the [September 2026 security release](https://nextjs.org/blog/september-2026-security-release) directs 16.3 users to patched 16.3.8. Check later advisories when reading this article rather than treating that patch as permanently current.
 
 Keep the lockfile with the change. A reproducible dependency graph makes a failed release easier to explain and rollback. Upgrade unrelated libraries separately unless compatibility requires them, so validation failures have a manageable set of possible causes.
+
+## Migration checks for an existing application
+
+Before changing an existing application, inventory its current router, framework patch, runtime, authentication and cache settings. Keep a baseline production build and record the HTML, canonical URL and response status of representative public routes. The [official upgrade guides](https://nextjs.org/docs/app/guides/upgrading) should determine version-specific changes; moving a project to 16.3 is not a substitute for checking current security advisories.
+
+Apply required compatibility changes in a reviewable branch, then compare navigation, data freshness, permissions and form submissions against that baseline. Test a production build as well as development mode. Rehearse rollback with the previous deployment and compatible data changes before switching traffic.
 
 ## Draw the public and authenticated route boundaries
 

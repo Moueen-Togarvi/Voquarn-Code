@@ -4,10 +4,11 @@ slug: "multi-agent-system-architecture"
 description: "Design multi-agent system architecture deliberately: coordination patterns, shared state, failure modes, cost control, and when a single agent is the better answer."
 category: "Agentic AI"
 targetKeyword: "multi-agent system architecture"
-readTime: "4 min read"
+readTime: "5 min read"
 publishedAt: "2026-08-19"
+modifiedAt: "2026-10-14"
 status: "published"
-secondaryKeywords: "multi-agent system architecture: when multiple agents help"
+secondaryKeywords: "agent orchestration patterns, multi agent permissions, agent handoff validation, multi agent evaluation"
 ---
 **Multi-agent system architecture** distributes a task across several specialized agents rather than one general one. It solves real problems at scale and creates a class of failures that single-agent systems never encounter.
 
@@ -16,14 +17,14 @@ The default should be one agent. Move to several only when you can name the spec
 ## Legitimate reasons to split
 
 - **Context pressure.** When the tools, instructions, and knowledge required exceed what fits usefully in one context, splitting by domain keeps each agent's working set focused.
-- **Tool selection accuracy.** Selection degrades as the tool surface grows. Partitioning tools across specialists restores accuracy.
+- **Tool selection errors.** If evaluation shows confusion between similar tools, compare clearer tool definitions with a split into specialists. A split may help, but adds its own handoff errors.
 - **Differing risk profiles.** An agent that only reads and summarizes has different controls from one that moves money. Separating them lets you apply proportionate authorization rather than granting the union of all permissions to one actor.
 - **Parallelism.** Independent subtasks genuinely running concurrently reduce wall-clock time.
 - **Independent evolution.** Separate agents can be evaluated and deployed on separate cycles.
 
 ## Bad reasons to split
 
-Mimicking a human org chart. A researcher, writer, and editor triad is intuitive and usually produces more coordination overhead than quality gain.
+Mimicking a human org chart without a measured need. A researcher, writer, and editor arrangement may be useful, but role names alone do not demonstrate an improvement over one controlled workflow.
 
 Believing more agents means more capability. Each additional agent adds latency, cost, and failure surface.
 
@@ -35,9 +36,9 @@ Working around a prompt problem. If one agent behaves poorly because its instruc
 
 **Sequential pipeline** passes output along a fixed chain. Simple and predictable, but errors compound down the chain, so validate between stages rather than trusting upstream output.
 
-**Peer collaboration**, where agents converse freely, is the most expensive and least predictable. It is occasionally justified for genuine exploration, rarely for production operations.
+**Peer collaboration** lets agents communicate without a fixed handoff sequence. It needs explicit termination, permission, and budget controls; compare its value with a bounded workflow before allowing open-ended exchanges.
 
-Whatever the pattern, the coordination logic itself should be deterministic code wherever possible. Letting a model decide the control flow at runtime is where cost and unpredictability concentrate.
+Keep predictable transitions in code. Use model-directed delegation where the subtasks cannot be known in advance, and enforce limits outside the model. Anthropic's [agent workflow guide](https://www.anthropic.com/engineering/building-effective-agents) distinguishes predefined workflows, parallel tasks, and orchestrator-worker patterns; these are alternatives to evaluate, not a mandatory maturity ladder.
 
 ## Shared state and consistency
 
@@ -45,7 +46,7 @@ Decide deliberately what agents share. Options range from passing explicit messa
 
 Explicit message passing with defined schemas is the most debuggable. Shared mutable state is convenient and introduces race conditions and stale reads that are painful to reproduce.
 
-Whatever you choose, one agent must own each fact. When two agents can write the same field, they eventually disagree, and reconciling that at runtime is not something a model does reliably.
+Define write ownership and conflict handling for shared records. Use ordinary database transactions, version checks, or a designated coordinator where multiple workers can propose changes. A model's agreement with another model is not a concurrency-control mechanism.
 
 ## Failure modes to design against
 
@@ -53,7 +54,17 @@ Whatever you choose, one agent must own each fact. When two agents can write the
 - **Error amplification.** A wrong conclusion early in a chain gets restated downstream with increasing confidence. Validate factual claims between stages against source data rather than trusting the previous agent.
 - **Cost explosion.** Each agent adds calls. Set a budget for the whole task and enforce it centrally, not per agent.
 - **Permission accumulation.** Delegated agents must operate under the original requester's authority. Without this, delegation becomes privilege escalation.
-- **Diffuse accountability.** When something goes wrong, the trace must show which agent decided what. Log the full chain with agent identity on every step.
+- **Diffuse accountability.** Record agent identity, request identity, relevant tool arguments, permission decisions, and execution receipts. Redact sensitive payloads rather than treating complete raw transcripts as the default audit record.
+
+The [OWASP AI Agent Security guidance](https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html) covers agent identities, least privilege, delegation, and monitoring. Apply the permission boundary at each tool invocation; a trusted coordinator does not make arbitrary worker output trustworthy.
+
+## Example: order-support specialists with one write owner
+
+In a hypothetical order-support system, two workers run in parallel: one reads delivery status and the other reads the applicable return policy. Each receives the authenticated account scope and a bounded question. They return source identifiers and structured findings, rather than a transcript that grants new authority.
+
+A coordinator prepares a customer-facing answer. Only a separate order API can create a return request, and it checks the signed-in user, the order's ownership, return eligibility, and any required approval at execution time. Neither worker receives a credential capable of issuing refunds. A worker saying "approved" is a proposal, not an authorisation token.
+
+Test what happens if the delivery worker times out, returns an order from another account, or supplies instructions disguised as a policy excerpt. The coordinator must avoid inventing delivery facts and must not bypass the order API. Compare this design with a single-agent baseline on completed requests, incorrect actions, latency, and total cost before keeping the additional workers.
 
 ## Evaluation
 
@@ -75,10 +86,10 @@ Often yes. Routing and classification suit smaller, faster models, while plannin
 
 ### How do we debug a multi-agent failure?
 
-With a complete trace showing every agent, step, tool call, and handoff, plus the ability to replay from any point.
+Use correlated traces and versioned inputs to reproduce the decision path. Replays should use sandbox tools or recorded results so debugging does not resend messages or repeat production transactions.
 
 ### Is a single strong agent usually enough?
 
-For most production workflows, yes. Split only when a named constraint requires it.
+It is a useful baseline, and some workflows need no autonomous agent at all. Keep additional agents when a measured constraint or clear separation of authority justifies them.
 
-Explore [our software and web capabilities](/services) or [discuss your AI workflow](/contact).
+Use the [agent tool-action acceptance guide](/blog/ai-agent-acceptance-testing-tool-actions-2026) to turn permission boundaries into tests. Explore [our software and web capabilities](/services) or [discuss your AI workflow](/contact).

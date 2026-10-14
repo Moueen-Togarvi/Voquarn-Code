@@ -1,0 +1,688 @@
+{
+  "date": "2026-10-14",
+  "method": "Exact normalized paragraphs of at least 25 words repeated in at least 3 published files. Editorial signal, not a Google ranking rule. Reference count is not a quality score.",
+  "before": {
+    "count": 67,
+    "withoutEvidenceLinks": 25,
+    "withRepeatedParagraphs": 16,
+    "articles": [
+      {
+        "slug": "aeo-budget-planning-2026",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "aeo-vs-seo-premium-buyer-guide-2026-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "agent-plugins-1-implementation-service",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "agentic-commerce-readiness-catalog-checkout-2026",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-agent-acceptance-testing-tool-actions-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-agent-cyber-containment-consulting",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-agent-memory-architecture",
+        "referenceCount": 0,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-automation-cost-pakistan-workflow-budget-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-coding-agent-stacked-pull-request-workflow",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-conversion-rate-optimization-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-incident-response-plan",
+        "referenceCount": 0,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-insurance-claims-automation",
+        "referenceCount": 0,
+        "repeatedParagraphs": 2
+      },
+      {
+        "slug": "ai-meeting-assistant-development",
+        "referenceCount": 0,
+        "repeatedParagraphs": 4
+      },
+      {
+        "slug": "ai-model-routing-strategy",
+        "referenceCount": 0,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-native-application-development",
+        "referenceCount": 0,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-search-product-data-optimization-2026",
+        "referenceCount": 4,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-search-visibility-audit",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-supply-chain-automation",
+        "referenceCount": 0,
+        "repeatedParagraphs": 4
+      },
+      {
+        "slug": "answer-engine-optimization-agency",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "aws-vs-azure-for-startups-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "aws-vs-azure-startups",
+        "referenceCount": 0,
+        "repeatedParagraphs": 4
+      },
+      {
+        "slug": "code-review-agent-skills-implementation-service",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "coding-agent-reasoning-level-governance",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "copilot-jetbrains-enterprise-settings-rollout",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "custom-software-development-pakistan-procurement-checklist-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "custom-software-vs-low-code",
+        "referenceCount": 0,
+        "repeatedParagraphs": 4
+      },
+      {
+        "slug": "django-vs-laravel-business-apps",
+        "referenceCount": 0,
+        "repeatedParagraphs": 7
+      },
+      {
+        "slug": "enterprise-agent-delegation-readiness-assessment",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "eu-ai-act-compliance-software",
+        "referenceCount": 0,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "fastapi-vs-django-rest-framework",
+        "referenceCount": 0,
+        "repeatedParagraphs": 5
+      },
+      {
+        "slug": "finops-company-selection-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "generative-engine-optimization-services",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "github-copilot-microsoft-teams-integration-consulting",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "github-copilot-model-deprecation-migration-service",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "github-copilot-slack-workflow-implementation-service",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "github-oauth-refresh-token-migration-service",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "healthcare-product-engineering-services-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "hiring-dedicated-python-team-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "intelligent-document-processing-uk-2026",
+        "referenceCount": 4,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "knowledge-graph-rag",
+        "referenceCount": 0,
+        "repeatedParagraphs": 5
+      },
+      {
+        "slug": "legacy-software-modernization-uk-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "llmops-consulting-what-to-expect-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "multi-agent-system-architecture",
+        "referenceCount": 0,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "native-app-vs-progressive-web-app",
+        "referenceCount": 0,
+        "repeatedParagraphs": 5
+      },
+      {
+        "slug": "nextjs-16-3-architecture-guide-2026",
+        "referenceCount": 4,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "nextjs-instant-navigation-audit-service",
+        "referenceCount": 4,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "nextjs-security-patch-readiness-service",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "nextjs-technical-seo-audit-checklist-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "nextjs-vs-wordpress-business-website",
+        "referenceCount": 0,
+        "repeatedParagraphs": 5
+      },
+      {
+        "slug": "nodejs-vs-python-backend",
+        "referenceCount": 0,
+        "repeatedParagraphs": 4
+      },
+      {
+        "slug": "npm-publish-pipeline-security-audit",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "openai-zero-data-retention-architecture-consulting",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "postgresql-vs-mysql-saas",
+        "referenceCount": 0,
+        "repeatedParagraphs": 9
+      },
+      {
+        "slug": "private-ai-deployment-fintech-2026",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "prompt-injection-defense",
+        "referenceCount": 0,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "python-vs-php-web-development",
+        "referenceCount": 0,
+        "repeatedParagraphs": 5
+      },
+      {
+        "slug": "rag-evaluation-framework",
+        "referenceCount": 0,
+        "repeatedParagraphs": 3
+      },
+      {
+        "slug": "rag-vs-fine-tuning",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "react-vs-angular-startups",
+        "referenceCount": 0,
+        "repeatedParagraphs": 4
+      },
+      {
+        "slug": "retrieval-evaluation-metrics",
+        "referenceCount": 0,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "saas-mvp-budget-pakistan-scope-acceptance-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "self-hosted-llm-cost-calculator-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "serverless-vs-containers",
+        "referenceCount": 0,
+        "repeatedParagraphs": 5
+      },
+      {
+        "slug": "shadow-ai-governance-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "shopify-speed-optimization-checklist-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "shopify-vs-woocommerce-2026-decision-guide",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "sovereign-ai-deployment",
+        "referenceCount": 0,
+        "repeatedParagraphs": 0
+      }
+    ]
+  },
+  "after": {
+    "count": 67,
+    "withoutEvidenceLinks": 0,
+    "withRepeatedParagraphs": 0,
+    "articles": [
+      {
+        "slug": "aeo-budget-planning-2026",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "aeo-vs-seo-premium-buyer-guide-2026-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "agent-plugins-1-implementation-service",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "agentic-commerce-readiness-catalog-checkout-2026",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-agent-acceptance-testing-tool-actions-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-agent-cyber-containment-consulting",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-agent-memory-architecture",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-automation-cost-pakistan-workflow-budget-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-coding-agent-stacked-pull-request-workflow",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-conversion-rate-optimization-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-incident-response-plan",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-insurance-claims-automation",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-meeting-assistant-development",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-model-routing-strategy",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-native-application-development",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-search-product-data-optimization-2026",
+        "referenceCount": 4,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-search-visibility-audit",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "ai-supply-chain-automation",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "answer-engine-optimization-agency",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "aws-vs-azure-for-startups-2026",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "aws-vs-azure-startups",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "code-review-agent-skills-implementation-service",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "coding-agent-reasoning-level-governance",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "copilot-jetbrains-enterprise-settings-rollout",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "custom-software-development-pakistan-procurement-checklist-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "custom-software-vs-low-code",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "django-vs-laravel-business-apps",
+        "referenceCount": 4,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "enterprise-agent-delegation-readiness-assessment",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "eu-ai-act-compliance-software",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "fastapi-vs-django-rest-framework",
+        "referenceCount": 7,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "finops-company-selection-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "generative-engine-optimization-services",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "github-copilot-microsoft-teams-integration-consulting",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "github-copilot-model-deprecation-migration-service",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "github-copilot-slack-workflow-implementation-service",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "github-oauth-refresh-token-migration-service",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "healthcare-product-engineering-services-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "hiring-dedicated-python-team-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "intelligent-document-processing-uk-2026",
+        "referenceCount": 4,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "knowledge-graph-rag",
+        "referenceCount": 1,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "legacy-software-modernization-uk-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "llmops-consulting-what-to-expect-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "multi-agent-system-architecture",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "native-app-vs-progressive-web-app",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "nextjs-16-3-architecture-guide-2026",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "nextjs-instant-navigation-audit-service",
+        "referenceCount": 4,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "nextjs-security-patch-readiness-service",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "nextjs-technical-seo-audit-checklist-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "nextjs-vs-wordpress-business-website",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "nodejs-vs-python-backend",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "npm-publish-pipeline-security-audit",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "openai-zero-data-retention-architecture-consulting",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "postgresql-vs-mysql-saas",
+        "referenceCount": 4,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "private-ai-deployment-fintech-2026",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "prompt-injection-defense",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "python-vs-php-web-development",
+        "referenceCount": 6,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "rag-evaluation-framework",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "rag-vs-fine-tuning",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "react-vs-angular-startups",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "retrieval-evaluation-metrics",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "saas-mvp-budget-pakistan-scope-acceptance-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "self-hosted-llm-cost-calculator-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "serverless-vs-containers",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "shadow-ai-governance-2026",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "shopify-speed-optimization-checklist-2026",
+        "referenceCount": 3,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "shopify-vs-woocommerce-2026-decision-guide",
+        "referenceCount": 5,
+        "repeatedParagraphs": 0
+      },
+      {
+        "slug": "sovereign-ai-deployment",
+        "referenceCount": 2,
+        "repeatedParagraphs": 0
+      }
+    ]
+  }
+}

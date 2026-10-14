@@ -9,11 +9,11 @@ readTime: "6 min read"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
-modifiedAt: "2026-10-03"
+modifiedAt: "2026-10-14"
 allowExcludedTerms: true
 ---
 
-Most **Shopify speed optimization services** begin by compressing images and minifying CSS. On a typical store those changes recover a few hundred milliseconds. The two to four seconds that actually matter are elsewhere — in third-party app scripts, render-blocking resources, and a theme doing far more work than the page requires.
+**Shopify speed optimization** starts by measuring the slow page and interaction. Images, app scripts, render-blocking resources and theme code can each be the main bottleneck. A performance trace should determine the order of work; no fixed time saving applies to every store.
 
 This is a diagnostic sequence rather than a checklist, because the order in which you look determines whether you find the real cost.
 
@@ -21,7 +21,7 @@ This is a diagnostic sequence rather than a checklist, because the order in whic
 
 Shopify provides [web performance reporting](https://help.shopify.com/en/manual/online-store/web-performance) around Core Web Vitals. Older guidance focused on a single Lighthouse store score; use the current report and distinguish real-user measurements from lab diagnostics.
 
-For page-experience diagnostics, inspect **Core Web Vitals from real users**, including the Chrome User Experience Report — field data from real visitors on real devices and connections. A store can score 70 in the admin and fail CWV, or score 45 and pass, depending entirely on who visits and on what.
+For page-experience diagnostics, inspect **Core Web Vitals from real users**, including the Chrome User Experience Report. Lab scores describe a particular synthetic test; field measurements reflect visitors, devices and connections over a reporting period. The two can disagree without either measurement being broken.
 
 Work from field data. In Search Console, the Core Web Vitals report shows real-user LCP, INP, and CLS. That is the measurement that matters. Lab tools are for diagnosis; field data is for judgement.
 
@@ -35,13 +35,13 @@ CLS  (Cumulative Layout Shift)    good <= 0.1
 
 You need the 75th percentile to pass, not the median. Optimising for your own fast laptop on office wifi is how stores end up failing while looking fine locally.
 
-## Apps are almost always the answer
+## Measure app scripts alongside theme code
 
-On the majority of Shopify stores, third-party apps account for more front-end cost than everything else combined.
+Third-party apps are a useful investigation target because their code and network requests may be outside the theme developer's control. Confirm their contribution from the store's trace before removing a feature.
 
-The mechanism is that most apps inject JavaScript into every page whether or not the page uses them. A review app loads on the checkout. A currency converter loads on the blog. A popup tool loads on all of them and blocks the main thread while it decides not to show anything.
+Check where each app actually loads. An app embed may run on templates where its feature is unused, while other integrations are scoped to particular blocks or surfaces. Checkout has separate extension constraints, so do not assume a storefront script also runs there.
 
-**Audit properly.** Open Chrome DevTools, load a product page, and in the Network panel sort by transfer size with the filter set to JS. Then use the Coverage panel to see what fraction of each script is actually executed. Stores commonly find 60–80% of loaded JavaScript unused on any given page.
+**Audit properly.** Open Chrome DevTools, load a product page, and inspect JavaScript transfer sizes in Network. Then use Coverage while exercising variant selection, cart updates and relevant widgets. Unused code during initial load may support a later interaction; remove it only after checking those paths.
 
 For each app, answer three questions:
 
@@ -84,7 +84,7 @@ Practical fixes:
 - **Reduce event handler work.** Handlers doing layout reads and writes in sequence force synchronous reflow.
 - **Subscribe to fewer scroll and resize events**, and throttle those you keep.
 
-Shopify's own scripts are generally well-behaved. The congestion is almost always installed apps.
+Attribute long tasks to the actual script and interaction. Theme code, third-party integrations and the amount of DOM work can all affect responsiveness.
 
 ## CLS: usually cheap to fix
 
@@ -114,17 +114,18 @@ Migrating themes is disruptive and sometimes correct. An Online Store 2.0 theme 
 
 ## What to expect
 
-Illustrative changes to investigate, not measured results or guaranteed improvements for your store:
+Record the result of each isolated change in a repeatable test:
 
 ```
-App audit and removal            -800ms to -2,000ms  LCP
-LCP preload + eager loading      -300ms to -900ms    LCP
-Script deferral                  -100ms to -400ms    INP
-Image dimensions + reserved space  CLS 0.25 -> <0.1
-Image format/compression         -100ms to -300ms    LCP
+Change                         Evidence to compare
+App script removal             Transfer size, long tasks, cart functionality
+LCP discovery/eager loading     Request start time and LCP
+Script deferral                 Interaction trace and feature availability
+Reserved image/banner space     Layout-shift entries and CLS
+Image sizing/compression        Download size, image quality and LCP
 ```
 
-The ordering is deliberate. App auditing is unglamorous, requires merchant conversations about which features justify their cost, and delivers most of the available gain. Image compression is easy, satisfying, and usually the smallest line.
+Prioritise changes by measured contribution and business impact. Keep the same device, network, consent state and page content when comparing runs, then confirm cart behaviour and analytics still work after deployment.
 
 ## Measure product journeys beyond the landing page
 
@@ -152,7 +153,7 @@ Frequently not. Apps leave script tags and theme snippets behind. After uninstal
 Rarely for that reason alone. A tuned standard theme with disciplined app usage performs excellently. Headless adds substantial engineering commitment and is justified by custom UX requirements, not by page speed.
 
 **How long until Core Web Vitals improve in Search Console?**
-The report uses a 28-day rolling window, so meaningful movement takes three to four weeks after deployment. Lab tools confirm the change immediately; field data lags.
+Field reporting uses a rolling collection window, commonly 28 days for CrUX-based reports. New observations replace older ones over time, and pages with insufficient traffic may have no field result. Lab tests can verify a change sooner but do not establish that real-user Core Web Vitals have passed.
 
 ## Further reading
 

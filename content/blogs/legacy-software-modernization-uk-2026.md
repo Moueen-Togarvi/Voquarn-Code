@@ -9,7 +9,7 @@ readTime: "7 min read"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
-modifiedAt: "2026-10-03"
+modifiedAt: "2026-10-14"
 allowExcludedTerms: true
 ---
 
@@ -41,11 +41,11 @@ Appropriate for: data-centre exit deadlines, hardware EOL, buying time. Not a mo
 
 **Refactor incrementally (strangler fig).** Build new functionality alongside the old system, route traffic progressively, retire the legacy component by component. Named for the fig that grows around a host tree and eventually replaces it.
 
-This is the approach with the best evidence base for large systems. It delivers value continuously, keeps risk bounded per increment, and can be paused or redirected. It requires an integration layer for the period both systems coexist — a genuine cost, often 15–25% of programme effort, and consistently under-budgeted.
+This approach allows incremental delivery and a rollback boundary for each migrated capability. It requires an integration layer while both systems coexist. Estimate that work from the actual interfaces, synchronization rules and reconciliation tests; there is no universal percentage of programme effort that fits every migration.
 
 **Rewrite.** Build the replacement, migrate, decommission. Occasionally correct: small systems, or where the domain has changed so fundamentally that the existing logic is not worth preserving.
 
-Usually wrong for large systems, for a well-documented reason. The existing system encodes years of accumulated edge-case handling that nobody has documented and everybody depends on. Rewrites reproduce the visible 80% and discover the remaining 20% through production incidents. Meanwhile the old system needs continued maintenance and the business needs new features, so you fund three things at once.
+A large rewrite can overlook edge cases embedded in existing behaviour. Recover those rules through code, production evidence and interviews before deciding what to preserve. Budget for maintaining the old system and delivering necessary changes while the replacement is built; a clean new codebase does not remove those responsibilities.
 
 **Replace with a package.** Adopt commercial software and migrate. Sensible for genuinely commodity functions — payroll, general ledger, CRM. The risk is customisation: heavily customised packages combine the constraints of a package with the maintenance burden of bespoke software.
 
@@ -57,7 +57,7 @@ Wide ranges, because these dominate:
 
 **Undocumented business logic.** The single largest driver. A system with comprehensive documentation and tests costs a fraction of one where behaviour must be archaeologically recovered from code and production observation. Budget genuine discovery time; teams that skip it pay more later, with interest.
 
-**Data migration.** Consistently underestimated. Decades of accumulated data with schema changes, orphaned records, encoding inconsistencies, and business rules encoded in data rather than logic. Expect 20–35% of total programme effort. Cleansing is a business decision requiring business time, not merely a technical exercise.
+**Data migration.** Sample the data for schema changes, orphaned records, encoding inconsistencies and business rules encoded in values. Estimate mapping, cleansing, rehearsal, reconciliation and cutover separately. Domain owners must approve how ambiguous records are handled; data cleanup is not solely an engineering decision.
 
 **Integration surface.** Every downstream consumer is a coordination point. A system with forty integrations is a programme of forty negotiations.
 
@@ -118,10 +118,10 @@ Incremental for anything large or business-critical. Rewrites fail because undoc
 Budget from discovered interfaces, retained behaviour, data reconciliation, and parallel operation. Rehosting and behavioural replacement have different scopes, so a single market price range would be misleading.
 
 **What is most underestimated?**
-Data migration, at 20–35% of effort, and the integration layer for coexistence at 15–25%. Both are consistently under-scoped because neither produces visible features.
+Data reconciliation and the interfaces needed during coexistence are easy to omit from a feature estimate. Price them from a sample migration and an interface inventory instead of assigning unsupported percentages.
 
 **How long should it take?**
-Incremental programmes deliver value within three to six months and run two to three years to completion. Any plan promising full replacement of a large system within twelve months should be examined closely.
+Set the first release date after proving one complete migration slice, including reconciliation and rollback. Overall duration depends on dependency sequencing, data quality, assurance requirements and the rate at which old components can actually be retired. Ask for dated milestones and assumptions rather than a universal migration timeline.
 
 **Should we offshore it?**
 Discovery and domain-heavy analysis benefit from proximity to the business. Implementation offshores effectively once the domain is understood. Offshoring discovery on an undocumented system tends to be expensive.

@@ -5,9 +5,9 @@ import nextConfig from "../next.config";
 import { buildMetadata, parseBlogPage } from "../src/lib/metadata";
 import { parseFrontmatter } from "../src/lib/blog-frontmatter";
 import { buildBlogIndexFromMarkdown } from "../src/lib/blog-index-builder";
-import { blogPostJsonLd, siteIdentityJsonLd } from "../src/lib/schema";
+import { blogPostJsonLd, serviceJsonLd, siteIdentityJsonLd } from "../src/lib/schema";
 import { articleKeywordCluster } from "../src/lib/seo-keywords";
-import { site } from "../src/lib/site-data";
+import { site, type Service } from "../src/lib/site-data";
 import { GET as robots } from "../src/app/robots.txt/route";
 
 async function main() {
@@ -53,6 +53,17 @@ async function main() {
   assert.equal(blogPostJsonLd(post).dateModified, "2026-10-03");
   assert.equal((blogPostJsonLd(post).author as Record<string, unknown>)["@id"], "https://www.voquarn.com/ceo#person");
   assert.ok(!JSON.stringify(siteIdentityJsonLd(site)).includes('"aggregateRating"'));
+  const pricedService: Service = {
+    id: "crm-systems", title: "CRM systems", description: "Business CRM", deliverables: [],
+    subServices: [{ id: "clinic", name: "Clinic CRM", description: "Clinic workflow", features: [], pricePkr: 2000, priceUsd: 7 }],
+  };
+  const monthlyOffers = serviceJsonLd(pricedService).offers as Array<{ priceSpecification: Array<Record<string, unknown>> }>;
+  assert.equal(monthlyOffers.length, 1);
+  assert.deepEqual(monthlyOffers[0].priceSpecification.map(({ price, priceCurrency, billingDuration, unitText }) => ({ price, priceCurrency, billingDuration, unitText })), [
+    { price: 2000, priceCurrency: "PKR", billingDuration: "P1M", unitText: "month" },
+    { price: 7, priceCurrency: "USD", billingDuration: "P1M", unitText: "month" },
+  ]);
+  assert.ok(!JSON.stringify(serviceJsonLd({ ...pricedService, id: "web-dev" })).includes('"billingDuration"'), "Project prices must not acquire a subscription billing period");
   const rules = await robots().text();
   const groups = rules.split("User-agent: ").slice(1);
   for (const group of groups) {

@@ -74,12 +74,9 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         has: [{ type: "host", value: "voquarn.com" }],
         destination: "https://www.voquarn.com/:path*",
-        // `permanent: true` emits 308, which Google needs to merge apex
-        // authority into www. `statusCode: 308` was set here previously
-        // alongside `permanent`, but Next explicitly rejects using both
-        // (see node_modules/next/dist/docs/.../redirects.md) — silently
-        // falling back to 307, which is temporary and left the two hostnames
-        // indexed as separate sites.
+        // Signal the preferred permanent host with 308. A hosting-level
+        // domain redirect can run before this rule; verify the live response.
+        // Next.js accepts `permanent` or `statusCode`, not both.
         permanent: true,
       },
       // Consolidate matching retired articles into substantive guides. Other

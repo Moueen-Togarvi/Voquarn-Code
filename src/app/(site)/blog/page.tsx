@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PageStructuredData } from "@/components/seo/page-structured-data";
 import {
@@ -43,34 +44,16 @@ function firstValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
 }
 
-export async function generateMetadata({ searchParams }: BlogPageProps) {
-  const filters = await searchParams;
-  const hasFilters = Boolean(firstValue(filters.q)?.trim() || firstValue(filters.topic));
-  const parsedPage = parseBlogPage(firstValue(filters.page));
-  const posts = await getBlogPosts();
-  const totalPages = Math.max(1, 1 + Math.ceil((posts.length - GRID_PAGE_SIZE - 1) / GRID_PAGE_SIZE));
-  const page = Math.min(parsedPage, totalPages);
-  const title = page > 1 ? `${pageTitle} — Page ${page}` : pageTitle;
-
-  return buildMetadata(
-    title,
-    pageDescription,
-    hasFilters ? "/blog" : page > 1 ? `/blog?page=${page}` : "/blog",
-    { keywords: pageKeywords, noIndex: hasFilters },
-  );
-}
-
-export default async function BlogPage({ searchParams }: BlogPageProps) {
+// Metadata and rendered cards must resolve the same filtered page and bounds.
+async function getBlogPageData(searchParams: BlogPageProps["searchParams"]) {
   const filters = await searchParams;
   const query = (firstValue(filters.q) ?? "").trim().slice(0, 120);
   const requestedTopic = firstValue(filters.topic) ?? "";
   const activeTopic = blogTopics.find((topic) => topic.value === requestedTopic) ?? null;
-  const parsedPage = parseBlogPage(firstValue(filters.page));
+  const currentPage = parseBlogPage(firstValue(filters.page));
   const posts = await getBlogPosts();
   const queryTokens = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  // Thousands of posts are in memory, so the unfiltered page (by far the most
-  // requested one) skips building a search string for every single one of them
-  // and pages straight through the already-sorted list.
+  // The unfiltered page can use the already-sorted list directly.
   const isFiltering = Boolean(query || activeTopic);
   const filteredPosts = isFiltering
     ? posts.filter((post) => {
@@ -90,7 +73,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     filteredPosts.length <= firstPageSize
       ? 1
       : 1 + Math.ceil((filteredPosts.length - firstPageSize) / GRID_PAGE_SIZE);
-  const currentPage = Math.min(parsedPage, totalPages);
+  if (currentPage > totalPages) notFound();
   const pagePosts =
     currentPage === 1
       ? filteredPosts.slice(0, firstPageSize)
@@ -98,6 +81,24 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           firstPageSize + (currentPage - 2) * GRID_PAGE_SIZE,
           firstPageSize + (currentPage - 1) * GRID_PAGE_SIZE,
         );
+  return { query, requestedTopic, activeTopic, currentPage, totalPages, pagePosts, totalPosts: filteredPosts.length };
+}
+
+export async function generateMetadata({ searchParams }: BlogPageProps) {
+  const { query, requestedTopic, currentPage } = await getBlogPageData(searchParams);
+  const hasFilters = Boolean(query || requestedTopic);
+  const title = currentPage > 1 ? `${pageTitle} — Page ${currentPage}` : pageTitle;
+
+  return buildMetadata(
+    title,
+    pageDescription,
+    hasFilters ? "/blog" : currentPage > 1 ? `/blog?page=${currentPage}` : "/blog",
+    { keywords: pageKeywords, noIndex: hasFilters },
+  );
+}
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const { query, requestedTopic, activeTopic, currentPage, totalPages, pagePosts, totalPosts } = await getBlogPageData(searchParams);
   // Only the posts actually on screen are narrowed to the card fields.
   const explorerPosts = pagePosts.map(
     ({ slug, title, excerpt, category, readTime, coverImage }) => ({
@@ -122,7 +123,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <JsonLd data={blogJsonLd(pagePosts)} />
       <BlogExplorer
         posts={explorerPosts}
-        totalPosts={filteredPosts.length}
+        totalPosts={totalPosts}
         currentPage={currentPage}
         totalPages={totalPages}
         query={query}

@@ -1,103 +1,71 @@
 ---
 title: "Knowledge Graph RAG: When Relationships Matter"
 slug: "knowledge-graph-rag"
-description: "A practical knowledge graph RAG guide covering scope, architecture, security, evaluation, cost, delivery, and provider selection for production use."
+description: "Decide when graph retrieval helps: entity matching, evidence paths, document permissions, graph updates and a practical comparison against vector search."
 category: "AI Infrastructure"
 targetKeyword: "knowledge graph RAG"
-readTime: "6 min read"
+secondaryKeywords: "graph retrieval, entity resolution, graph RAG evaluation"
+readTime: "4 min read"
 publishedAt: "2026-08-18"
+modifiedAt: "2026-10-14"
 status: "published"
-secondaryKeywords: "knowledge graph rag: when relationships matter"
 ---
 
-Treat **knowledge graph RAG** as a business capability rather than a model feature. The target is to answer questions that depend on entities, relationships, provenance, and multi-hop context. Success depends on how well the surrounding system supplies context, limits authority, verifies results, and learns from real outcomes.
+**Knowledge graph RAG is useful when an answer depends on relationships across records, rather than finding one relevant passage.** Start with ordinary retrieval as a baseline. Add graph extraction or traversal only when representative questions show what those relationships contribute.
 
-## Define the business decision first
+“How do I reset my password?” rarely needs a graph. “Which customers depend on the component affected by this supplier incident?” needs identities, dependency direction and current records. The second problem may justify a relationship model even before a language model is involved.
 
-Map one representative case from trigger to final outcome. Record who participates, which systems hold authoritative information, where judgment occurs, what can go wrong, and which evidence proves completion. This reveals whether AI is solving a workflow problem or merely adding a conversational layer.
+## Separate a knowledge graph from one GraphRAG implementation
 
-For this topic, the intended system boundary is specific: a hybrid retrieval design combining graph entities and edges with documents, vector search, permissions, and citations. Write that boundary into the brief. Anything outside it should be explicitly excluded, routed to a person, or treated as a later hypothesis. Clear exclusions protect both the estimate and the operating team.
+A knowledge graph can contain curated business entities and edges. Microsoft's [GraphRAG project](https://microsoft.github.io/graphrag/) describes a particular pipeline that extracts relationships from text and builds community summaries. Its local and global retrieval modes serve different question types. Installing that project does not establish that extracted relationships in your documents are correct.
 
-The most important early failure to design against is also concrete: entity resolution errors connect unrelated records and create persuasive but incorrect multi-hop answers. Turn that scenario into an acceptance test before choosing a model or building a polished interface.
+For structured order or asset data, explicit database relationships may be more reliable than asking a model to rediscover them. Use model extraction for information that lives in unstructured text, and preserve the original passage for review.
 
-## What a production scope should include
+## Define entity identity before building edges
 
-Use this checklist when comparing proposals:
+Consider two suppliers both trading as “Atlas.” Merging them by display name can link an incident at one company to another company's contracts. Use stable source identifiers, record aliases separately, and send unresolved matches to a review queue.
 
-- Source systems, data classification, identity, tenancy, retention, and deletion requirements.
-- Explicit interfaces, schemas, provenance, versioning, error behavior, and compatibility boundaries.
-- Ingestion or tool execution paths with validation, retries, idempotency, and reconciliation.
-- Permission-aware retrieval or execution that preserves the authority of the requesting user.
-- Representative quality, security, latency, load, freshness, and failure evaluations.
-- Deployment, observability, backup, migration, incident response, and change ownership.
+For each edge, retain:
 
-Compare scopes at their boundaries. Look for explicit exclusions, client inputs, data duties, third-party limits, unresolved decisions, and the test that closes each uncertainty. A vague promise to use a capable model transfers delivery risk to the buyer.
+- Source and destination entity identifiers.
+- Relationship type and direction.
+- Supporting document, record or passage.
+- Effective date and any expiry or supersession.
+- Whether the relationship is explicit or inferred.
+- The access policy inherited from its evidence.
 
-## Architecture and data boundaries
+An extracted “may supply” statement must not silently become a confirmed contract. Distinguish uncertainty in the stored relationship and in the answer.
 
-Inventory context before choosing infrastructure. Classify each source, confirm who owns its quality, and define freshness and revocation. Minimize what enters prompts, indexes, memories, traces, and vendor systems; every copy needs access and lifecycle controls.
+## Keep traversal inside the user's permissions
 
-Use deterministic code for rules that must always hold and models for interpretation that benefits from context. Record both layers in the trace so an investigator can distinguish model reasoning, policy decisions, execution, and observed result.
+Permission checks belong before a candidate path becomes model context. Filtering only the final answer is too late if restricted entities or community summaries have entered the prompt.
 
-Map failure domains so one unavailable provider or connector does not corrupt the wider process. Bound retries, use circuit breakers and idempotency, preserve recoverable state, and show users when the system cannot complete work confidently.
+Test two accounts: one can view a contract and one cannot. Ask both about dependencies passing through that contract. The restricted account must not learn the hidden customer through a graph neighbour, count, summary or citation label. Also test revocation after the graph has been built.
 
-## Delivery roadmap
+## Compare a specific question set
 
-Separate experimentation from production. The experiment can compare prompts, models, retrieval, or workflow designs; the production path needs versioning, access control, tests, observability, fallback, rollback, and an owner who can stop the system.
+Create three slices: direct lookups, relationship questions and whole-corpus summaries. Run the same questions against text retrieval and the graph approach, with the same access policy and answer rubric.
 
-Treat prompts and retrieval settings as production code. Review changes, link them to test evidence, deploy gradually, monitor comparative outcomes, and preserve the previous configuration. Provider aliases should not change behavior silently behind your release process.
+For an illustrative dependency question, record the required path: supplier → component → product → customer contract. Score whether every edge has support, whether the relationship is current, and whether the answer makes an unjustified leap. A plausible final sentence does not compensate for an incorrect intermediate edge.
 
-For broader context, read our [AI implementation pillar guide](/blog/ai-native-application-development). It explains how this capability fits into a larger AI delivery and governance program.
+Track indexing effort, update latency, query latency and cost alongside answer quality. Our [RAG evaluation framework](/blog/rag-evaluation-framework) separates retrieval failures from unsupported generation. Do not adopt a graph merely because its visualisation looks convincing.
 
-## Security and human control
+## Plan updates and deletion
 
-Protect the action layer even if the model is deceived. Bind tools to user identity, narrow scopes and destinations, limit frequency and value, require approval for high-risk operations, and record tamper-resistant evidence of policy and execution.
+A corrected source can invalidate derived edges and summaries. Keep dependencies so ingestion can replace affected facts and recompute dependent material. Define what users see between a source correction and a complete rebuild.
 
-A reviewer needs enough evidence to make an independent decision: user request, relevant sources, proposed result, policy checks, uncertainty, and likely consequence. Provide correction and escalation tools, not a binary approval that encourages rubber-stamping.
-
-In this case, the release must prove it can control this failure: entity resolution errors connect unrelated records and create persuasive but incorrect multi-hop answers. Define detection, containment, user communication, recovery, evidence retention, and ownership before production access expands.
-
-## Evaluation and monitoring
-
-Construct evaluations from the actual distribution of work plus deliberately difficult cases. Include missing context, conflicting evidence, permission boundaries, unsafe requests, edge languages, tool errors, and unanswerable tasks. Publish results by risk and user segment.
-
-The primary outcome should be measured this way: relationship-heavy questions improve without reducing citation support, permission enforcement, freshness, or maintainability. Pair that measure with leading indicators for quality, policy compliance, human corrections, escalation, latency, availability, and cost. Monitor changes by model and workflow version so regressions can be attributed and rolled back.
-
-Combine explicit feedback with outcome evidence. A user may approve an answer that later causes rework, while a rejected suggestion may still reveal useful retrieval. Sample interactions systematically and let domain owners adjudicate uncertain labels.
-
-## Cost and timeline
-
-Estimate a range based on workflow volume, context size, model mix, retrieval, tool calls, exception handling, assurance, and service levels. Include low, expected, and peak scenarios. Cheap inference can still support an expensive process when failures create manual rework.
-
-Use an explicit risk budget alongside money and time. Increasing autonomy, users, data sensitivity, or action value should require stronger evaluation, approvals, monitoring, and recovery. Do not expand all dimensions simultaneously.
-
-## How to select a delivery partner
-
-Give finalists the same difficult scenario and ask them to map assumptions, boundaries, controls, tests, and a first release. Strong teams explain what should remain deterministic, what they would not automate, and what evidence could stop the project.
-
-Define acceptance through agreed evaluations and operational readiness, not subjective satisfaction with a demo. State warranty and remediation terms for failed controls, and clarify recurring responsibilities for model, data, security, and dependency updates.
-
-## Questions to ask before signing
-
-- What part of this workflow should remain deterministic or human-owned?
-- Which assumption has the greatest effect on feasibility, risk, or cost?
-- How will permissions be enforced through retrieval and tool execution?
-- What representative and adversarial evaluations block a release?
-- How will an operator explain, stop, and recover a failed workflow?
-- Which artifacts and accounts will our organization own from day one?
+Test a renamed company, a revoked document, conflicting dates and a deleted record. The answer should identify unresolved conflicts or unavailable evidence. Falling back to an old graph without warning makes a fast system unreliable.
 
 ## Frequently asked questions
 
-### How should we start with knowledge graph RAG?
+### Does graph RAG replace vector search?
 
-Select a narrow use case with accessible data, clear users, an accountable operator, and a manual fallback. Measure today’s time, quality, cost, and exceptions, then use a time-boxed proof to decide whether production investment is justified.
+Not necessarily. Text retrieval can find passages while traversal supplies relationships. Compare that hybrid with the simpler baseline before accepting extra maintenance.
 
-### Which model should we use?
+### Can graph RAG prevent hallucinations?
 
-Compare complete system outcomes rather than public benchmarks. Retrieval, prompt design, tools, guardrails, and user interface influence results. Include expected volume and retry behavior when estimating latency and cost.
+No. Entity matching, extraction, retrieval and generation can each fail. Supported paths and citations make inspection easier; they do not prove every answer true.
 
-### How do we know it is ready for production?
+### What should a first implementation deliver?
 
-Start with a controlled cohort after the readiness gate. Production is another source of evidence, not permission to stop testing. Expand only when outcomes, incidents, exception queues, user behavior, and cost support the decision.
-
-Explore [Voquarn Code AI services](/services) or [discuss your AI workflow](/contact) for a scoped production assessment.
+One bounded question family, an entity-resolution policy, evidence-backed edges, permission tests and a comparison report. Review the wider [AI application architecture](/blog/ai-native-application-development), or [discuss your source systems](/contact) before choosing a platform.

@@ -1,77 +1,84 @@
 ---
-title: "EU AI Act Compliance for Software Teams"
+title: "EU AI Act for Software Teams: Roles, Dates and Delivery Evidence"
 slug: "eu-ai-act-compliance-software"
-description: "What EU AI Act compliance means for software teams: risk classification, obligations by role, documentation to maintain, and how to build compliance into delivery."
+description: "Review EU AI Act roles, application dates and engineering evidence for software teams using third-party models, with current Commission references."
 category: "AI Governance"
 targetKeyword: "EU AI Act compliance software"
+secondaryKeywords: "AI Act provider vs deployer, EU AI Act application dates, AI software documentation, third-party model responsibilities"
 readTime: "4 min read"
 publishedAt: "2026-08-19"
+modifiedAt: "2026-10-14"
 status: "published"
-secondaryKeywords: "eu ai act compliance for software teams"
 ---
-**EU AI Act compliance software** obligations depend on two things: what the system does and what role your organization plays in supplying it. Teams frequently assume the regulation applies uniformly, then either over-engineer for low-risk systems or miss obligations on higher-risk ones.
 
-This is an operational overview for engineering and product teams. It is not legal advice, and classification decisions in particular should be confirmed with qualified counsel.
+**EU AI Act obligations for software teams depend on the system, intended use, your role and the applicable date.** Using a third-party model API does not automatically make a company only a deployer. A business that develops or commissions a system and supplies it under its own name may be a provider.
 
-## Establish role and risk classification first
+This engineering overview was reviewed on 14 October 2026. It helps teams prepare evidence for qualified legal review; it does not classify a particular product or establish that it complies.
 
-Your obligations differ depending on whether you develop and place a system on the market, or deploy someone else's system in your own operations. Organizations often occupy both roles for different systems, and each needs classifying separately.
+## Identify the organization’s role for each system
 
-Risk classification then determines the weight of obligation. The framework distinguishes prohibited practices, high-risk uses, systems with transparency obligations, and everything else.
+The Commission's [Article 3 text](https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-3) distinguishes providers that develop or commission and market or put systems into service under their name from deployers using systems under their authority.
 
-The practical step is to inventory every AI system in use, including embedded features in third-party products, and classify each. Most organizations discover systems nobody had catalogued, particularly features added to existing SaaS tools.
+Map the model, the application and its customer separately. For example, an API supplier may provide the underlying model while another business builds and brands the application. The application business can have obligations of its own. One organization can occupy different roles for different activities.
 
-## Where obligations concentrate
+Record who defines the intended purpose, whose name appears on the product, who operates it and who makes consequential changes. Give that record to counsel instead of selecting a role from the technology stack.
 
-High-risk classification carries the substantive requirements: risk management across the lifecycle, data governance covering training and testing data quality, technical documentation, logging sufficient for traceability, transparency to deployers, human oversight design, and accuracy, robustness, and cybersecurity appropriate to the use.
+## Use the current application schedule
 
-Uses touching employment decisions, access to essential services, credit assessment, education, and similar areas are the common high-risk cases for ordinary business software. If your system materially influences a decision about a person in these domains, assume the classification applies until advised otherwise.
+The Commission's [AI Act overview](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) states that the AI Omnibus entered into force on 27 July 2026. Its service desk presents consolidated text reflecting those amendments. This is different from relying on an earlier proposal or political announcement.
 
-Transparency obligations apply more broadly, including disclosing that a person is interacting with an AI system and marking synthetic content.
+The current [Article 113 schedule](https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-113), checked for this review, includes:
 
-## What to build into delivery
+- **Chapters I and II, subject to specified exceptions.** 2 February 2025.
+- **Listed governance and general-purpose model provisions.** 2 August 2025.
+- **General application date.** 2 August 2026.
+- **Specified newly added prohibited-practice provisions.** 2 December 2026.
+- **Listed high-risk provisions for Article 6(2)/Annex III systems.** 2 December 2027.
+- **Listed high-risk provisions for Article 6(1)/Annex I systems.** 2 August 2028.
 
-Rather than treating compliance as a document produced before launch, build the artifacts as part of engineering work.
+These are schedule entries, not one blanket deadline for every business. Check the exact provision, transitional treatment and current consolidated law with counsel. An extension for specified high-risk requirements does not postpone all other duties.
 
-- **System inventory** with purpose, classification, owner, model versions, and data sources, maintained as systems change rather than assembled annually.
-- **Technical documentation** describing intended purpose, design, training and test data characteristics, performance metrics, known limitations, and the human oversight arrangement. Written during development, this is largely a byproduct of good engineering practice.
-- **Logging** with sufficient retention to trace how a specific decision was reached, including model version, inputs, and outputs, with personal data handled appropriately.
-- **Evaluation records** showing accuracy and robustness testing, including performance across relevant subgroups where the use case affects people differently.
-- **Human oversight design** documented as a mechanism rather than a claim: what a reviewer sees, what they can change, and evidence they can act meaningfully rather than rubber-stamping.
-- **Incident process** covering detection, assessment, correction, and notification where required.
+## Classify the intended use before designing controls
 
-## Practical sequencing
+[Article 6](https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-6) sets the high-risk classification framework. A broad label such as “HR software” or “healthcare AI” is not a complete classification. Document what the system actually does, the decision it influences and any claimed exception.
 
-Start with the inventory, because you cannot assess obligations for systems you have not catalogued.
+A scheduling assistant and a tool that ranks employment candidates can have different purposes and consequences even if both use the same model. Record where human review happens and whether that person can reject or correct the output in practice.
 
-Classify with counsel, documenting the reasoning for each decision. Defensible reasoning matters as much as the conclusion.
+Assess [Article 50 transparency requirements](https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50) separately. Disclosure and synthetic-content duties have defined conditions and exceptions; do not reduce them to a universal rule that every AI-generated sentence needs an identical label.
 
-For anything potentially high-risk, close the documentation and logging gaps first, since these are the hardest to reconstruct retrospectively.
+## Assemble an inspectable engineering record
 
-Build the artifacts into your development lifecycle so they stay current. Compliance documentation maintained separately from the system diverges within a release or two.
+Once the legal assessment identifies duties, turn them into named delivery artifacts:
 
-## Working with vendors
+- A system inventory with purpose, owner, suppliers and deployment context.
+- A role and classification record with the legal reviewer and review date.
+- Data-flow diagrams showing inputs, outputs, storage and external transfers.
+- Versioned evaluation cases covering the intended use and meaningful failure modes.
+- Human-review screens and evidence that intervention works.
+- Access, logging and retention settings matched to the agreed obligations.
+- Supplier documentation and a process for handling model or service changes.
+- Incident escalation and correction responsibilities.
 
-If you deploy third-party AI systems, you need information from the supplier: intended purpose, limitations, performance characteristics, and instructions for use.
+These are practical preparation items. Their presence alone is not certification, and every product does not require the same set or level of documentation.
 
-Ask for it before purchase and write it into contracts. Suppliers unable to provide documentation for a system you will use in a regulated context are a risk you inherit.
+## Connect change management to the assessment
+
+Review changes to intended purpose, affected users, autonomy, data sources and model behavior. A feature that starts as drafting assistance may later influence a consequential decision.
+
+Keep the assessment with the release record so engineers can identify which assumptions changed. The [AI agent acceptance-testing guide](/blog/ai-agent-acceptance-testing-tool-actions-2026) provides examples of testable tool actions and human approval paths.
 
 ## Frequently asked questions
 
-### Does this apply to us if we are outside the EU?
+### Are Pakistan-based suppliers automatically outside scope?
 
-Potentially, where systems are placed on the EU market or their output is used in the EU. Confirm your position with counsel rather than assuming geography excludes you.
+No geographical assumption is sufficient. EU market placement, use and other scope conditions need assessment for the actual arrangement.
 
-### Are internal-only tools in scope?
+### Does using an API make us a deployer?
 
-Deployer obligations can apply to internal use, particularly where the system affects employees. Classification depends on use, not on whether it is customer-facing.
+Not necessarily. Building or commissioning and supplying your own system can create a provider role; operating systems can create a deployer role. Assess the activities separately.
 
-### What if we only use a third-party model through an API?
+### Is an AI Act checklist proof of compliance?
 
-You are likely a deployer of any system you build on it, with obligations attaching to your system and its use.
+No. It can organize work, but legal classification, applicable duties and supporting evidence need qualified review.
 
-### How much documentation is enough?
-
-Enough for a competent reviewer to understand purpose, design, data, performance, limitations, and oversight without consulting the team.
-
-Explore [our software and web capabilities](/services) or [contact Voquarn Code](/contact) to discuss governance for AI systems in delivery.
+For engineering support with [AI and software delivery](/services), [share the intended workflow](/contact) together with the responsibilities established by your legal team.

@@ -83,7 +83,7 @@ export default async function CeoPage() {
 
               <div className="flex items-center justify-center gap-6 pt-4 text-neutral-400">
                 <a href={site.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-black transition-colors flex items-center gap-1.5 text-xs font-bold">
-                  <Globe className="w-4 h-4" /> LinkedIn Profile
+                  <Globe className="w-4 h-4" /> Voquarn on LinkedIn
                 </a>
               </div>
             </div>

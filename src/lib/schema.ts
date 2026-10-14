@@ -175,9 +175,9 @@ export function breadcrumbJsonLd(items: BreadcrumbItem[]): Record<string, unknow
 export function serviceJsonLd(service: Service): Record<string, unknown> {
   const subServices = service.subServices ?? [];
   const url = absoluteUrl(`/services/${service.id}`);
+  const isMonthly = service.id === "crm-systems";
 
-  // Publishing real prices is what lets answer engines respond to
-  // "how much does X cost" with our numbers instead of a competitor's.
+  // Keep the billing period consistent with the visible service cards.
   const offer = (subService: SubService) => {
     const priceSpecification: Record<string, unknown>[] = [];
     if (subService.pricePkr > 0) {
@@ -185,6 +185,7 @@ export function serviceJsonLd(service: Service): Record<string, unknown> {
         "@type": "UnitPriceSpecification",
         price: subService.pricePkr,
         priceCurrency: "PKR",
+        ...(isMonthly ? { billingDuration: "P1M", unitText: "month" } : {}),
       });
     }
     if (subService.priceUsd > 0) {
@@ -192,6 +193,7 @@ export function serviceJsonLd(service: Service): Record<string, unknown> {
         "@type": "UnitPriceSpecification",
         price: subService.priceUsd,
         priceCurrency: "USD",
+        ...(isMonthly ? { billingDuration: "P1M", unitText: "month" } : {}),
       });
     }
 
@@ -223,7 +225,9 @@ export function serviceJsonLd(service: Service): Record<string, unknown> {
     url,
     provider: { "@id": organizationId() },
     areaServed: ["Pakistan", "United States", "United Kingdom", "United Arab Emirates"],
-    ...(pkrPrices.length > 0
+    ...(isMonthly && subServices.length > 0
+      ? { offers: subServices.map(offer) }
+      : pkrPrices.length > 0
       ? {
           offers: {
             "@type": "AggregateOffer",
@@ -244,7 +248,7 @@ export function serviceJsonLd(service: Service): Record<string, unknown> {
   };
 }
 
-/** Collection pages (services, portfolio, blog) rank better with an explicit item list. */
+/** Describe the items actually displayed on a collection page. */
 export function itemListJsonLd(
   items: { name: string; path: string; description?: string }[],
   listName: string,
