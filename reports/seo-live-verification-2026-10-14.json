@@ -1,0 +1,1707 @@
+{
+  "date": "2026-10-14",
+  "deploymentCommit": "02332da",
+  "summary": {
+    "date": "2026-10-14",
+    "sitemapCount": 82,
+    "blogCount": 67,
+    "duplicateSitemapUrls": 0,
+    "problems": [],
+    "blogsMissingFromPagination": [],
+    "extraResults": [
+      {
+        "url": "https://www.voquarn.com/blog?page=2",
+        "status": 200,
+        "finalUrl": "https://www.voquarn.com/blog?page=2",
+        "seconds": 1.806,
+        "bytes": 166756,
+        "title": "Voquarn Code Blog | SEO, Web Development & AI Automation \u2014 Page 2",
+        "canonicals": [
+          "https://www.voquarn.com/blog?page=2"
+        ],
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "headerRobots": "",
+        "h1": 1,
+        "jsonLdCount": 3,
+        "jsonLdValid": true
+      },
+      {
+        "url": "https://www.voquarn.com/blog?page=3",
+        "status": 200,
+        "finalUrl": "https://www.voquarn.com/blog?page=3",
+        "seconds": 1.705,
+        "bytes": 167543,
+        "title": "Voquarn Code Blog | SEO, Web Development & AI Automation \u2014 Page 3",
+        "canonicals": [
+          "https://www.voquarn.com/blog?page=3"
+        ],
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "headerRobots": "",
+        "h1": 1,
+        "jsonLdCount": 3,
+        "jsonLdValid": true
+      },
+      {
+        "url": "https://www.voquarn.com/blog?page=4",
+        "status": 200,
+        "finalUrl": "https://www.voquarn.com/blog?page=4",
+        "seconds": 1.33,
+        "bytes": 167362,
+        "title": "Voquarn Code Blog | SEO, Web Development & AI Automation \u2014 Page 4",
+        "canonicals": [
+          "https://www.voquarn.com/blog?page=4"
+        ],
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "headerRobots": "",
+        "h1": 1,
+        "jsonLdCount": 3,
+        "jsonLdValid": true
+      },
+      {
+        "url": "https://www.voquarn.com/blog?page=5",
+        "status": 200,
+        "finalUrl": "https://www.voquarn.com/blog?page=5",
+        "seconds": 2.419,
+        "bytes": 166172,
+        "title": "Voquarn Code Blog | SEO, Web Development & AI Automation \u2014 Page 5",
+        "canonicals": [
+          "https://www.voquarn.com/blog?page=5"
+        ],
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "headerRobots": "",
+        "h1": 1,
+        "jsonLdCount": 3,
+        "jsonLdValid": true
+      },
+      {
+        "url": "https://www.voquarn.com/blog?page=6",
+        "status": 200,
+        "finalUrl": "https://www.voquarn.com/blog?page=6",
+        "seconds": 1.209,
+        "bytes": 121707,
+        "title": "Voquarn Code Blog | SEO, Web Development & AI Automation \u2014 Page 6",
+        "canonicals": [
+          "https://www.voquarn.com/blog?page=6"
+        ],
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "headerRobots": "",
+        "h1": 1,
+        "jsonLdCount": 3,
+        "jsonLdValid": true
+      },
+      {
+        "url": "https://www.voquarn.com/blog?page=999",
+        "status": 404,
+        "finalUrl": "https://www.voquarn.com/blog?page=999",
+        "seconds": 0.79,
+        "bytes": 37092,
+        "title": "Page Not Found | Voquarn Code",
+        "canonicals": [
+          "https://www.voquarn.com"
+        ],
+        "robots": [
+          "noindex",
+          "noindex, follow"
+        ],
+        "headerRobots": "",
+        "h1": 0,
+        "jsonLdCount": 0,
+        "jsonLdValid": true
+      },
+      {
+        "url": "https://www.voquarn.com/blog/seo-audit-nonexistent-20261014",
+        "status": 404,
+        "finalUrl": "https://www.voquarn.com/blog/seo-audit-nonexistent-20261014",
+        "seconds": 1.275,
+        "bytes": 38023,
+        "title": "Page Not Found | Voquarn Code",
+        "canonicals": [
+          "https://www.voquarn.com"
+        ],
+        "robots": [
+          "noindex",
+          "noindex, follow"
+        ],
+        "headerRobots": "",
+        "h1": 0,
+        "jsonLdCount": 0,
+        "jsonLdValid": true
+      },
+      {
+        "url": "https://www.voquarn.com/blog/nextjs-16-3-migration-guide-2026",
+        "status": 200,
+        "finalUrl": "https://www.voquarn.com/blog/nextjs-16-3-architecture-guide-2026",
+        "seconds": 1.473,
+        "bytes": 154760,
+        "title": "Next.js 16.3 Architecture: Rendering, Caching and Delivery",
+        "canonicals": [
+          "https://www.voquarn.com/blog/nextjs-16-3-architecture-guide-2026"
+        ],
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "headerRobots": "",
+        "h1": 1,
+        "jsonLdCount": 3,
+        "jsonLdValid": true
+      }
+    ]
+  },
+  "newMigrationRedirect": {
+    "status": 308,
+    "location": "/blog/nextjs-16-3-architecture-guide-2026"
+  },
+  "apexRedirect": {
+    "status": 307,
+    "pending": "Hosting account access"
+  },
+  "publicRouteRegression": "Passed on production: archive canonical, filter noindex, both pagination 404s, CRM monthly schema and llms terms",
+  "pages": [
+    {
+      "url": "https://www.voquarn.com/",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/",
+      "title": "Voquarn Code | Web Development, SEO & AI Automation Agency",
+      "canonicals": [
+        "https://www.voquarn.com"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/services",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/services",
+      "title": "Web Development, SEO, Apps & AI Automation Services | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com/services"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/portfolio",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/portfolio",
+      "title": "Portfolio & Case Studies | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com/portfolio"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog",
+      "title": "Voquarn Code Blog | SEO, Web Development & AI Automation",
+      "canonicals": [
+        "https://www.voquarn.com/blog"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/contact",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/contact",
+      "title": "Contact Voquarn Code | Web Development & SEO Agency",
+      "canonicals": [
+        "https://www.voquarn.com/contact"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 2,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/about",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/about",
+      "title": "About Voquarn Code | Web Development, SEO & AI Studio",
+      "canonicals": [
+        "https://www.voquarn.com/about"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 2,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/team",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/team",
+      "title": "Voquarn Code Team | Engineering, Design & Growth Leadership",
+      "canonicals": [
+        "https://www.voquarn.com/team"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/ceo",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/ceo",
+      "title": "Moueen Togarvi, Founder & CEO | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com/ceo"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/careers",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/careers",
+      "title": "Careers at Voquarn Code | Engineering, Design & SEO Roles",
+      "canonicals": [
+        "https://www.voquarn.com/careers"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 2,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/privacy",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/privacy",
+      "title": "Privacy Policy | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com/privacy"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 2,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/terms",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/terms",
+      "title": "Terms of Service | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com/terms"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 2,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/services/crm-systems",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/services/crm-systems",
+      "title": "CRM & Management Systems Services in Pakistan | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com/services/crm-systems"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 4,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/services/saas-apps",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/services/saas-apps",
+      "title": "SaaS Applications Services in Pakistan | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com/services/saas-apps"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 4,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/services/app-dev",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/services/app-dev",
+      "title": "App Development Services in Pakistan | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com/services/app-dev"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 4,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/services/web-dev",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/services/web-dev",
+      "title": "Web Development Services in Pakistan | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com/services/web-dev"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 4,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/agentic-commerce-readiness-catalog-checkout-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/agentic-commerce-readiness-catalog-checkout-2026",
+      "title": "Agentic Commerce Readiness: Test Catalog to Checkout",
+      "canonicals": [
+        "https://www.voquarn.com/blog/agentic-commerce-readiness-catalog-checkout-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-agent-acceptance-testing-tool-actions-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-agent-acceptance-testing-tool-actions-2026",
+      "title": "AI Agent Acceptance Testing: Verify Tools and Outcomes",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-agent-acceptance-testing-tool-actions-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-automation-cost-pakistan-workflow-budget-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-automation-cost-pakistan-workflow-budget-2026",
+      "title": "AI Automation Cost in Pakistan: Build a Workflow Budget",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-automation-cost-pakistan-workflow-budget-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/custom-software-development-pakistan-procurement-checklist-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/custom-software-development-pakistan-procurement-checklist-2026",
+      "title": "Custom Software Development in Pakistan: Buyer Checklist",
+      "canonicals": [
+        "https://www.voquarn.com/blog/custom-software-development-pakistan-procurement-checklist-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/nextjs-technical-seo-audit-checklist-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/nextjs-technical-seo-audit-checklist-2026",
+      "title": "Next.js Technical SEO Audit: Canonicals to Crawl Evidence",
+      "canonicals": [
+        "https://www.voquarn.com/blog/nextjs-technical-seo-audit-checklist-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/saas-mvp-budget-pakistan-scope-acceptance-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/saas-mvp-budget-pakistan-scope-acceptance-2026",
+      "title": "SaaS MVP Budget in Pakistan: Scope Before the Estimate",
+      "canonicals": [
+        "https://www.voquarn.com/blog/saas-mvp-budget-pakistan-scope-acceptance-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/aeo-budget-planning-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/aeo-budget-planning-2026",
+      "title": "AEO Budget: What Answer Engine Optimisation Costs and Returns",
+      "canonicals": [
+        "https://www.voquarn.com/blog/aeo-budget-planning-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-conversion-rate-optimization-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-conversion-rate-optimization-2026",
+      "title": "AI Conversion Rate Optimization: What Works and What Is Sold",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-conversion-rate-optimization-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/aws-vs-azure-for-startups-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/aws-vs-azure-for-startups-2026",
+      "title": "AWS vs Azure for Startups: Credits, Costs and Operating Fit",
+      "canonicals": [
+        "https://www.voquarn.com/blog/aws-vs-azure-for-startups-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/finops-company-selection-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/finops-company-selection-2026",
+      "title": "Choosing a FinOps Company: What They Do and What They Charge",
+      "canonicals": [
+        "https://www.voquarn.com/blog/finops-company-selection-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/hiring-dedicated-python-team-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/hiring-dedicated-python-team-2026",
+      "title": "Hiring a Dedicated Python Team: Structure, Cost, and What Goes Wrong",
+      "canonicals": [
+        "https://www.voquarn.com/blog/hiring-dedicated-python-team-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/intelligent-document-processing-uk-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/intelligent-document-processing-uk-2026",
+      "title": "Intelligent Document Processing in the UK: Accuracy, Cost, and Limits",
+      "canonicals": [
+        "https://www.voquarn.com/blog/intelligent-document-processing-uk-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/legacy-software-modernization-uk-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/legacy-software-modernization-uk-2026",
+      "title": "Legacy Software Modernization in the UK: Approaches and Real Costs",
+      "canonicals": [
+        "https://www.voquarn.com/blog/legacy-software-modernization-uk-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/llmops-consulting-what-to-expect-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/llmops-consulting-what-to-expect-2026",
+      "title": "LLMOps Consulting: Scope, Cost, and What Should Be Delivered",
+      "canonicals": [
+        "https://www.voquarn.com/blog/llmops-consulting-what-to-expect-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/private-ai-deployment-fintech-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/private-ai-deployment-fintech-2026",
+      "title": "Private AI for Fintech: Deployment Patterns Under Real Constraints",
+      "canonicals": [
+        "https://www.voquarn.com/blog/private-ai-deployment-fintech-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-search-product-data-optimization-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-search-product-data-optimization-2026",
+      "title": "Product Data for AI Search: Structuring a Catalogue to Be Cited",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-search-product-data-optimization-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/healthcare-product-engineering-services-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/healthcare-product-engineering-services-2026",
+      "title": "Product Engineering for Healthcare: Regulatory Reality and Delivery",
+      "canonicals": [
+        "https://www.voquarn.com/blog/healthcare-product-engineering-services-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/self-hosted-llm-cost-calculator-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/self-hosted-llm-cost-calculator-2026",
+      "title": "Self-Hosted LLM: The Real Cost Compared to API Pricing",
+      "canonicals": [
+        "https://www.voquarn.com/blog/self-hosted-llm-cost-calculator-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/shadow-ai-governance-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/shadow-ai-governance-2026",
+      "title": "Shadow AI Governance: Finding and Managing Unsanctioned AI Use",
+      "canonicals": [
+        "https://www.voquarn.com/blog/shadow-ai-governance-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/shopify-speed-optimization-checklist-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/shopify-speed-optimization-checklist-2026",
+      "title": "Shopify Speed Optimization: What Actually Moves Core Web Vitals",
+      "canonicals": [
+        "https://www.voquarn.com/blog/shopify-speed-optimization-checklist-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/shopify-vs-woocommerce-2026-decision-guide",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/shopify-vs-woocommerce-2026-decision-guide",
+      "title": "Shopify vs WooCommerce in 2026: A Cost and Control Decision",
+      "canonicals": [
+        "https://www.voquarn.com/blog/shopify-vs-woocommerce-2026-decision-guide"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/agent-plugins-1-implementation-service",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/agent-plugins-1-implementation-service",
+      "title": "Agent Plugins 1.0 Implementation Service Guide",
+      "canonicals": [
+        "https://www.voquarn.com/blog/agent-plugins-1-implementation-service"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-agent-cyber-containment-consulting",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-agent-cyber-containment-consulting",
+      "title": "AI Agent Cyber Containment Consulting Guide",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-agent-cyber-containment-consulting"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-coding-agent-stacked-pull-request-workflow",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-coding-agent-stacked-pull-request-workflow",
+      "title": "AI Coding Agent Stacked Pull Request Workflow",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-coding-agent-stacked-pull-request-workflow"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/code-review-agent-skills-implementation-service",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/code-review-agent-skills-implementation-service",
+      "title": "Code Review Agent Skills Implementation Service",
+      "canonicals": [
+        "https://www.voquarn.com/blog/code-review-agent-skills-implementation-service"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/coding-agent-reasoning-level-governance",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/coding-agent-reasoning-level-governance",
+      "title": "Coding Agent Reasoning Level Governance Guide",
+      "canonicals": [
+        "https://www.voquarn.com/blog/coding-agent-reasoning-level-governance"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/copilot-jetbrains-enterprise-settings-rollout",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/copilot-jetbrains-enterprise-settings-rollout",
+      "title": "Copilot JetBrains Enterprise Settings Rollout Guide",
+      "canonicals": [
+        "https://www.voquarn.com/blog/copilot-jetbrains-enterprise-settings-rollout"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/enterprise-agent-delegation-readiness-assessment",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/enterprise-agent-delegation-readiness-assessment",
+      "title": "Enterprise Agent Delegation Readiness Assessment",
+      "canonicals": [
+        "https://www.voquarn.com/blog/enterprise-agent-delegation-readiness-assessment"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/github-copilot-microsoft-teams-integration-consulting",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/github-copilot-microsoft-teams-integration-consulting",
+      "title": "GitHub Copilot Microsoft Teams Integration Consulting",
+      "canonicals": [
+        "https://www.voquarn.com/blog/github-copilot-microsoft-teams-integration-consulting"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/github-copilot-model-deprecation-migration-service",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/github-copilot-model-deprecation-migration-service",
+      "title": "GitHub Copilot Model Deprecation Migration Service",
+      "canonicals": [
+        "https://www.voquarn.com/blog/github-copilot-model-deprecation-migration-service"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/github-copilot-slack-workflow-implementation-service",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/github-copilot-slack-workflow-implementation-service",
+      "title": "GitHub Copilot Slack Workflow Implementation Service",
+      "canonicals": [
+        "https://www.voquarn.com/blog/github-copilot-slack-workflow-implementation-service"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/github-oauth-refresh-token-migration-service",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/github-oauth-refresh-token-migration-service",
+      "title": "GitHub OAuth Refresh Token Migration Service",
+      "canonicals": [
+        "https://www.voquarn.com/blog/github-oauth-refresh-token-migration-service"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/nextjs-instant-navigation-audit-service",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/nextjs-instant-navigation-audit-service",
+      "title": "Next.js Instant Navigation Audit Service: A Buyer Guide",
+      "canonicals": [
+        "https://www.voquarn.com/blog/nextjs-instant-navigation-audit-service"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/nextjs-security-patch-readiness-service",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/nextjs-security-patch-readiness-service",
+      "title": "Next.js Security Patch Readiness Service Guide",
+      "canonicals": [
+        "https://www.voquarn.com/blog/nextjs-security-patch-readiness-service"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/npm-publish-pipeline-security-audit",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/npm-publish-pipeline-security-audit",
+      "title": "npm Publish Pipeline Security Audit Guide",
+      "canonicals": [
+        "https://www.voquarn.com/blog/npm-publish-pipeline-security-audit"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/openai-zero-data-retention-architecture-consulting",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/openai-zero-data-retention-architecture-consulting",
+      "title": "OpenAI Zero Data Retention Architecture Consulting",
+      "canonicals": [
+        "https://www.voquarn.com/blog/openai-zero-data-retention-architecture-consulting"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/aeo-vs-seo-premium-buyer-guide-2026-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/aeo-vs-seo-premium-buyer-guide-2026-2026",
+      "title": "AEO vs SEO vs GEO: A Practical Buyer Guide for 2026",
+      "canonicals": [
+        "https://www.voquarn.com/blog/aeo-vs-seo-premium-buyer-guide-2026-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-agent-memory-architecture",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-agent-memory-architecture",
+      "title": "AI Agent Memory Architecture: What to Store and What to Forget",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-agent-memory-architecture"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-incident-response-plan",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-incident-response-plan",
+      "title": "AI Incident Response Plan: Preparing for Model Failures",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-incident-response-plan"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-model-routing-strategy",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-model-routing-strategy",
+      "title": "AI Model Routing Strategy: Matching Requests to Models",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-model-routing-strategy"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-search-visibility-audit",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-search-visibility-audit",
+      "title": "AI Search Visibility Audit: A Practical Method",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-search-visibility-audit"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-native-application-development",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-native-application-development",
+      "title": "AI-Native Application Development: Designing Around Uncertainty",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-native-application-development"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/answer-engine-optimization-agency",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/answer-engine-optimization-agency",
+      "title": "Answer Engine Optimization Agency: How to Choose One",
+      "canonicals": [
+        "https://www.voquarn.com/blog/answer-engine-optimization-agency"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/eu-ai-act-compliance-software",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/eu-ai-act-compliance-software",
+      "title": "EU AI Act for Software Teams: Roles, Dates and Delivery Evidence",
+      "canonicals": [
+        "https://www.voquarn.com/blog/eu-ai-act-compliance-software"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/generative-engine-optimization-services",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/generative-engine-optimization-services",
+      "title": "Generative Engine Optimization Services: A Buyer's Guide",
+      "canonicals": [
+        "https://www.voquarn.com/blog/generative-engine-optimization-services"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/multi-agent-system-architecture",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/multi-agent-system-architecture",
+      "title": "Multi-Agent System Architecture: When Multiple Agents Help",
+      "canonicals": [
+        "https://www.voquarn.com/blog/multi-agent-system-architecture"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/nextjs-16-3-architecture-guide-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/nextjs-16-3-architecture-guide-2026",
+      "title": "Next.js 16.3 Architecture: Rendering, Caching and Delivery",
+      "canonicals": [
+        "https://www.voquarn.com/blog/nextjs-16-3-architecture-guide-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/prompt-injection-defense",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/prompt-injection-defense",
+      "title": "Prompt Injection Defense: Practical Controls That Work",
+      "canonicals": [
+        "https://www.voquarn.com/blog/prompt-injection-defense"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/retrieval-evaluation-metrics",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/retrieval-evaluation-metrics",
+      "title": "Retrieval Evaluation Metrics for RAG Systems",
+      "canonicals": [
+        "https://www.voquarn.com/blog/retrieval-evaluation-metrics"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/sovereign-ai-deployment",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/sovereign-ai-deployment",
+      "title": "Sovereign AI Deployment: What It Requires in Practice",
+      "canonicals": [
+        "https://www.voquarn.com/blog/sovereign-ai-deployment"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-insurance-claims-automation",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-insurance-claims-automation",
+      "title": "AI Insurance Claims Automation: Intake, Evidence and Review",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-insurance-claims-automation"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-meeting-assistant-development",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-meeting-assistant-development",
+      "title": "AI Meeting Assistant Development: Permissions and Action Accuracy",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-meeting-assistant-development"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/ai-supply-chain-automation",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/ai-supply-chain-automation",
+      "title": "AI Supply Chain Automation: Exception Handling and Controls",
+      "canonicals": [
+        "https://www.voquarn.com/blog/ai-supply-chain-automation"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/aws-vs-azure-startups",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/aws-vs-azure-startups",
+      "title": "AWS ECS vs Azure Container Apps: A Deployment Comparison",
+      "canonicals": [
+        "https://www.voquarn.com/blog/aws-vs-azure-startups"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/custom-software-vs-low-code",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/custom-software-vs-low-code",
+      "title": "Custom Software vs Low-Code: Workflow Fit, Licensing and Exit",
+      "canonicals": [
+        "https://www.voquarn.com/blog/custom-software-vs-low-code"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/django-vs-laravel-business-apps",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/django-vs-laravel-business-apps",
+      "title": "Django vs Laravel for Business Applications",
+      "canonicals": [
+        "https://www.voquarn.com/blog/django-vs-laravel-business-apps"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/fastapi-vs-django-rest-framework",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/fastapi-vs-django-rest-framework",
+      "title": "FastAPI vs Django REST Framework",
+      "canonicals": [
+        "https://www.voquarn.com/blog/fastapi-vs-django-rest-framework"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/knowledge-graph-rag",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/knowledge-graph-rag",
+      "title": "Knowledge Graph RAG: When Relationships Matter",
+      "canonicals": [
+        "https://www.voquarn.com/blog/knowledge-graph-rag"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/native-app-vs-progressive-web-app",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/native-app-vs-progressive-web-app",
+      "title": "Native App vs PWA: Device Features, Offline Work and Distribution",
+      "canonicals": [
+        "https://www.voquarn.com/blog/native-app-vs-progressive-web-app"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/nextjs-vs-wordpress-business-website",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/nextjs-vs-wordpress-business-website",
+      "title": "Next.js vs WordPress: Editing, Features and Website Ownership",
+      "canonicals": [
+        "https://www.voquarn.com/blog/nextjs-vs-wordpress-business-website"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/nodejs-vs-python-backend",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/nodejs-vs-python-backend",
+      "title": "Node.js vs Python Backend: Workload and Team Guide",
+      "canonicals": [
+        "https://www.voquarn.com/blog/nodejs-vs-python-backend"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/postgresql-vs-mysql-saas",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/postgresql-vs-mysql-saas",
+      "title": "PostgreSQL vs MySQL for SaaS",
+      "canonicals": [
+        "https://www.voquarn.com/blog/postgresql-vs-mysql-saas"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/python-vs-php-web-development",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/python-vs-php-web-development",
+      "title": "Python vs PHP for Web Development",
+      "canonicals": [
+        "https://www.voquarn.com/blog/python-vs-php-web-development"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/rag-evaluation-framework",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/rag-evaluation-framework",
+      "title": "RAG Evaluation Framework: Retrieval and Answer Quality",
+      "canonicals": [
+        "https://www.voquarn.com/blog/rag-evaluation-framework"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/rag-vs-fine-tuning",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/rag-vs-fine-tuning",
+      "title": "RAG vs Fine-Tuning: Choose Knowledge, Behavior or Both",
+      "canonicals": [
+        "https://www.voquarn.com/blog/rag-vs-fine-tuning"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/react-vs-angular-startups",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/react-vs-angular-startups",
+      "title": "React vs Angular for Startups",
+      "canonicals": [
+        "https://www.voquarn.com/blog/react-vs-angular-startups"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/serverless-vs-containers",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/serverless-vs-containers",
+      "title": "Serverless vs Containers: Choose by Workload and Operating Model",
+      "canonicals": [
+        "https://www.voquarn.com/blog/serverless-vs-containers"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog?page=2",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog?page=2",
+      "title": "Voquarn Code Blog | SEO, Web Development & AI Automation \u2014 Page 2",
+      "canonicals": [
+        "https://www.voquarn.com/blog?page=2"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog?page=3",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog?page=3",
+      "title": "Voquarn Code Blog | SEO, Web Development & AI Automation \u2014 Page 3",
+      "canonicals": [
+        "https://www.voquarn.com/blog?page=3"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog?page=4",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog?page=4",
+      "title": "Voquarn Code Blog | SEO, Web Development & AI Automation \u2014 Page 4",
+      "canonicals": [
+        "https://www.voquarn.com/blog?page=4"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog?page=5",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog?page=5",
+      "title": "Voquarn Code Blog | SEO, Web Development & AI Automation \u2014 Page 5",
+      "canonicals": [
+        "https://www.voquarn.com/blog?page=5"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog?page=6",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog?page=6",
+      "title": "Voquarn Code Blog | SEO, Web Development & AI Automation \u2014 Page 6",
+      "canonicals": [
+        "https://www.voquarn.com/blog?page=6"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog?page=999",
+      "status": 404,
+      "finalUrl": "https://www.voquarn.com/blog?page=999",
+      "title": "Page Not Found | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com"
+      ],
+      "robots": [
+        "noindex",
+        "noindex, follow"
+      ],
+      "headerRobots": "",
+      "h1": 0,
+      "jsonLdCount": 0,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/seo-audit-nonexistent-20261014",
+      "status": 404,
+      "finalUrl": "https://www.voquarn.com/blog/seo-audit-nonexistent-20261014",
+      "title": "Page Not Found | Voquarn Code",
+      "canonicals": [
+        "https://www.voquarn.com"
+      ],
+      "robots": [
+        "noindex",
+        "noindex, follow"
+      ],
+      "headerRobots": "",
+      "h1": 0,
+      "jsonLdCount": 0,
+      "jsonLdValid": true
+    },
+    {
+      "url": "https://www.voquarn.com/blog/nextjs-16-3-migration-guide-2026",
+      "status": 200,
+      "finalUrl": "https://www.voquarn.com/blog/nextjs-16-3-architecture-guide-2026",
+      "title": "Next.js 16.3 Architecture: Rendering, Caching and Delivery",
+      "canonicals": [
+        "https://www.voquarn.com/blog/nextjs-16-3-architecture-guide-2026"
+      ],
+      "robots": [
+        "index, follow",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "headerRobots": "",
+      "h1": 1,
+      "jsonLdCount": 3,
+      "jsonLdValid": true
+    }
+  ]
+}

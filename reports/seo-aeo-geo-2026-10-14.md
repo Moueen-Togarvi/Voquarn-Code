@@ -33,7 +33,7 @@ No repository commits appear between 23 and 30 August. This does not rule out ch
 | Medium | A formerly clicked migration guide returned 404 without an equivalent mapping | Added a permanent redirect to the maintained Next.js architecture guide and included explicit migration checks in the destination. Other unrelated retired URLs remain proper 404s. |
 | Low | CEO's company LinkedIn URL labelled as a personal profile | Label now identifies Voquarn's LinkedIn page. |
 | Verified | Full publication sitemap and blog discovery | 82 canonical public URLs: 67 blogs, 4 service pages and 11 static pages. All 67 blogs are reachable across the six archive pages. No additional articles removed in this pass. |
-| Verified | Public indexing controls | All 82 pre-deployment sitemap URLs return 200, have a description and one H1, expose parseable JSON-LD and lack noindex. Canonicals match, treating the root URL with/without its trailing slash as equivalent. |
+| Verified | Public indexing controls | All 82 deployed sitemap URLs return 200, have a description and one H1, expose parseable JSON-LD and lack noindex. Canonicals match, treating the root URL with/without its trailing slash as equivalent. |
 | Unverified | Current real-user Core Web Vitals | Public PageSpeed API returned quota error 429; no fresh score or field pass is claimed. Request Search Console CWV data when signed in. |
 
 The full before/after content inventory is in [the content review data](seo-content-review-2026-10-14.json). It measures exact paragraph reuse and reference coverage, not semantic uniqueness, expertise, originality or ranking quality. Examples and test scenarios in revised articles are identified as proposals or illustrative cases, not invented client results.
@@ -64,6 +64,8 @@ Passed: full production build (128 generated routes, including all 67 articles),
 
 The production-server HTTP regression passed for page-two canonical/title, search noindex, out-of-range unfiltered/filtered 404 responses, and monthly CRM terms in schema and `llms.txt`. No packages were added. Publication remains 67 articles, with substantive changes to 31.
 
-Main push and post-deployment verification are pending at the time of this report revision.
+Commit `02332da` was pushed to main and Vercel reported a successful deployment. The post-deployment crawl passed for all 82 sitemap URLs, with no missing blogs across archive pagination. The live sitemap includes 14 October modification dates for all 31 revised articles. The same HTTP regression passed against production; the new migration redirect returns 308 to its maintained destination, which returns 200. The apex remains 307 as documented above.
+
+Machine-readable results: [live verification](seo-live-verification-2026-10-14.json). A browser check also confirmed that the revised PostgreSQL/MySQL guide displays its current review date, direct answer, specific comparisons and official citations correctly.
 
 The official Next.js blog currently carries advance notice of an October 14 security update. That notice does not yet establish the final patched-version table. The security article links the official notice and asks readers to check the final advisory; this SEO release does not claim that framework 16.3.8 resolves that forthcoming advisory.
