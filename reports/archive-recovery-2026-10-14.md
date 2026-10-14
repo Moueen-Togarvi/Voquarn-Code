@@ -2,7 +2,7 @@
 
 ## Result and limits
 
-Rewrote **76 distinct archived guides**, consolidated **182 additional old URLs** into relevant maintained articles, and corrected unsupported cost/accuracy claims in two existing guides. The published collection increased from **67 to 143 blogs**. The intended full publication sitemap contains **158 canonical URLs**: 143 blogs, four services and eleven static pages.
+Rewrote **76 distinct archived guides**, consolidated **182 additional old URLs** into relevant maintained articles, and corrected unsupported cost/accuracy claims in two existing guides. The published collection increased from **67 to 143 blogs**. The verified live publication sitemap contains **158 canonical URLs**: 143 blogs, four services and eleven static pages.
 
 The inventory accounts for **4,497 original archived URLs**: the previously discussed 4,351-file October archive plus 146 older August problem articles found during recovery. This is not a claim that every archived article has been individually rewritten or that Google will index every restored guide.
 
@@ -47,7 +47,9 @@ The restored guides link 150 distinct external primary-source URLs. HTTP checks 
 
 Both restore command regression suites pass, including duplicate normalized paths and filesystem errors. All six retired publication entry points reject template publication. No dependencies were added. The generated 143-post index is 58 KB.
 
-[Machine-readable verification](archive-recovery-verification-2026-10-14.json) records local checks. Deployment verification will be recorded after the main-branch release.
+Release `6ce8982` was pushed directly to main and Vercel reported a successful deployment. The same full HTTP crawl passed on production: 377 responses, 158 sitemap URLs, 143 articles, 200 direct permanent redirects, 12 archive pages, eight expected 404s and no missing articles. The separate public-route regression passed against production as well. The apex domain still returns 307, as recorded under the remaining hosting limitation.
+
+[Machine-readable verification](archive-recovery-verification-2026-10-14.json) contains the local and live results and the deployment reference. HTTP checks establish delivery and indexability signals; they do not establish Google's indexed state, ranking recovery or real-user Core Web Vitals.
 
 ## Files and complete per-URL list
 
