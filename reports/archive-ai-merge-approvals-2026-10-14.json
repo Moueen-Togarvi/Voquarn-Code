@@ -1,0 +1,277 @@
+[
+  {
+    "source": "a2a-protocol-integration-architecture-patterns-2026",
+    "destination": "agent-to-agent-protocol",
+    "reason": "Reviewed the archived article. Its substantive intent is agent identity, task contracts, state ownership, handoff validation and failure recovery. The rewritten destination develops these exact boundaries with Agent Cards, durable task identity, authorization, cancellation, artifact validation and failure tests; the source's remaining delivery text is repeated boilerplate."
+  },
+  {
+    "source": "a2a-protocol-integration-project-scope-2026",
+    "destination": "agent-to-agent-protocol",
+    "reason": "The source offers a generic scope discussion around A2A participants, integrations, exclusions and acceptance. The destination specifies approved recipient, task types, versions, tenant identity, transferred data, callbacks, ownership and acceptance scenarios, providing the concrete integration scope that the source lacked."
+  },
+  {
+    "source": "a2a-protocol-integration-proof-of-concept-2026",
+    "destination": "agent-to-agent-protocol",
+    "reason": "The archived proof-of-concept page contains no distinct implementation or benchmark; its useful intent is a bounded interoperable task with failure recovery. The destination explicitly defines a first read-only delegation and independent-implementation tests for lost responses, unsupported capability, revoked access, cancellation and malformed artifacts."
+  },
+  {
+    "source": "human-in-the-loop-ai-architecture-blueprint-2026",
+    "destination": "ai-agent-handoff-design",
+    "reason": "The source's human-in-the-loop scope concerns runtime review queues, escalation ownership, decision context and feedback, rather than model labeling or training. The destination explains exactly that runtime architecture through durable case state, atomic ownership transfer, evidence packets, bound approvals and feedback review."
+  },
+  {
+    "source": "human-in-the-loop-ai-implementation-checklist-2026",
+    "destination": "ai-agent-handoff-design",
+    "reason": "The source promises production-readiness checks for reviewer escalation but provides a reused generic delivery checklist. The destination supplies concrete escalation conditions and tests for restart recovery, simultaneous reviewers, changed records, unstaffed queues and return to automation."
+  },
+  {
+    "source": "human-in-the-loop-ai-production-best-practices-2026",
+    "destination": "ai-agent-handoff-design",
+    "reason": "The source focuses on runtime reviewer fatigue, unclear escalation, rubber-stamp approvals and unsafe bypass. The destination addresses trigger design, neutral evidence, approval expiry, reviewer correction audit, queue ownership and handoff outcome metrics with a specific duplicate-refund example."
+  },
+  {
+    "source": "ai-agent-observability-architecture-guide-2026",
+    "destination": "ai-agent-monitoring-observability",
+    "reason": "The archived architecture page's distinct elements are trace correlation, structured tool events, quality signals, retention and alerts. The destination covers each with workflow/attempt/action identifiers, asynchronous trace boundaries, version attribution, outcome taxonomy and privacy-aware instrumentation."
+  },
+  {
+    "source": "ai-agent-observability-audit-checklist-2026",
+    "destination": "ai-agent-monitoring-observability",
+    "reason": "The source's audit intent is evidence collection and remediation of logging, outcome and latency gaps. The destination provides the fields needed to investigate duplicate invoice creation, separates business outcomes from HTTP success, and gives an operational acceptance drill to expose missing evidence."
+  },
+  {
+    "source": "ai-agent-observability-best-practices-2026",
+    "destination": "ai-agent-monitoring-observability",
+    "reason": "The source has no separate case study or measurement; its relevant best practices are actionable alerts, private-data handling, trace completeness, tool latency and quality evaluation. The destination develops those practices and explains denominators, sampling, cost accounting and the limits of traces as accuracy evidence."
+  },
+  {
+    "source": "mcp-implementation-services-architecture-patterns-2026",
+    "destination": "mcp-server-development",
+    "reason": "The archived page's technical intent is schema boundaries, client authentication, least privilege, execution logging and idempotency. The rewritten destination covers these with a client-project example, audience validation, resource-level access, safe inputs, errors, writes and actual-client compatibility tests."
+  },
+  {
+    "source": "mcp-implementation-services-project-scope-2026",
+    "destination": "mcp-server-development",
+    "reason": "The source frames generic scope and acceptance around MCP tools and context, without a distinct buyer comparison or estimate. The destination provides a bounded read-only starting scope, explicit contract checklist, data exclusions, authorization requirements and tests before enabling writes."
+  },
+  {
+    "source": "mcp-implementation-services-proof-of-concept-2026",
+    "destination": "mcp-server-development",
+    "reason": "The source's proof-of-concept intent is validating constrained MCP access and tool behavior. The destination demonstrates how to begin with approved project updates and test discovery, schemas, tenant isolation, revoked access, errors and client compatibility before expanding authority."
+  },
+  {
+    "source": "ai-email-triage-architecture-patterns-2026",
+    "destination": "ai-email-automation",
+    "reason": "The archived source describes mailbox-scoped classification, urgency, draft review and routing without a distinct specialist implementation. The rewritten destination covers these stages plus synchronization, source grounding, recipient checks, approval and realistic acceptance cases."
+  },
+  {
+    "source": "ai-email-triage-project-scope-2026",
+    "destination": "ai-email-automation",
+    "reason": "The archived source describes mailbox-scoped classification, urgency, draft review and routing without a distinct specialist implementation. The rewritten destination covers these stages plus synchronization, source grounding, recipient checks, approval and realistic acceptance cases."
+  },
+  {
+    "source": "ai-email-triage-proof-of-concept-2026",
+    "destination": "ai-email-automation",
+    "reason": "The archived source describes mailbox-scoped classification, urgency, draft review and routing without a distinct specialist implementation. The rewritten destination covers these stages plus synchronization, source grounding, recipient checks, approval and realistic acceptance cases."
+  },
+  {
+    "source": "agentic-customer-support-architecture-blueprint-2026",
+    "destination": "ai-customer-service-agent-development",
+    "reason": "The source focuses on verified knowledge, account-safe tools, resolution and escalation. The destination gives a subscription-support journey, knowledge ownership, account authorization, an action catalogue, case-state checks and end-to-end resolution tests; repeated generic procurement sections add no separate intent."
+  },
+  {
+    "source": "agentic-customer-support-implementation-checklist-2026",
+    "destination": "ai-customer-service-agent-development",
+    "reason": "The source focuses on verified knowledge, account-safe tools, resolution and escalation. The destination gives a subscription-support journey, knowledge ownership, account authorization, an action catalogue, case-state checks and end-to-end resolution tests; repeated generic procurement sections add no separate intent."
+  },
+  {
+    "source": "agentic-customer-support-production-best-practices-2026",
+    "destination": "ai-customer-service-agent-development",
+    "reason": "The source focuses on verified knowledge, account-safe tools, resolution and escalation. The destination gives a subscription-support journey, knowledge ownership, account authorization, an action catalogue, case-state checks and end-to-end resolution tests; repeated generic procurement sections add no separate intent."
+  },
+  {
+    "source": "ai-agent-identity-management-project-scope-2026",
+    "destination": "ai-agent-identity-management-architecture-patterns-2026",
+    "reason": "The source identifies agent identity, credential lifetime, permission boundaries and revocation as its specific needs. The destination specifies workload versus user authority, audience validation, scoped roles, approval binding, live revocation tests and an accountable ownership register."
+  },
+  {
+    "source": "ai-agent-identity-management-proof-of-concept-2026",
+    "destination": "ai-agent-identity-management-architecture-patterns-2026",
+    "reason": "The source identifies agent identity, credential lifetime, permission boundaries and revocation as its specific needs. The destination specifies workload versus user authority, audience validation, scoped roles, approval binding, live revocation tests and an accountable ownership register."
+  },
+  {
+    "source": "ai-agent-identity-management-security-requirements-2026",
+    "destination": "ai-agent-identity-management-architecture-patterns-2026",
+    "reason": "The source identifies agent identity, credential lifetime, permission boundaries and revocation as its specific needs. The destination specifies workload versus user authority, audience validation, scoped roles, approval binding, live revocation tests and an accountable ownership register."
+  },
+  {
+    "source": "ai-data-readiness-architecture-blueprint-2026",
+    "destination": "ai-data-readiness-implementation-checklist-2026",
+    "reason": "The source assesses ownership, quality, access, freshness and retention using a repeated generic checklist. The destination develops all of those into a source register, parsing and retrieval checks, permission and deletion tests, a held-out question set and explicit readiness decisions."
+  },
+  {
+    "source": "ai-data-readiness-evaluation-framework-2026",
+    "destination": "ai-data-readiness-implementation-checklist-2026",
+    "reason": "The source assesses ownership, quality, access, freshness and retention using a repeated generic checklist. The destination develops all of those into a source register, parsing and retrieval checks, permission and deletion tests, a held-out question set and explicit readiness decisions."
+  },
+  {
+    "source": "ai-data-readiness-production-best-practices-2026",
+    "destination": "ai-data-readiness-implementation-checklist-2026",
+    "reason": "The source assesses ownership, quality, access, freshness and retention using a repeated generic checklist. The destination develops all of those into a source register, parsing and retrieval checks, permission and deletion tests, a held-out question set and explicit readiness decisions."
+  },
+  {
+    "source": "ai-procurement-automation-project-scope-2026",
+    "destination": "ai-procurement-automation-architecture-patterns-2026",
+    "reason": "The source proposes bounded purchasing intake, supplier data, approval and evidence checks but provides no separate implementation. The destination supplies a laptop-purchase example with normalized quote fields, accountable approvals, structured order exchange, confidential-bid controls and rollout tests."
+  },
+  {
+    "source": "ai-procurement-automation-proof-of-concept-2026",
+    "destination": "ai-procurement-automation-architecture-patterns-2026",
+    "reason": "The source proposes bounded purchasing intake, supplier data, approval and evidence checks but provides no separate implementation. The destination supplies a laptop-purchase example with normalized quote fields, accountable approvals, structured order exchange, confidential-bid controls and rollout tests."
+  },
+  {
+    "source": "ai-procurement-automation-implementation-roadmap-v2-2026",
+    "destination": "ai-procurement-automation-architecture-patterns-2026",
+    "reason": "The source proposes bounded purchasing intake, supplier data, approval and evidence checks but provides no separate implementation. The destination supplies a laptop-purchase example with normalized quote fields, accountable approvals, structured order exchange, confidential-bid controls and rollout tests."
+  },
+  {
+    "source": "ai-customer-onboarding-architecture-patterns-2026",
+    "destination": "ai-customer-onboarding-implementation-roadmap-v2-2026",
+    "reason": "The source centers on activation milestones, current product knowledge, customer context, progress tracking and escalation. The destination covers these as a staged workspace-onboarding implementation with backend events, permissions, pilot cases and verified activation metrics."
+  },
+  {
+    "source": "ai-customer-onboarding-project-scope-2026",
+    "destination": "ai-customer-onboarding-implementation-roadmap-v2-2026",
+    "reason": "The source centers on activation milestones, current product knowledge, customer context, progress tracking and escalation. The destination covers these as a staged workspace-onboarding implementation with backend events, permissions, pilot cases and verified activation metrics."
+  },
+  {
+    "source": "ai-customer-onboarding-proof-of-concept-2026",
+    "destination": "ai-customer-onboarding-implementation-roadmap-v2-2026",
+    "reason": "The source centers on activation milestones, current product knowledge, customer context, progress tracking and escalation. The destination covers these as a staged workspace-onboarding implementation with backend events, permissions, pilot cases and verified activation metrics."
+  },
+  {
+    "source": "ai-quality-monitoring-project-scope-2026",
+    "destination": "ai-quality-monitoring-architecture-patterns-2026",
+    "reason": "The archived content describes rubric-based business-work review, representative sampling, calibration and corrective workflows. The destination explains those exact elements using support-case evidence, false-alarm/missed-finding metrics, reviewer adjudication, privacy and an advisory rollout; no separate industry-specific requirement is removed."
+  },
+  {
+    "source": "ai-quality-monitoring-proof-of-concept-2026",
+    "destination": "ai-quality-monitoring-architecture-patterns-2026",
+    "reason": "The archived content describes rubric-based business-work review, representative sampling, calibration and corrective workflows. The destination explains those exact elements using support-case evidence, false-alarm/missed-finding metrics, reviewer adjudication, privacy and an advisory rollout; no separate industry-specific requirement is removed."
+  },
+  {
+    "source": "ai-quality-monitoring-implementation-roadmap-v2-2026",
+    "destination": "ai-quality-monitoring-architecture-patterns-2026",
+    "reason": "The archived content describes rubric-based business-work review, representative sampling, calibration and corrective workflows. The destination explains those exact elements using support-case evidence, false-alarm/missed-finding metrics, reviewer adjudication, privacy and an advisory rollout; no separate industry-specific requirement is removed."
+  },
+  {
+    "source": "ai-operations-automation-project-scope-2026",
+    "destination": "ai-operations-automation-architecture-patterns-2026",
+    "reason": "The source concerns event triage, verified context, bounded operational actions and exception ownership. The destination develops a failed-export recovery workflow with incident correlation, runbook contracts, idempotency, concurrency controls, escalation and injected-failure tests."
+  },
+  {
+    "source": "ai-operations-automation-proof-of-concept-2026",
+    "destination": "ai-operations-automation-architecture-patterns-2026",
+    "reason": "The source concerns event triage, verified context, bounded operational actions and exception ownership. The destination develops a failed-export recovery workflow with incident correlation, runbook contracts, idempotency, concurrency controls, escalation and injected-failure tests."
+  },
+  {
+    "source": "ai-operations-automation-implementation-roadmap-v2-2026",
+    "destination": "ai-operations-automation-architecture-patterns-2026",
+    "reason": "The source concerns event triage, verified context, bounded operational actions and exception ownership. The destination develops a failed-export recovery workflow with incident correlation, runbook contracts, idempotency, concurrency controls, escalation and injected-failure tests."
+  },
+  {
+    "source": "ai-finance-operations-architecture-patterns-2026",
+    "destination": "ai-finance-automation",
+    "reason": "The reviewed archived source covers reconciliation, invoice intake, exception review, controlled approvals and traceable variance explanations. The rewritten destination develops exactly that operational scope with authoritative records, deterministic arithmetic, approval binding, posting reconciliation and exception acceptance cases; the old delivery roadmap is repeated boilerplate."
+  },
+  {
+    "source": "ai-finance-operations-project-scope-2026",
+    "destination": "ai-finance-automation",
+    "reason": "The reviewed archived source covers reconciliation, invoice intake, exception review, controlled approvals and traceable variance explanations. The rewritten destination develops exactly that operational scope with authoritative records, deterministic arithmetic, approval binding, posting reconciliation and exception acceptance cases; the old delivery roadmap is repeated boilerplate."
+  },
+  {
+    "source": "ai-finance-operations-proof-of-concept-2026",
+    "destination": "ai-finance-automation",
+    "reason": "The reviewed archived source covers reconciliation, invoice intake, exception review, controlled approvals and traceable variance explanations. The rewritten destination develops exactly that operational scope with authoritative records, deterministic arithmetic, approval binding, posting reconciliation and exception acceptance cases; the old delivery roadmap is repeated boilerplate."
+  },
+  {
+    "source": "ai-knowledge-management-architecture-patterns-2026",
+    "destination": "ai-knowledge-base-development",
+    "reason": "The source’s substantive intent is owned, permission-aware knowledge with document lifecycle, citations and feedback. The rewritten destination covers source ownership, revision and retirement, access controls, editorial maintenance, citation verification and user feedback in a concrete support knowledge workflow."
+  },
+  {
+    "source": "ai-knowledge-management-project-scope-2026",
+    "destination": "ai-knowledge-base-development",
+    "reason": "The source’s substantive intent is owned, permission-aware knowledge with document lifecycle, citations and feedback. The rewritten destination covers source ownership, revision and retirement, access controls, editorial maintenance, citation verification and user feedback in a concrete support knowledge workflow."
+  },
+  {
+    "source": "ai-knowledge-management-proof-of-concept-2026",
+    "destination": "ai-knowledge-base-development",
+    "reason": "The source’s substantive intent is owned, permission-aware knowledge with document lifecycle, citations and feedback. The rewritten destination covers source ownership, revision and retirement, access controls, editorial maintenance, citation verification and user feedback in a concrete support knowledge workflow."
+  },
+  {
+    "source": "ai-red-team-testing-architecture-patterns-2026",
+    "destination": "generative-ai-security-testing",
+    "reason": "The source calls for threat scenarios, prompt-injection and tool-abuse tests, controlled data-leakage checks and remediation verification. The rewritten destination supplies a scoped support-assistant test plan, concrete trust-boundary attacks, evidence requirements, authorization assertions and regression checks for those same concerns."
+  },
+  {
+    "source": "ai-red-team-testing-project-scope-2026",
+    "destination": "generative-ai-security-testing",
+    "reason": "The source calls for threat scenarios, prompt-injection and tool-abuse tests, controlled data-leakage checks and remediation verification. The rewritten destination supplies a scoped support-assistant test plan, concrete trust-boundary attacks, evidence requirements, authorization assertions and regression checks for those same concerns."
+  },
+  {
+    "source": "ai-red-team-testing-proof-of-concept-2026",
+    "destination": "generative-ai-security-testing",
+    "reason": "The source calls for threat scenarios, prompt-injection and tool-abuse tests, controlled data-leakage checks and remediation verification. The rewritten destination supplies a scoped support-assistant test plan, concrete trust-boundary attacks, evidence requirements, authorization assertions and regression checks for those same concerns."
+  },
+  {
+    "source": "enterprise-rag-systems-architecture-blueprint-2026",
+    "destination": "rag-pipeline-development",
+    "reason": "The reviewed source’s technical substance is governed retrieval over internal documents: ingestion, access, citations, freshness and evaluation. The destination covers those pipeline stages with revision-aware chunking, metadata, permission enforcement, deletion propagation, retrieval diagnostics and launch tests; the source has no separate enterprise-specific implementation."
+  },
+  {
+    "source": "enterprise-rag-systems-implementation-checklist-2026",
+    "destination": "rag-pipeline-development",
+    "reason": "The reviewed source’s technical substance is governed retrieval over internal documents: ingestion, access, citations, freshness and evaluation. The destination covers those pipeline stages with revision-aware chunking, metadata, permission enforcement, deletion propagation, retrieval diagnostics and launch tests; the source has no separate enterprise-specific implementation."
+  },
+  {
+    "source": "enterprise-rag-systems-production-best-practices-2026",
+    "destination": "rag-pipeline-development",
+    "reason": "The reviewed source’s technical substance is governed retrieval over internal documents: ingestion, access, citations, freshness and evaluation. The destination covers those pipeline stages with revision-aware chunking, metadata, permission enforcement, deletion propagation, retrieval diagnostics and launch tests; the source has no separate enterprise-specific implementation."
+  },
+  {
+    "source": "ai-agent-governance-architecture-guide-2026",
+    "destination": "ai-agent-governance-framework",
+    "reason": "The archived source addresses ownership, risk classification, approvals, monitoring, incident response and retirement of agents. The rewritten destination develops these controls around a deployed purchasing assistant, including enforceable permission boundaries, review evidence, change approval and shutdown tests."
+  },
+  {
+    "source": "ai-agent-governance-audit-checklist-2026",
+    "destination": "ai-agent-governance-framework",
+    "reason": "The archived source addresses ownership, risk classification, approvals, monitoring, incident response and retirement of agents. The rewritten destination develops these controls around a deployed purchasing assistant, including enforceable permission boundaries, review evidence, change approval and shutdown tests."
+  },
+  {
+    "source": "ai-agent-governance-best-practices-2026",
+    "destination": "ai-agent-governance-framework",
+    "reason": "The archived source addresses ownership, risk classification, approvals, monitoring, incident response and retirement of agents. The rewritten destination develops these controls around a deployed purchasing assistant, including enforceable permission boundaries, review evidence, change approval and shutdown tests."
+  },
+  {
+    "source": "voice-ai-receptionist-development-company-guide-2026",
+    "destination": "voice-ai-agent-development-company",
+    "reason": "The source evaluates an inbound receptionist’s turn-taking, identity checks, booking, transfer, latency and call quality. The rewritten destination uses that exact appointment-enquiry journey and provides a vendor evaluation exercise, difficult audio cases, authoritative booking checks, transfer tests, ownership and operating cost questions."
+  },
+  {
+    "source": "voice-ai-receptionist-evaluation-framework-2026",
+    "destination": "voice-ai-agent-development-company",
+    "reason": "The source evaluates an inbound receptionist’s turn-taking, identity checks, booking, transfer, latency and call quality. The rewritten destination uses that exact appointment-enquiry journey and provides a vendor evaluation exercise, difficult audio cases, authoritative booking checks, transfer tests, ownership and operating cost questions."
+  },
+  {
+    "source": "ai-workflow-automation-agency-selection-guide-2026",
+    "destination": "ai-workflow-automation-company",
+    "reason": "The reviewed source is a buyer guide for selecting an AI workflow delivery partner, comparing scope, integration, exception handling, ownership and delivery evidence. The destination replaces generic procurement promises with a purchase-request exercise, acceptance criteria, recovery checks, proposal questions and total operating-cost assumptions for the same selection decision."
+  },
+  {
+    "source": "ai-workflow-automation-services-premium-buyer-guide-2026-2026",
+    "destination": "ai-workflow-automation-company",
+    "reason": "The reviewed source is a buyer guide for selecting an AI workflow delivery partner, comparing scope, integration, exception handling, ownership and delivery evidence. The destination replaces generic procurement promises with a purchase-request exercise, acceptance criteria, recovery checks, proposal questions and total operating-cost assumptions for the same selection decision."
+  }
+]

@@ -1,6 +1,6 @@
 # Blog quarantine report — 2026-10-09
 
-This cleanup is recoverable. Quarantined Markdown files are moved out of the published blog directory and can be restored with the JSON manifest.
+This is the historical quarantine snapshot. Originals remain recoverable, but selected URLs now contain substantially rewritten articles: do not bulk-restore the old manifest over the current publication. Both restore commands preflight conflicts and checksums. See the [14 October recovery and per-URL disposition](archive-recovery-2026-10-14.md) for the current state, including the separate older archive.
 
 ## Result
 

@@ -55,9 +55,12 @@ function checksum(source) {
 async function restore(manifestFile) {
   const manifestPath = path.resolve(ROOT, manifestFile);
   const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
-  let restored = 0;
+  if (!Array.isArray(manifest.quarantined)) throw new Error("Manifest has no quarantined file list.");
+  const planned = [];
+  const sources = new Set();
+  const destinations = new Set();
 
-  for (const item of manifest.quarantined ?? []) {
+  for (const item of manifest.quarantined) {
     const source = path.resolve(ROOT, item.archivePath);
     const destination = path.resolve(ROOT, item.originalPath);
     if (!source.startsWith(path.resolve(ROOT, "backups") + path.sep)) {
@@ -66,8 +69,17 @@ async function restore(manifestFile) {
     if (!destination.startsWith(BLOG_DIRECTORY + path.sep)) {
       throw new Error(`Unsafe restore path: ${destination}`);
     }
+    if (sources.has(source)) throw new Error(`Duplicate archive source: ${source}`);
+    if (destinations.has(destination)) throw new Error(`Duplicate restore target: ${destination}`);
+    sources.add(source);
+    destinations.add(destination);
 
-    try { await stat(source); } catch { continue; }
+    try {
+      await stat(source);
+    } catch (error) {
+      if (error?.code === "ENOENT") continue;
+      throw error;
+    }
     try {
       await stat(destination);
       throw new Error(`Restore target already exists: ${destination}`);
@@ -75,6 +87,16 @@ async function restore(manifestFile) {
       if (error?.code !== "ENOENT") throw error;
     }
 
+    const sourceText = await readFile(source, "utf8");
+    if (!item.checksum || checksum(sourceText) !== item.checksum) {
+      throw new Error(`Archive checksum mismatch: ${source}`);
+    }
+    planned.push({ source, destination });
+  }
+
+  // Check every archive and destination before publishing any restored file.
+  let restored = 0;
+  for (const { source, destination } of planned) {
     await rename(source, destination);
     restored += 1;
   }

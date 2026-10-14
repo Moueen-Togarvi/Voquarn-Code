@@ -1,8 +1,5 @@
-import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
-import path from "node:path";
 import { pathToFileURL } from "node:url";
 
-const BLOG_DIRECTORY = path.join(process.cwd(), "content", "blogs");
 const PUBLISHED_AT = "2026-08-19";
 const EXPECTED_POSTS = 500;
 
@@ -419,72 +416,12 @@ Publish information that is original, specific, crawlable, well structured, and 
 `;
 }
 
-export async function generateBlogSeries({
-  seriesSubjects,
-  seriesAngles,
-  publishedAt,
-  trendSeries,
-  expectedPosts,
-  render = renderPost,
-}) {
-  if (seriesSubjects.length * seriesAngles.length !== expectedPosts) {
-    throw new Error(`Expected ${expectedPosts} posts, received ${seriesSubjects.length * seriesAngles.length}`);
-  }
-
-  await mkdir(BLOG_DIRECTORY, { recursive: true });
-  const currentFiles = new Set((await readdir(BLOG_DIRECTORY)).filter((name) => name.endsWith(".md")));
-  const posts = seriesSubjects.flatMap((subject) =>
-    seriesAngles.map((angle) => ({ subject, angle })),
+// Historical plans/renderers remain available for the archive audit. Publication
+// through these topic × angle templates is retired after the content recovery.
+export async function generateBlogSeries() {
+  throw new Error(
+    "Bulk template publication is retired. Rewrite or consolidate the archived topic, then run blogs:check-new before publishing. See reports/archive-topic-map-2026-10-14.json.",
   );
-  const targetFiles = posts.map(({ subject, angle }) => `${subject.slug}-${angle.slug}-2026.md`);
-
-  if (new Set(targetFiles).size !== expectedPosts) {
-    throw new Error("The trend-blog plan contains duplicate filenames.");
-  }
-
-  const managedFiles = new Set();
-  const existingTargetKeywords = new Map();
-  for (const filename of currentFiles) {
-    const source = await readFile(path.join(BLOG_DIRECTORY, filename), "utf8");
-    if (source.includes(`trendSeries: ${quote(trendSeries)}`)) {
-      managedFiles.add(filename);
-    } else {
-      const keyword = source.match(/^targetKeyword:\s*"?([^"\n]+)"?$/m)?.[1]?.trim().toLowerCase();
-      if (keyword) existingTargetKeywords.set(keyword, filename);
-    }
-  }
-
-  const plannedKeywords = posts.map(({ subject, angle }) =>
-    `${subject.keyword} ${angle.modifier}`.trim().toLowerCase(),
-  );
-  if (new Set(plannedKeywords).size !== expectedPosts) {
-    throw new Error("The trend-blog plan contains duplicate primary keywords.");
-  }
-  const keywordConflicts = plannedKeywords.filter((keyword) => existingTargetKeywords.has(keyword));
-  if (keywordConflicts.length > 0) {
-    const keyword = keywordConflicts[0];
-    throw new Error(
-      `Refusing duplicate primary keyword "${keyword}" from ${existingTargetKeywords.get(keyword)}.`,
-    );
-  }
-
-  const conflicts = targetFiles.filter(
-    (filename) => currentFiles.has(filename) && !managedFiles.has(filename),
-  );
-  if (conflicts.length > 0) {
-    throw new Error(`Refusing to overwrite ${conflicts.length} existing blog files. First conflict: ${conflicts[0]}`);
-  }
-
-  for (const filename of managedFiles) {
-    if (!targetFiles.includes(filename)) await unlink(path.join(BLOG_DIRECTORY, filename));
-  }
-
-  for (const { subject, angle } of posts) {
-    const filePath = path.join(BLOG_DIRECTORY, `${subject.slug}-${angle.slug}-2026.md`);
-    await writeFile(filePath, render(subject, angle, { publishedAt, trendSeries }), "utf8");
-  }
-
-  console.log(`Generated ${expectedPosts} published blog posts dated ${publishedAt}.`);
 }
 
 async function main() {

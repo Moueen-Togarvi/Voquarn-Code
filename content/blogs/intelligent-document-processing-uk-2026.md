@@ -9,23 +9,23 @@ readTime: "6 min read"
 publishedAt: "2026-08-31"
 status: "published"
 cornerstone: true
-modifiedAt: "2026-10-03"
+modifiedAt: "2026-10-14"
 allowExcludedTerms: true
 ---
 
-**Intelligent document processing** replaces manual data entry from invoices, forms, contracts, and correspondence with automated extraction. The technology works well. Projects fail anyway, and they fail for reasons that are predictable before starting.
+**Intelligent document processing** uses automated extraction to reduce manual data entry from invoices, forms, contracts, and correspondence. Its usefulness depends on the documents, validation rules and review workflow. Evaluate all three before treating an extraction demonstration as a production business case.
 
-The recurring pattern: a pilot achieves 94% accuracy on a clean sample, the business plans for 94%, and production delivers 78% because production documents are not the sample. Everything downstream was sized on the wrong number.
+Consider a hypothetical failure: a pilot achieves 94% accuracy on a clean sample, but a different production document mix yields 78%. These numbers illustrate sampling risk; they are not a measured client result or an industry benchmark. Staffing a review queue from the cleaner sample would underestimate its workload.
 
 ## Accuracy is not one number
 
-"95% accurate" is meaningless without specifying the unit of measurement, and vendors vary the unit to suit.
+"95% accurate" is incomplete without specifying the unit of measurement, evaluation sample and error definition.
 
-**Character-level accuracy** counts correctly recognised characters. Highest number, least useful. 99% character accuracy on a 12-digit account number means roughly one digit wrong in every eight documents.
+**Character-level accuracy** counts correctly recognised characters. It does not directly measure whether a critical identifier is correct. In an illustrative independence model, 99% accuracy for each of twelve digits implies a probability of at least one error of 1 − 0.99^12, or about 11.4%. Real OCR errors may be correlated, so measure complete identifiers directly.
 
-**Field-level accuracy** counts correctly extracted fields. More meaningful, and the standard you should insist on.
+**Field-level accuracy** counts correctly extracted fields. Report it separately for consequential fields such as account numbers and totals, so many correct low-risk fields do not hide a serious error pattern.
 
-**Document-level accuracy** counts documents where every required field is correct. Lowest number and the one that determines actual labour saved — because a document with one wrong field still requires human review, and reviewing is most of the cost of doing it manually.
+**Document-level accuracy** counts documents where every required field is correct. It helps estimate which documents can proceed without corrections, but does not establish labour savings on its own. Some workflows require additional approvals even when extraction is correct; others can isolate review to a particular field.
 
 The relationship is unforgiving. For an illustrative calculation only, if 12 fields each have 97% accuracy and errors are independent, the all-fields-correct probability is:
 
@@ -33,71 +33,71 @@ The relationship is unforgiving. For an illustrative calculation only, if 12 fie
 0.97^12 = 0.69
 ```
 
-Roughly 31% of documents need human attention. That is a very different operating model from what "97% accurate" suggests to a finance director.
+Under those assumptions, roughly 31% of documents contain at least one field error. If every such error requires review, that is a very different operating model from what an unqualified "97% accurate" suggests.
 
 **Insist on document-level accuracy, measured on your documents, including the messy ones.**
 
 ## Where accuracy actually degrades
 
-Vendor demonstrations use clean, well-scanned, structurally consistent documents. Production contains:
+A demonstration may use clean, well-scanned, structurally consistent documents. Check whether your production mix also contains:
 
 - **Photographs taken on phones** at an angle, with shadows and partial glare.
-- **Scans of photocopies of faxes**, still genuinely present in UK construction, legal, and healthcare workflows.
-- **Handwritten annotations** over printed forms, frequently carrying the operative information.
+- **Scans of photocopies or faxes**, where repeated copying may obscure characters.
+- **Handwritten annotations** over printed forms, which may carry information the workflow needs.
 - **Multi-page documents split incorrectly**, or several documents in one PDF.
-- **Layout variation across suppliers** — 400 suppliers means 400 invoice layouts.
+- **Layout variation across suppliers**, including multiple versions from one supplier and shared formats across others.
 - **Multi-language content**, and documents mixing languages.
 
 Accuracy varies with document mix, label quality, extraction rules, and the chosen model. This guide has no representative benchmark dataset, so establish performance on a held-out sample of your own documents rather than using generic percentages.
 
-**Test on a stratified sample of real documents**, deliberately including the difficult tail. A pilot on your cleanest 200 documents predicts nothing about production.
+**Test on a stratified sample of real documents**, deliberately including the difficult tail. A pilot containing only the cleanest documents cannot establish performance across the rest of the production mix.
 
 ## Exception handling is the project
 
-Extraction is the visible part. Exception handling is where the cost and the value sit.
+Extraction is the visible part. Exception handling can determine whether the resulting workflow saves time.
 
 Design decisions that determine whether the system succeeds:
 
-**Confidence thresholds per field, not globally.** A misread invoice total is a financial error; a misread supplier address is a nuisance. Route by consequence, not by a single number.
+**Confidence thresholds per field, not globally.** A misread total, supplier identity or address can have different consequences depending on the workflow. Define review rules from those consequences and measured errors rather than treating one global confidence score as approval.
 
-**A review interface built for speed.** Reviewers should see the document with the extracted field highlighted in place, correct inline, and move on. If review means opening the PDF separately and retyping into another system, you have not automated anything — you have added a step.
+**A review interface built for speed.** Reviewers should see the document with the extracted field highlighted in place, correct inline, and move on. Opening a separate PDF and retyping into another system can erode the benefit; measure the complete task rather than extraction latency alone.
 
-**Corrections feeding back into improvement.** Without a loop from correction to model or template refinement, accuracy is static forever.
+**Corrections feeding back into improvement.** Record reviewed corrections and test proposed extraction or validation changes on held-out examples. A correction should not become a training label automatically when its accuracy is uncertain.
 
-**Explicit ownership of the exception queue.** Unowned queues grow until someone declares bankruptcy on them.
+**Explicit ownership of the exception queue.** Assign a team, response target and escalation route, and monitor unresolved work by age and consequence.
 
-A realistic saving is not "eliminate data entry." It is "reduce the measured typing workload and change the remaining work into verification," which is faster and less error-prone but not free. Business cases built on total elimination fail on contact with production.
+Measure whether reduced typing outweighs the remaining verification and exception work. Review may be faster for some documents and slower for others; time it with the people who will operate the process instead of assuming total elimination of manual effort.
 
 ## UK-specific considerations
 
 **GDPR and lawful basis.** Documents contain personal data. Identify the applicable lawful basis and assess whether a DPIA is required for the planned processing. The [ICO explains changes introduced by the Data (Use and Access) Act](https://ico.org.uk/about-the-ico/what-we-do/legislation-we-cover/data-use-and-access-act-2025/the-data-use-and-access-act-2025-duaa-summary-of-the-changes/data-protection/); some automated-decision guidance is under review. Have the current safeguards and requirements checked for the actual decision rather than assuming an older rule applies unchanged.
 
-**Data residency.** Many providers process in specific regions. Where documents contain personal or commercially sensitive data, verify processing location contractually rather than assuming, and confirm whether documents are retained for provider model improvement — often a default that requires opting out.
+**Data residency.** Many providers process in specific regions. Where documents contain personal or commercially sensitive data, verify processing location contractually rather than assuming, and confirm the provider's applicable retention and model-improvement terms rather than assuming a default.
 
 **Retention.** Retention depends on entity type, tax regime, and the record concerned. The [self-employed record guidance](https://www.gov.uk/self-employed-records) is not a universal six-year rule for every business. Your IDP system becomes part of the retention story, including the original images, not merely the extracted data.
 
-**Making Tax Digital.** Invoice and receipt processing intersects with digital record-keeping requirements. Extracted data feeding VAT returns needs an auditable link back to the source document.
+**Making Tax Digital.** Review the applicable digital-record and linking requirements with the business's tax adviser. [HMRC VAT Notice 700/21](https://www.gov.uk/guidance/record-keeping-for-vat-notice-70021) explains VAT record keeping; preserve source references and review how the extraction workflow connects to the accounting records.
 
-**Handwriting and legacy formats.** UK sectors with long document histories — legal, construction, NHS supply chains — carry a higher proportion of handwritten and poor-quality material than vendor benchmarks assume.
+**Handwriting and legacy formats.** Inspect the organization's actual archive for annotations, photocopies and mixed document formats. This guide has no comparative sector dataset establishing how common those problems are.
 
 ## Costing an engagement
 
 Price discovery, labelled evaluation documents, extraction, review tooling, integrations, and support separately. Use measured page volume and reviewer time to model recurring cost. A per-page API price is not an implementation quote.
 
-Cost drivers: number of distinct document types, layout variability within each, integration surface with downstream systems, and required accuracy threshold. Moving from 85% to 95% document-level accuracy frequently costs more than reaching 85% did.
+Cost drivers include document types, layout variability, downstream integrations and the required error limits. Measure the effort needed for each additional difficult case rather than assuming accuracy improves at a constant cost.
 
-The per-page figure is usually the smallest line and receives the most attention in procurement. Integration and exception-handling design dominate total cost.
+Separate per-page processing from integration and exception handling. Their relative cost depends on volume, review time and the existing systems; none should disappear from the business case.
 
 ## Scoping a pilot that predicts production
 
 1. **Pick one document type with real volume.** Not the hardest, not the easiest.
-2. **Sample 300–500 real documents**, stratified to include the poor-quality tail in its true proportion.
+2. **Choose a representative sample size**, including important document types and rare consequential errors. Size it for the precision required; one universal document count is not sufficient for every workflow.
 3. **Define fields and their consequence tiers** before measuring anything.
 4. **Measure document-level accuracy** on that sample, with per-field breakdown.
 5. **Time the exception workflow** with actual reviewers, not with the project team.
 6. **Compute the business case from measured numbers** — documents fully automated, average review time for the rest, versus current cost.
 
-If the pilot cannot demonstrate this on real documents, production will not either.
+If the pilot cannot demonstrate an acceptable result on representative documents, revise the design or scope before assuming production will improve it.
 
 ## Keep extraction confidence separate from financial approval
 
@@ -116,7 +116,7 @@ Keep the original source reference and correction history so reviewers can recon
 Measure required-field and document-level performance on representative documents, with a separate held-out test set. Generic accuracy percentages do not predict your exception workload.
 
 **Why did our pilot outperform production?**
-Almost always because the pilot sample was cleaner than production. Stratify your sample to include poor-quality documents in their real proportion.
+Investigate differences in document mix, labels, model versions, configuration and downstream validation. A cleaner pilot sample is one possible cause, not a diagnosis established without evidence.
 
 **What does it cost in the UK?**
 Ask for a scoped quote covering documents, review tooling, downstream integrations, and support. Calculate recurring processing and review costs from measured pilot data; this article does not provide verified UK market rates.
@@ -125,7 +125,7 @@ Ask for a scoped quote covering documents, review tooling, downstream integratio
 Establish the appropriate basis, processing agreement, risk assessment and any required DPIA for the particular workflow. Check current ICO guidance after the 2025 Act reforms, plus processing location, retention, and model-improvement terms.
 
 **Can it read handwriting?**
-Modern systems handle clear handwriting reasonably and struggle with cursive, annotations in margins, and poor-quality scans. If handwritten content carries operative information, test it specifically rather than accepting a general accuracy figure.
+Handwriting performance depends on the model, script and document quality. If handwritten content carries operative information, evaluate it separately, including cursive, margin annotations and poor-quality scans, rather than accepting a general accuracy figure.
 
 ## Further reading
 

@@ -1,0 +1,27 @@
+[
+  {
+    "source": "accessible-website-agency",
+    "destination": "web-accessibility-remediation-implementation-roadmap-v2-2026",
+    "reason": "The archived buyer checklist asks how to evaluate accessibility delivery, manual testing, semantic controls, editor support and handover. The rebuilt roadmap supplies those concrete evaluation and remediation steps, scope limits, retest evidence and supplier responsibilities. It makes no universal compliance claim."
+  },
+  {
+    "source": "when-to-build-a-client-portal",
+    "destination": "client-portal-development-architecture-patterns-2026",
+    "reason": "The original three paragraphs recommend a portal when repeated file exchanges, approvals and status updates fragment across channels. The rebuilt guide directly expands that same decision in its first-task section and shared-drive comparison, then specifies the approval and document workflow."
+  },
+  {
+    "source": "web-development-agency-for-website-redesign",
+    "destination": "website-redesign-services-business-guide",
+    "reason": "Both pages address planning and procuring a redesign while preserving existing search visibility and business journeys. The rebuilt destination covers the original baseline, URL/content mapping, discovery signals, analytics and form integrations, accessibility, performance, launch verification and recovery."
+  },
+  {
+    "source": "custom-saas-development-roadmap",
+    "destination": "b2b-saas-development-architecture-patterns-2026",
+    "reason": "The archived article centers on turning a repeatable customer workflow into a shared configurable product with tenant boundaries, onboarding and operational ownership. The rebuilt B2B guide expands those same product-design decisions using supplier onboarding, configuration limits, roles, entitlement boundaries, integrations, activation and controlled rollout. This approval does not extend to the separate market-discovery or SaaS-vendor-selection articles."
+  },
+  {
+    "source": "cloud-application-development-strategy",
+    "destination": "cloud-native-application-development-company",
+    "reason": "The archived strategy is a brief workload-led architecture checklist covering managed responsibility, failure recovery, safe deployment and operating cost. The rebuilt destination evaluates those same decisions through a complete inspection-application transaction, retained security duties, deployment evidence, failure drills and workload-based cost assumptions."
+  }
+]

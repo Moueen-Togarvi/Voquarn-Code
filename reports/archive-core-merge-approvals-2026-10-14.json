@@ -1,0 +1,87 @@
+[
+  {
+    "source": "core-web-vitals-optimization-discovery-workshop-2026",
+    "destination": "core-web-vitals-optimization-architecture-patterns-2026",
+    "reason": "Consolidated guide covers template-level field baselines, LCP/INP/CLS diagnosis, implementation choices, release verification and regression ownership. Excludes geographic, commercial and regulated-industry variants."
+  },
+  {
+    "source": "core-web-vitals-optimization-implementation-roadmap-v2-2026",
+    "destination": "core-web-vitals-optimization-architecture-patterns-2026",
+    "reason": "Consolidated guide covers template-level field baselines, LCP/INP/CLS diagnosis, implementation choices, release verification and regression ownership. Excludes geographic, commercial and regulated-industry variants."
+  },
+  {
+    "source": "core-web-vitals-optimization-maintenance-support-2026",
+    "destination": "core-web-vitals-optimization-architecture-patterns-2026",
+    "reason": "Consolidated guide covers template-level field baselines, LCP/INP/CLS diagnosis, implementation choices, release verification and regression ownership. Excludes geographic, commercial and regulated-industry variants."
+  },
+  {
+    "source": "core-web-vitals-optimization-production-deployment-2026",
+    "destination": "core-web-vitals-optimization-architecture-patterns-2026",
+    "reason": "Consolidated guide covers template-level field baselines, LCP/INP/CLS diagnosis, implementation choices, release verification and regression ownership. Excludes geographic, commercial and regulated-industry variants."
+  },
+  {
+    "source": "core-web-vitals-optimization-project-scope-2026",
+    "destination": "core-web-vitals-optimization-architecture-patterns-2026",
+    "reason": "Consolidated guide covers template-level field baselines, LCP/INP/CLS diagnosis, implementation choices, release verification and regression ownership. Excludes geographic, commercial and regulated-industry variants."
+  },
+  {
+    "source": "core-web-vitals-optimization-proof-of-concept-2026",
+    "destination": "core-web-vitals-optimization-architecture-patterns-2026",
+    "reason": "Consolidated guide covers template-level field baselines, LCP/INP/CLS diagnosis, implementation choices, release verification and regression ownership. Excludes geographic, commercial and regulated-industry variants."
+  },
+  {
+    "source": "schema-markup-for-ai-search-expert-implementation-playbook-2026-2026",
+    "destination": "schema-markup-for-ai-search",
+    "reason": "Rewritten source explains selecting entities, authors/dates, prices, JSON-LD validation and production verification, replacing the generic implementation template."
+  },
+  {
+    "source": "ai-brand-mention-monitoring-expert-implementation-playbook-2026-2026",
+    "destination": "llm-citation-tracking",
+    "reason": "Destination provides a documented sampling protocol, mention/citation distinctions, denominators, referral attribution limits and outcome reporting. The old pages contain generic delivery prose rather than a distinct method."
+  },
+  {
+    "source": "llm-citation-optimization-audit-checklist-2026",
+    "destination": "llm-citation-tracking",
+    "reason": "Destination provides a documented sampling protocol, mention/citation distinctions, denominators, referral attribution limits and outcome reporting. The old pages contain generic delivery prose rather than a distinct method."
+  },
+  {
+    "source": "llm-citation-optimization-roi-measurement-guide-2026",
+    "destination": "llm-citation-tracking",
+    "reason": "Destination provides a documented sampling protocol, mention/citation distinctions, denominators, referral attribution limits and outcome reporting. The old pages contain generic delivery prose rather than a distinct method."
+  },
+  {
+    "source": "enterprise-system-integration-architecture-patterns-2026",
+    "destination": "system-integration-services-company",
+    "reason": "CRM/ERP worked example now explains ownership, contracts, duplicate/order handling, reconciliation, failure acceptance, handover and proposal review. No industry or country claims are inferred."
+  },
+  {
+    "source": "enterprise-system-integration-implementation-roadmap-v2-2026",
+    "destination": "system-integration-services-company",
+    "reason": "CRM/ERP worked example now explains ownership, contracts, duplicate/order handling, reconciliation, failure acceptance, handover and proposal review. No industry or country claims are inferred."
+  },
+  {
+    "source": "enterprise-system-integration-maintenance-support-2026",
+    "destination": "system-integration-services-company",
+    "reason": "CRM/ERP worked example now explains ownership, contracts, duplicate/order handling, reconciliation, failure acceptance, handover and proposal review. No industry or country claims are inferred."
+  },
+  {
+    "source": "enterprise-system-integration-production-deployment-2026",
+    "destination": "system-integration-services-company",
+    "reason": "CRM/ERP worked example now explains ownership, contracts, duplicate/order handling, reconciliation, failure acceptance, handover and proposal review. No industry or country claims are inferred."
+  },
+  {
+    "source": "enterprise-system-integration-project-scope-2026",
+    "destination": "system-integration-services-company",
+    "reason": "CRM/ERP worked example now explains ownership, contracts, duplicate/order handling, reconciliation, failure acceptance, handover and proposal review. No industry or country claims are inferred."
+  },
+  {
+    "source": "enterprise-system-integration-proof-of-concept-2026",
+    "destination": "system-integration-services-company",
+    "reason": "CRM/ERP worked example now explains ownership, contracts, duplicate/order handling, reconciliation, failure acceptance, handover and proposal review. No industry or country claims are inferred."
+  },
+  {
+    "source": "enterprise-system-integration-vendor-selection-2026",
+    "destination": "system-integration-services-company",
+    "reason": "CRM/ERP worked example now explains ownership, contracts, duplicate/order handling, reconciliation, failure acceptance, handover and proposal review. No industry or country claims are inferred."
+  }
+]

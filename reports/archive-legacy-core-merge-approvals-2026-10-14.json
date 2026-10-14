@@ -1,0 +1,17 @@
+[
+  {
+    "source": "api-integration-services-buyers-guide",
+    "destination": "system-integration-services-company",
+    "reason": "Read full source. Replacement covers field ownership, provider capability and contract assessment, scoped credentials, duplicates, reconciliation, failure tests, monitoring and accountable handover through a concrete CRM/ERP order workflow."
+  },
+  {
+    "source": "third-party-api-integration-risk-guide",
+    "destination": "system-integration-services-company",
+    "reason": "Read full source. Added explicit vendor dependency boundary, capability checks, permissions, caching freshness, continuity and retention review; replacement also covers retries, duplicate and out-of-order events, reconciliation and failure acceptance."
+  },
+  {
+    "source": "api-integration-services-cost-guide",
+    "destination": "system-integration-services-company",
+    "reason": "Read full source. Replacement now provides the requested cost components: discovery, authentication, mappings, workflow logic, testing, monitoring, migration, handover and recurring vendor/support work, plus scope reduction. Neither source nor replacement establishes a verified market price."
+  }
+]

@@ -1,0 +1,3399 @@
+{
+  "date": "2026-10-14",
+  "checks": {
+    "productionBuild": "passed; 204 routes",
+    "lint": "passed",
+    "reviewedArticleGate": 100,
+    "originalArchiveChecksums": 4497,
+    "primarySourceUrls": 150,
+    "primarySourceHttp200": 149,
+    "primarySourceRateLimitedButOpenedThroughWeb": 1,
+    "archiveRecoveryRegression": "passed for both commands"
+  },
+  "local": {
+    "summary": {
+      "date": "2026-10-14",
+      "origin": "http://localhost:3100",
+      "sitemapUrls": 158,
+      "publishedBlogs": 143,
+      "blogRedirectsChecked": 200,
+      "blogPaginationPages": 12,
+      "notFoundChecks": 8,
+      "responsesChecked": 377,
+      "problems": [],
+      "blogsMissingFromPagination": []
+    },
+    "responses": [
+      {
+        "path": "/",
+        "status": 200,
+        "location": null,
+        "seconds": 1.245,
+        "canonical": [
+          "https://www.voquarn.com"
+        ],
+        "error": null
+      },
+      {
+        "path": "/services",
+        "status": 200,
+        "location": null,
+        "seconds": 1.021,
+        "canonical": [
+          "https://www.voquarn.com/services"
+        ],
+        "error": null
+      },
+      {
+        "path": "/portfolio",
+        "status": 200,
+        "location": null,
+        "seconds": 1.158,
+        "canonical": [
+          "https://www.voquarn.com/portfolio"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog",
+        "status": 200,
+        "location": null,
+        "seconds": 0.636,
+        "canonical": [
+          "https://www.voquarn.com/blog"
+        ],
+        "error": null
+      },
+      {
+        "path": "/contact",
+        "status": 200,
+        "location": null,
+        "seconds": 1.13,
+        "canonical": [
+          "https://www.voquarn.com/contact"
+        ],
+        "error": null
+      },
+      {
+        "path": "/about",
+        "status": 200,
+        "location": null,
+        "seconds": 1.146,
+        "canonical": [
+          "https://www.voquarn.com/about"
+        ],
+        "error": null
+      },
+      {
+        "path": "/team",
+        "status": 200,
+        "location": null,
+        "seconds": 0.48,
+        "canonical": [
+          "https://www.voquarn.com/team"
+        ],
+        "error": null
+      },
+      {
+        "path": "/ceo",
+        "status": 200,
+        "location": null,
+        "seconds": 0.22,
+        "canonical": [
+          "https://www.voquarn.com/ceo"
+        ],
+        "error": null
+      },
+      {
+        "path": "/careers",
+        "status": 200,
+        "location": null,
+        "seconds": 0.15,
+        "canonical": [
+          "https://www.voquarn.com/careers"
+        ],
+        "error": null
+      },
+      {
+        "path": "/privacy",
+        "status": 200,
+        "location": null,
+        "seconds": 0.21,
+        "canonical": [
+          "https://www.voquarn.com/privacy"
+        ],
+        "error": null
+      },
+      {
+        "path": "/terms",
+        "status": 200,
+        "location": null,
+        "seconds": 0.202,
+        "canonical": [
+          "https://www.voquarn.com/terms"
+        ],
+        "error": null
+      },
+      {
+        "path": "/services/crm-systems",
+        "status": 200,
+        "location": null,
+        "seconds": 0.167,
+        "canonical": [
+          "https://www.voquarn.com/services/crm-systems"
+        ],
+        "error": null
+      },
+      {
+        "path": "/services/saas-apps",
+        "status": 200,
+        "location": null,
+        "seconds": 0.153,
+        "canonical": [
+          "https://www.voquarn.com/services/saas-apps"
+        ],
+        "error": null
+      },
+      {
+        "path": "/services/app-dev",
+        "status": 200,
+        "location": null,
+        "seconds": 0.161,
+        "canonical": [
+          "https://www.voquarn.com/services/app-dev"
+        ],
+        "error": null
+      },
+      {
+        "path": "/services/web-dev",
+        "status": 200,
+        "location": null,
+        "seconds": 0.164,
+        "canonical": [
+          "https://www.voquarn.com/services/web-dev"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/agentic-commerce-readiness-catalog-checkout-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.131,
+        "canonical": [
+          "https://www.voquarn.com/blog/agentic-commerce-readiness-catalog-checkout-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-acceptance-testing-tool-actions-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.198,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-agent-acceptance-testing-tool-actions-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-automation-cost-pakistan-workflow-budget-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.156,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-automation-cost-pakistan-workflow-budget-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/custom-software-development-pakistan-procurement-checklist-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.21,
+        "canonical": [
+          "https://www.voquarn.com/blog/custom-software-development-pakistan-procurement-checklist-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/nextjs-technical-seo-audit-checklist-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.154,
+        "canonical": [
+          "https://www.voquarn.com/blog/nextjs-technical-seo-audit-checklist-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/saas-mvp-budget-pakistan-scope-acceptance-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.149,
+        "canonical": [
+          "https://www.voquarn.com/blog/saas-mvp-budget-pakistan-scope-acceptance-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/aeo-budget-planning-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.153,
+        "canonical": [
+          "https://www.voquarn.com/blog/aeo-budget-planning-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-conversion-rate-optimization-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.122,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-conversion-rate-optimization-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/aws-vs-azure-for-startups-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.192,
+        "canonical": [
+          "https://www.voquarn.com/blog/aws-vs-azure-for-startups-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/finops-company-selection-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.133,
+        "canonical": [
+          "https://www.voquarn.com/blog/finops-company-selection-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/hiring-dedicated-python-team-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.168,
+        "canonical": [
+          "https://www.voquarn.com/blog/hiring-dedicated-python-team-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/intelligent-document-processing-uk-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.168,
+        "canonical": [
+          "https://www.voquarn.com/blog/intelligent-document-processing-uk-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/legacy-software-modernization-uk-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.143,
+        "canonical": [
+          "https://www.voquarn.com/blog/legacy-software-modernization-uk-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/llmops-consulting-what-to-expect-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.169,
+        "canonical": [
+          "https://www.voquarn.com/blog/llmops-consulting-what-to-expect-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/private-ai-deployment-fintech-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.138,
+        "canonical": [
+          "https://www.voquarn.com/blog/private-ai-deployment-fintech-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-search-product-data-optimization-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.128,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-search-product-data-optimization-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/healthcare-product-engineering-services-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.134,
+        "canonical": [
+          "https://www.voquarn.com/blog/healthcare-product-engineering-services-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/self-hosted-llm-cost-calculator-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.164,
+        "canonical": [
+          "https://www.voquarn.com/blog/self-hosted-llm-cost-calculator-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/shadow-ai-governance-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.155,
+        "canonical": [
+          "https://www.voquarn.com/blog/shadow-ai-governance-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-speed-optimization-checklist-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.17,
+        "canonical": [
+          "https://www.voquarn.com/blog/shopify-speed-optimization-checklist-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-vs-woocommerce-2026-decision-guide",
+        "status": 200,
+        "location": null,
+        "seconds": 0.136,
+        "canonical": [
+          "https://www.voquarn.com/blog/shopify-vs-woocommerce-2026-decision-guide"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/agent-plugins-1-implementation-service",
+        "status": 200,
+        "location": null,
+        "seconds": 0.138,
+        "canonical": [
+          "https://www.voquarn.com/blog/agent-plugins-1-implementation-service"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-cyber-containment-consulting",
+        "status": 200,
+        "location": null,
+        "seconds": 0.155,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-agent-cyber-containment-consulting"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-coding-agent-stacked-pull-request-workflow",
+        "status": 200,
+        "location": null,
+        "seconds": 0.215,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-coding-agent-stacked-pull-request-workflow"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/code-review-agent-skills-implementation-service",
+        "status": 200,
+        "location": null,
+        "seconds": 0.145,
+        "canonical": [
+          "https://www.voquarn.com/blog/code-review-agent-skills-implementation-service"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/coding-agent-reasoning-level-governance",
+        "status": 200,
+        "location": null,
+        "seconds": 0.268,
+        "canonical": [
+          "https://www.voquarn.com/blog/coding-agent-reasoning-level-governance"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/copilot-jetbrains-enterprise-settings-rollout",
+        "status": 200,
+        "location": null,
+        "seconds": 0.275,
+        "canonical": [
+          "https://www.voquarn.com/blog/copilot-jetbrains-enterprise-settings-rollout"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-agent-delegation-readiness-assessment",
+        "status": 200,
+        "location": null,
+        "seconds": 0.304,
+        "canonical": [
+          "https://www.voquarn.com/blog/enterprise-agent-delegation-readiness-assessment"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/github-copilot-microsoft-teams-integration-consulting",
+        "status": 200,
+        "location": null,
+        "seconds": 0.256,
+        "canonical": [
+          "https://www.voquarn.com/blog/github-copilot-microsoft-teams-integration-consulting"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/github-copilot-model-deprecation-migration-service",
+        "status": 200,
+        "location": null,
+        "seconds": 0.359,
+        "canonical": [
+          "https://www.voquarn.com/blog/github-copilot-model-deprecation-migration-service"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/github-copilot-slack-workflow-implementation-service",
+        "status": 200,
+        "location": null,
+        "seconds": 0.356,
+        "canonical": [
+          "https://www.voquarn.com/blog/github-copilot-slack-workflow-implementation-service"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/github-oauth-refresh-token-migration-service",
+        "status": 200,
+        "location": null,
+        "seconds": 0.164,
+        "canonical": [
+          "https://www.voquarn.com/blog/github-oauth-refresh-token-migration-service"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/nextjs-instant-navigation-audit-service",
+        "status": 200,
+        "location": null,
+        "seconds": 0.249,
+        "canonical": [
+          "https://www.voquarn.com/blog/nextjs-instant-navigation-audit-service"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/nextjs-security-patch-readiness-service",
+        "status": 200,
+        "location": null,
+        "seconds": 0.158,
+        "canonical": [
+          "https://www.voquarn.com/blog/nextjs-security-patch-readiness-service"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/npm-publish-pipeline-security-audit",
+        "status": 200,
+        "location": null,
+        "seconds": 0.207,
+        "canonical": [
+          "https://www.voquarn.com/blog/npm-publish-pipeline-security-audit"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/openai-zero-data-retention-architecture-consulting",
+        "status": 200,
+        "location": null,
+        "seconds": 0.162,
+        "canonical": [
+          "https://www.voquarn.com/blog/openai-zero-data-retention-architecture-consulting"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/aeo-vs-seo-premium-buyer-guide-2026-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.168,
+        "canonical": [
+          "https://www.voquarn.com/blog/aeo-vs-seo-premium-buyer-guide-2026-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-identity-management-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.151,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-agent-identity-management-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-compliance-automation-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.171,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-compliance-automation-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-customer-onboarding-implementation-roadmap-v2-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.157,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-customer-onboarding-implementation-roadmap-v2-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-data-readiness-implementation-checklist-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.116,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-data-readiness-implementation-checklist-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-operations-automation-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.219,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-operations-automation-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-procurement-automation-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.227,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-procurement-automation-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-quality-monitoring-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.168,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-quality-monitoring-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-revenue-operations-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.112,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-revenue-operations-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-saas-product-development-architecture-blueprint-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.153,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-saas-product-development-architecture-blueprint-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-assisted-quality-assurance-implementation-checklist-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.161,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-assisted-quality-assurance-implementation-checklist-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/b2b-saas-development-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.22,
+        "canonical": [
+          "https://www.voquarn.com/blog/b2b-saas-development-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/client-portal-development-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.19,
+        "canonical": [
+          "https://www.voquarn.com/blog/client-portal-development-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/core-web-vitals-optimization-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.127,
+        "canonical": [
+          "https://www.voquarn.com/blog/core-web-vitals-optimization-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/devsecops-automation-production-deployment-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.192,
+        "canonical": [
+          "https://www.voquarn.com/blog/devsecops-automation-production-deployment-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/django-rest-api-development-architecture-blueprint-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.171,
+        "canonical": [
+          "https://www.voquarn.com/blog/django-rest-api-development-architecture-blueprint-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/django-saas-development-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.194,
+        "canonical": [
+          "https://www.voquarn.com/blog/django-saas-development-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-llm-gateway-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.171,
+        "canonical": [
+          "https://www.voquarn.com/blog/enterprise-llm-gateway-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/fastapi-ai-backend-architecture-blueprint-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.181,
+        "canonical": [
+          "https://www.voquarn.com/blog/fastapi-ai-backend-architecture-blueprint-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/guardrails-as-code-implementation-checklist-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.141,
+        "canonical": [
+          "https://www.voquarn.com/blog/guardrails-as-code-implementation-checklist-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/internal-tools-development-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.143,
+        "canonical": [
+          "https://www.voquarn.com/blog/internal-tools-development-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/multi-tenant-saas-architecture-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.17,
+        "canonical": [
+          "https://www.voquarn.com/blog/multi-tenant-saas-architecture-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/nextjs-ecommerce-development-architecture-blueprint-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.156,
+        "canonical": [
+          "https://www.voquarn.com/blog/nextjs-ecommerce-development-architecture-blueprint-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/platform-engineering-services-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.182,
+        "canonical": [
+          "https://www.voquarn.com/blog/platform-engineering-services-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/python-automation-services-production-deployment-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.226,
+        "canonical": [
+          "https://www.voquarn.com/blog/python-automation-services-production-deployment-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/saas-billing-platform-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.178,
+        "canonical": [
+          "https://www.voquarn.com/blog/saas-billing-platform-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-analytics-app-development-implementation-checklist-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.177,
+        "canonical": [
+          "https://www.voquarn.com/blog/shopify-analytics-app-development-implementation-checklist-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-checkout-extensions-implementation-checklist-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.161,
+        "canonical": [
+          "https://www.voquarn.com/blog/shopify-checkout-extensions-implementation-checklist-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/headless-shopify-hydrogen-architecture-blueprint-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.142,
+        "canonical": [
+          "https://www.voquarn.com/blog/headless-shopify-hydrogen-architecture-blueprint-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/software-testing-automation-implementation-checklist-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.138,
+        "canonical": [
+          "https://www.voquarn.com/blog/software-testing-automation-implementation-checklist-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/synthetic-data-generation-architecture-patterns-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.147,
+        "canonical": [
+          "https://www.voquarn.com/blog/synthetic-data-generation-architecture-patterns-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/web-accessibility-remediation-implementation-roadmap-v2-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.101,
+        "canonical": [
+          "https://www.voquarn.com/blog/web-accessibility-remediation-implementation-roadmap-v2-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/agent-to-agent-protocol",
+        "status": 200,
+        "location": null,
+        "seconds": 0.121,
+        "canonical": [
+          "https://www.voquarn.com/blog/agent-to-agent-protocol"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-handoff-design",
+        "status": 200,
+        "location": null,
+        "seconds": 0.121,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-agent-handoff-design"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-memory-architecture",
+        "status": 200,
+        "location": null,
+        "seconds": 0.141,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-agent-memory-architecture"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-crawler-management",
+        "status": 200,
+        "location": null,
+        "seconds": 0.131,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-crawler-management"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-incident-response-plan",
+        "status": 200,
+        "location": null,
+        "seconds": 0.175,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-incident-response-plan"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-model-routing-strategy",
+        "status": 200,
+        "location": null,
+        "seconds": 0.14,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-model-routing-strategy"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-readiness-assessment",
+        "status": 200,
+        "location": null,
+        "seconds": 0.134,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-readiness-assessment"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-search-visibility-audit",
+        "status": 200,
+        "location": null,
+        "seconds": 0.141,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-search-visibility-audit"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-native-application-development",
+        "status": 200,
+        "location": null,
+        "seconds": 0.108,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-native-application-development"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/answer-engine-optimization-agency",
+        "status": 200,
+        "location": null,
+        "seconds": 0.128,
+        "canonical": [
+          "https://www.voquarn.com/blog/answer-engine-optimization-agency"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/eu-ai-act-compliance-software",
+        "status": 200,
+        "location": null,
+        "seconds": 0.099,
+        "canonical": [
+          "https://www.voquarn.com/blog/eu-ai-act-compliance-software"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/generative-engine-optimization-services",
+        "status": 200,
+        "location": null,
+        "seconds": 0.103,
+        "canonical": [
+          "https://www.voquarn.com/blog/generative-engine-optimization-services"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/llm-citation-tracking",
+        "status": 200,
+        "location": null,
+        "seconds": 0.129,
+        "canonical": [
+          "https://www.voquarn.com/blog/llm-citation-tracking"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/llms-txt-implementation",
+        "status": 200,
+        "location": null,
+        "seconds": 0.114,
+        "canonical": [
+          "https://www.voquarn.com/blog/llms-txt-implementation"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/mcp-server-development",
+        "status": 200,
+        "location": null,
+        "seconds": 0.127,
+        "canonical": [
+          "https://www.voquarn.com/blog/mcp-server-development"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/multi-agent-system-architecture",
+        "status": 200,
+        "location": null,
+        "seconds": 0.094,
+        "canonical": [
+          "https://www.voquarn.com/blog/multi-agent-system-architecture"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/nextjs-16-3-architecture-guide-2026",
+        "status": 200,
+        "location": null,
+        "seconds": 0.094,
+        "canonical": [
+          "https://www.voquarn.com/blog/nextjs-16-3-architecture-guide-2026"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/on-device-ai-development",
+        "status": 200,
+        "location": null,
+        "seconds": 0.109,
+        "canonical": [
+          "https://www.voquarn.com/blog/on-device-ai-development"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/prompt-caching-implementation",
+        "status": 200,
+        "location": null,
+        "seconds": 0.123,
+        "canonical": [
+          "https://www.voquarn.com/blog/prompt-caching-implementation"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/prompt-injection-defense",
+        "status": 200,
+        "location": null,
+        "seconds": 0.133,
+        "canonical": [
+          "https://www.voquarn.com/blog/prompt-injection-defense"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/retrieval-evaluation-metrics",
+        "status": 200,
+        "location": null,
+        "seconds": 0.114,
+        "canonical": [
+          "https://www.voquarn.com/blog/retrieval-evaluation-metrics"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/schema-markup-for-ai-search",
+        "status": 200,
+        "location": null,
+        "seconds": 0.106,
+        "canonical": [
+          "https://www.voquarn.com/blog/schema-markup-for-ai-search"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/small-language-model-deployment",
+        "status": 200,
+        "location": null,
+        "seconds": 0.162,
+        "canonical": [
+          "https://www.voquarn.com/blog/small-language-model-deployment"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/sovereign-ai-deployment",
+        "status": 200,
+        "location": null,
+        "seconds": 0.121,
+        "canonical": [
+          "https://www.voquarn.com/blog/sovereign-ai-deployment"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/tool-calling-reliability",
+        "status": 200,
+        "location": null,
+        "seconds": 0.132,
+        "canonical": [
+          "https://www.voquarn.com/blog/tool-calling-reliability"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-cost-optimization",
+        "status": 200,
+        "location": null,
+        "seconds": 0.16,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-agent-cost-optimization"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-governance-framework",
+        "status": 200,
+        "location": null,
+        "seconds": 0.153,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-agent-governance-framework"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-monitoring-observability",
+        "status": 200,
+        "location": null,
+        "seconds": 0.118,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-agent-monitoring-observability"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-customer-service-agent-development",
+        "status": 200,
+        "location": null,
+        "seconds": 0.113,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-customer-service-agent-development"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-data-pipeline-development",
+        "status": 200,
+        "location": null,
+        "seconds": 0.114,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-data-pipeline-development"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-document-processing-automation",
+        "status": 200,
+        "location": null,
+        "seconds": 0.121,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-document-processing-automation"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-email-automation",
+        "status": 200,
+        "location": null,
+        "seconds": 0.114,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-email-automation"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-finance-automation",
+        "status": 200,
+        "location": null,
+        "seconds": 0.159,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-finance-automation"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-insurance-claims-automation",
+        "status": 200,
+        "location": null,
+        "seconds": 0.124,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-insurance-claims-automation"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-knowledge-base-development",
+        "status": 200,
+        "location": null,
+        "seconds": 0.121,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-knowledge-base-development"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-meeting-assistant-development",
+        "status": 200,
+        "location": null,
+        "seconds": 0.244,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-meeting-assistant-development"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-sales-agent-development",
+        "status": 200,
+        "location": null,
+        "seconds": 0.266,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-sales-agent-development"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-supply-chain-automation",
+        "status": 200,
+        "location": null,
+        "seconds": 0.22,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-supply-chain-automation"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-workflow-automation-company",
+        "status": 200,
+        "location": null,
+        "seconds": 0.213,
+        "canonical": [
+          "https://www.voquarn.com/blog/ai-workflow-automation-company"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/api-security-testing-services",
+        "status": 200,
+        "location": null,
+        "seconds": 0.198,
+        "canonical": [
+          "https://www.voquarn.com/blog/api-security-testing-services"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/aws-vs-azure-startups",
+        "status": 200,
+        "location": null,
+        "seconds": 0.266,
+        "canonical": [
+          "https://www.voquarn.com/blog/aws-vs-azure-startups"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/cloud-native-application-development-company",
+        "status": 200,
+        "location": null,
+        "seconds": 0.209,
+        "canonical": [
+          "https://www.voquarn.com/blog/cloud-native-application-development-company"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/custom-software-vs-low-code",
+        "status": 200,
+        "location": null,
+        "seconds": 0.209,
+        "canonical": [
+          "https://www.voquarn.com/blog/custom-software-vs-low-code"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/dedicated-software-development-team-startups",
+        "status": 200,
+        "location": null,
+        "seconds": 0.181,
+        "canonical": [
+          "https://www.voquarn.com/blog/dedicated-software-development-team-startups"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/django-vs-laravel-business-apps",
+        "status": 200,
+        "location": null,
+        "seconds": 0.171,
+        "canonical": [
+          "https://www.voquarn.com/blog/django-vs-laravel-business-apps"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/fastapi-vs-django-rest-framework",
+        "status": 200,
+        "location": null,
+        "seconds": 0.159,
+        "canonical": [
+          "https://www.voquarn.com/blog/fastapi-vs-django-rest-framework"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/flutter-vs-react-native-startups",
+        "status": 200,
+        "location": null,
+        "seconds": 0.159,
+        "canonical": [
+          "https://www.voquarn.com/blog/flutter-vs-react-native-startups"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/generative-ai-security-testing",
+        "status": 200,
+        "location": null,
+        "seconds": 0.118,
+        "canonical": [
+          "https://www.voquarn.com/blog/generative-ai-security-testing"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/headless-cms-vs-traditional-cms",
+        "status": 200,
+        "location": null,
+        "seconds": 0.172,
+        "canonical": [
+          "https://www.voquarn.com/blog/headless-cms-vs-traditional-cms"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/headless-ecommerce-development-company",
+        "status": 200,
+        "location": null,
+        "seconds": 0.179,
+        "canonical": [
+          "https://www.voquarn.com/blog/headless-ecommerce-development-company"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/knowledge-graph-rag",
+        "status": 200,
+        "location": null,
+        "seconds": 0.146,
+        "canonical": [
+          "https://www.voquarn.com/blog/knowledge-graph-rag"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/monolith-vs-microservices-startups",
+        "status": 200,
+        "location": null,
+        "seconds": 0.116,
+        "canonical": [
+          "https://www.voquarn.com/blog/monolith-vs-microservices-startups"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/native-app-vs-progressive-web-app",
+        "status": 200,
+        "location": null,
+        "seconds": 0.127,
+        "canonical": [
+          "https://www.voquarn.com/blog/native-app-vs-progressive-web-app"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/nextjs-vs-nuxt-comparison",
+        "status": 200,
+        "location": null,
+        "seconds": 0.206,
+        "canonical": [
+          "https://www.voquarn.com/blog/nextjs-vs-nuxt-comparison"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/nextjs-vs-wordpress-business-website",
+        "status": 200,
+        "location": null,
+        "seconds": 0.243,
+        "canonical": [
+          "https://www.voquarn.com/blog/nextjs-vs-wordpress-business-website"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/nodejs-vs-python-backend",
+        "status": 200,
+        "location": null,
+        "seconds": 0.164,
+        "canonical": [
+          "https://www.voquarn.com/blog/nodejs-vs-python-backend"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/postgresql-vs-mysql-saas",
+        "status": 200,
+        "location": null,
+        "seconds": 0.16,
+        "canonical": [
+          "https://www.voquarn.com/blog/postgresql-vs-mysql-saas"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/python-vs-php-web-development",
+        "status": 200,
+        "location": null,
+        "seconds": 0.208,
+        "canonical": [
+          "https://www.voquarn.com/blog/python-vs-php-web-development"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/rag-evaluation-framework",
+        "status": 200,
+        "location": null,
+        "seconds": 0.199,
+        "canonical": [
+          "https://www.voquarn.com/blog/rag-evaluation-framework"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/rag-pipeline-development",
+        "status": 200,
+        "location": null,
+        "seconds": 0.175,
+        "canonical": [
+          "https://www.voquarn.com/blog/rag-pipeline-development"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/rag-vs-fine-tuning",
+        "status": 200,
+        "location": null,
+        "seconds": 0.257,
+        "canonical": [
+          "https://www.voquarn.com/blog/rag-vs-fine-tuning"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/react-vs-angular-startups",
+        "status": 200,
+        "location": null,
+        "seconds": 0.275,
+        "canonical": [
+          "https://www.voquarn.com/blog/react-vs-angular-startups"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/react-vs-vue-enterprise-apps",
+        "status": 200,
+        "location": null,
+        "seconds": 0.176,
+        "canonical": [
+          "https://www.voquarn.com/blog/react-vs-vue-enterprise-apps"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/responsible-ai-implementation-services",
+        "status": 200,
+        "location": null,
+        "seconds": 0.189,
+        "canonical": [
+          "https://www.voquarn.com/blog/responsible-ai-implementation-services"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/rest-api-vs-graphql",
+        "status": 200,
+        "location": null,
+        "seconds": 0.24,
+        "canonical": [
+          "https://www.voquarn.com/blog/rest-api-vs-graphql"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/serverless-vs-containers",
+        "status": 200,
+        "location": null,
+        "seconds": 0.217,
+        "canonical": [
+          "https://www.voquarn.com/blog/serverless-vs-containers"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-migration-services-guide",
+        "status": 200,
+        "location": null,
+        "seconds": 0.125,
+        "canonical": [
+          "https://www.voquarn.com/blog/shopify-migration-services-guide"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/software-development-contract-checklist",
+        "status": 200,
+        "location": null,
+        "seconds": 0.324,
+        "canonical": [
+          "https://www.voquarn.com/blog/software-development-contract-checklist"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/software-development-discovery-workshop",
+        "status": 200,
+        "location": null,
+        "seconds": 0.429,
+        "canonical": [
+          "https://www.voquarn.com/blog/software-development-discovery-workshop"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/software-project-rescue-company",
+        "status": 200,
+        "location": null,
+        "seconds": 0.439,
+        "canonical": [
+          "https://www.voquarn.com/blog/software-project-rescue-company"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/system-integration-services-company",
+        "status": 200,
+        "location": null,
+        "seconds": 0.367,
+        "canonical": [
+          "https://www.voquarn.com/blog/system-integration-services-company"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/voice-ai-agent-development-company",
+        "status": 200,
+        "location": null,
+        "seconds": 0.397,
+        "canonical": [
+          "https://www.voquarn.com/blog/voice-ai-agent-development-company"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/website-redesign-services-business-guide",
+        "status": 200,
+        "location": null,
+        "seconds": 0.323,
+        "canonical": [
+          "https://www.voquarn.com/blog/website-redesign-services-business-guide"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/software-agency-vs-freelancer",
+        "status": 200,
+        "location": null,
+        "seconds": 0.277,
+        "canonical": [
+          "https://www.voquarn.com/blog/software-agency-vs-freelancer"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/software-development-company-selection-checklist",
+        "status": 200,
+        "location": null,
+        "seconds": 0.659,
+        "canonical": [
+          "https://www.voquarn.com/blog/software-development-company-selection-checklist"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=2",
+        "status": 200,
+        "location": null,
+        "seconds": 0.616,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=2"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=3",
+        "status": 200,
+        "location": null,
+        "seconds": 0.51,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=3"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=4",
+        "status": 200,
+        "location": null,
+        "seconds": 0.614,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=4"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=5",
+        "status": 200,
+        "location": null,
+        "seconds": 0.475,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=5"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=6",
+        "status": 200,
+        "location": null,
+        "seconds": 0.437,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=6"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=7",
+        "status": 200,
+        "location": null,
+        "seconds": 0.237,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=7"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=8",
+        "status": 200,
+        "location": null,
+        "seconds": 0.176,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=8"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=9",
+        "status": 200,
+        "location": null,
+        "seconds": 0.283,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=9"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=10",
+        "status": 200,
+        "location": null,
+        "seconds": 0.212,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=10"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=11",
+        "status": 200,
+        "location": null,
+        "seconds": 0.304,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=11"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=12",
+        "status": 200,
+        "location": null,
+        "seconds": 0.249,
+        "canonical": [
+          "https://www.voquarn.com/blog?page=12"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/a2a-protocol-integration-compliance-checklist-2026",
+        "status": 404,
+        "location": null,
+        "seconds": 0.45,
+        "canonical": [
+          "https://www.voquarn.com"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/a2a-protocol-integration-cost-guide-2026-2026",
+        "status": 404,
+        "location": null,
+        "seconds": 0.402,
+        "canonical": [
+          "https://www.voquarn.com"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/a2a-protocol-integration-dedicated-team-v2-2026",
+        "status": 404,
+        "location": null,
+        "seconds": 0.336,
+        "canonical": [
+          "https://www.voquarn.com"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/workflow-automation-services-planning-guide",
+        "status": 404,
+        "location": null,
+        "seconds": 0.303,
+        "canonical": [
+          "https://www.voquarn.com"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/zero-click-search-optimization-expert-implementation-playbook-2026-2026",
+        "status": 404,
+        "location": null,
+        "seconds": 0.283,
+        "canonical": [
+          "https://www.voquarn.com"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/zero-click-search-optimization-premium-buyer-guide-2026-2026",
+        "status": 404,
+        "location": null,
+        "seconds": 0.243,
+        "canonical": [
+          "https://www.voquarn.com"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/recovery-nonexistent-20261014",
+        "status": 404,
+        "location": null,
+        "seconds": 0.135,
+        "canonical": [
+          "https://www.voquarn.com"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog?page=999999",
+        "status": 404,
+        "location": null,
+        "seconds": 0.096,
+        "canonical": [
+          "https://www.voquarn.com"
+        ],
+        "error": null
+      },
+      {
+        "path": "/blog/open-source-llm-self-hosting",
+        "status": 308,
+        "location": "/blog/self-hosted-llm-cost-calculator-2026",
+        "seconds": 0.074,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/conversion-rate-optimization-with-ai",
+        "status": 308,
+        "location": "/blog/ai-conversion-rate-optimization-2026",
+        "seconds": 0.074,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/aeo-strategy-cost-budget-guide-2026",
+        "status": 308,
+        "location": "/blog/aeo-budget-planning-2026",
+        "seconds": 0.08,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/python-automation-services-dedicated-team-v2-2026",
+        "status": 308,
+        "location": "/blog/hiring-dedicated-python-team-2026",
+        "seconds": 0.087,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/python-developer-agency-selection",
+        "status": 308,
+        "location": "/blog/hiring-dedicated-python-team-2026",
+        "seconds": 0.03,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-vs-woocommerce",
+        "status": 308,
+        "location": "/blog/shopify-vs-woocommerce-2026-decision-guide",
+        "seconds": 0.036,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-speed-optimization-services",
+        "status": 308,
+        "location": "/blog/shopify-speed-optimization-checklist-2026",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/legacy-software-modernization-uk-providers-2026",
+        "status": 308,
+        "location": "/blog/legacy-software-modernization-uk-2026",
+        "seconds": 0.049,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/private-ai-deployment-fintech-use-cases-v2-2026",
+        "status": 308,
+        "location": "/blog/private-ai-deployment-fintech-2026",
+        "seconds": 0.037,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/llmops-consulting-services",
+        "status": 308,
+        "location": "/blog/llmops-consulting-what-to-expect-2026",
+        "seconds": 0.035,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ecommerce-product-data-ai-search-small-business-guide-2026",
+        "status": 308,
+        "location": "/blog/ai-search-product-data-optimization-2026",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/shadow-ai-governance",
+        "status": 308,
+        "location": "/blog/shadow-ai-governance-2026",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/product-engineering-services-healthcare-use-cases-v2-2026",
+        "status": 308,
+        "location": "/blog/healthcare-product-engineering-services-2026",
+        "seconds": 0.028,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/intelligent-document-processing-uk-providers-2026",
+        "status": 308,
+        "location": "/blog/intelligent-document-processing-uk-2026",
+        "seconds": 0.028,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/multi-agent-systems-enterprise-guide-2026",
+        "status": 308,
+        "location": "/blog/multi-agent-system-architecture",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/google-ai-overviews-optimization",
+        "status": 308,
+        "location": "/blog/ai-search-visibility-audit",
+        "seconds": 0.05,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/software-company-in-pakistan-selection",
+        "status": 308,
+        "location": "/blog/custom-software-development-pakistan-procurement-checklist-2026",
+        "seconds": 0.075,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/nextjs-16-3-migration-guide-2026",
+        "status": 308,
+        "location": "/blog/nextjs-16-3-architecture-guide-2026",
+        "seconds": 0.045,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/a2a-protocol-integration-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/agent-to-agent-protocol",
+        "seconds": 0.073,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/a2a-protocol-integration-project-scope-2026",
+        "status": 308,
+        "location": "/blog/agent-to-agent-protocol",
+        "seconds": 0.071,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/a2a-protocol-integration-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/agent-to-agent-protocol",
+        "seconds": 0.062,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/human-in-the-loop-ai-architecture-blueprint-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-handoff-design",
+        "seconds": 0.068,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/human-in-the-loop-ai-implementation-checklist-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-handoff-design",
+        "seconds": 0.094,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/human-in-the-loop-ai-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-handoff-design",
+        "seconds": 0.072,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-observability-architecture-guide-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-monitoring-observability",
+        "seconds": 0.081,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-observability-audit-checklist-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-monitoring-observability",
+        "seconds": 0.079,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-observability-best-practices-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-monitoring-observability",
+        "seconds": 0.064,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/mcp-implementation-services-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/mcp-server-development",
+        "seconds": 0.043,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/mcp-implementation-services-project-scope-2026",
+        "status": 308,
+        "location": "/blog/mcp-server-development",
+        "seconds": 0.055,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/mcp-implementation-services-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/mcp-server-development",
+        "seconds": 0.042,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-email-triage-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/ai-email-automation",
+        "seconds": 0.066,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-email-triage-project-scope-2026",
+        "status": 308,
+        "location": "/blog/ai-email-automation",
+        "seconds": 0.041,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-email-triage-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/ai-email-automation",
+        "seconds": 0.05,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/agentic-customer-support-architecture-blueprint-2026",
+        "status": 308,
+        "location": "/blog/ai-customer-service-agent-development",
+        "seconds": 0.037,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/agentic-customer-support-implementation-checklist-2026",
+        "status": 308,
+        "location": "/blog/ai-customer-service-agent-development",
+        "seconds": 0.042,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/agentic-customer-support-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/ai-customer-service-agent-development",
+        "seconds": 0.061,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-identity-management-project-scope-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-identity-management-architecture-patterns-2026",
+        "seconds": 0.051,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-identity-management-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-identity-management-architecture-patterns-2026",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-identity-management-security-requirements-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-identity-management-architecture-patterns-2026",
+        "seconds": 0.044,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-data-readiness-architecture-blueprint-2026",
+        "status": 308,
+        "location": "/blog/ai-data-readiness-implementation-checklist-2026",
+        "seconds": 0.04,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-data-readiness-evaluation-framework-2026",
+        "status": 308,
+        "location": "/blog/ai-data-readiness-implementation-checklist-2026",
+        "seconds": 0.038,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-data-readiness-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/ai-data-readiness-implementation-checklist-2026",
+        "seconds": 0.038,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-procurement-automation-project-scope-2026",
+        "status": 308,
+        "location": "/blog/ai-procurement-automation-architecture-patterns-2026",
+        "seconds": 0.222,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-procurement-automation-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/ai-procurement-automation-architecture-patterns-2026",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-procurement-automation-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/ai-procurement-automation-architecture-patterns-2026",
+        "seconds": 0.027,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-customer-onboarding-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/ai-customer-onboarding-implementation-roadmap-v2-2026",
+        "seconds": 0.027,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-customer-onboarding-project-scope-2026",
+        "status": 308,
+        "location": "/blog/ai-customer-onboarding-implementation-roadmap-v2-2026",
+        "seconds": 0.195,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-customer-onboarding-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/ai-customer-onboarding-implementation-roadmap-v2-2026",
+        "seconds": 0.198,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-quality-monitoring-project-scope-2026",
+        "status": 308,
+        "location": "/blog/ai-quality-monitoring-architecture-patterns-2026",
+        "seconds": 0.183,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-quality-monitoring-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/ai-quality-monitoring-architecture-patterns-2026",
+        "seconds": 0.18,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-quality-monitoring-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/ai-quality-monitoring-architecture-patterns-2026",
+        "seconds": 0.176,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-operations-automation-project-scope-2026",
+        "status": 308,
+        "location": "/blog/ai-operations-automation-architecture-patterns-2026",
+        "seconds": 0.024,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-operations-automation-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/ai-operations-automation-architecture-patterns-2026",
+        "seconds": 0.024,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-operations-automation-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/ai-operations-automation-architecture-patterns-2026",
+        "seconds": 0.026,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-finance-operations-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/ai-finance-automation",
+        "seconds": 0.027,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-finance-operations-project-scope-2026",
+        "status": 308,
+        "location": "/blog/ai-finance-automation",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-finance-operations-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/ai-finance-automation",
+        "seconds": 0.025,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-knowledge-management-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/ai-knowledge-base-development",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-knowledge-management-project-scope-2026",
+        "status": 308,
+        "location": "/blog/ai-knowledge-base-development",
+        "seconds": 0.023,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-knowledge-management-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/ai-knowledge-base-development",
+        "seconds": 0.041,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-red-team-testing-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/generative-ai-security-testing",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-red-team-testing-project-scope-2026",
+        "status": 308,
+        "location": "/blog/generative-ai-security-testing",
+        "seconds": 0.028,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-red-team-testing-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/generative-ai-security-testing",
+        "seconds": 0.043,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-rag-systems-architecture-blueprint-2026",
+        "status": 308,
+        "location": "/blog/rag-pipeline-development",
+        "seconds": 0.038,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-rag-systems-implementation-checklist-2026",
+        "status": 308,
+        "location": "/blog/rag-pipeline-development",
+        "seconds": 0.041,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-rag-systems-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/rag-pipeline-development",
+        "seconds": 0.03,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-governance-architecture-guide-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-governance-framework",
+        "seconds": 0.047,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-governance-audit-checklist-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-governance-framework",
+        "seconds": 0.051,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-agent-governance-best-practices-2026",
+        "status": 308,
+        "location": "/blog/ai-agent-governance-framework",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/voice-ai-receptionist-development-company-guide-2026",
+        "status": 308,
+        "location": "/blog/voice-ai-agent-development-company",
+        "seconds": 0.039,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/voice-ai-receptionist-evaluation-framework-2026",
+        "status": 308,
+        "location": "/blog/voice-ai-agent-development-company",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-workflow-automation-agency-selection-guide-2026",
+        "status": 308,
+        "location": "/blog/ai-workflow-automation-company",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-workflow-automation-services-premium-buyer-guide-2026-2026",
+        "status": 308,
+        "location": "/blog/ai-workflow-automation-company",
+        "seconds": 0.032,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/core-web-vitals-optimization-discovery-workshop-2026",
+        "status": 308,
+        "location": "/blog/core-web-vitals-optimization-architecture-patterns-2026",
+        "seconds": 0.036,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/core-web-vitals-optimization-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/core-web-vitals-optimization-architecture-patterns-2026",
+        "seconds": 0.035,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/core-web-vitals-optimization-maintenance-support-2026",
+        "status": 308,
+        "location": "/blog/core-web-vitals-optimization-architecture-patterns-2026",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/core-web-vitals-optimization-production-deployment-2026",
+        "status": 308,
+        "location": "/blog/core-web-vitals-optimization-architecture-patterns-2026",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/core-web-vitals-optimization-project-scope-2026",
+        "status": 308,
+        "location": "/blog/core-web-vitals-optimization-architecture-patterns-2026",
+        "seconds": 0.055,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/core-web-vitals-optimization-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/core-web-vitals-optimization-architecture-patterns-2026",
+        "seconds": 0.024,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/schema-markup-for-ai-search-expert-implementation-playbook-2026-2026",
+        "status": 308,
+        "location": "/blog/schema-markup-for-ai-search",
+        "seconds": 0.037,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-brand-mention-monitoring-expert-implementation-playbook-2026-2026",
+        "status": 308,
+        "location": "/blog/llm-citation-tracking",
+        "seconds": 0.049,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/llm-citation-optimization-audit-checklist-2026",
+        "status": 308,
+        "location": "/blog/llm-citation-tracking",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/llm-citation-optimization-roi-measurement-guide-2026",
+        "status": 308,
+        "location": "/blog/llm-citation-tracking",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-system-integration-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/system-integration-services-company",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-system-integration-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/system-integration-services-company",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-system-integration-maintenance-support-2026",
+        "status": 308,
+        "location": "/blog/system-integration-services-company",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-system-integration-production-deployment-2026",
+        "status": 308,
+        "location": "/blog/system-integration-services-company",
+        "seconds": 0.032,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-system-integration-project-scope-2026",
+        "status": 308,
+        "location": "/blog/system-integration-services-company",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-system-integration-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/system-integration-services-company",
+        "seconds": 0.036,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-system-integration-vendor-selection-2026",
+        "status": 308,
+        "location": "/blog/system-integration-services-company",
+        "seconds": 0.036,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-automation-agency-selection-guide",
+        "status": 308,
+        "location": "/blog/ai-workflow-automation-company",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-automation-services-buyers-guide",
+        "status": 308,
+        "location": "/blog/ai-workflow-automation-company",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/business-automation-services-buyers-guide",
+        "status": 308,
+        "location": "/blog/ai-workflow-automation-company",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-customer-service-automation-guide",
+        "status": 308,
+        "location": "/blog/ai-customer-service-agent-development",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-chatbot-development-guide",
+        "status": 308,
+        "location": "/blog/ai-customer-service-agent-development",
+        "seconds": 0.027,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-ai-agents-governance-guide",
+        "status": 308,
+        "location": "/blog/ai-agent-governance-framework",
+        "seconds": 0.024,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-crm-development-product-guide",
+        "status": 308,
+        "location": "/blog/ai-revenue-operations-architecture-patterns-2026",
+        "seconds": 0.024,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-sales-automation-revenue-guide",
+        "status": 308,
+        "location": "/blog/ai-revenue-operations-architecture-patterns-2026",
+        "seconds": 0.026,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-saas-development-product-guide",
+        "status": 308,
+        "location": "/blog/ai-saas-product-development-architecture-blueprint-2026",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-software-development-product-guide",
+        "status": 308,
+        "location": "/blog/ai-native-application-development",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/using-ai-without-breaking-operations",
+        "status": 308,
+        "location": "/blog/ai-readiness-assessment",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-automation-small-business-guide",
+        "status": 308,
+        "location": "/blog/ai-readiness-assessment",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/api-integration-services-buyers-guide",
+        "status": 308,
+        "location": "/blog/system-integration-services-company",
+        "seconds": 0.023,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/third-party-api-integration-risk-guide",
+        "status": 308,
+        "location": "/blog/system-integration-services-company",
+        "seconds": 0.027,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/api-integration-services-cost-guide",
+        "status": 308,
+        "location": "/blog/system-integration-services-company",
+        "seconds": 0.025,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/accessible-website-agency",
+        "status": 308,
+        "location": "/blog/web-accessibility-remediation-implementation-roadmap-v2-2026",
+        "seconds": 0.025,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/when-to-build-a-client-portal",
+        "status": 308,
+        "location": "/blog/client-portal-development-architecture-patterns-2026",
+        "seconds": 0.035,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/web-development-agency-for-website-redesign",
+        "status": 308,
+        "location": "/blog/website-redesign-services-business-guide",
+        "seconds": 0.022,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/custom-saas-development-roadmap",
+        "status": 308,
+        "location": "/blog/b2b-saas-development-architecture-patterns-2026",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/cloud-application-development-strategy",
+        "status": 308,
+        "location": "/blog/cloud-native-application-development-company",
+        "seconds": 0.025,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/freelancer-vs-agency-comparison",
+        "status": 308,
+        "location": "/blog/software-agency-vs-freelancer",
+        "seconds": 0.027,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/django-rest-framework-api-guide",
+        "status": 308,
+        "location": "/blog/django-rest-api-development-architecture-blueprint-2026",
+        "seconds": 0.027,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/dedicated-development-team-operating-guide",
+        "status": 308,
+        "location": "/blog/dedicated-software-development-team-startups",
+        "seconds": 0.027,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/migrate-custom-ecommerce-to-shopify",
+        "status": 308,
+        "location": "/blog/shopify-migration-services-guide",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/software-company-red-flags",
+        "status": 308,
+        "location": "/blog/software-development-company-selection-checklist",
+        "seconds": 0.025,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/cms-selection-with-website-agency",
+        "status": 308,
+        "location": "/blog/headless-cms-vs-traditional-cms",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/microservices-architecture-consulting-decision-guide",
+        "status": 308,
+        "location": "/blog/monolith-vs-microservices-startups",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/multi-tenant-saas-architecture-security-requirements-2026",
+        "status": 308,
+        "location": "/blog/multi-tenant-saas-architecture-architecture-patterns-2026",
+        "seconds": 0.024,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/multi-tenant-saas-architecture-project-scope-2026",
+        "status": 308,
+        "location": "/blog/multi-tenant-saas-architecture-architecture-patterns-2026",
+        "seconds": 0.03,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/multi-tenant-saas-architecture-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/multi-tenant-saas-architecture-architecture-patterns-2026",
+        "seconds": 0.028,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/multi-tenant-saas-architecture-production-deployment-2026",
+        "status": 308,
+        "location": "/blog/multi-tenant-saas-architecture-architecture-patterns-2026",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/multi-tenant-saas-architecture-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/multi-tenant-saas-architecture-architecture-patterns-2026",
+        "seconds": 0.032,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/saas-billing-platform-project-scope-2026",
+        "status": 308,
+        "location": "/blog/saas-billing-platform-architecture-patterns-2026",
+        "seconds": 0.035,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/saas-billing-platform-production-deployment-2026",
+        "status": 308,
+        "location": "/blog/saas-billing-platform-architecture-patterns-2026",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/saas-billing-platform-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/saas-billing-platform-architecture-patterns-2026",
+        "seconds": 0.024,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/saas-billing-platform-maintenance-support-2026",
+        "status": 308,
+        "location": "/blog/saas-billing-platform-architecture-patterns-2026",
+        "seconds": 0.024,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/web-accessibility-remediation-project-scope-2026",
+        "status": 308,
+        "location": "/blog/web-accessibility-remediation-implementation-roadmap-v2-2026",
+        "seconds": 0.035,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/web-accessibility-remediation-production-deployment-2026",
+        "status": 308,
+        "location": "/blog/web-accessibility-remediation-implementation-roadmap-v2-2026",
+        "seconds": 0.037,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/web-accessibility-remediation-maintenance-support-2026",
+        "status": 308,
+        "location": "/blog/web-accessibility-remediation-implementation-roadmap-v2-2026",
+        "seconds": 0.037,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/web-accessibility-remediation-discovery-workshop-2026",
+        "status": 308,
+        "location": "/blog/web-accessibility-remediation-implementation-roadmap-v2-2026",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/python-automation-services-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/python-automation-services-production-deployment-2026",
+        "seconds": 0.035,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/python-automation-services-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/python-automation-services-production-deployment-2026",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/python-automation-services-maintenance-support-2026",
+        "status": 308,
+        "location": "/blog/python-automation-services-production-deployment-2026",
+        "seconds": 0.027,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/python-automation-services-project-scope-2026",
+        "status": 308,
+        "location": "/blog/python-automation-services-production-deployment-2026",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/cloud-native-application-development-vendor-selection-2026",
+        "status": 308,
+        "location": "/blog/cloud-native-application-development-company",
+        "seconds": 0.059,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/cloud-native-application-development-enterprise-company-guide-2026",
+        "status": 308,
+        "location": "/blog/cloud-native-application-development-company",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/cloud-native-application-development-project-scope-2026",
+        "status": 308,
+        "location": "/blog/cloud-native-application-development-company",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/cloud-native-application-development-discovery-workshop-2026",
+        "status": 308,
+        "location": "/blog/cloud-native-application-development-company",
+        "seconds": 0.069,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/b2b-saas-development-project-scope-2026",
+        "status": 308,
+        "location": "/blog/b2b-saas-development-architecture-patterns-2026",
+        "seconds": 0.028,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/b2b-saas-development-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/b2b-saas-development-architecture-patterns-2026",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/b2b-saas-development-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/b2b-saas-development-architecture-patterns-2026",
+        "seconds": 0.041,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/client-portal-development-project-scope-2026",
+        "status": 308,
+        "location": "/blog/client-portal-development-architecture-patterns-2026",
+        "seconds": 0.045,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/client-portal-development-security-requirements-2026",
+        "status": 308,
+        "location": "/blog/client-portal-development-architecture-patterns-2026",
+        "seconds": 0.041,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/client-portal-development-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/client-portal-development-architecture-patterns-2026",
+        "seconds": 0.043,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/client-portal-development-production-deployment-2026",
+        "status": 308,
+        "location": "/blog/client-portal-development-architecture-patterns-2026",
+        "seconds": 0.035,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/internal-tools-development-project-scope-2026",
+        "status": 308,
+        "location": "/blog/internal-tools-development-architecture-patterns-2026",
+        "seconds": 0.057,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/internal-tools-development-security-requirements-2026",
+        "status": 308,
+        "location": "/blog/internal-tools-development-architecture-patterns-2026",
+        "seconds": 0.047,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/internal-tools-development-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/internal-tools-development-architecture-patterns-2026",
+        "seconds": 0.036,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/internal-tools-development-production-deployment-2026",
+        "status": 308,
+        "location": "/blog/internal-tools-development-architecture-patterns-2026",
+        "seconds": 0.042,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/devsecops-automation-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/devsecops-automation-production-deployment-2026",
+        "seconds": 0.055,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/devsecops-automation-security-requirements-2026",
+        "status": 308,
+        "location": "/blog/devsecops-automation-production-deployment-2026",
+        "seconds": 0.037,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/devsecops-automation-project-scope-2026",
+        "status": 308,
+        "location": "/blog/devsecops-automation-production-deployment-2026",
+        "seconds": 0.047,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/devsecops-automation-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/devsecops-automation-production-deployment-2026",
+        "seconds": 0.05,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/software-testing-automation-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/software-testing-automation-implementation-checklist-2026",
+        "seconds": 0.05,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/software-testing-automation-architecture-blueprint-2026",
+        "status": 308,
+        "location": "/blog/software-testing-automation-implementation-checklist-2026",
+        "seconds": 0.046,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/software-testing-automation-evaluation-framework-2026",
+        "status": 308,
+        "location": "/blog/software-testing-automation-implementation-checklist-2026",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/synthetic-data-generation-project-scope-2026",
+        "status": 308,
+        "location": "/blog/synthetic-data-generation-architecture-patterns-2026",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/synthetic-data-generation-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/synthetic-data-generation-architecture-patterns-2026",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/synthetic-data-generation-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/synthetic-data-generation-architecture-patterns-2026",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-llm-gateway-project-scope-2026",
+        "status": 308,
+        "location": "/blog/enterprise-llm-gateway-architecture-patterns-2026",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-llm-gateway-security-requirements-2026",
+        "status": 308,
+        "location": "/blog/enterprise-llm-gateway-architecture-patterns-2026",
+        "seconds": 0.049,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-llm-gateway-production-deployment-2026",
+        "status": 308,
+        "location": "/blog/enterprise-llm-gateway-architecture-patterns-2026",
+        "seconds": 0.032,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-llm-gateway-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/enterprise-llm-gateway-architecture-patterns-2026",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/enterprise-llm-gateway-maintenance-support-2026",
+        "status": 308,
+        "location": "/blog/enterprise-llm-gateway-architecture-patterns-2026",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/intelligent-document-processing-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/ai-document-processing-automation",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/intelligent-document-processing-project-scope-2026",
+        "status": 308,
+        "location": "/blog/ai-document-processing-automation",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/intelligent-document-processing-production-deployment-2026",
+        "status": 308,
+        "location": "/blog/ai-document-processing-automation",
+        "seconds": 0.035,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/intelligent-document-processing-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/ai-document-processing-automation",
+        "seconds": 0.032,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/llm-inference-cost-optimization",
+        "status": 308,
+        "location": "/blog/ai-agent-cost-optimization",
+        "seconds": 0.037,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-risk-management-framework",
+        "status": 308,
+        "location": "/blog/responsible-ai-implementation-services",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-business-adoption-guide",
+        "status": 308,
+        "location": "/blog/ai-readiness-assessment",
+        "seconds": 0.037,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/custom-software-development-company-buyers-guide",
+        "status": 308,
+        "location": "/blog/software-development-company-selection-checklist",
+        "seconds": 0.028,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/software-development-agency-premium-buyer-guide-2026-2026",
+        "status": 308,
+        "location": "/blog/software-development-company-selection-checklist",
+        "seconds": 0.036,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/web-development-agency-agency-selection-guide-2026",
+        "status": 308,
+        "location": "/blog/software-development-company-selection-checklist",
+        "seconds": 0.027,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/microservices-migration-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/monolith-vs-microservices-startups",
+        "seconds": 0.028,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/monolith-modernization-architecture-patterns-2026",
+        "status": 308,
+        "location": "/blog/monolith-vs-microservices-startups",
+        "seconds": 0.03,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/microservices-migration-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/monolith-vs-microservices-startups",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/monolith-modernization-proof-of-concept-2026",
+        "status": 308,
+        "location": "/blog/monolith-vs-microservices-startups",
+        "seconds": 0.026,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/headless-shopify-hydrogen-implementation-checklist-2026",
+        "status": 308,
+        "location": "/blog/headless-shopify-hydrogen-architecture-blueprint-2026",
+        "seconds": 0.028,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/headless-shopify-hydrogen-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/headless-shopify-hydrogen-architecture-blueprint-2026",
+        "seconds": 0.029,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-checkout-extensions-architecture-blueprint-2026",
+        "status": 308,
+        "location": "/blog/shopify-checkout-extensions-implementation-checklist-2026",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-checkout-extensions-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/shopify-checkout-extensions-implementation-checklist-2026",
+        "seconds": 0.033,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-analytics-app-development-architecture-blueprint-2026",
+        "status": 308,
+        "location": "/blog/shopify-analytics-app-development-implementation-checklist-2026",
+        "seconds": 0.049,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/shopify-analytics-app-development-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/shopify-analytics-app-development-implementation-checklist-2026",
+        "seconds": 0.052,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/django-rest-api-development-implementation-checklist-2026",
+        "status": 308,
+        "location": "/blog/django-rest-api-development-architecture-blueprint-2026",
+        "seconds": 0.053,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/django-rest-api-development-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/django-rest-api-development-architecture-blueprint-2026",
+        "seconds": 0.04,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/fastapi-ai-backend-implementation-checklist-2026",
+        "status": 308,
+        "location": "/blog/fastapi-ai-backend-architecture-blueprint-2026",
+        "seconds": 0.038,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/fastapi-ai-backend-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/fastapi-ai-backend-architecture-blueprint-2026",
+        "seconds": 0.037,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/nextjs-ecommerce-development-implementation-checklist-2026",
+        "status": 308,
+        "location": "/blog/nextjs-ecommerce-development-architecture-blueprint-2026",
+        "seconds": 0.035,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/nextjs-ecommerce-development-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/nextjs-ecommerce-development-architecture-blueprint-2026",
+        "seconds": 0.06,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/django-saas-development-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/django-saas-development-architecture-patterns-2026",
+        "seconds": 0.045,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/platform-engineering-services-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/platform-engineering-services-architecture-patterns-2026",
+        "seconds": 0.046,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-assisted-quality-assurance-architecture-blueprint-2026",
+        "status": 308,
+        "location": "/blog/ai-assisted-quality-assurance-implementation-checklist-2026",
+        "seconds": 0.038,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-assisted-quality-assurance-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/ai-assisted-quality-assurance-implementation-checklist-2026",
+        "seconds": 0.034,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-saas-product-development-implementation-checklist-2026",
+        "status": 308,
+        "location": "/blog/ai-saas-product-development-architecture-blueprint-2026",
+        "seconds": 0.036,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-saas-product-development-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/ai-saas-product-development-architecture-blueprint-2026",
+        "seconds": 0.045,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-compliance-automation-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/ai-compliance-automation-architecture-patterns-2026",
+        "seconds": 0.046,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/ai-revenue-operations-implementation-roadmap-v2-2026",
+        "status": 308,
+        "location": "/blog/ai-revenue-operations-architecture-patterns-2026",
+        "seconds": 0.031,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/guardrails-as-code-architecture-blueprint-2026",
+        "status": 308,
+        "location": "/blog/guardrails-as-code-implementation-checklist-2026",
+        "seconds": 0.032,
+        "canonical": [],
+        "error": null
+      },
+      {
+        "path": "/blog/guardrails-as-code-production-best-practices-2026",
+        "status": 308,
+        "location": "/blog/guardrails-as-code-implementation-checklist-2026",
+        "seconds": 0.035,
+        "canonical": [],
+        "error": null
+      }
+    ]
+  }
+}

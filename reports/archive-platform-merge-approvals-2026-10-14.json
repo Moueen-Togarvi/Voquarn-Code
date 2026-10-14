@@ -1,0 +1,272 @@
+[
+  {
+    "source": "multi-tenant-saas-architecture-security-requirements-2026",
+    "destination": "multi-tenant-saas-architecture-architecture-patterns-2026",
+    "reason": "Replacement explains authenticated tenant context, restricted database roles, RLS exceptions, cache/job/file isolation, and cross-tenant acceptance tests."
+  },
+  {
+    "source": "multi-tenant-saas-architecture-project-scope-2026",
+    "destination": "multi-tenant-saas-architecture-architecture-patterns-2026",
+    "reason": "Replacement defines tenant resource ownership, isolation choices, workload limits, authorization scope, and recovery deliverables."
+  },
+  {
+    "source": "multi-tenant-saas-architecture-proof-of-concept-2026",
+    "destination": "multi-tenant-saas-architecture-architecture-patterns-2026",
+    "reason": "Replacement specifies a two-tenant test environment, multiple membership states, identifier substitution tests, and measurable isolation/recovery checks."
+  },
+  {
+    "source": "multi-tenant-saas-architecture-production-deployment-2026",
+    "destination": "multi-tenant-saas-architecture-architecture-patterns-2026",
+    "reason": "Replacement covers tenant-aware execution, workload limits, pre-rollout isolation tests, pooled connection context, and restore operations."
+  },
+  {
+    "source": "multi-tenant-saas-architecture-implementation-roadmap-v2-2026",
+    "destination": "multi-tenant-saas-architecture-architecture-patterns-2026",
+    "reason": "Replacement follows ownership modeling, storage choice, authorization, data-path controls, operating limits, and a pre-rollout verification sequence."
+  },
+  {
+    "source": "saas-billing-platform-project-scope-2026",
+    "destination": "saas-billing-platform-architecture-patterns-2026",
+    "reason": "Replacement identifies catalog, ownership, subscription, transaction, entitlement, metering, reconciliation, and lifecycle acceptance requirements."
+  },
+  {
+    "source": "saas-billing-platform-production-deployment-2026",
+    "destination": "saas-billing-platform-architecture-patterns-2026",
+    "reason": "Replacement provides durable webhook processing, duplicate/order handling, reconciliation, sandbox scenarios, and production-environment separation."
+  },
+  {
+    "source": "saas-billing-platform-implementation-roadmap-v2-2026",
+    "destination": "saas-billing-platform-architecture-patterns-2026",
+    "reason": "Replacement sequences record modeling, access policy, event processing, usage accounting, reconciliation, and lifecycle testing."
+  },
+  {
+    "source": "saas-billing-platform-maintenance-support-2026",
+    "destination": "saas-billing-platform-architecture-patterns-2026",
+    "reason": "Replacement explains failed event recovery, reconciliation differences, support visibility, access corrections, and ongoing operational measurements."
+  },
+  {
+    "source": "web-accessibility-remediation-project-scope-2026",
+    "destination": "web-accessibility-remediation-implementation-roadmap-v2-2026",
+    "reason": "Replacement defines evaluation scope, page types, complete tasks, environments, third-party ownership, target criteria, and handover evidence."
+  },
+  {
+    "source": "web-accessibility-remediation-production-deployment-2026",
+    "destination": "web-accessibility-remediation-implementation-roadmap-v2-2026",
+    "reason": "Replacement describes releases around complete usable journeys, component and content remediation, retesting, and unresolved third-party limitations."
+  },
+  {
+    "source": "web-accessibility-remediation-maintenance-support-2026",
+    "destination": "web-accessibility-remediation-implementation-roadmap-v2-2026",
+    "reason": "Replacement explicitly addresses editor guidance, repeated checks, shared-component regression, feedback ownership, and ongoing publishing."
+  },
+  {
+    "source": "web-accessibility-remediation-discovery-workshop-2026",
+    "destination": "web-accessibility-remediation-implementation-roadmap-v2-2026",
+    "reason": "Replacement gives the scope inventory, task evaluation, reproducible findings, prioritization method, dependencies, and evidence needed to plan remediation."
+  },
+  {
+    "source": "python-automation-services-implementation-roadmap-v2-2026",
+    "destination": "python-automation-services-production-deployment-2026",
+    "reason": "Replacement sequences job contract, reproducible runtime, scheduling, retry-safe operations, validation, recovery, monitoring, and controlled release."
+  },
+  {
+    "source": "python-automation-services-architecture-patterns-2026",
+    "destination": "python-automation-services-production-deployment-2026",
+    "reason": "Replacement distinguishes scheduler and worker responsibilities, durable job and operation state, external writes, checkpoints, and reconciliation."
+  },
+  {
+    "source": "python-automation-services-maintenance-support-2026",
+    "destination": "python-automation-services-production-deployment-2026",
+    "reason": "Replacement includes failure classification, replay decisions, missed-run alerts, responder ownership, dependency records, and the recovery handover."
+  },
+  {
+    "source": "python-automation-services-project-scope-2026",
+    "destination": "python-automation-services-production-deployment-2026",
+    "reason": "Replacement defines input/output contracts, scheduling, concurrency, timezone, failure rules, ownership, retention, deployment, and recovery deliverables."
+  },
+  {
+    "source": "cloud-native-application-development-vendor-selection-2026",
+    "destination": "cloud-native-application-development-company",
+    "reason": "The rewritten buyer guide evaluates suppliers through workload briefs, architecture tradeoffs, deployment demonstrations, recovery evidence, costs, ownership, and handover."
+  },
+  {
+    "source": "cloud-native-application-development-enterprise-company-guide-2026",
+    "destination": "cloud-native-application-development-company",
+    "reason": "The guide includes identity and configuration boundaries, responsibility allocation, recovery expectations, deployment evidence, supplier support, and account ownership required to evaluate a delivery company."
+  },
+  {
+    "source": "cloud-native-application-development-project-scope-2026",
+    "destination": "cloud-native-application-development-company",
+    "reason": "The guide supplies workload inputs, infrastructure and application responsibilities, acceptance demonstrations, cost assumptions, and support/handover scope."
+  },
+  {
+    "source": "cloud-native-application-development-discovery-workshop-2026",
+    "destination": "cloud-native-application-development-company",
+    "reason": "The guide specifies the workload brief, transaction walkthrough, architecture decision, deployment proof, cost assumptions, and prioritized risks discovery should produce."
+  },
+  {
+    "source": "b2b-saas-development-project-scope-2026",
+    "destination": "b2b-saas-development-architecture-patterns-2026",
+    "reason": "The replacement defines workflow states, actors, organization permissions, configuration limits, entitlements, integrations, activation, and acceptance scope."
+  },
+  {
+    "source": "b2b-saas-development-implementation-roadmap-v2-2026",
+    "destination": "b2b-saas-development-architecture-patterns-2026",
+    "reason": "The replacement sequences business-state modeling, identity boundaries, product modules, configuration, integrations, onboarding, and controlled customer rollout."
+  },
+  {
+    "source": "b2b-saas-development-proof-of-concept-2026",
+    "destination": "b2b-saas-development-architecture-patterns-2026",
+    "reason": "The replacement provides a concrete supplier-onboarding workflow and an initial customer validation set covering state changes, permissions, integration failure, exports, and activation."
+  },
+  {
+    "source": "client-portal-development-project-scope-2026",
+    "destination": "client-portal-development-architecture-patterns-2026",
+    "reason": "The replacement scopes a complete client review task, account and project boundaries, file lifecycle, versioned decisions, notifications, integration, and exit requirements."
+  },
+  {
+    "source": "client-portal-development-security-requirements-2026",
+    "destination": "client-portal-development-architecture-patterns-2026",
+    "reason": "The replacement covers server-side resource authorization, invitation expiry/revocation, protected files and upload validation, approval identity, privacy-aware notification, and access tests."
+  },
+  {
+    "source": "client-portal-development-implementation-roadmap-v2-2026",
+    "destination": "client-portal-development-architecture-patterns-2026",
+    "reason": "The replacement follows first-task definition, permissions, file lifecycle, versioned approvals, notifications, integrations, journey verification, and end-of-engagement handling."
+  },
+  {
+    "source": "client-portal-development-production-deployment-2026",
+    "destination": "client-portal-development-architecture-patterns-2026",
+    "reason": "The replacement gives client onboarding and a production acceptance checklist for invitations, downloads, isolation, file validation, approvals, notification recovery, and exports."
+  },
+  {
+    "source": "internal-tools-development-project-scope-2026",
+    "destination": "internal-tools-development-architecture-patterns-2026",
+    "reason": "The replacement establishes action-level scope, operators, evidence, approvals, reversible behavior, integrations, audit records, and operational ownership."
+  },
+  {
+    "source": "internal-tools-development-security-requirements-2026",
+    "destination": "internal-tools-development-architecture-patterns-2026",
+    "reason": "The replacement provides restricted business operations, transaction-bound approval, permissions, staged bulk actions, concurrency control, protected audit records, and denial tests."
+  },
+  {
+    "source": "internal-tools-development-implementation-roadmap-v2-2026",
+    "destination": "internal-tools-development-architecture-patterns-2026",
+    "reason": "The replacement develops an observed booking exception into a bounded operation, approval and bulk-action design, recovery flow, audit trail, platform choice, and verified first release."
+  },
+  {
+    "source": "internal-tools-development-production-deployment-2026",
+    "destination": "internal-tools-development-architecture-patterns-2026",
+    "reason": "The replacement specifies rollout acceptance for unauthorized API use, changing approvals, concurrent operators, uncertain external writes, revoked accounts, and audit reconstruction."
+  },
+  {
+    "source": "devsecops-automation-architecture-patterns-2026",
+    "destination": "devsecops-automation-production-deployment-2026",
+    "reason": "The replacement traces source, untrusted checks, privileged release, workload identity, artifact storage, security gates, configuration, and runtime rollout trust boundaries."
+  },
+  {
+    "source": "devsecops-automation-security-requirements-2026",
+    "destination": "devsecops-automation-production-deployment-2026",
+    "reason": "The replacement describes job least privilege, untrusted checkout separation, restricted OIDC trust, artifact verification, controlled exceptions, and tested authorization denials."
+  },
+  {
+    "source": "devsecops-automation-project-scope-2026",
+    "destination": "devsecops-automation-production-deployment-2026",
+    "reason": "The replacement identifies pipeline inventory, roles, artifacts, gate policy, migration considerations, release stop conditions, and recovery handover deliverables."
+  },
+  {
+    "source": "devsecops-automation-implementation-roadmap-v2-2026",
+    "destination": "devsecops-automation-production-deployment-2026",
+    "reason": "The replacement provides a staged path from trust-boundary inventory through credential and artifact controls to actionable gates, controlled release, and verification."
+  },
+  {
+    "source": "software-testing-automation-production-best-practices-2026",
+    "destination": "software-testing-automation-implementation-checklist-2026",
+    "reason": "The replacement covers risk-based test layers, isolated data, reliable browser assertions, failures and concurrency, CI diagnostics, flake ownership, and release policy."
+  },
+  {
+    "source": "software-testing-automation-architecture-blueprint-2026",
+    "destination": "software-testing-automation-implementation-checklist-2026",
+    "reason": "The replacement separates rule, integration, contract and browser tests, explains data fixtures, integration boundaries, and how results enter release decisions."
+  },
+  {
+    "source": "software-testing-automation-evaluation-framework-2026",
+    "destination": "software-testing-automation-implementation-checklist-2026",
+    "reason": "The replacement evaluates coverage against business risks, meaningful assertions, real regressions, triage time, flaky failures, and untested release gaps rather than test count alone."
+  },
+  {
+    "source": "synthetic-data-generation-project-scope-2026",
+    "destination": "synthetic-data-generation-architecture-patterns-2026",
+    "reason": "The replacement defines intended use, source restrictions, schema and scenario constraints, utility/privacy assessments, recipients, reproducibility, and acceptance evidence."
+  },
+  {
+    "source": "synthetic-data-generation-proof-of-concept-2026",
+    "destination": "synthetic-data-generation-architecture-patterns-2026",
+    "reason": "The replacement compares rule-based and learned generation against a returns-workflow baseline, specifies constraint validation, and separates held-out utility evaluation from disclosure-risk assessment."
+  },
+  {
+    "source": "synthetic-data-generation-implementation-roadmap-v2-2026",
+    "destination": "synthetic-data-generation-architecture-patterns-2026",
+    "reason": "The replacement sequences use-case definition, generator choice, relational checks, independent disclosure review, leakage-aware evaluation, and versioned dataset handover."
+  },
+  {
+    "source": "enterprise-llm-gateway-project-scope-2026",
+    "destination": "enterprise-llm-gateway-architecture-patterns-2026",
+    "reason": "Replacement explicitly scopes application identity, model/provider permissions, budgets, log policy, fallbacks, administration, revocation, and acceptance tests."
+  },
+  {
+    "source": "enterprise-llm-gateway-security-requirements-2026",
+    "destination": "enterprise-llm-gateway-architecture-patterns-2026",
+    "reason": "Replacement addresses restricted identities, separate administration, provider credential control, approved fallback, tenant-aware caching, sensitive logs, and effective-policy denial tests."
+  },
+  {
+    "source": "enterprise-llm-gateway-production-deployment-2026",
+    "destination": "enterprise-llm-gateway-architecture-patterns-2026",
+    "reason": "Replacement covers alias release identity, concurrency and limit tests, provider and gateway failure behavior, revocation, monitoring, and configuration rollback."
+  },
+  {
+    "source": "enterprise-llm-gateway-implementation-roadmap-v2-2026",
+    "destination": "enterprise-llm-gateway-architecture-patterns-2026",
+    "reason": "Replacement follows responsibility mapping, identities, reviewed model aliases, limits, privacy controls, failure handling, gateway operation, and acceptance evidence."
+  },
+  {
+    "source": "enterprise-llm-gateway-maintenance-support-2026",
+    "destination": "enterprise-llm-gateway-architecture-patterns-2026",
+    "reason": "Replacement specifies policy and alias ownership, usage investigation, revocation, provider versus gateway diagnosis, capacity checks, and tested rollback handover."
+  },
+  {
+    "source": "intelligent-document-processing-architecture-patterns-2026",
+    "destination": "ai-document-processing-automation",
+    "reason": "Replacement develops the same extraction workflow into explicit ingestion, source evidence, field validation, exception review, duplicate prevention, and verified downstream records."
+  },
+  {
+    "source": "intelligent-document-processing-project-scope-2026",
+    "destination": "ai-document-processing-automation",
+    "reason": "Replacement defines required record fields, reference systems, document grouping, extraction lineage, review ownership, posting and end-to-end acceptance."
+  },
+  {
+    "source": "intelligent-document-processing-production-deployment-2026",
+    "destination": "ai-document-processing-automation",
+    "reason": "Replacement includes model/version tracking, exception ownership, stable posting identity, reconciliation, held-out quality evaluation, bounded rollout, and data retention."
+  },
+  {
+    "source": "intelligent-document-processing-implementation-roadmap-v2-2026",
+    "destination": "ai-document-processing-automation",
+    "reason": "Replacement sequences the business record contract, ingestion, extraction evidence, validation, exception routing, duplicate-safe posting, evaluation, and initial rollout."
+  },
+  {
+    "source": "llm-inference-cost-optimization",
+    "destination": "ai-agent-cost-optimization",
+    "reason": "Reviewed the complete legacy article. Replacement covers its useful cost-per-outcome, context reduction, caching, model routing, output limits, batching, task budgets and self-hosting tradeoff intent with qualified claims and measured acceptance; removes unsupported universal savings and pricing assertions."
+  },
+  {
+    "source": "ai-risk-management-framework",
+    "destination": "responsible-ai-implementation-services",
+    "reason": "Reviewed the legacy framework article. Replacement preserves its operational risk identification, consequence-based controls, accountable ownership, monitoring, and change-review intent with concrete release evidence, feedback, and incident procedures."
+  },
+  {
+    "source": "ai-business-adoption-guide",
+    "destination": "ai-readiness-assessment",
+    "reason": "Reviewed the legacy adoption guide. Replacement fully develops its bounded problem selection, baseline, trusted inputs, evaluation, human accountability and operating-cost intent into an owned assessment and explicit pilot decision."
+  }
+]

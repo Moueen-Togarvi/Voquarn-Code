@@ -1,0 +1,147 @@
+[
+  {
+    "source": "custom-software-development-company-buyers-guide",
+    "destination": "software-development-company-selection-checklist",
+    "reason": "Reviewed source buyer guidance on custom-build fit, vendor evidence, proposed team, scope comparison and ownership; destination now answers these with a worked evaluation case, evidence scoring, references and contract handoff."
+  },
+  {
+    "source": "software-development-agency-premium-buyer-guide-2026-2026",
+    "destination": "software-development-company-selection-checklist",
+    "reason": "Reviewed full generic buyer-guide source; its useful intent is comparable briefs, vendor scoring, delivery evidence, references and paid discovery. Destination provides a concrete version without templated search-intent and 90-day filler."
+  },
+  {
+    "source": "web-development-agency-agency-selection-guide-2026",
+    "destination": "software-development-company-selection-checklist",
+    "reason": "Reviewed full agency-selection source; destination covers interviews, proposal comparison, references and contract clarity, with a specific website trial covering content editing, mobile enquiry, analytics, accessibility and loading evidence."
+  },
+  {
+    "source": "microservices-migration-architecture-patterns-2026",
+    "destination": "monolith-vs-microservices-startups",
+    "reason": "Reviewed source on domain boundaries, service ownership, shared databases and incremental extraction. Destination explains those decisions using order transactions, failure states, independent releases and a cited strangler transition."
+  },
+  {
+    "source": "monolith-modernization-architecture-patterns-2026",
+    "destination": "monolith-vs-microservices-startups",
+    "reason": "Reviewed source on modular boundaries, dependency reduction and avoiding premature splitting. Destination explains module data ownership, coupling checks, measured bottlenecks and conditions for targeted extraction."
+  },
+  {
+    "source": "microservices-migration-proof-of-concept-2026",
+    "destination": "monolith-vs-microservices-startups",
+    "reason": "Reviewed full source PoC intent: validate a risky boundary with realistic data, thresholds and a next decision. Destination has a concrete bounded extraction proof with failed/repeated jobs, tracing, reconciliation and rollback checks."
+  },
+  {
+    "source": "monolith-modernization-proof-of-concept-2026",
+    "destination": "monolith-vs-microservices-startups",
+    "reason": "Reviewed source PoC intent and module-coupling risks. Destination addresses measuring the existing bottleneck, retaining a modular monolith and testing a bounded change against explicit acceptance before funding migration."
+  },
+  {
+    "source": "headless-shopify-hydrogen-implementation-checklist-2026",
+    "destination": "headless-shopify-hydrogen-architecture-blueprint-2026",
+    "reason": "Reviewed source checklist and production variants: storefront ownership, commerce contracts, editor workflows, caching, checkout continuity and app compatibility. Destination now provides distinct cart/account/cache boundaries, failure acceptance cases, merchant editing and integration checks."
+  },
+  {
+    "source": "headless-shopify-hydrogen-production-best-practices-2026",
+    "destination": "headless-shopify-hydrogen-architecture-blueprint-2026",
+    "reason": "Reviewed source checklist and production variants: storefront ownership, commerce contracts, editor workflows, caching, checkout continuity and app compatibility. Destination now provides distinct cart/account/cache boundaries, failure acceptance cases, merchant editing and integration checks."
+  },
+  {
+    "source": "shopify-checkout-extensions-architecture-blueprint-2026",
+    "destination": "shopify-checkout-extensions-implementation-checklist-2026",
+    "reason": "Reviewed source architecture and production variants: supported extension points, low buyer friction, accessibility, analytics and upgrades. Destination covers eligibility, API version, server trust boundaries, timeouts, acceptance matrix and merchant activation."
+  },
+  {
+    "source": "shopify-checkout-extensions-production-best-practices-2026",
+    "destination": "shopify-checkout-extensions-implementation-checklist-2026",
+    "reason": "Reviewed source architecture and production variants: supported extension points, low buyer friction, accessibility, analytics and upgrades. Destination covers eligibility, API version, server trust boundaries, timeouts, acceptance matrix and merchant activation."
+  },
+  {
+    "source": "shopify-analytics-app-development-architecture-blueprint-2026",
+    "destination": "shopify-analytics-app-development-implementation-checklist-2026",
+    "reason": "Reviewed source architecture and production variants: metrics, event duplication, merchant permissions, freshness and bounded reporting. Destination specifies revenue definitions, source separation, authenticated ingestion, cross-store checks, reconciliation and report limits."
+  },
+  {
+    "source": "shopify-analytics-app-development-production-best-practices-2026",
+    "destination": "shopify-analytics-app-development-implementation-checklist-2026",
+    "reason": "Reviewed source architecture and production variants: metrics, event duplication, merchant permissions, freshness and bounded reporting. Destination specifies revenue definitions, source separation, authenticated ingestion, cross-store checks, reconciliation and report limits."
+  },
+  {
+    "source": "django-rest-api-development-implementation-checklist-2026",
+    "destination": "django-rest-api-development-architecture-blueprint-2026",
+    "reason": "Reviewed source checklist and production variants: resource modeling, object authorization, serializer validation, efficient queries and compatible contracts. Destination gives a purchase-approval example with scoped queries, transactions, regression tests, query limits and deprecation review."
+  },
+  {
+    "source": "django-rest-api-development-production-best-practices-2026",
+    "destination": "django-rest-api-development-architecture-blueprint-2026",
+    "reason": "Reviewed source checklist and production variants: resource modeling, object authorization, serializer validation, efficient queries and compatible contracts. Destination gives a purchase-approval example with scoped queries, transactions, regression tests, query limits and deprecation review."
+  },
+  {
+    "source": "fastapi-ai-backend-implementation-checklist-2026",
+    "destination": "fastapi-ai-backend-architecture-blueprint-2026",
+    "reason": "Reviewed source checklist and production variants: typed requests, async work, job orchestration, gateway controls and operations. Destination covers durable jobs, concurrency limits, retries, authorized retrieval, output validation, cancellation and worker failure."
+  },
+  {
+    "source": "fastapi-ai-backend-production-best-practices-2026",
+    "destination": "fastapi-ai-backend-architecture-blueprint-2026",
+    "reason": "Reviewed source checklist and production variants: typed requests, async work, job orchestration, gateway controls and operations. Destination covers durable jobs, concurrency limits, retries, authorized retrieval, output validation, cancellation and worker failure."
+  },
+  {
+    "source": "nextjs-ecommerce-development-implementation-checklist-2026",
+    "destination": "nextjs-ecommerce-development-architecture-blueprint-2026",
+    "reason": "Reviewed source checklist and production variants: product data, cache freshness, cart reliability, checkout, performance and faceted navigation. Destination covers public/private boundaries, accepted cart state, checkout confirmation, filter URLs and adverse-state verification."
+  },
+  {
+    "source": "nextjs-ecommerce-development-production-best-practices-2026",
+    "destination": "nextjs-ecommerce-development-architecture-blueprint-2026",
+    "reason": "Reviewed source checklist and production variants: product data, cache freshness, cart reliability, checkout, performance and faceted navigation. Destination covers public/private boundaries, accepted cart state, checkout confirmation, filter URLs and adverse-state verification."
+  },
+  {
+    "source": "django-saas-development-implementation-roadmap-v2-2026",
+    "destination": "django-saas-development-architecture-patterns-2026",
+    "reason": "Reviewed archived source body and useful intent. Tenant models, membership, entitlement events, tenant-aware jobs, migration/recovery and isolation acceptance are now a concrete scheduler design instead of generic rollout prose."
+  },
+  {
+    "source": "platform-engineering-services-implementation-roadmap-v2-2026",
+    "destination": "platform-engineering-services-architecture-patterns-2026",
+    "reason": "Reviewed archived source body and useful intent. Developer journey research, supported templates, safe self-service, partial-failure recovery, exceptions, adoption measures and maintenance now form a concrete implementation sequence."
+  },
+  {
+    "source": "ai-assisted-quality-assurance-architecture-blueprint-2026",
+    "destination": "ai-assisted-quality-assurance-implementation-checklist-2026",
+    "reason": "Reviewed archived source body and useful intent. Reviewed test generation, independent expected behavior, meaningful assertions, failure clustering, deterministic gates and ownership are covered with a discount-boundary example and test review criteria."
+  },
+  {
+    "source": "ai-assisted-quality-assurance-production-best-practices-2026",
+    "destination": "ai-assisted-quality-assurance-implementation-checklist-2026",
+    "reason": "Reviewed archived source body and useful intent. Reviewed test generation, independent expected behavior, meaningful assertions, failure clustering, deterministic gates and ownership are covered with a discount-boundary example and test review criteria."
+  },
+  {
+    "source": "ai-saas-product-development-implementation-checklist-2026",
+    "destination": "ai-saas-product-development-architecture-blueprint-2026",
+    "reason": "Reviewed archived source body and useful intent. The new guide answers the source readiness/production intent through tenant context, operation IDs, usage ledgers, subscription policy, limits, evaluation and retention."
+  },
+  {
+    "source": "ai-saas-product-development-production-best-practices-2026",
+    "destination": "ai-saas-product-development-architecture-blueprint-2026",
+    "reason": "Reviewed archived source body and useful intent. The new guide answers the source readiness/production intent through tenant context, operation IDs, usage ledgers, subscription policy, limits, evaluation and retention."
+  },
+  {
+    "source": "ai-compliance-automation-implementation-roadmap-v2-2026",
+    "destination": "ai-compliance-automation-architecture-patterns-2026",
+    "reason": "Reviewed archived source body and useful intent. Source intent is evidence collection, provenance, reviewer decisions, freshness and exceptions; destination implements these as an owned evidence workflow without claims of automatic legal compliance."
+  },
+  {
+    "source": "ai-revenue-operations-implementation-roadmap-v2-2026",
+    "destination": "ai-revenue-operations-architecture-patterns-2026",
+    "reason": "Reviewed archived source body and useful intent. The generic source rollout is replaced by a specific sequence of lifecycle definitions, verified CRM associations, cited summaries, reviewed proposals, authorized writes and outcome checks."
+  },
+  {
+    "source": "guardrails-as-code-architecture-blueprint-2026",
+    "destination": "guardrails-as-code-implementation-checklist-2026",
+    "reason": "Reviewed archived source body and useful intent. Source policy versioning, runtime controls, tests, owned exceptions and auditability are now explained through trustworthy inputs, action-side enforcement, race checks, bypass tests and safe decision logs."
+  },
+  {
+    "source": "guardrails-as-code-production-best-practices-2026",
+    "destination": "guardrails-as-code-implementation-checklist-2026",
+    "reason": "Reviewed archived source body and useful intent. Source policy versioning, runtime controls, tests, owned exceptions and auditability are now explained through trustworthy inputs, action-side enforcement, race checks, bypass tests and safe decision logs."
+  }
+]

@@ -43,11 +43,26 @@ async function main() {
     assert.ok(!(destination in blogRedirects), `Redirect chains are not allowed: ${source}`);
     assert.ok(redirects.some((rule) => rule.source === `/blog/${source}` && rule.destination === `/blog/${destination}` && rule.permanent));
   }
+  const paragraphOwners = new Map<string, Set<string>>();
   for (const post of posts) {
     const markdown = await readFile(`content/blogs/${post.slug}.md`, "utf8");
     for (const match of markdown.matchAll(/\]\(\/blog\/([^)#?\s]+)/g)) {
       assert.ok(slugs.has(match[1]), `Broken blog link in ${post.slug}: ${match[1]}`);
     }
+    const { markdown: body } = parseFrontmatter(markdown, `${post.slug}.md`);
+    for (const block of body.split(/\n\s*\n/)) {
+      const paragraph = block.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+        .replace(/[*_`>#-]/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
+      if (paragraph.split(" ").length < 25) continue;
+      const owners = paragraphOwners.get(paragraph) ?? new Set<string>();
+      owners.add(post.slug);
+      paragraphOwners.set(paragraph, owners);
+    }
+  }
+  // Editorial regression guard against the retired topic × angle generators,
+  // not a Google threshold or an assessment of semantic/factual quality.
+  for (const owners of paragraphOwners.values()) {
+    assert.ok(owners.size < 3, `Repeated long paragraph across published articles: ${[...owners].join(", ")}`);
   }
   const post = { ...reviewed[0], modifiedAt: "2026-10-03", sections: [] };
   assert.equal(blogPostJsonLd(post).dateModified, "2026-10-03");

@@ -1,0 +1,37 @@
+[
+  {
+    "source": "freelancer-vs-agency-comparison",
+    "destination": "software-agency-vs-freelancer",
+    "reason": "Both compare an individual freelancer and an agency for the same software or website engagement. The restored comparison covers scope, missing disciplines, coordination, equivalent cost, continuity, support and handover, while correcting the original unsupported assumption that agencies inherently provide redundancy."
+  },
+  {
+    "source": "django-rest-framework-api-guide",
+    "destination": "django-rest-api-development-architecture-blueprint-2026",
+    "reason": "The original defines the Django REST API architecture and delivery task: resource operations, object permissions, query performance, contracts, versioning, testing and operations. The restored Django API guide supplies those same decisions with explicit queryset and creation authorization, transaction boundaries, realistic performance checks and compatibility review."
+  },
+  {
+    "source": "dedicated-development-team-operating-guide",
+    "destination": "dedicated-software-development-team-startups",
+    "reason": "Both explain operating a stable external development team, preserving client product ownership, onboarding through a real change, shared standards, outcome-based evaluation and continuous knowledge transfer. The rewritten guide develops these operating decisions and adds bounded capacity, spending and exit responsibilities."
+  },
+  {
+    "source": "migrate-custom-ecommerce-to-shopify",
+    "destination": "shopify-migration-services-guide",
+    "reason": "The archived Shopify migration article asks buyers to verify platform fit, inventory catalog and customer data, preserve URLs, rehearse integrations and reconcile changing data during cutover. The rebuilt migration guide answers those same requirements with difficult catalog examples, customer access limitations, historical orders, redirect mapping, acceptance evidence and rollback conditions."
+  },
+  {
+    "source": "software-company-red-flags",
+    "destination": "software-development-company-selection-checklist",
+    "reason": "The old warning-sign checklist is a supplier-selection article about unsupported promises, hidden delivery staff, unclear scope and ownership, missing release evidence and poor support. The restored evidence-based selection guide directly covers those evaluation concerns through a shared case, scored artifacts, assigned-team interviews, difficult reference questions, a bounded paid trial and conditions carried into the contract."
+  },
+  {
+    "source": "cms-selection-with-website-agency",
+    "destination": "headless-cms-vs-traditional-cms",
+    "reason": "The archived CMS selection page centers on editor workflow and the traditional-versus-headless architecture decision. The restored guide develops the same content-model, preview, approval, localization, publishing, frontend responsibility, migration and ongoing-cost questions with a practical editorial evaluation."
+  },
+  {
+    "source": "microservices-architecture-consulting-decision-guide",
+    "destination": "monolith-vs-microservices-startups",
+    "reason": "Both ask whether independent services solve a measured domain, scaling or delivery problem and compare that decision with a modular monolith. The rebuilt guide covers domain and data ownership, distributed failure costs, operational readiness and incremental capability extraction with reconciliation and a bounded rollback-tested proof."
+  }
+]

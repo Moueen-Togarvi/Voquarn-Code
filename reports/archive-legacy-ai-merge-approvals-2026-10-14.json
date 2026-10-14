@@ -1,0 +1,62 @@
+[
+  {
+    "source": "ai-automation-agency-selection-guide",
+    "destination": "ai-workflow-automation-company",
+    "reason": "Read the full legacy source. Its buyer intent is selecting a workflow automation provider through process discovery, integration reliability, exception handling, measurement, operational ownership and handover. The rewritten destination covers those exact selection decisions with a shared purchase-request exercise, deterministic-versus-model boundaries, acceptance cases, cost assumptions and operating evidence. It does not presume that every step needs AI."
+  },
+  {
+    "source": "ai-automation-services-buyers-guide",
+    "destination": "ai-workflow-automation-company",
+    "reason": "Read the full legacy source. Its buyer intent is selecting a workflow automation provider through process discovery, integration reliability, exception handling, measurement, operational ownership and handover. The rewritten destination covers those exact selection decisions with a shared purchase-request exercise, deterministic-versus-model boundaries, acceptance cases, cost assumptions and operating evidence. It does not presume that every step needs AI."
+  },
+  {
+    "source": "business-automation-services-buyers-guide",
+    "destination": "ai-workflow-automation-company",
+    "reason": "Read the full legacy source. Its buyer intent is selecting a workflow automation provider through process discovery, integration reliability, exception handling, measurement, operational ownership and handover. The rewritten destination covers those exact selection decisions with a shared purchase-request exercise, deterministic-versus-model boundaries, acceptance cases, cost assumptions and operating evidence. It does not presume that every step needs AI."
+  },
+  {
+    "source": "ai-customer-service-automation-guide",
+    "destination": "ai-customer-service-agent-development",
+    "reason": "Read the full legacy source. Its substance concerns a support assistant with bounded customer intents, current knowledge, account-safe actions, uncertainty, human handoff and complete-resolution evaluation. The destination develops the same support implementation with a SaaS eligibility scenario, source ownership, action catalogue, identity checks, service-state handling and launch tests; the old chatbot label does not introduce a separate general-purpose application."
+  },
+  {
+    "source": "ai-chatbot-development-guide",
+    "destination": "ai-customer-service-agent-development",
+    "reason": "Read the full legacy source. Its substance concerns a support assistant with bounded customer intents, current knowledge, account-safe actions, uncertainty, human handoff and complete-resolution evaluation. The destination develops the same support implementation with a SaaS eligibility scenario, source ownership, action catalogue, identity checks, service-state handling and launch tests; the old chatbot label does not introduce a separate general-purpose application."
+  },
+  {
+    "source": "enterprise-ai-agents-governance-guide",
+    "destination": "ai-agent-governance-framework",
+    "reason": "The legacy article governs deployed enterprise agents through named owners, identity and authority, evaluations, release control, incident response and retirement. The destination addresses each of those operating controls explicitly and links to the narrower identity and acceptance-testing guides. It replaces a shallow inventory with enforceable governance rather than redirecting to an unrelated adoption article."
+  },
+  {
+    "source": "ai-crm-development-product-guide",
+    "destination": "ai-revenue-operations-architecture-patterns-2026",
+    "reason": "The full legacy source centers on evidence-linked account summaries, CRM data quality, reviewable recommendations and writes, communication controls, responsible forecasting or prioritization and actual commercial outcomes. The restored revenue-operations guide develops that same assistive CRM scope with canonical associations, lifecycle definitions, a pipeline-review example, write preconditions, forecast limitations and measured corrections. Neither source provides a separate outbound lead-acquisition implementation."
+  },
+  {
+    "source": "ai-sales-automation-revenue-guide",
+    "destination": "ai-revenue-operations-architecture-patterns-2026",
+    "reason": "The full legacy source centers on evidence-linked account summaries, CRM data quality, reviewable recommendations and writes, communication controls, responsible forecasting or prioritization and actual commercial outcomes. The restored revenue-operations guide develops that same assistive CRM scope with canonical associations, lifecycle definitions, a pipeline-review example, write preconditions, forecast limitations and measured corrections. Neither source provides a separate outbound lead-acquisition implementation."
+  },
+  {
+    "source": "ai-saas-development-product-guide",
+    "destination": "ai-saas-product-development-architecture-blueprint-2026",
+    "reason": "The legacy product guide covers repeatable AI customer value, tenant boundaries, evaluation, variable usage economics, administrator control and retention. The restored AI SaaS architecture guide develops those exact concerns with a support-summary product, accepted operations versus provider attempts, usage metering, execution-time entitlements, evaluation and deletion/support boundaries."
+  },
+  {
+    "source": "ai-software-development-product-guide",
+    "destination": "ai-native-application-development",
+    "reason": "The full legacy source describes building a production product around uncertain model output: task value, model boundaries, uncertainty-aware interfaces, evaluation, cost, data controls and versioned change. The retained and updated AI-native application guide covers those same architectural decisions with a reviewable service-enquiry example. This is not a merge of the separate vendor-selection pages."
+  },
+  {
+    "source": "using-ai-without-breaking-operations",
+    "destination": "ai-readiness-assessment",
+    "reason": "The entire legacy body is three short paragraphs recommending a bounded existing workflow, retained human judgment and measurement of actual operating improvement. The restored readiness assessment provides the complete answer through workflow observation, accountable owners, benefit and consequence, integration authority, staff capacity and a go/revise/stop pilot."
+  },
+  {
+    "source": "ai-automation-small-business-guide",
+    "destination": "ai-readiness-assessment",
+    "reason": "The legacy page asks where a small business should start, recommends one observable workflow and then expansion from measured evidence. Its unsupported chatbot percentage and generic ROI claims do not represent a distinct useful intent. The restored readiness guide directly answers first-workflow selection and small-company readiness, with a concrete maintenance-business scenario, accountable reviewers, operating costs and a bounded pilot decision."
+  }
+]

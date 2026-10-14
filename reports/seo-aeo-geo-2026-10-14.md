@@ -1,5 +1,7 @@
 # SEO, AEO and GEO findings — 14 October 2026
 
+This report records the earlier 67-blog deployment. The subsequent [archive recovery report](archive-recovery-2026-10-14.md) supersedes its publication, sitemap and redirect counts; the Search Console and hosting access limitations below still apply.
+
 ## What the evidence says about lost impressions
 
 The available records show a short visibility spike in August followed by a sharp decline. They do **not** establish a Google penalty, an algorithm update, or a particular deployment as the cause. A successful live crawl confirms technical eligibility, not Google's indexed state or rankings.
